@@ -87,11 +87,11 @@ dependencies {
 
     if ((react["enableHermes"] as Boolean?) == true) {
         val hermesPath = "$rootDir/frontend/node_modules/hermesvm/android/"
-        implementation("org.webkit:android-jsc-intl:+")
+        implementation(Libraries.Webkit.jscIntl)
         debugImplementation(files(hermesPath + "hermes-debug.aar"))
         releaseImplementation(files(hermesPath + "hermes-release.aar"))
     } else {
-        implementation("org.webkit:android-jsc:+")
+        implementation(Libraries.Webkit.jsc)
     }
 }
 

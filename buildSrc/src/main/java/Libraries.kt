@@ -14,6 +14,10 @@ object Libraries {
     }
 
     const val reactNative = "com.facebook.react:react-native:+"
+    object Webkit {
+        const val jscIntl = "org.webkit:android-jsc-intl:+"
+        const val jsc = "org.webkit:android-jsc:+"
+    }
 
     object Coroutines {
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
