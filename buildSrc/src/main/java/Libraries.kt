@@ -13,6 +13,8 @@ object Libraries {
         const val test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
     }
 
+    const val reactNative = "com.facebook.react:react-native:+"
+
     object Coroutines {
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
