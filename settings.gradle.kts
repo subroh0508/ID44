@@ -7,6 +7,7 @@ applyNativeModulesSettingsGradle(settings, "$rootDir/frontend")
 
 include(
     ":android:app",
+    ":android:base",
     ":android:features:auth",
     ":libraries:api"
 )
