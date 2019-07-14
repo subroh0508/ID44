@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
@@ -68,6 +69,13 @@ class MainActivity : AppCompatActivity() {
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build()
 
-        reactRootView.startReactApplication(reactInstanceManager, "App", null)
+        reactRootView.startReactApplication(
+            reactInstanceManager,
+            "App",
+            bundleOf("styles" to buildCss())
+        )
     }
+
+    private fun buildCss(color: String = "#000000"): String
+            = "{\"container\":{\"flex\":1,\"justifyContent\":\"center\"},\"hello\":{\"fontSize\":20,\"textAlign\":\"center\",\"margin\":10,\"color\":\"$color\"}}"
 }
