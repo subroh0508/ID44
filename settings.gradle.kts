@@ -6,7 +6,8 @@ val applyNativeModulesSettingsGradle: Closure<Unit> by extra
 applyNativeModulesSettingsGradle(settings, "$rootDir/frontend")
 
 include(
-    ":android"
+    ":android",
+    ":libraries:api"
 )
 
 pluginManagement {
