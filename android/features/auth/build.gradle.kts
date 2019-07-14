@@ -1,4 +1,3 @@
-
 import com.android.build.VariantOutput
 import com.android.build.gradle.api.ApkVariantOutput
 import groovy.lang.Closure
@@ -24,11 +23,10 @@ val useIntlJsc = false
 android {
     compileSdkVersion(Package.Versions.compileSdk)
     defaultConfig {
-        applicationId = Package.applicationId
         minSdkVersion(Package.Versions.minSdk)
         targetSdkVersion(Package.Versions.targetSdk)
-        versionCode = Package.versionCode
-        versionName = Package.versionName
+        versionCode = 1
+        versionName = "1.0"
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -70,7 +68,7 @@ android {
 
     (kotlinOptions as KotlinJvmOptions).apply {
         freeCompilerArgs = listOf(
-                "-Xuse-experimental=kotlin.Experimental"
+            "-Xuse-experimental=kotlin.Experimental"
         )
     }
 }
