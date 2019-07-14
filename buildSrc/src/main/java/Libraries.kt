@@ -22,7 +22,6 @@ object Libraries {
     object Coroutines {
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
-        const val rxJava2 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Versions.coroutines}"
     }
 
     object Jetpack {
@@ -49,5 +48,10 @@ object Libraries {
             const val runner = "androidx.test:runner:${Versions.Jetpack.testRunner}"
             const val espresso = "com.android.support.test.espresso:espresso-core:${Versions.Jetpack.espresso}"
         }
+    }
+
+    object Ktor {
+        const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val android = "io.ktor:ktor-client-android:${Versions.ktor}"
     }
 }

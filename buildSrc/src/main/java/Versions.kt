@@ -23,4 +23,6 @@ object Versions {
         const val testRunner = "1.1.0"
         const val espresso = "3.0.2"
     }
+
+    const val ktor = "1.2.2"
 }
