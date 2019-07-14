@@ -36,4 +36,10 @@ dependencies {
 
     implementation(Libraries.Coroutines.core)
     implementation(Libraries.Coroutines.android)
+
+    implementation(Libraries.Jetpack.core)
+    implementation(Libraries.Jetpack.ktx)
+    implementation(Libraries.Jetpack.appCompat)
+    implementation(Libraries.Jetpack.fragment)
+    implementation(Libraries.Jetpack.fragmentKtx)
 }
