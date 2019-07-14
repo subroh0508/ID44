@@ -77,6 +77,9 @@ android {
 
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
+
+    implementation(project(":android:features:auth"))
+
     implementation(Libraries.Kotlin.stdlib)
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)

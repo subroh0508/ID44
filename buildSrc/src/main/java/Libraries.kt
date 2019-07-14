@@ -9,6 +9,7 @@ object Libraries {
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
         const val androidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions-runtime:${Versions.kotlin}"
         const val test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
     }
@@ -53,5 +54,8 @@ object Libraries {
     object Ktor {
         const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val android = "io.ktor:ktor-client-android:${Versions.ktor}"
+        const val loggingJvm = "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
+        const val json = "io.ktor:ktor-client-json:${Versions.ktor}"
+        const val serializationJvm = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
     }
 }

@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
+import id44.mizuki.auth.presentation.AuthenticationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        startActivity(Intent(this, AuthenticationActivity::class.java))
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && BuildConfig.DEBUG) {
             if (!Settings.canDrawOverlays(this)) {
                 requestOverlayPermission()
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setReactRootView()
+        */
     }
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -57,7 +61,11 @@ class MainActivity : AppCompatActivity() {
 
                 setReactRootView()
             }
+
+            return
         }
+
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun setReactRootView() {

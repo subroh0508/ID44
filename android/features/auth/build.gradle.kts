@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -31,9 +32,24 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
+    implementation(project(":android:base"))
+    implementation(project(":libraries:api"))
+
     implementation(Libraries.Kotlin.stdlib)
     implementation(Libraries.Kotlin.reflect)
+    implementation(Libraries.Kotlin.serialization)
 
     implementation(Libraries.Coroutines.core)
     implementation(Libraries.Coroutines.android)
+
+    implementation(Libraries.Ktor.core)
+    implementation(Libraries.Ktor.android)
+    implementation(Libraries.Ktor.loggingJvm)
+    implementation(Libraries.Ktor.json)
+    implementation(Libraries.Ktor.serializationJvm)
+
+    implementation(Libraries.Jetpack.appCompat)
+    implementation(Libraries.Jetpack.constraintLayout)
+    implementation(Libraries.Jetpack.recyclerView)
+    implementation(Libraries.Jetpack.material)
 }
