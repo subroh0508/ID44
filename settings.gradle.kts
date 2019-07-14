@@ -6,7 +6,7 @@ val applyNativeModulesSettingsGradle: Closure<Unit> by extra
 applyNativeModulesSettingsGradle(settings, "$rootDir/frontend")
 
 include(
-    ":android",
+    ":android:app",
     ":libraries:api"
 )
 
