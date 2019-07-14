@@ -17,9 +17,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val OVERLAY_PERMISSION_REQUEST = 100
+        private val COLORS = listOf("#000000", "#0000FF", "#00FF00", "#FF0000")
     }
 
     private lateinit var reactInstanceManager: ReactInstanceManager
+    private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +76,19 @@ class MainActivity : AppCompatActivity() {
             "App",
             bundleOf("styles" to buildCss())
         )
+
+        setClickListener()
+    }
+
+    private fun setClickListener() {
+        change.setOnClickListener {
+            count += 1
+
+            val updatedProps = reactRootView.appProperties ?: bundleOf()
+
+            updatedProps.putString("styles", buildCss(COLORS[count % 4]))
+            reactRootView.appProperties = updatedProps
+        }
     }
 
     private fun buildCss(color: String = "#000000"): String
