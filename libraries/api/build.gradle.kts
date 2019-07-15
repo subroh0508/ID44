@@ -51,6 +51,8 @@ kotlin {
 
                 implementation(Libraries.Coroutines.android)
 
+                implementation(Libraries.Jetpack.ktx)
+
                 implementation(Libraries.Ktor.clientAndroid)
                 implementation(Libraries.Ktor.jsonJvm)
                 implementation(Libraries.Ktor.serializationJvm)
