@@ -9,7 +9,8 @@ include(
     ":android:app",
     ":android:base",
     ":android:features:auth",
-    ":libraries:api"
+    ":libraries:api",
+    ":libraries:auth:infra"
 )
 
 pluginManagement {
