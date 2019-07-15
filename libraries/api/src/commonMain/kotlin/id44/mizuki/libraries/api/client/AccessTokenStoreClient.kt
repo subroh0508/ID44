@@ -1,3 +1,3 @@
-package id44.mizuki.api.client
+package id44.mizuki.libraries.api.client
 
 expect class AccessTokenStoreClient : AccessTokenStore

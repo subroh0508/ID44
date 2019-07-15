@@ -1,4 +1,4 @@
-package id44.mizuki.api.auth
+package id44.mizuki.libraries.api.auth
 
 internal enum class AuthEndpoints(val url: String) {
     GET_OAUTH_AUTHORIZE("/oauth/authorize"),

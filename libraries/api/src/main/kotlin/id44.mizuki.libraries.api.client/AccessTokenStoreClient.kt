@@ -1,8 +1,8 @@
-package id44.mizuki.api.client
+package id44.mizuki.libraries.api.client
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import id44.mizuki.api.model.AccessToken
+import id44.mizuki.libraries.api.model.AccessToken
 import kotlinx.serialization.json.Json
 
 actual class AccessTokenStoreClient(

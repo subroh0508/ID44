@@ -1,8 +1,8 @@
-package id44.mizuki.api.auth.client
+package id44.mizuki.libraries.api.auth.client
 
-import id44.mizuki.api.auth.AuthEndpoints
-import id44.mizuki.api.model.AccessToken
-import id44.mizuki.api.params.PostOauthToken
+import id44.mizuki.libraries.api.auth.AuthEndpoints
+import id44.mizuki.libraries.api.model.AccessToken
+import id44.mizuki.libraries.api.params.PostOauthToken
 import io.ktor.client.HttpClient
 import io.ktor.client.request.post
 

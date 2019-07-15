@@ -1,4 +1,4 @@
-package id44.mizuki.api.client
+package id44.mizuki.libraries.api.client
 
 import io.ktor.client.HttpClient
 

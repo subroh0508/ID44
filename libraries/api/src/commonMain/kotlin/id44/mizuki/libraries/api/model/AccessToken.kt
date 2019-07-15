@@ -1,4 +1,4 @@
-package id44.mizuki.api.model
+package id44.mizuki.libraries.api.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

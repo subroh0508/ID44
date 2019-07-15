@@ -1,6 +1,6 @@
-package id44.mizuki.api.auth.client
+package id44.mizuki.libraries.api.auth.client
 
-import id44.mizuki.api.model.AccessToken
+import id44.mizuki.libraries.api.model.AccessToken
 
 interface MastodonAuthApi {
     fun buildAuthorizeUrl(
