@@ -1,11 +1,9 @@
 package id44.mizuki.libraries.api.client
 
-import id44.mizuki.libraries.api.model.AccessToken
-
 interface AccessTokenStore {
-    fun getAccessToken(hostName: String): AccessToken?
+    fun getAccessToken(hostName: String): String?
 
-    fun cacheAccessToken(hostName: String, token: AccessToken)
+    fun cacheAccessToken(hostName: String, token: String)
 
     fun clearAccessToken(hostName: String)
 }

@@ -10,7 +10,9 @@ include(
     ":android:base",
     ":android:features:auth",
     ":libraries:api",
-    ":libraries:auth:infra"
+    ":libraries:auth:infra",
+    ":libraries:auth:domain:usecase:requestappcredential",
+    ":libraries:auth:domain:usecase:requestaccesstoken"
 )
 
 pluginManagement {

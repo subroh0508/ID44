@@ -2,21 +2,19 @@ package id44.mizuki.libraries.api.client
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import id44.mizuki.libraries.api.model.AppCredential
-import kotlinx.serialization.json.Json
 
 actual class AppCredentialStoreClient(
     private val sharedPreferences: SharedPreferences
 ) : AppCredentialStore {
-    override fun getAppCredential(hostName: String): AppCredential? {
-        val json = sharedPreferences.getString(hostName, null) ?: return null
+    override fun getClientId(hostName: String): String?
+            = sharedPreferences.getString(hostName, null)?.split(":")?.get(0)
 
-        return Json.parse(AppCredential.serializer(), json)
-    }
+    override fun getClientSecret(hostName: String): String?
+            = sharedPreferences.getString(hostName, null)?.split(":")?.get(1)
 
-    override fun cacheAppCredential(hostName: String, credential: AppCredential) {
+    override fun cacheAppCredential(hostName: String, clientId: String, clientSecret: String) {
         sharedPreferences.edit {
-            putString(hostName, Json.stringify(AppCredential.serializer(), credential))
+            putString(hostName, "$clientId:$clientSecret")
         }
     }
 }

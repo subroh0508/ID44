@@ -1,9 +1,9 @@
 package id44.mizuki.libraries.api.client
 
-import id44.mizuki.libraries.api.model.AppCredential
-
 interface AppCredentialStore {
-    fun getAppCredential(hostName: String): AppCredential?
+    fun getClientId(hostName: String): String?
 
-    fun cacheAppCredential(hostName: String, credential: AppCredential)
+    fun getClientSecret(hostName: String): String?
+
+    fun cacheAppCredential(hostName: String, clientId: String, clientSecret: String)
 }

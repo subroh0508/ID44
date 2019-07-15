@@ -2,7 +2,6 @@ package id44.mizuki.libraries.auth.infra.repository
 
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.client.AccessTokenStore
-import id44.mizuki.libraries.api.model.AccessToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -13,8 +12,7 @@ class AccessTokenRepositoryImpl(
     override fun buildAuthorizeUrl(
         hostName: String,
         clientId: String,
-        clientSecret: String,
-        scope: String
+        clientSecret: String
     ): String = authApi.buildAuthorizeUrl(hostName, clientId, clientSecret)
 
     override suspend fun fetchAccessToken(
@@ -22,11 +20,11 @@ class AccessTokenRepositoryImpl(
         clientId: String,
         clientSecret: String,
         code: String
-    ): AccessToken = withContext(Dispatchers.Default) {
-        authApi.requestAccessToken(hostName, clientId, clientSecret, code)
+    ): String = withContext(Dispatchers.Default) {
+        authApi.requestAccessToken(hostName, clientId, clientSecret, code).accessToken
     }
 
-    override fun cacheAccessToken(hostName: String, token: AccessToken) {
+    override fun cacheAccessToken(hostName: String, token: String) {
         localStore.cacheAccessToken(hostName, token)
     }
 

@@ -17,6 +17,10 @@
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/api" />
             <option value="$PROJECT_DIR$/libraries/auth" />
+            <option value="$PROJECT_DIR$/libraries/auth/domain" />
+            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase" />
+            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
+            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
             <option value="$PROJECT_DIR$/libraries/auth/infra" />
           </set>
         </option>
