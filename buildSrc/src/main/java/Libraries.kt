@@ -67,4 +67,9 @@ object Libraries {
         const val serializationIosArm64 = "io.ktor:ktor-client-serialization-iosarm64:${Versions.ktor}"
         const val serializationIosX64 = "io.ktor:ktor-client-serialization-iosx64:${Versions.ktor}"
     }
+
+    object Okhttp3 {
+        const val client = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+        const val loggingIntercerptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+    }
 }

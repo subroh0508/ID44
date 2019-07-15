@@ -1,12 +1,12 @@
 package id44.mizuki.libraries.auth.infra.repository
 
-import id44.mizuki.libraries.api.auth.client.MastodonAuthApiClient
+import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.client.AppCredentialStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class AppCredentialRepositoryImpl(
-    private val apiClient: MastodonAuthApiClient,
+    private val apiClient: MastodonAuthApi,
     private val localStore: AppCredentialStore
 ) : AppCredentialRepository {
     override suspend fun fetchAppCredential(hostName: String): Pair<String, String> = withContext(Dispatchers.Default) {

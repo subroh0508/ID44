@@ -34,19 +34,25 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":libraries:api"))
+    implementation(project(":libraries:auth:infra"))
+    implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
+    implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
 
-    implementation(Libraries.Kotlin.stdlib)
+    implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
-    implementation(Libraries.Kotlin.serialization)
+    implementation(Libraries.Kotlin.serializationCommon)
 
-    implementation(Libraries.Coroutines.core)
+    implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)
 
-    implementation(Libraries.Ktor.core)
-    implementation(Libraries.Ktor.android)
+    implementation(Libraries.Ktor.clientCommon)
+    implementation(Libraries.Ktor.clientAndroid)
     implementation(Libraries.Ktor.loggingJvm)
-    implementation(Libraries.Ktor.json)
+    implementation(Libraries.Ktor.jsonJvm)
     implementation(Libraries.Ktor.serializationJvm)
+
+    implementation(Libraries.Okhttp3.client)
+    implementation(Libraries.Okhttp3.loggingIntercerptor)
 
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.constraintLayout)

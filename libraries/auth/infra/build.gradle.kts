@@ -38,10 +38,6 @@ kotlin {
                 implementation(Libraries.Kotlin.stdlibCommon)
 
                 implementation(Libraries.Coroutines.common)
-
-                implementation(Libraries.Ktor.clientCommon)
-                implementation(Libraries.Ktor.jsonCommon)
-                implementation(Libraries.Ktor.serializationCommon)
             }
         }
 
@@ -53,10 +49,6 @@ kotlin {
                 implementation(Libraries.Coroutines.android)
 
                 implementation(Libraries.Jetpack.ktx)
-
-                implementation(Libraries.Ktor.clientAndroid)
-                implementation(Libraries.Ktor.jsonJvm)
-                implementation(Libraries.Ktor.serializationJvm)
             }
         }
     }

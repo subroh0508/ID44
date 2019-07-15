@@ -2,7 +2,7 @@
           package="id44.mizuki.auth">
     <application>
         <activity
-            android:name=".presentation.AuthenticationActivity"
+            android:name=".ui.AuthenticationActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

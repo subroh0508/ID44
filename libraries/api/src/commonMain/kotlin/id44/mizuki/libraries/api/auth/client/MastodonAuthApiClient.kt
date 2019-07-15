@@ -7,17 +7,20 @@ import id44.mizuki.libraries.api.model.AppCredential
 import id44.mizuki.libraries.api.params.PostApps
 import id44.mizuki.libraries.api.params.PostOauthToken
 import io.ktor.client.HttpClient
+import io.ktor.client.features.json.defaultSerializer
 import io.ktor.client.request.post
 
 class MastodonAuthApiClient(
     private val httpClient: HttpClient
 ): MastodonAuthApi {
+    private val json = defaultSerializer()
+
     override suspend fun requestAppCredential(
         hostName: String
     ): AppCredential = httpClient.post(buildUrl(hostName, AuthEndpoints.POST_APPS)) {
-        body = PostApps.Request(
+        body = json.write(PostApps.Request(
             Constants.CLIENT_NAME, Constants.REDIRECT_URI, Constants.SCOPE, Constants.WEBSITE
-        )
+        ))
     }
 
     override fun buildAuthorizeUrl(
@@ -43,10 +46,10 @@ class MastodonAuthApiClient(
         clientSecret: String,
         code: String
     ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.POST_OAUTH_TOKEN)) {
-        body = PostOauthToken.Request(
-            clientId, clientSecret, Constants.REDIRECT_URI, code
-        )
+        body = json.write(PostOauthToken.Request(
+            clientId, clientSecret, Constants.REDIRECT_URI, code, "authorization_code"
+        ))
     }
 
-    private fun buildUrl(hostName: String, endpoint: AuthEndpoints) = "https://$hostName/${endpoint.url}"
+    private fun buildUrl(hostName: String, endpoint: AuthEndpoints) = "https://$hostName${endpoint.url}"
 }

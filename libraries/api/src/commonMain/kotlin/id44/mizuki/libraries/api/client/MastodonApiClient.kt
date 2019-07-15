@@ -21,11 +21,11 @@ class MastodonApiClient(
         vararg params: Pair<String, Any>
     ): String {
         if (params.isEmpty()) {
-            return "https://$hostName/${endpoint.url}"
+            return "https://$hostName${endpoint.url}"
         }
 
         return buildString {
-            append("https://$hostName/${endpoint.url}?")
+            append("https://$hostName${endpoint.url}?")
             append(params.joinToString("&") { (k, v) -> "$k=$v" })
         }
     }

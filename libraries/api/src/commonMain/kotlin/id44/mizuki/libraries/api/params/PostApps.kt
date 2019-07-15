@@ -8,9 +8,9 @@ abstract class PostApps {
     data class Request(
         @SerialName("client_name")
         val clientName: String,
-        @SerialName("client_secret")
+        @SerialName("redirect_uris")
         val redirectUris: String,
-        val scoped: String,
+        val scopes: String,
         val website: String
     )
 }
