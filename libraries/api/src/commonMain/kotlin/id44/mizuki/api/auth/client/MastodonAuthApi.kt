@@ -1,16 +1,18 @@
-package id44.mizuki.api
+package id44.mizuki.api.auth.client
 
-import id44.mizuki.api.enums.Scope
 import id44.mizuki.api.model.AccessToken
 
-interface MastodonApi {
-    suspend fun authorize(
+interface MastodonAuthApi {
+    fun buildAuthorizeUrl(
+        hostName: String,
         clientId: String,
+        clientSecret: String,
         redirectUri: String,
-        vararg scope: Scope
+        scope: String
     ): String
 
     suspend fun requestAccessToken(
+        hostName: String,
         clientId: String,
         clientSecret: String,
         redirectUri: String,

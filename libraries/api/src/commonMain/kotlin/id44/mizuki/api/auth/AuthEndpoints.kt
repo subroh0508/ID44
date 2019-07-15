@@ -1,6 +1,6 @@
-package id44.mizuki.api.enums
+package id44.mizuki.api.auth
 
-internal enum class Endpoints(val url: String) {
+internal enum class AuthEndpoints(val url: String) {
     GET_OAUTH_AUTHORIZE("/oauth/authorize"),
     POST_OAUTH_TOKEN("/oauth/token")
 }

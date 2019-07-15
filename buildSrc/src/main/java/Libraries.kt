@@ -7,21 +7,24 @@ object Libraries {
     }
 
     object Kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+        const val stdlibJvm = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
-        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+        const val serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+        const val serializationIos = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
         const val androidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions-runtime:${Versions.kotlin}"
         const val test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
     }
 
     const val reactNative = "com.facebook.react:react-native:+"
+
     object Webkit {
         const val jscIntl = "org.webkit:android-jsc-intl:+"
         const val jsc = "org.webkit:android-jsc:+"
     }
 
     object Coroutines {
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.coroutines}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     }
 
@@ -52,10 +55,16 @@ object Libraries {
     }
 
     object Ktor {
-        const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
-        const val android = "io.ktor:ktor-client-android:${Versions.ktor}"
+        const val clientCommon = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val clientAndroid = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
+        const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val loggingJvm = "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
-        const val json = "io.ktor:ktor-client-json:${Versions.ktor}"
+        const val jsonCommon = "io.ktor:ktor-client-json:${Versions.ktor}"
+        const val jsonJvm = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
+        const val jsonNative = "io.ktor:ktor-client-json-native:${Versions.ktor}"
+        const val serializationCommon = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val serializationJvm = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
+        const val serializationIosArm64 = "io.ktor:ktor-client-serialization-iosarm64:${Versions.ktor}"
+        const val serializationIosX64 = "io.ktor:ktor-client-serialization-iosx64:${Versions.ktor}"
     }
 }

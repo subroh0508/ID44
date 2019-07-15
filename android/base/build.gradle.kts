@@ -31,10 +31,10 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
-    implementation(Libraries.Kotlin.stdlib)
+    implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
 
-    implementation(Libraries.Coroutines.core)
+    implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)
 
     implementation(Libraries.Jetpack.core)

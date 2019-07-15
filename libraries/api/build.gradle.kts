@@ -1,7 +1,7 @@
 plugins {
+    kotlin("multiplatform")
     id("com.android.library")
-    kotlin("android")
-    kotlin("android.extensions")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -28,12 +28,33 @@ android {
     }
 }
 
-dependencies {
-    implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
+kotlin {
+    android()
 
-    implementation(Libraries.Kotlin.stdlib)
-    implementation(Libraries.Kotlin.reflect)
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibCommon)
 
-    implementation(Libraries.Coroutines.core)
-    implementation(Libraries.Coroutines.android)
+                implementation(Libraries.Coroutines.common)
+
+                implementation(Libraries.Ktor.clientCommon)
+                implementation(Libraries.Ktor.jsonCommon)
+                implementation(Libraries.Ktor.serializationCommon)
+            }
+        }
+
+        val androidMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJvm)
+
+                implementation(Libraries.Coroutines.android)
+
+                implementation(Libraries.Ktor.clientAndroid)
+                implementation(Libraries.Ktor.jsonJvm)
+                implementation(Libraries.Ktor.serializationJvm)
+            }
+        }
+    }
 }

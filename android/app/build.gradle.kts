@@ -1,4 +1,3 @@
-
 import com.android.build.VariantOutput
 import com.android.build.gradle.api.ApkVariantOutput
 import groovy.lang.Closure
@@ -80,7 +79,7 @@ dependencies {
 
     implementation(project(":android:features:auth"))
 
-    implementation(Libraries.Kotlin.stdlib)
+    implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.constraintLayout)
