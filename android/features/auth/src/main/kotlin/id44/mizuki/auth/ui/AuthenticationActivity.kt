@@ -3,15 +3,15 @@ package id44.mizuki.auth.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import id44.mizuki.auth.AuthenticationContract
-import id44.mizuki.auth.R
-import id44.mizuki.auth.generatePresenter
+import id44.mizuki.auth.*
 import id44.mizuki.auth.model.AuthenticationViewModel
 import id44.mizuki.base.ui.ScopedActivity
 import id44.mizuki.libraries.api.auth.Constants
 import kotlinx.android.synthetic.main.activity_authentication.*
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
 class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
@@ -19,6 +19,15 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
 
     internal val viewModel: AuthenticationViewModel by lazy {
         ViewModelProviders.of(this)[AuthenticationViewModel::class.java]
+    }
+
+    internal val authorizeErrorHandler: CoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
+        when (e) {
+            is AccessDeniedError -> showErrorMessage(getString(R.string.auth_error_access_denied))
+            is AuthorizeError -> showErrorMessage(e.message ?: getString(R.string.auth_error_authorize))
+            is BrowserAppNotFoundError -> showErrorMessage(getString(R.string.auth_error_browser_app_not_found))
+            else -> showErrorMessage(e.message ?: getString(R.string.auth_error_unknown))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +52,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     override fun startOauth2Flow() {
         val hostName = hostName.text.toString()
 
-        launch(coroutineContext) {
+        launch(coroutineContext + authorizeErrorHandler) {
             val code = presenter.fetchAuthorizeCode(hostName)
 
             viewModel.postAccessToken(
@@ -64,16 +73,25 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
         result.text = accessToken
     }
 
+    override fun showErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
     private fun Intent?.getAuthorizeCode(): Pair<String?, String?> {
         val uri = this?.data
 
         if (uri != null && uri.toString().startsWith(Constants.REDIRECT_URI)) {
-            val code = uri.getQueryParameter("code")
-            val error = uri.getQueryParameter("error")
+            val code = uri.getQueryParameter(QUERY_CODE)
+            val error = uri.getQueryParameter(QUERY_ERROR)
 
             return code to error
         }
 
         return null to null
+    }
+
+    companion object {
+        private const val QUERY_CODE = "code"
+        private const val QUERY_ERROR = "error"
     }
 }

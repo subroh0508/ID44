@@ -1,7 +1,6 @@
 package id44.mizuki.auth.presenter
 
-import android.content.ActivityNotFoundException
-import id44.mizuki.auth.AuthenticationContract
+import id44.mizuki.auth.*
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
 import kotlinx.coroutines.CompletableDeferred
@@ -17,7 +16,13 @@ internal class AuthenticationPresenter(
 
     override fun onNewIntent(code: String?, error: String?) {
         if (code.isNullOrBlank()) {
-            deferred.completeExceptionally(IllegalStateException("Failed authorize: ${error ?: "Unknown error"}"))
+            deferred.completeExceptionally(
+                when (error) {
+                    "access_denied" -> AccessDeniedError()
+                    null -> UnknownError(error)
+                    else -> AuthorizeError(error)
+                }
+            )
             return
         }
 
@@ -40,6 +45,6 @@ internal class AuthenticationPresenter(
             = view.bindAccessToken(accessToken)
 
     override fun notifyBrowserNotFound() {
-        deferred.completeExceptionally(ActivityNotFoundException())
+        deferred.completeExceptionally(BrowserAppNotFoundError())
     }
 }

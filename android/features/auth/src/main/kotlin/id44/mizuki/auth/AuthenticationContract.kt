@@ -7,6 +7,8 @@ interface AuthenticationContract {
         fun openAuthorizePage(url: String)
 
         fun bindAccessToken(accessToken: String)
+
+        fun showErrorMessage(message: String)
     }
 
     interface Presenter {
