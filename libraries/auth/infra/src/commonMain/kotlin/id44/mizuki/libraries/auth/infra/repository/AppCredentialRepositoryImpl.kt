@@ -9,8 +9,12 @@ class AppCredentialRepositoryImpl(
     private val apiClient: MastodonAuthApi,
     private val localStore: AppCredentialStore
 ) : AppCredentialRepository {
-    override suspend fun fetchAppCredential(hostName: String): Pair<String, String> = withContext(Dispatchers.Default) {
-        val (clientId, clientSecret) = apiClient.requestAppCredential(hostName)
+    override suspend fun fetchAppCredential(
+        hostName: String,
+        clientName: String,
+        redirectUri: String
+    ): Pair<String, String> = withContext(Dispatchers.Default) {
+        val (clientId, clientSecret) = apiClient.requestAppCredential(hostName, clientName, redirectUri)
 
         clientId to clientSecret
     }

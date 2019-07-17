@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">auth</string>
+
+    <string name="auth_client_name" translatable="false">id44.mizuki</string>
+    <string name="auth_oauth_scheme" translatable="false">oauth2redirect</string>
+
     <string name="auth_error_access_denied">アカウントへのアクセスが拒否されました</string>
     <string name="auth_error_authorize">認証中にエラーが発生しました</string>
     <string name="auth_error_unknown">予期せぬエラーが発生しました</string>

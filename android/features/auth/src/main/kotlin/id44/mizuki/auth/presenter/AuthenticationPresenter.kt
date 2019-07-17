@@ -30,16 +30,16 @@ internal class AuthenticationPresenter(
     }
 
 
-    override suspend fun fetchAuthorizeCode(hostName: String): String {
+    override suspend fun fetchAuthorizeCode(hostName: String, clientName: String, redirectUri: String): String {
         deferred = CompletableDeferred()
 
-        view.openAuthorizePage(requestAppCredentialUseCase.execute(hostName))
+        view.openAuthorizePage(requestAppCredentialUseCase.execute(hostName, clientName, redirectUri))
 
         return deferred.await()
     }
 
-    override suspend fun requestAccessToken(hostName: String, code: String): String
-            = requestAccessTokenUseCase.execute(hostName, code)
+    override suspend fun requestAccessToken(hostName: String, redirectUri: String, code: String): String
+            = requestAccessTokenUseCase.execute(hostName, redirectUri, code)
 
     override fun onRequestedAccessToken(accessToken: String)
             = view.bindAccessToken(accessToken)

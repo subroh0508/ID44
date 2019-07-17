@@ -4,13 +4,15 @@ interface AccessTokenRepository {
     fun buildAuthorizeUrl(
         hostName: String,
         clientId: String,
-        clientSecret: String
+        clientSecret: String,
+        redirectUri: String
     ): String
 
     suspend fun fetchAccessToken(
         hostName: String,
         clientId: String,
         clientSecret: String,
+        redirectUri: String,
         code: String
     ): String
 

@@ -1,7 +1,11 @@
 package id44.mizuki.libraries.auth.infra.repository
 
 interface AppCredentialRepository {
-    suspend fun fetchAppCredential(hostName: String): Pair<String, String>
+    suspend fun fetchAppCredential(
+        hostName: String,
+        clientName: String,
+        redirectUri: String
+    ): Pair<String, String>
 
     fun getClientId(hostName: String): String?
 

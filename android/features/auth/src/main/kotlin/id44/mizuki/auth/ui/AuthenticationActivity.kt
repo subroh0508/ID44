@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders
 import id44.mizuki.auth.*
 import id44.mizuki.auth.model.AuthenticationViewModel
 import id44.mizuki.base.ui.ScopedActivity
-import id44.mizuki.libraries.api.auth.Constants
 import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -53,10 +52,10 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
         val hostName = hostName.text.toString()
 
         launch(coroutineContext + authorizeErrorHandler) {
-            val code = presenter.fetchAuthorizeCode(hostName)
+            val code = presenter.fetchAuthorizeCode(hostName, clientName, redirectUri)
 
             viewModel.postAccessToken(
-                presenter.requestAccessToken(hostName, code)
+                presenter.requestAccessToken(hostName, redirectUri, code)
             )
         }
     }
@@ -80,7 +79,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     private fun Intent?.getAuthorizeCode(): Pair<String?, String?> {
         val uri = this?.data
 
-        if (uri != null && uri.toString().startsWith(Constants.REDIRECT_URI)) {
+        if (uri != null && uri.toString().startsWith(redirectUri)) {
             val code = uri.getQueryParameter(QUERY_CODE)
             val error = uri.getQueryParameter(QUERY_ERROR)
 
@@ -89,6 +88,9 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
 
         return null to null
     }
+
+    private val clientName by lazy { getString(R.string.auth_client_name) }
+    private val redirectUri by lazy { "${getString(R.string.auth_oauth_scheme)}://$clientName/" }
 
     companion object {
         private const val QUERY_CODE = "code"

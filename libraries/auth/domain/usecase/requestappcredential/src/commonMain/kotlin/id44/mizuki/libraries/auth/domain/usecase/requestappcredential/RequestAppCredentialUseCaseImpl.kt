@@ -7,13 +7,13 @@ class RequestAppCredentialUseCaseImpl(
     private val appCredentialRepository: AppCredentialRepository,
     private val accessTokenRepository: AccessTokenRepository
 ) : RequestAppCredentialUseCase {
-    override suspend fun execute(hostName: String): String {
-        val (clientId, clientSecret) = appCredentialRepository.fetchAppCredential(hostName)
+    override suspend fun execute(hostName: String, clientName: String, redirectUri: String): String {
+        val (clientId, clientSecret) = appCredentialRepository.fetchAppCredential(hostName, clientName, redirectUri)
 
         appCredentialRepository.cacheAppCredential(hostName, clientId, clientSecret)
 
         return accessTokenRepository.buildAuthorizeUrl(
-            hostName, clientId, clientSecret
+            hostName, clientId, clientSecret, redirectUri
         )
     }
 }

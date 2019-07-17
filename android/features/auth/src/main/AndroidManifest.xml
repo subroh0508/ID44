@@ -11,8 +11,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="id44.mizuki"
-                    android:scheme="oauth2redirect" />
+                    android:host="@string/auth_client_name"
+                    android:scheme="@string/auth_oauth_scheme" />
             </intent-filter>
 
         </activity>

@@ -16,9 +16,9 @@ interface AuthenticationContract {
 
         fun onNewIntent(code: String?, error: String?)
 
-        suspend fun fetchAuthorizeCode(hostName: String): String
+        suspend fun fetchAuthorizeCode(hostName: String, clientName: String, redirectUri: String): String
 
-        suspend fun requestAccessToken(hostName: String, code: String): String
+        suspend fun requestAccessToken(hostName: String, redirectUri: String, code: String): String
 
         fun onRequestedAccessToken(accessToken: String)
 

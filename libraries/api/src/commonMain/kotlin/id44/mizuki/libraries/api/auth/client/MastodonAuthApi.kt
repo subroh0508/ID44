@@ -5,19 +5,23 @@ import id44.mizuki.libraries.api.model.AppCredential
 
 interface MastodonAuthApi {
     suspend fun requestAppCredential(
-        hostName: String
+        hostName: String,
+        clientName: String,
+        redirectUri: String
     ): AppCredential
 
     fun buildAuthorizeUrl(
         hostName: String,
         clientId: String,
-        clientSecret: String
+        clientSecret: String,
+        redirectUri: String
     ): String
 
     suspend fun requestAccessToken(
         hostName: String,
         clientId: String,
         clientSecret: String,
+        redirectUri: String,
         code: String
     ): AccessToken
 }

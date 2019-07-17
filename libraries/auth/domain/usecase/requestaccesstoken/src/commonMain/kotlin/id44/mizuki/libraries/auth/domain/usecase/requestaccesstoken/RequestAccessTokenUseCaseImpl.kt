@@ -7,11 +7,11 @@ class RequestAccessTokenUseCaseImpl(
     private val appCredentialRepository: AppCredentialRepository,
     private val accessTokenRepository: AccessTokenRepository
 ) : RequestAccessTokenUseCase {
-    override suspend fun execute(hostName: String, code: String): String {
+    override suspend fun execute(hostName: String, redirectUri: String, code: String): String {
         val clientId = appCredentialRepository.getClientId(hostName) ?: throw IllegalStateException()
         val clientSecret = appCredentialRepository.getClientSecret(hostName) ?: throw IllegalStateException()
 
-        val accessToken = accessTokenRepository.fetchAccessToken(hostName, clientId, clientSecret, code)
+        val accessToken = accessTokenRepository.fetchAccessToken(hostName, clientId, clientSecret, redirectUri, code)
 
         accessTokenRepository.cacheAccessToken(hostName, accessToken)
 

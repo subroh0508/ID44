@@ -12,16 +12,18 @@ class AccessTokenRepositoryImpl(
     override fun buildAuthorizeUrl(
         hostName: String,
         clientId: String,
-        clientSecret: String
-    ): String = authApi.buildAuthorizeUrl(hostName, clientId, clientSecret)
+        clientSecret: String,
+        redirectUri: String
+    ): String = authApi.buildAuthorizeUrl(hostName, clientId, clientSecret, redirectUri)
 
     override suspend fun fetchAccessToken(
         hostName: String,
         clientId: String,
         clientSecret: String,
+        redirectUri: String,
         code: String
     ): String = withContext(Dispatchers.Default) {
-        authApi.requestAccessToken(hostName, clientId, clientSecret, code).accessToken
+        authApi.requestAccessToken(hostName, clientId, clientSecret, redirectUri, code).accessToken
     }
 
     override fun cacheAccessToken(hostName: String, token: String) {
