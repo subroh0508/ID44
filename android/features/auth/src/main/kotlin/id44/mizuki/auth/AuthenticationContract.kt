@@ -1,0 +1,25 @@
+package id44.mizuki.auth
+
+interface AuthenticationContract {
+    interface View {
+        fun startOauth2Flow()
+
+        fun openAuthorizePage(url: String)
+
+        fun bindAccessToken(accessToken: String)
+    }
+
+    interface Presenter {
+        fun onClickAuthorize()
+
+        fun onNewIntent(code: String?, error: String?)
+
+        suspend fun fetchAuthorizeCode(hostName: String): String
+
+        suspend fun requestAccessToken(hostName: String, code: String): String
+
+        fun onRequestedAccessToken(accessToken: String)
+
+        fun notifyBrowserNotFound()
+    }
+}

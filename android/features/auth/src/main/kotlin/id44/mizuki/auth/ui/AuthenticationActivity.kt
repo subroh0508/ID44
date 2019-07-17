@@ -3,64 +3,77 @@ package id44.mizuki.auth.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import id44.mizuki.auth.AuthenticationConstract
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import id44.mizuki.auth.AuthenticationContract
 import id44.mizuki.auth.R
 import id44.mizuki.auth.generatePresenter
+import id44.mizuki.auth.model.AuthenticationViewModel
 import id44.mizuki.base.ui.ScopedActivity
+import id44.mizuki.libraries.api.auth.Constants
 import kotlinx.android.synthetic.main.activity_authentication.*
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.launch
 
-class AuthenticationActivity : ScopedActivity(), AuthenticationConstract.View {
-    lateinit var prenseter: AuthenticationConstract.Presenter
+class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
+    internal lateinit var presenter: AuthenticationContract.Presenter
 
-    private lateinit var authorizeDeferred: CompletableDeferred<String?>
+    internal val viewModel: AuthenticationViewModel by lazy {
+        ViewModelProviders.of(this)[AuthenticationViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
 
-        prenseter = generatePresenter(this)
+        presenter = generatePresenter(this)
 
-        authorize.setOnClickListener {
-            launch(coroutineContext) {
-                authorizeDeferred = CompletableDeferred()
+        authorize.setOnClickListener { presenter.onClickAuthorize() }
 
-                try {
-                    val url = prenseter.buildAuthorizeUrl(hostName.text.toString())
-
-                    val viewIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-
-                    if (viewIntent.resolveActivity(packageManager) != null) {
-                        startActivity(viewIntent)
-                    } else {
-                        authorizeDeferred.complete(null)
-                    }
-
-                    val code = authorizeDeferred.await() ?: return@launch
-
-                    val accessToken = prenseter.requestAccessToken(hostName.text.toString(), code)
-
-                    result.text = accessToken
-                } catch(e: Throwable) {
-                    e.printStackTrace()
-                }
-            }
-        }
+        viewModel.accessToken.observe(this, Observer(presenter::onRequestedAccessToken))
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
-        val uri = intent?.data
+        val (code, error) = intent.getAuthorizeCode()
 
-        if (uri != null && uri.toString().startsWith("oauth2redirect://id44.mizuki/")) {
+        presenter.onNewIntent(code, error)
+    }
+
+    override fun startOauth2Flow() {
+        val hostName = hostName.text.toString()
+
+        launch(coroutineContext) {
+            val code = presenter.fetchAuthorizeCode(hostName)
+
+            viewModel.postAccessToken(
+                presenter.requestAccessToken(hostName, code)
+            )
+        }
+    }
+
+    override fun openAuthorizePage(url: String) {
+        Intent(Intent.ACTION_VIEW, Uri.parse(url)).takeIf {
+            it.resolveActivity(packageManager) != null
+        }?.let {
+            startActivity(it)
+        } ?: presenter.notifyBrowserNotFound()
+    }
+
+    override fun bindAccessToken(accessToken: String) {
+        result.text = accessToken
+    }
+
+    private fun Intent?.getAuthorizeCode(): Pair<String?, String?> {
+        val uri = this?.data
+
+        if (uri != null && uri.toString().startsWith(Constants.REDIRECT_URI)) {
             val code = uri.getQueryParameter("code")
             val error = uri.getQueryParameter("error")
 
-            authorizeDeferred.complete(if (error?.isNotBlank() == true) null else code)
-        } else {
-            authorizeDeferred.complete(null)
+            return code to error
         }
+
+        return null to null
     }
 }

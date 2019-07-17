@@ -54,8 +54,11 @@ dependencies {
     implementation(Libraries.Okhttp3.client)
     implementation(Libraries.Okhttp3.loggingIntercerptor)
 
+    implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.constraintLayout)
     implementation(Libraries.Jetpack.recyclerView)
     implementation(Libraries.Jetpack.material)
+    implementation(Libraries.Jetpack.Lifecycle.runtime)
+    implementation(Libraries.Jetpack.Lifecycle.extensions)
 }

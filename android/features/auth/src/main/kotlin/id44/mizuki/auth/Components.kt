@@ -19,7 +19,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 fun generatePresenter(
         activity: AuthenticationActivity
-): AuthenticationConstract.Presenter {
+): AuthenticationContract.Presenter {
     val httpClient = HttpClient(OkHttp) {
         engine {
             if (BuildConfig.DEBUG) {
