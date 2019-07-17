@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
+    kotlin("kapt")
 }
 
 android {
@@ -56,7 +57,15 @@ kotlin {
                 implementation(Libraries.Ktor.clientAndroid)
                 implementation(Libraries.Ktor.jsonJvm)
                 implementation(Libraries.Ktor.serializationJvm)
+
+                implementation(Libraries.Dagger.core)
             }
         }
+    }
+}
+
+withGroovyBuilder {
+    "dependencies" {
+        "kapt"(Libraries.Dagger.compiler)
     }
 }

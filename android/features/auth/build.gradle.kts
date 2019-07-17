@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     id("kotlinx-serialization")
+    kotlin("kapt")
 }
 
 android {
@@ -61,4 +62,7 @@ dependencies {
     implementation(Libraries.Jetpack.material)
     implementation(Libraries.Jetpack.Lifecycle.runtime)
     implementation(Libraries.Jetpack.Lifecycle.extensions)
+
+    implementation(Libraries.Dagger.core)
+    kapt(Libraries.Dagger.compiler)
 }

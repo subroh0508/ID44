@@ -26,4 +26,17 @@ object Versions {
 
     const val ktor = "1.2.2"
     const val okhttp3 = "3.11.0"
+
+    const val dagger = "2.23.1"
+
+    object JUnit {
+        const val core = "4.12"
+        const val platformRunner = "1.3.0"
+        const val vintage = "5.2.0"
+    }
+
+    const val robolectric = "4.0-alpha-3"
+    const val mockk = "1.8.7"
+
+    const val spek = "2.0.0"
 }

@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
+    kotlin("kapt")
 }
 
 android {
@@ -47,7 +48,15 @@ kotlin {
                 implementation(Libraries.Kotlin.stdlibJvm)
 
                 implementation(Libraries.Coroutines.android)
+
+                implementation(Libraries.Dagger.core)
             }
         }
+    }
+}
+
+withGroovyBuilder {
+    "dependencies" {
+        "kapt"(Libraries.Dagger.compiler)
     }
 }

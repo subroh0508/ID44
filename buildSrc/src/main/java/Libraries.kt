@@ -72,4 +72,30 @@ object Libraries {
         const val client = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
         const val loggingIntercerptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     }
+
+    object Dagger {
+        const val core = "com.google.dagger:dagger:${Versions.dagger}"
+        const val android = "com.google.dagger:dagger-android:${Versions.dagger}"
+        const val androidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+        const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+        const val androidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    }
+
+    object JUnit {
+        const val core = "junit:junit:${Versions.JUnit.core}"
+        const val platformRunner = "org.junit.platform:junit-platform-runner:${Versions.JUnit.platformRunner}"
+        const val junitVintage = "org.junit.vintage:junit-vintage-engine:${Versions.JUnit.vintage}"
+    }
+
+    object Robolectric {
+        const val core = "org.robolectric:robolectric:${Versions.robolectric}"
+        const val shadows = "org.robolectric:shadows-supportv4:${Versions.robolectric}"
+    }
+
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
+
+    object Spek {
+        const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:${Versions.spek}"
+        const val junit = "org.spekframework.spek2:spek-runner-junit5:${Versions.spek}"
+    }
 }
