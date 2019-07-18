@@ -1,11 +1,11 @@
 package id44.mizuki.libraries.auth.infra.repository
 
+import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
-import id44.mizuki.libraries.api.client.AppCredentialStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AppCredentialRepositoryImpl(
+internal class AppCredentialRepositoryImpl(
     private val apiClient: MastodonAuthApi,
     private val localStore: AppCredentialStore
 ) : AppCredentialRepository {

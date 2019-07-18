@@ -5,7 +5,7 @@ import id44.mizuki.libraries.api.client.AccessTokenStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AccessTokenRepositoryImpl(
+internal class AccessTokenRepositoryImpl(
     private val authApi: MastodonAuthApi,
     private val localStore: AccessTokenStore
 ) : AccessTokenRepository {
