@@ -3,7 +3,7 @@ package id44.mizuki.libraries.api.client
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
-actual class AccessTokenStoreClient(
+internal actual class AccessTokenStoreClient(
     private val sharedPreferences: SharedPreferences
 ) : AccessTokenStore {
     override fun getAccessToken(hostName: String): String?

@@ -11,7 +11,7 @@ import io.ktor.client.features.json.JsonSerializer
 import io.ktor.client.features.json.defaultSerializer
 import io.ktor.client.request.post
 
-class MastodonAuthApiClient(
+internal class MastodonAuthApiClient(
     private val httpClient: HttpClient,
     private val json: JsonSerializer = defaultSerializer()
 ): MastodonAuthApi {

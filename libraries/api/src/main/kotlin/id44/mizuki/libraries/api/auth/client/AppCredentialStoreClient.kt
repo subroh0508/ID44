@@ -1,9 +1,9 @@
-package id44.mizuki.libraries.api.client
+package id44.mizuki.libraries.api.auth.client
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
-actual class AppCredentialStoreClient(
+internal actual class AppCredentialStoreClient(
     private val sharedPreferences: SharedPreferences
 ) : AppCredentialStore {
     override fun getClientId(hostName: String): String?

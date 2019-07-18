@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.api.client
+package id44.mizuki.libraries.api.auth.client
 
 interface AppCredentialStore {
     fun getClientId(hostName: String): String?

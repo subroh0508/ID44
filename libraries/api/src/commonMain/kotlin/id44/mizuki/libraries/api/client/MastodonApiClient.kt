@@ -2,13 +2,15 @@ package id44.mizuki.libraries.api.client
 
 import id44.mizuki.libraries.api.Endpoints
 import io.ktor.client.HttpClient
+import io.ktor.client.features.json.JsonSerializer
 import io.ktor.client.request.get
 import io.ktor.client.response.HttpResponse
 import io.ktor.http.isSuccess
 
-class MastodonApiClient(
+internal class MastodonApiClient(
+    private val hostName: String,
     private val httpClient: HttpClient,
-    private val hostName: String
+    private val json: JsonSerializer
 ) : MastodonApi {
     override suspend fun verifyAppCredential(): Boolean {
         val response = httpClient.get<HttpResponse>(buildUrl(Endpoints.GET_APPS_VERIFY_CREDENTIALS))

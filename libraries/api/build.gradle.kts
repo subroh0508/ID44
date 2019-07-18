@@ -48,6 +48,8 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
+                implementation(project(":android:base"))
+
                 implementation(Libraries.Kotlin.stdlibJvm)
 
                 implementation(Libraries.Coroutines.android)
