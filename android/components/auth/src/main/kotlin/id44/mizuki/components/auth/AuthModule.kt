@@ -12,9 +12,8 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.json.JsonSerializer
 import io.ktor.http.userAgent
-import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
 
 @Module(includes = [
@@ -26,11 +25,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 class AuthModule {
     @Provides
     @ModuleScope
-    fun provideHttpClient(userAgent: UserAgent): HttpClient = HttpClient(OkHttp) {
+    fun provideHttpClient(userAgent: UserAgent, json: JsonSerializer): HttpClient = HttpClient(OkHttp) {
         engine {
             if (BuildConfig.DEBUG) {
                 val loggingInterceptor = HttpLoggingInterceptor()
-                loggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
+                loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
                 addInterceptor(loggingInterceptor)
             }
         }
@@ -38,7 +37,7 @@ class AuthModule {
             userAgent(userAgent.agent)
         }
         install(JsonFeature) {
-            serializer = KotlinxSerializer(Json.nonstrict)
+            serializer = json
         }
     }
 }
