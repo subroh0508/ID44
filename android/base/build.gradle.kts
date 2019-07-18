@@ -1,9 +1,8 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -44,4 +43,7 @@ dependencies {
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.fragment)
     implementation(Libraries.Jetpack.fragmentKtx)
+
+    implementation(Libraries.Dagger.core)
+    kapt(Libraries.Dagger.compiler)
 }
