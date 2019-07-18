@@ -82,14 +82,21 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
+    implementation(project(":android:components:core"))
+    implementation(project(":android:components:auth"))
     implementation(project(":android:features:auth"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
+
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.constraintLayout)
+
+    implementation(Libraries.Ktor.serializationJvm)
+
     implementation(Libraries.reactNative)
-    testImplementation("junit:junit:4.12")
+
+    testImplementation(Libraries.JUnit.core)
     androidTestImplementation(Libraries.Jetpack.Test.runner)
     androidTestImplementation(Libraries.Jetpack.Test.espresso)
 

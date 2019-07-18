@@ -5,8 +5,21 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import id44.mizuki.components.auth.AuthComponent
+import id44.mizuki.components.auth.AuthComponentProvider
+import id44.mizuki.components.core.CoreComponent
+import id44.mizuki.components.core.CoreComponentProvider
+import id44.mizuki.components.core.CoreModule
+import id44.mizuki.components.core.DaggerCoreComponent
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import kotlinx.serialization.json.Json
 
-class MainApplication : Application(), ReactApplication {
+class MainApplication : Application(), ReactApplication,
+    CoreComponentProvider, AuthComponentProvider {
+
+    override lateinit var coreComponent: CoreComponent
+    override lateinit var authComponent: AuthComponent
+
     private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
         override fun getPackages() = listOf(MainReactPackage())
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
@@ -18,5 +31,19 @@ class MainApplication : Application(), ReactApplication {
     override fun onCreate() {
         super.onCreate()
         SoLoader.init(this, false)
+
+        buildCoreComponent()
+    }
+
+    private fun buildCoreComponent() {
+        coreComponent = DaggerCoreComponent.builder()
+            .coreModule(
+                CoreModule(
+                    this,
+                    BuildConfig.APPLICATION_ID, BuildConfig.VERSION_NAME,
+                    KotlinxSerializer(Json.nonstrict)
+                )
+            )
+            .build()
     }
 }

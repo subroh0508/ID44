@@ -4,8 +4,9 @@ import id44.mizuki.auth.*
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
 import kotlinx.coroutines.CompletableDeferred
+import javax.inject.Inject
 
-internal class AuthenticationPresenter(
+internal class AuthenticationPresenter @Inject constructor(
     private val view: AuthenticationContract.View,
     private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
     private val requestAccessTokenUseCase: RequestAccessTokenUseCase

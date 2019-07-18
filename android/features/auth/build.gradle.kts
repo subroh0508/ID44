@@ -34,6 +34,8 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":android:base"))
+    implementation(project(":android:components:core"))
+    implementation(project(":android:components:auth"))
     implementation(project(":libraries:api"))
     implementation(project(":libraries:auth:infra"))
     implementation(project(":libraries:auth:domain:usecase:requestappcredential"))

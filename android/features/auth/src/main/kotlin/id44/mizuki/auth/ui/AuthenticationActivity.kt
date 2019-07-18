@@ -5,35 +5,32 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import id44.mizuki.auth.*
+import id44.mizuki.auth.AuthenticationContract
+import id44.mizuki.auth.R
+import id44.mizuki.auth.di.AuthenticationActivityComponent
+import id44.mizuki.auth.di.inject
 import id44.mizuki.auth.model.AuthenticationViewModel
 import id44.mizuki.base.ui.ScopedActivity
 import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
+    @Inject
     internal lateinit var presenter: AuthenticationContract.Presenter
 
-    internal val viewModel: AuthenticationViewModel by lazy {
-        ViewModelProviders.of(this)[AuthenticationViewModel::class.java]
-    }
+    @Inject
+    internal lateinit var viewModel: AuthenticationViewModel
 
-    internal val authorizeErrorHandler: CoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
-        when (e) {
-            is AccessDeniedError -> showErrorMessage(getString(R.string.auth_error_access_denied))
-            is AuthorizeError -> showErrorMessage(e.message ?: getString(R.string.auth_error_authorize))
-            is BrowserAppNotFoundError -> showErrorMessage(getString(R.string.auth_error_browser_app_not_found))
-            else -> showErrorMessage(e.message ?: getString(R.string.auth_error_unknown))
-        }
-    }
+    @Inject
+    internal lateinit var authorizeErrorHandler: CoroutineExceptionHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
 
-        presenter = generatePresenter(this)
+        inject()
 
         authorize.setOnClickListener { presenter.onClickAuthorize() }
 
@@ -96,4 +93,6 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
         private const val QUERY_CODE = "code"
         private const val QUERY_ERROR = "error"
     }
+
+    internal lateinit var authenticationActivityComponent: AuthenticationActivityComponent
 }
