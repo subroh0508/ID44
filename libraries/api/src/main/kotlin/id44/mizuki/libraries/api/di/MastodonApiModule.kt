@@ -11,7 +11,7 @@ import id44.mizuki.libraries.api.client.AccessTokenStoreClient
 import id44.mizuki.libraries.api.client.MastodonApi
 import id44.mizuki.libraries.api.client.MastodonApiClient
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.defaultSerializer
+import io.ktor.client.features.json.JsonSerializer
 
 @Module
 class MastodonApiModule {
@@ -22,6 +22,6 @@ class MastodonApiModule {
 
     @Provides
     @HostScope
-    fun provideMastodonApi(httpClient: HttpClient, hostName: String): MastodonApi
-            = MastodonApiClient(hostName, httpClient, defaultSerializer())
+    fun provideMastodonApi(httpClient: HttpClient, hostName: String, json: JsonSerializer): MastodonApi
+            = MastodonApiClient(hostName, httpClient, json)
 }
