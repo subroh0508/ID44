@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
-    id("kotlinx-serialization")
     kotlin("kapt")
 }
 
@@ -47,15 +46,6 @@ dependencies {
 
     implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)
-
-    implementation(Libraries.Ktor.clientCommon)
-    implementation(Libraries.Ktor.clientAndroid)
-    implementation(Libraries.Ktor.loggingJvm)
-    implementation(Libraries.Ktor.jsonJvm)
-    implementation(Libraries.Ktor.serializationJvm)
-
-    implementation(Libraries.Okhttp3.client)
-    implementation(Libraries.Okhttp3.loggingIntercerptor)
 
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)
