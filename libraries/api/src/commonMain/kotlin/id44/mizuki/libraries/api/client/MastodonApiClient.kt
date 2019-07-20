@@ -1,6 +1,7 @@
 package id44.mizuki.libraries.api.client
 
 import id44.mizuki.libraries.api.Endpoints
+import id44.mizuki.libraries.api.auth.params.GetAccount
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonSerializer
 import io.ktor.client.request.get
@@ -17,6 +18,10 @@ internal class MastodonApiClient(
 
         return response.status.isSuccess()
     }
+
+    override suspend fun getAccount(id: String): GetAccount.Response = httpClient.get(
+        "${buildUrl(Endpoints.GET_ACCOUNTS)}/$id"
+    )
 
     private fun buildUrl(
         endpoint: Endpoints,
