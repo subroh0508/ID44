@@ -48,9 +48,9 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     }
 
     override fun startOauth2Flow() {
-        val hostName = viewModel.hostName.value ?: ""
+        launch(authorizeErrorHandler) {
+            val hostName = viewModel.hostName.value ?: ""
 
-        launch(coroutineContext + authorizeErrorHandler) {
             val code = presenter.fetchAuthorizeCode(hostName, clientName, redirectUri)
 
             viewModel.bindAccessToken(

@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 
 abstract class ScopedFragment : Fragment(), CoroutineScope {
     protected lateinit var job: Job
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        job = Job()
+        job = SupervisorJob()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

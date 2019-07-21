@@ -32,10 +32,9 @@ internal class AuthenticationPresenter @Inject constructor(
 
 
     override suspend fun fetchAuthorizeCode(hostName: String, clientName: String, redirectUri: String): String {
-        deferred = CompletableDeferred()
-
         view.openAuthorizePage(requestAppCredentialUseCase.execute(hostName, clientName, redirectUri))
 
+        deferred = CompletableDeferred()
         return deferred.await()
     }
 

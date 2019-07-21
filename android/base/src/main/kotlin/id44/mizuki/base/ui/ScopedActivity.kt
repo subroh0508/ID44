@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlin.coroutines.CoroutineContext
 
 abstract class ScopedActivity : AppCompatActivity(), CoroutineScope {
@@ -15,7 +16,7 @@ abstract class ScopedActivity : AppCompatActivity(), CoroutineScope {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        job = Job()
+        job = SupervisorJob()
     }
 
     override fun onDestroy() {

@@ -39,7 +39,7 @@ abstract class AuthenticationActivityModule {
         @ActivityScope
         fun provideAuthorizeErrorHandler(
             activity: AuthenticationActivity
-        ): CoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
+        ): CoroutineExceptionHandler = CoroutineExceptionHandler { context, e ->
             when (e) {
                 is AccessDeniedError -> activity.showErrorMessage(activity.getString(R.string.auth_error_access_denied))
                 is AuthorizeError -> activity.showErrorMessage(e.message ?: activity.getString(R.string.auth_error_authorize))
