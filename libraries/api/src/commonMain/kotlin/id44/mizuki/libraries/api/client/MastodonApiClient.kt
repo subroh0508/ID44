@@ -9,31 +9,17 @@ import io.ktor.client.response.HttpResponse
 import io.ktor.http.isSuccess
 
 internal class MastodonApiClient(
-    private val hostName: String,
     private val httpClient: HttpClient,
     private val json: JsonSerializer
 ) : MastodonApi {
     override suspend fun verifyAppCredential(): Boolean {
-        val response = httpClient.get<HttpResponse>(buildUrl(Endpoints.GET_APPS_VERIFY_CREDENTIALS))
+        val response = httpClient.get<HttpResponse>(
+            Endpoints.getAppsVerifyCredentials()
+        )
 
         return response.status.isSuccess()
     }
 
-    override suspend fun getAccount(id: String): GetAccount.Response = httpClient.get(
-        "${buildUrl(Endpoints.GET_ACCOUNTS)}/$id"
-    )
-
-    private fun buildUrl(
-        endpoint: Endpoints,
-        vararg params: Pair<String, Any>
-    ): String {
-        if (params.isEmpty()) {
-            return "https://$hostName${endpoint.url}"
-        }
-
-        return buildString {
-            append("https://$hostName${endpoint.url}?")
-            append(params.joinToString("&") { (k, v) -> "$k=$v" })
-        }
-    }
+    override suspend fun getAccount(id: String): GetAccount.Response
+            = httpClient.get(Endpoints.getAccounts(id))
 }

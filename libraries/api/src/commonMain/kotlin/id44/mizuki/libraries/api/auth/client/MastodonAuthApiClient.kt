@@ -10,6 +10,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonSerializer
 import io.ktor.client.features.json.defaultSerializer
 import io.ktor.client.request.post
+import io.ktor.http.URLProtocol
 
 internal class MastodonAuthApiClient(
     private val httpClient: HttpClient,
@@ -27,7 +28,7 @@ internal class MastodonAuthApiClient(
         hostName: String,
         clientName: String,
         redirectUri: String
-    ): AppCredential = httpClient.post(buildUrl(hostName, AuthEndpoints.POST_APPS)) {
+    ): AppCredential = httpClient.post(buildUrl(hostName, AuthEndpoints.postApps())) {
         body = json.write(PostApps.Request(clientName, redirectUri, Constants.SCOPE, Constants.WEBSITE))
     }
 
@@ -37,7 +38,7 @@ internal class MastodonAuthApiClient(
         clientSecret: String,
         redirectUri: String
     ): String = buildString {
-        append("${buildUrl(hostName, AuthEndpoints.GET_OAUTH_AUTHORIZE)}?")
+        append("${buildUrl(hostName, AuthEndpoints.getOauthAuthorize())}?")
         append(
             mapOf(
                 RESPONSE_TYPE to "code",
@@ -55,11 +56,11 @@ internal class MastodonAuthApiClient(
         clientSecret: String,
         redirectUri: String,
         code: String
-    ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.POST_OAUTH_TOKEN)) {
+    ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.postOauthToken())) {
         body = json.write(
             PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
         )
     }
 
-    private fun buildUrl(hostName: String, endpoint: AuthEndpoints) = "https://$hostName${endpoint.url}"
+    private fun buildUrl(hostName: String, endpoint: String) = "${URLProtocol.HTTPS.name}://$hostName$endpoint"
 }
