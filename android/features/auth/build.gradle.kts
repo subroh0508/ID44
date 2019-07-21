@@ -55,6 +55,8 @@ dependencies {
     implementation(Libraries.Jetpack.Lifecycle.runtime)
     implementation(Libraries.Jetpack.Lifecycle.extensions)
 
+    implementation(Libraries.reactNative)
+
     implementation(Libraries.Dagger.core)
     kapt(Libraries.Dagger.compiler)
 }

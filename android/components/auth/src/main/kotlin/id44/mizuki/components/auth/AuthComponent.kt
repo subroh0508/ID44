@@ -1,5 +1,6 @@
 package id44.mizuki.components.auth
 
+import android.app.Application
 import dagger.Component
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.components.core.CoreComponent
@@ -19,6 +20,7 @@ interface AuthComponent {
         fun coreComponent(coreComponent: CoreComponent): Builder
     }
 
+    fun provideApp(): Application
     fun provideRequestAppCredentialUseCase(): RequestAppCredentialUseCase
     fun provideRequestAccessTokenUseCase(): RequestAccessTokenUseCase
 }

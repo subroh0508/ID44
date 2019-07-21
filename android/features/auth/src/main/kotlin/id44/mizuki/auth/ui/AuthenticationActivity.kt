@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.facebook.react.ReactInstanceManager
 import id44.mizuki.auth.AuthenticationContract
 import id44.mizuki.auth.R
 import id44.mizuki.auth.di.AuthenticationActivityComponent
@@ -19,12 +20,12 @@ import javax.inject.Inject
 class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     @Inject
     internal lateinit var presenter: AuthenticationContract.Presenter
-
     @Inject
     internal lateinit var viewModel: AuthenticationViewModel
-
     @Inject
     internal lateinit var authorizeErrorHandler: CoroutineExceptionHandler
+    @Inject
+    internal lateinit var reactInstanceManager: ReactInstanceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,11 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
 
         inject()
 
-        authorize.setOnClickListener { presenter.onClickAuthorize() }
+        reactRootView.startReactApplication(
+            reactInstanceManager,
+            "Auth"
+        )
+        //authorize.setOnClickListener { presenter.onClickAuthorize() }
 
         viewModel.accessToken.observe(this, Observer(presenter::onRequestedAccessToken))
     }
@@ -46,7 +51,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     }
 
     override fun startOauth2Flow() {
-        val hostName = hostName.text.toString()
+        val hostName = "pawoo.net" //hostName.text.toString()
 
         launch(coroutineContext + authorizeErrorHandler) {
             val code = presenter.fetchAuthorizeCode(hostName, clientName, redirectUri)
@@ -66,7 +71,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     }
 
     override fun bindAccessToken(accessToken: String) {
-        result.text = accessToken
+        //result.text = accessToken
     }
 
     override fun showErrorMessage(message: String) {

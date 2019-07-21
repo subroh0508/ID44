@@ -22,6 +22,6 @@ class MastodonApiModule {
 
     @Provides
     @HostScope
-    fun provideMastodonApi(httpClient: HttpClient, hostName: String, json: JsonSerializer): MastodonApi
-            = MastodonApiClient(hostName, httpClient, json)
+    fun provideMastodonApi(httpClient: HttpClient, json: JsonSerializer): MastodonApi
+            = MastodonApiClient(httpClient, json)
 }

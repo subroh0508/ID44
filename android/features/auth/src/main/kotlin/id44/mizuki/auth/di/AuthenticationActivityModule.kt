@@ -1,6 +1,10 @@
 package id44.mizuki.auth.di
 
+import android.app.Application
 import androidx.lifecycle.ViewModelProviders
+import com.facebook.react.ReactInstanceManager
+import com.facebook.react.common.LifecycleState
+import com.facebook.react.shell.MainReactPackage
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -42,5 +46,20 @@ abstract class AuthenticationActivityModule {
                 else -> activity.showErrorMessage(e.message ?: activity.getString(R.string.auth_error_unknown))
             }
         }
+
+        @JvmStatic
+        @Provides
+        @ActivityScope
+        fun provideReactInstanceManager(
+            app: Application, activity: AuthenticationActivity
+        ): ReactInstanceManager = ReactInstanceManager.builder()
+            .setApplication(app)
+            .setCurrentActivity(activity)
+            .setBundleAssetName("index.android.bundle")
+            .setJSMainModulePath("components/auth/index")
+            .addPackage(MainReactPackage())
+            .setUseDeveloperSupport(BuildConfig.DEBUG)
+            .setInitialLifecycleState(LifecycleState.RESUMED)
+            .build()
     }
 }
