@@ -6,6 +6,7 @@
 
     <string name="auth_error_access_denied">アカウントへのアクセスが拒否されました</string>
     <string name="auth_error_authorize">認証中にエラーが発生しました</string>
+    <string name="auth_error_unknown_host">ホスト名に誤りがあります</string>
     <string name="auth_error_unknown">予期せぬエラーが発生しました</string>
     <string name="auth_error_browser_app_not_found">ブラウザアプリが見つかりません</string>
 </resources>

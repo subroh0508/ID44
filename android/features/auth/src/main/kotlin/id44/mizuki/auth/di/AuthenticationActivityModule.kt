@@ -15,6 +15,7 @@ import id44.mizuki.auth.reactnative.AuthenticationActivityPackage
 import id44.mizuki.auth.ui.AuthenticationActivity
 import id44.mizuki.base.scope.ActivityScope
 import kotlinx.coroutines.CoroutineExceptionHandler
+import java.net.UnknownHostException
 
 @Module
 abstract class AuthenticationActivityModule {
@@ -39,11 +40,12 @@ abstract class AuthenticationActivityModule {
         @ActivityScope
         fun provideAuthorizeErrorHandler(
             activity: AuthenticationActivity
-        ): CoroutineExceptionHandler = CoroutineExceptionHandler { context, e ->
+        ): CoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
             when (e) {
                 is AccessDeniedError -> activity.showErrorMessage(activity.getString(R.string.auth_error_access_denied))
                 is AuthorizeError -> activity.showErrorMessage(e.message ?: activity.getString(R.string.auth_error_authorize))
                 is BrowserAppNotFoundError -> activity.showErrorMessage(activity.getString(R.string.auth_error_browser_app_not_found))
+                is UnknownHostException -> activity.showErrorMessage(activity.getString(R.string.auth_error_unknown_host))
                 else -> activity.showErrorMessage(e.message ?: activity.getString(R.string.auth_error_unknown))
             }
         }
