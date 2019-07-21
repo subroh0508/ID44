@@ -3,7 +3,6 @@ package id44.mizuki.auth.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.facebook.react.ReactInstanceManager
@@ -39,7 +38,6 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
         )
         //authorize.setOnClickListener { presenter.onClickAuthorize() }
 
-        viewModel.hostName.observe(this, Observer { Log.d("from js", it) })
         viewModel.accessToken.observe(this, Observer(presenter::onRequestedAccessToken))
     }
 
