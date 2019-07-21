@@ -78,10 +78,8 @@ class AuthComponent extends Component {
           <Text style={ styles.title }>
             Device ID: 44
           </Text>
-
           <TextInput
             style={ styles.textInput }
-            theme={ {  } }
             label='Host Name'
             mode='outlined'
             value={ AuthenticationContract.hostName() }

@@ -36,8 +36,6 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
             reactInstanceManager,
             "Auth"
         )
-        //authorize.setOnClickListener { presenter.onClickAuthorize() }
-
         viewModel.accessToken.observe(this, Observer(presenter::onRequestedAccessToken))
     }
 
@@ -50,7 +48,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     }
 
     override fun startOauth2Flow() {
-        val hostName = "pawoo.net" //hostName.text.toString()
+        val hostName = viewModel.hostName.value ?: ""
 
         launch(coroutineContext + authorizeErrorHandler) {
             val code = presenter.fetchAuthorizeCode(hostName, clientName, redirectUri)
