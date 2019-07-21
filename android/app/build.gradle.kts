@@ -13,6 +13,7 @@ plugins {
 val react by extra { mapOf("entryFile" to "index.js", "enableHermes" to true) }
 
 apply(from = "$rootDir/frontend/node_modules/react-native/react.gradle")
+apply(from = "$rootDir/frontend/node_modules/react-native-vector-icons/fonts.gradle")
 
 val enableSeparateBuildPerCPUArchitecture = false
 
