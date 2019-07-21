@@ -1,5 +1,7 @@
 package id44.mizuki.auth
 
+import androidx.lifecycle.LiveData
+
 interface AuthenticationContract {
     interface View {
         fun startOauth2Flow()
@@ -23,5 +25,14 @@ interface AuthenticationContract {
         fun onRequestedAccessToken(accessToken: String)
 
         fun notifyBrowserNotFound()
+    }
+
+    interface Model {
+        val hostName: LiveData<String>
+        val accessToken: LiveData<String>
+
+        fun bindHostName(hostName: String)
+
+        fun bindAccessToken(accessToken: String)
     }
 }

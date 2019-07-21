@@ -11,6 +11,7 @@ import dagger.Provides
 import id44.mizuki.auth.*
 import id44.mizuki.auth.model.AuthenticationViewModel
 import id44.mizuki.auth.presenter.AuthenticationPresenter
+import id44.mizuki.auth.reactnative.AuthenticationActivityPackage
 import id44.mizuki.auth.ui.AuthenticationActivity
 import id44.mizuki.base.scope.ActivityScope
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -30,7 +31,7 @@ abstract class AuthenticationActivityModule {
         @JvmStatic
         @Provides
         @ActivityScope
-        internal fun provideAuthenticationViewModel(activity: AuthenticationActivity): AuthenticationViewModel
+        internal fun provideAuthenticationViewModel(activity: AuthenticationActivity): AuthenticationContract.Model
                 = ViewModelProviders.of(activity)[AuthenticationViewModel::class.java]
 
         @JvmStatic
@@ -50,14 +51,24 @@ abstract class AuthenticationActivityModule {
         @JvmStatic
         @Provides
         @ActivityScope
+        fun provideAuthenticationActivityReactPackage(
+            viewModel: AuthenticationContract.Model,
+            presenter: AuthenticationContract.Presenter
+        ): AuthenticationActivityPackage = AuthenticationActivityPackage(viewModel, presenter)
+
+        @JvmStatic
+        @Provides
+        @ActivityScope
         fun provideReactInstanceManager(
-            app: Application, activity: AuthenticationActivity
+            app: Application,
+            activity: AuthenticationActivity,
+            `package`: AuthenticationActivityPackage
         ): ReactInstanceManager = ReactInstanceManager.builder()
             .setApplication(app)
             .setCurrentActivity(activity)
             .setBundleAssetName("index.android.bundle")
             .setJSMainModulePath("components/auth/index")
-            .addPackage(MainReactPackage())
+            .addPackages(listOf(MainReactPackage(), `package`))
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build()

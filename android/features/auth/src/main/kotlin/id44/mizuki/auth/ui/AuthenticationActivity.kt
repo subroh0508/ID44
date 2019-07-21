@@ -3,6 +3,7 @@ package id44.mizuki.auth.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.facebook.react.ReactInstanceManager
@@ -10,7 +11,6 @@ import id44.mizuki.auth.AuthenticationContract
 import id44.mizuki.auth.R
 import id44.mizuki.auth.di.AuthenticationActivityComponent
 import id44.mizuki.auth.di.inject
-import id44.mizuki.auth.model.AuthenticationViewModel
 import id44.mizuki.base.ui.ScopedActivity
 import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -21,7 +21,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     @Inject
     internal lateinit var presenter: AuthenticationContract.Presenter
     @Inject
-    internal lateinit var viewModel: AuthenticationViewModel
+    internal lateinit var viewModel: AuthenticationContract.Model
     @Inject
     internal lateinit var authorizeErrorHandler: CoroutineExceptionHandler
     @Inject
@@ -39,6 +39,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
         )
         //authorize.setOnClickListener { presenter.onClickAuthorize() }
 
+        viewModel.hostName.observe(this, Observer { Log.d("from js", it) })
         viewModel.accessToken.observe(this, Observer(presenter::onRequestedAccessToken))
     }
 
@@ -56,7 +57,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
         launch(coroutineContext + authorizeErrorHandler) {
             val code = presenter.fetchAuthorizeCode(hostName, clientName, redirectUri)
 
-            viewModel.postAccessToken(
+            viewModel.bindAccessToken(
                 presenter.requestAccessToken(hostName, redirectUri, code)
             )
         }
