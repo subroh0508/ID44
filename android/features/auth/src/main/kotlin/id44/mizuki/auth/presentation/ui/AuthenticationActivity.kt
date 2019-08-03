@@ -1,4 +1,4 @@
-package id44.mizuki.auth.ui
+package id44.mizuki.auth.presentation.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.facebook.react.ReactInstanceManager
-import id44.mizuki.auth.AuthenticationContract
 import id44.mizuki.auth.R
 import id44.mizuki.auth.di.AuthenticationActivityComponent
 import id44.mizuki.auth.di.inject
+import id44.mizuki.auth.presentation.AuthenticationContract
 import id44.mizuki.base.ui.ScopedActivity
 import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.coroutines.CoroutineExceptionHandler

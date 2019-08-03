@@ -2,7 +2,7 @@ package id44.mizuki.auth.di
 
 import dagger.BindsInstance
 import dagger.Component
-import id44.mizuki.auth.ui.AuthenticationActivity
+import id44.mizuki.auth.presentation.ui.AuthenticationActivity
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.components.auth.AuthComponent
 

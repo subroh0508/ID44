@@ -12,7 +12,7 @@ import androidx.core.os.bundleOf
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
-import id44.mizuki.auth.ui.AuthenticationActivity
+import id44.mizuki.auth.presentation.ui.AuthenticationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

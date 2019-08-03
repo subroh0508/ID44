@@ -6,7 +6,7 @@ import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ReactShadowNode
 import com.facebook.react.uimanager.ViewManager
-import id44.mizuki.auth.AuthenticationContract
+import id44.mizuki.auth.presentation.AuthenticationContract
 
 class AuthenticationActivityPackage(
     private val viewModel: AuthenticationContract.Model,

@@ -1,6 +1,7 @@
-package id44.mizuki.auth.presenter
+package id44.mizuki.auth.presentation.presenter
 
 import id44.mizuki.auth.*
+import id44.mizuki.auth.presentation.AuthenticationContract
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
 import kotlinx.coroutines.CompletableDeferred

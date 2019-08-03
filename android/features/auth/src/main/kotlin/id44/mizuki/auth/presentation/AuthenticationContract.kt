@@ -1,4 +1,4 @@
-package id44.mizuki.auth
+package id44.mizuki.auth.presentation
 
 import androidx.lifecycle.LiveData
 

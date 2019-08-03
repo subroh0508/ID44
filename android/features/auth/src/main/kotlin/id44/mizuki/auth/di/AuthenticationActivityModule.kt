@@ -9,10 +9,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.auth.*
-import id44.mizuki.auth.model.AuthenticationViewModel
-import id44.mizuki.auth.presenter.AuthenticationPresenter
+import id44.mizuki.auth.presentation.AuthenticationContract
+import id44.mizuki.auth.presentation.model.AuthenticationViewModel
+import id44.mizuki.auth.presentation.presenter.AuthenticationPresenter
+import id44.mizuki.auth.presentation.ui.AuthenticationActivity
 import id44.mizuki.auth.reactnative.AuthenticationActivityPackage
-import id44.mizuki.auth.ui.AuthenticationActivity
 import id44.mizuki.base.scope.ActivityScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import java.net.UnknownHostException

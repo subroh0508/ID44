@@ -3,7 +3,7 @@ package id44.mizuki.auth.reactnative
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import id44.mizuki.auth.AuthenticationContract
+import id44.mizuki.auth.presentation.AuthenticationContract
 
 class AuthenticationActivityReactModule(
     reactContext: ReactApplicationContext,

@@ -1,9 +1,9 @@
-package id44.mizuki.auth.model
+package id44.mizuki.auth.presentation.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id44.mizuki.auth.AuthenticationContract
+import id44.mizuki.auth.presentation.AuthenticationContract
 
 internal class AuthenticationViewModel : ViewModel(), AuthenticationContract.Model {
     override val hostName: LiveData<String>
