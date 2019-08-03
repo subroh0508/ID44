@@ -73,6 +73,11 @@ object Libraries {
         const val loggingIntercerptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     }
 
+    object Klock {
+        const val common = "com.soywiz.korlibs.klock:klock-metadata:${Versions.klock}"
+        const val jvm = "com.soywiz.korlibs.klock:klock-jvm:${Versions.klock}"
+    }
+
     object Dagger {
         const val core = "com.google.dagger:dagger:${Versions.dagger}"
         const val android = "com.google.dagger:dagger-android:${Versions.dagger}"

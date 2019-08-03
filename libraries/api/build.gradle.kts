@@ -42,6 +42,8 @@ kotlin {
                 implementation(Libraries.Ktor.clientCommon)
                 implementation(Libraries.Ktor.jsonCommon)
                 implementation(Libraries.Ktor.serializationCommon)
+
+                implementation(Libraries.Klock.common)
             }
         }
 
@@ -59,6 +61,8 @@ kotlin {
                 implementation(Libraries.Ktor.clientAndroid)
                 implementation(Libraries.Ktor.jsonJvm)
                 implementation(Libraries.Ktor.serializationJvm)
+
+                implementation(Libraries.Klock.jvm)
 
                 implementation(Libraries.Dagger.core)
             }

@@ -27,6 +27,8 @@ object Versions {
     const val ktor = "1.2.2"
     const val okhttp3 = "3.11.0"
 
+    const val klock = "1.5.0"
+
     const val dagger = "2.23.1"
 
     object JUnit {
