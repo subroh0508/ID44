@@ -1,7 +1,7 @@
 package id44.mizuki.libraries.api.auth.client
 
-import id44.mizuki.libraries.api.model.AccessToken
-import id44.mizuki.libraries.api.model.AppCredential
+import id44.mizuki.libraries.api.auth.model.AccessToken
+import id44.mizuki.libraries.api.auth.model.AppCredential
 
 interface MastodonAuthApi {
     suspend fun requestAppCredential(

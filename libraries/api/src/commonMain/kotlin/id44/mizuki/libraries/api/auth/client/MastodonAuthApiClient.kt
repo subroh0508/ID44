@@ -4,8 +4,8 @@ import id44.mizuki.libraries.api.auth.AuthEndpoints
 import id44.mizuki.libraries.api.auth.Constants
 import id44.mizuki.libraries.api.auth.params.PostApps
 import id44.mizuki.libraries.api.auth.params.PostOauthToken
-import id44.mizuki.libraries.api.model.AccessToken
-import id44.mizuki.libraries.api.model.AppCredential
+import id44.mizuki.libraries.api.auth.model.AccessToken
+import id44.mizuki.libraries.api.auth.model.AppCredential
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonSerializer
 import io.ktor.client.features.json.defaultSerializer
