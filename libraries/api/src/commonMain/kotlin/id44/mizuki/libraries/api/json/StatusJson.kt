@@ -1,6 +1,5 @@
 package id44.mizuki.libraries.api.json
 
-import com.soywiz.klock.DateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -17,7 +16,7 @@ data class StatusJson(
     val reblog: StatusJson? = null,
     val content: String,
     @SerialName("created_at")
-    val createdAt: DateTime,
+    val createdAt: String,
     val emojis: List<EmojiJson>,
     @SerialName("replies_count")
     val repliesCount: Int,

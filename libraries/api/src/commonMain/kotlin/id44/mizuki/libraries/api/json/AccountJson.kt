@@ -1,6 +1,5 @@
 package id44.mizuki.libraries.api.json
 
-import com.soywiz.klock.DateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,7 +12,7 @@ data class AccountJson(
     val displayName: String,
     val locked: Boolean,
     @SerialName("created_at")
-    val createdAt: DateTime,
+    val createdAt: String,
     @SerialName("followers_count")
     val followersCount: Int,
     @SerialName("following_count")
