@@ -4,8 +4,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="false" />
-        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -28,6 +26,11 @@
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
             <option value="$PROJECT_DIR$/libraries/auth/infra" />
+            <option value="$PROJECT_DIR$/libraries/timeline" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/entity" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/valueobject" />
+            <option value="$PROJECT_DIR$/libraries/timeline/infra" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

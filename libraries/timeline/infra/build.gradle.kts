@@ -35,14 +35,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":libraries:api"))
+                implementation(project(":libraries:timeline:domain:entity"))
+                implementation(project(":libraries:timeline:domain:valueobject"))
+
                 implementation(Libraries.Kotlin.stdlibCommon)
                 implementation(Libraries.Kotlin.serializationCommon)
 
                 implementation(Libraries.Coroutines.common)
-
-                implementation(Libraries.Ktor.clientCommon)
-                implementation(Libraries.Ktor.jsonCommon)
-                implementation(Libraries.Ktor.serializationCommon)
 
                 implementation(Libraries.Klock.common)
             }
@@ -59,10 +59,6 @@ kotlin {
                 implementation(Libraries.Coroutines.android)
 
                 implementation(Libraries.Jetpack.ktx)
-
-                implementation(Libraries.Ktor.clientAndroid)
-                implementation(Libraries.Ktor.jsonJvm)
-                implementation(Libraries.Ktor.serializationJvm)
 
                 implementation(Libraries.Klock.jvm)
 

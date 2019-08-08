@@ -2,6 +2,7 @@ package id44.mizuki.libraries.api.json
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class StatusJson(
@@ -40,4 +41,8 @@ data class StatusJson(
     val application: ApplicationJson,
     val language: String? = null,
     val pinned: Boolean? = null
-)
+) {
+    companion object {
+        fun fromJson(json: String): StatusJson = Json.parse(serializer(), json)
+    }
+}

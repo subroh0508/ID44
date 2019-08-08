@@ -5,7 +5,7 @@ import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
 import kotlinx.coroutines.channels.ReceiveChannel
 
 interface MastodonStreamingApi {
-    fun openEventChannel(
+    suspend fun openEventChannel(
         hostName: String,
         accessToken: String,
         stream: StreamType

@@ -14,7 +14,10 @@ include(
     ":libraries:api",
     ":libraries:auth:infra",
     ":libraries:auth:domain:usecase:requestappcredential",
-    ":libraries:auth:domain:usecase:requestaccesstoken"
+    ":libraries:auth:domain:usecase:requestaccesstoken",
+    ":libraries:timeline:infra",
+    ":libraries:timeline:domain:entity",
+    ":libraries:timeline:domain:valueobject"
 )
 
 pluginManagement {
