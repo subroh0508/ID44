@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/android/components/core" />
             <option value="$PROJECT_DIR$/android/features" />
             <option value="$PROJECT_DIR$/android/features/auth" />
+            <option value="$PROJECT_DIR$/android/features/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/api" />

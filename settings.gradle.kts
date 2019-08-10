@@ -11,6 +11,7 @@ include(
     ":android:components:core",
     ":android:components:auth",
     ":android:features:auth",
+    ":android:features:timeline",
     ":libraries:api",
     ":libraries:auth:infra",
     ":libraries:auth:domain:usecase:requestappcredential",
