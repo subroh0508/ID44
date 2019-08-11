@@ -1,5 +1,6 @@
 package id44.mizuki.auth.presentation.ui
 
+import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -68,7 +69,12 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     }
 
     override fun bindAccessToken(accessToken: String) {
-        //result.text = accessToken
+        val intent = Intent().apply {
+            setClassName(this@AuthenticationActivity, "id44.mizuki.timeline.TimelineActivity")
+            putExtra("hostname", viewModel.hostName.value)
+        }
+
+        startActivity(intent)
     }
 
     override fun showErrorMessage(message: String) {

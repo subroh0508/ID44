@@ -11,17 +11,16 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest
 import io.ktor.client.features.UserAgent
+import io.ktor.client.features.websocket.WebSockets
 import io.ktor.http.userAgent
 import okhttp3.logging.HttpLoggingInterceptor
 
-@Module(
-    includes = [
-        MastodonStreamingApiModule::class,
-        StatusRepositoryModule::class,
-        TimelineSubscribeUseCaseModule::class,
-        TimelineUnsubscribeUseCaseModule::class
-    ]
-)
+@Module(includes = [
+    MastodonStreamingApiModule::class,
+    StatusRepositoryModule::class,
+    TimelineSubscribeUseCaseModule::class,
+    TimelineUnsubscribeUseCaseModule::class
+])
 class TimelineModule {
     @Provides
     @ModuleScope
@@ -33,6 +32,7 @@ class TimelineModule {
                 addInterceptor(loggingInterceptor)
             }
         }
+        install(WebSockets)
         install(DefaultRequest) {
             userAgent(userAgent.agent)
         }

@@ -85,7 +85,9 @@ dependencies {
 
     implementation(project(":android:components:core"))
     implementation(project(":android:components:auth"))
+    implementation(project(":android:components:timeline"))
     implementation(project(":android:features:auth"))
+    implementation(project(":android:features:timeline"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
 

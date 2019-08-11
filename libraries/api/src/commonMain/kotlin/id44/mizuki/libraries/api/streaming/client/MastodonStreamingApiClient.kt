@@ -3,13 +3,10 @@ package id44.mizuki.libraries.api.streaming.client
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
 import io.ktor.client.HttpClient
-import io.ktor.client.features.websocket.ws
-import io.ktor.http.HttpMethod
+import io.ktor.client.features.websocket.wss
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.readText
 import kotlinx.coroutines.channels.BroadcastChannel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
@@ -21,10 +18,9 @@ internal class MastodonStreamingApiClient(
         accessToken: String,
         stream: StreamType
     ): BroadcastChannel<StreamingEventJson> {
-        httpClient.ws(
-            method = HttpMethod.Get,
+        httpClient.wss(
             host = hostName,
-            path = "/api/v1/streaming?access_token=$accessToken&stream=${stream.realValue}"
+            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=$accessToken"
         ) {
             val frame = incoming.receive()
 

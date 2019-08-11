@@ -34,6 +34,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Libraries.Kotlin.stdlibCommon)
+
+                implementation(Libraries.Klock.common)
             }
         }
 
@@ -41,6 +43,8 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(Libraries.Kotlin.stdlibJvm)
+
+                implementation(Libraries.Klock.jvm)
             }
         }
     }

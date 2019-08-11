@@ -34,11 +34,12 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":android:components:core"))
-    implementation(project(":android:components:auth"))
-    implementation(project(":libraries:api"))
+    implementation(project(":android:components:timeline"))
     implementation(project(":libraries:auth:infra"))
-    implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
-    implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
+    implementation(project(":libraries:timeline:domain:usecase:subscribe"))
+    implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
+    implementation(project(":libraries:timeline:domain:entity"))
+    implementation(project(":libraries:timeline:domain:valueobject"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
@@ -46,6 +47,8 @@ dependencies {
 
     implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)
+
+    implementation(Libraries.Klock.jvm)
 
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)
