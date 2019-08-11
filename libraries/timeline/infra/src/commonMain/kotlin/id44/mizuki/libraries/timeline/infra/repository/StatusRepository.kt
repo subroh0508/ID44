@@ -7,5 +7,5 @@ import kotlinx.coroutines.channels.ReceiveChannel
 interface StatusRepository {
     suspend fun openSubscription(hostName: String, stream: Stream): ReceiveChannel<Status>
 
-    suspend fun closeSubscription(hostName: String, stream: Stream)
+    fun closeSubscription(hostName: String, stream: Stream)
 }

@@ -19,7 +19,8 @@ include(
     ":libraries:timeline:infra",
     ":libraries:timeline:domain:entity",
     ":libraries:timeline:domain:valueobject",
-    ":libraries:timeline:domain:usecase:subscribe"
+    ":libraries:timeline:domain:usecase:subscribe",
+    ":libraries:timeline:domain:usecase:unsubscribe"
 )
 
 pluginManagement {

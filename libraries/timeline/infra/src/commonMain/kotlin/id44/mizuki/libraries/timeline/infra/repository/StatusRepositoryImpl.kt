@@ -31,7 +31,7 @@ internal class StatusRepositoryImpl(
         return channel.mapNotNull { it.toStatus() }
     }
 
-    override suspend fun closeSubscription(hostName: String, stream: Stream) {
+    override fun closeSubscription(hostName: String, stream: Stream) {
         val key = hostName.generateKey(stream)
 
         channels[key]?.cancel()
