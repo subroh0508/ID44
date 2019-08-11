@@ -1,10 +1,10 @@
-package id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.di
+package id44.mizuki.libraries.timeline.domain.unsubscribe.di
 
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
-import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase
-import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCaseImpl
+import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
+import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCaseImpl
 import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
 
 @Module

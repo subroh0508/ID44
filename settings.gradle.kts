@@ -10,6 +10,7 @@ include(
     ":android:base",
     ":android:components:core",
     ":android:components:auth",
+    ":android:components:timeline",
     ":android:features:auth",
     ":android:features:timeline",
     ":libraries:api",
