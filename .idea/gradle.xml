@@ -30,6 +30,8 @@
             <option value="$PROJECT_DIR$/libraries/timeline" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/entity" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/subscribe" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/timeline/infra" />
           </set>

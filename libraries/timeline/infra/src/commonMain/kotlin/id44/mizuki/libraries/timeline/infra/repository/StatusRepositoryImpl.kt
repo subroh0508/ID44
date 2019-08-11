@@ -1,7 +1,6 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
 import id44.mizuki.libraries.api.client.AccessTokenStore
-import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
 import id44.mizuki.libraries.timeline.domain.entity.Status
@@ -17,16 +16,27 @@ internal class StatusRepositoryImpl(
 ) : StatusRepository {
     private val channels: HashMap<String, ReceiveChannel<StreamingEventJson>> = hashMapOf()
 
-    override suspend fun receiveStatus(hostName: String, stream: Stream): Status {
-        val key = "$hostName/${stream.toStreamType().realValue}"
+    override suspend fun openSubscription(hostName: String, stream: Stream): ReceiveChannel<Status> {
+        val key = hostName.generateKey(stream)
 
         val channel = channels[key]
             ?: streamingApi.openEventChannel(
                 hostName,
                 localStore.getAccessToken(hostName),
-                StreamType.USER
-            ).also { channels[key] = it }
+                stream.toStreamType()
+            ).openSubscription().also {
+                channels[key] = it
+            }
 
-        return channel.mapNotNull { it.toStatus() }.receive()
+        return channel.mapNotNull { it.toStatus() }
     }
+
+    override suspend fun closeSubscription(hostName: String, stream: Stream) {
+        val key = hostName.generateKey(stream)
+
+        channels[key]?.cancel()
+        channels.remove(key)
+    }
+
+    private fun String.generateKey(stream: Stream) = "$this/${stream.toStreamType().realValue}"
 }

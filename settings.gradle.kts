@@ -18,7 +18,8 @@ include(
     ":libraries:auth:domain:usecase:requestaccesstoken",
     ":libraries:timeline:infra",
     ":libraries:timeline:domain:entity",
-    ":libraries:timeline:domain:valueobject"
+    ":libraries:timeline:domain:valueobject",
+    ":libraries:timeline:domain:usecase:subscribe"
 )
 
 pluginManagement {
