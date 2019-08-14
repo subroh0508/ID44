@@ -14,6 +14,6 @@ data class AttachmentJson(
     val previewUrl: String,
     @SerialName("text_url")
     val textUrl: String? = null,
-    //val meta: String? = null,
+    val meta: MetaJson? = null,
     val description: String? = null
 )
