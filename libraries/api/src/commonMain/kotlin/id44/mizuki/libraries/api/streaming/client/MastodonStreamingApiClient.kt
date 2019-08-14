@@ -6,7 +6,12 @@ import io.ktor.client.HttpClient
 import io.ktor.client.features.websocket.wss
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.readText
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.produce
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
@@ -17,21 +22,25 @@ internal class MastodonStreamingApiClient(
         hostName: String,
         accessToken: String,
         stream: StreamType
-    ): BroadcastChannel<StreamingEventJson> {
+    ): ReceiveChannel<StreamingEventJson> = GlobalScope.produce(
+        Dispatchers.Unconfined, capacity = Channel.UNLIMITED
+    ) {
         httpClient.wss(
             host = hostName,
             path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=$accessToken"
         ) {
-            val frame = incoming.receive()
+            for (frame in incoming) {
+                when (frame) {
+                    is Frame.Text -> {
+                        val text = frame.readText()
+                        val json = Json.parse(StreamingEventJson.serializer(), text)
 
-            when (frame) {
-                is Frame.Text -> channel.send(
-                    Json.parse(StreamingEventJson.serializer(), frame.readText())
-                )
+                        println(text)
+                        send(json)
+                    }
+                }
             }
         }
-
-        return channel
     }
 
     override fun closeEventChannel() {

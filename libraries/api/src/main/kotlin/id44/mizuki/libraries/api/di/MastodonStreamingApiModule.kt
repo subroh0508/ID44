@@ -8,13 +8,11 @@ import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.api.PrefKeys
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.AccessTokenStoreClient
-import id44.mizuki.libraries.api.client.MastodonApi
-import id44.mizuki.libraries.api.client.MastodonApiClient
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApiClient
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonSerializer
 import kotlinx.coroutines.channels.BroadcastChannel
+import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 
 @Module
 class MastodonStreamingApiModule {
@@ -26,5 +24,5 @@ class MastodonStreamingApiModule {
     @Provides
     @ModuleScope
     fun provideMastodonStreamingApi(httpClient: HttpClient): MastodonStreamingApi
-            = MastodonStreamingApiClient(httpClient, BroadcastChannel(1))
+            = MastodonStreamingApiClient(httpClient, BroadcastChannel(CONFLATED))
 }

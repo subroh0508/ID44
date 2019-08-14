@@ -8,6 +8,7 @@ import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseC
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,10 +32,11 @@ class TimelineActivity : ScopedActivity() {
     override fun onResume() {
         super.onResume()
 
-        launch {
-            val status = subscribeUseCase.execute(hostName, Stream.LOCAL)
-
-            Log.d("status", status.toString())
+        launch(coroutineContext) {
+            subscribeUseCase.execute(hostName, Stream.LOCAL)
+                .collect {
+                    Log.d("status", it.toString())
+                }
         }
     }
 

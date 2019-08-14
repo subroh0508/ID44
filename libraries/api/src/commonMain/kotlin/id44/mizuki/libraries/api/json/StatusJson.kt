@@ -12,7 +12,7 @@ data class StatusJson(
     val account: AccountJson,
     @SerialName("in_reply_to_id")
     val inReplyToId: String? = null,
-    @SerialName("in_reply_to_account_ud")
+    @SerialName("in_reply_to_account_id")
     val inReplyToAccountId: String? = null,
     val reblog: StatusJson? = null,
     val content: String,
@@ -20,7 +20,7 @@ data class StatusJson(
     val createdAt: String,
     val emojis: List<EmojiJson>,
     @SerialName("replies_count")
-    val repliesCount: Int,
+    val repliesCount: Int = 0,
     @SerialName("reblogs_count")
     val reblogsCount: Int,
     @SerialName("favourites_count")
@@ -43,6 +43,6 @@ data class StatusJson(
     val pinned: Boolean? = null
 ) {
     companion object {
-        fun fromJson(json: String): StatusJson = Json.parse(serializer(), json)
+        fun fromJson(json: String): StatusJson = Json.nonstrict.parse(serializer(), json)
     }
 }

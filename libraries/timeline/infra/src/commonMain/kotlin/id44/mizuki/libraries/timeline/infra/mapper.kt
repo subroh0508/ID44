@@ -1,6 +1,7 @@
 package id44.mizuki.libraries.timeline.infra
 
-import com.soywiz.klock.DateTime
+import com.soywiz.klock.DateFormat
+import com.soywiz.klock.parse
 import id44.mizuki.libraries.api.json.StatusJson
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.EventType
@@ -29,7 +30,7 @@ internal suspend fun StreamingEventJson.toStatus(): Status? {
     return Status(
         id = payload.id,
         content = payload.content,
-        createdAt = DateTime.parse(payload.createdAt),
+        createdAt = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(payload.createdAt),
         favouriteCount = payload.favouritesCount,
         reblogCount = payload.reblogsCount,
         tooter = with (payload.account) {
