@@ -8,15 +8,13 @@ import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.readText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
-    private val httpClient: HttpClient,
-    private val channel: BroadcastChannel<StreamingEventJson>
+    private val httpClient: HttpClient
 ) : MastodonStreamingApi {
     override suspend fun openEventChannel(
         hostName: String,
