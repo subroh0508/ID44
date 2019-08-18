@@ -1,4 +1,4 @@
-package id44.mizuki.timeline
+package id44.mizuki.timeline.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,7 @@ import id44.mizuki.base.ui.ScopedActivity
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.timeline.R
 import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject
 import kotlinx.coroutines.flow.collect
@@ -43,7 +44,7 @@ class TimelineActivity : ScopedActivity() {
     override fun onPause() {
         super.onPause()
 
-        unsubscribeUseCase.execute("imastodon.net", Stream.LOCAL)
+        unsubscribeUseCase.execute(hostName, Stream.LOCAL)
     }
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent
