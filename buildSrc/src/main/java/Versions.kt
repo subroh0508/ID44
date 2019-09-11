@@ -2,9 +2,9 @@
 object Versions {
     const val buildTools = "3.4.2"
 
-    const val kotlin = "1.3.41"
-    const val coroutines = "1.3.0-RC2"
-    const val kotlinxSerialization = "0.10.0"
+    const val kotlin = "1.3.50"
+    const val coroutines = "1.3.1"
+    const val kotlinxSerialization = "0.12.0"
 
     object Jetpack {
         const val core = "1.0.0"
