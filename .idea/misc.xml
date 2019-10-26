@@ -6,7 +6,7 @@
     </configurations>
   </component>
   <component name="JavaScriptSettings">
-    <option name="languageLevel" value="ES6" />
+    <option name="languageLevel" value="JSX" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">

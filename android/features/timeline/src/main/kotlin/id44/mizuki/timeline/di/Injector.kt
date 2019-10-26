@@ -6,7 +6,7 @@ import id44.mizuki.timeline.presentation.ui.TimelineActivity
 fun TimelineActivity.inject() {
     timelineActivityComponent = DaggerTimelineActivityComponent.builder()
         .timelineComponent(buildTimelineComponent())
-        //.timelineActivity(this)
+        .timelineActivity(this)
         .build()
 
     timelineActivityComponent.inject(this)

@@ -70,7 +70,7 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
 
     override fun bindAccessToken(accessToken: String) {
         val intent = Intent().apply {
-            setClassName(this@AuthenticationActivity, "id44.mizuki.timeline.TimelineActivity")
+            setClassName(this@AuthenticationActivity, "id44.mizuki.timeline.presentation.ui.TimelineActivity")
             putExtra("hostname", viewModel.hostName.value)
         }
 

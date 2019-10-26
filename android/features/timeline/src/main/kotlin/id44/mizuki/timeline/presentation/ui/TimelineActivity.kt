@@ -1,7 +1,7 @@
 package id44.mizuki.timeline.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
+import com.facebook.react.ReactInstanceManager
 import id44.mizuki.base.ui.ScopedActivity
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
@@ -9,6 +9,7 @@ import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import id44.mizuki.timeline.R
 import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject
+import id44.mizuki.timeline.reactnative.emit
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,6 +19,8 @@ class TimelineActivity : ScopedActivity() {
     lateinit var subscribeUseCase: TimelineSubscribeUseCase
     @Inject
     lateinit var unsubscribeUseCase: TimelineUnsubscribeUseCase
+    @Inject
+    lateinit var reactInstanceManager: ReactInstanceManager
 
     private val hostName: String
         get() = intent.getStringExtra("hostname") ?: throw IllegalStateException()
@@ -36,7 +39,8 @@ class TimelineActivity : ScopedActivity() {
         launch(coroutineContext) {
             subscribeUseCase.execute(hostName, Stream.LOCAL)
                 .collect {
-                    Log.d("status", it.toString())
+                    emit(reactInstanceManager.currentReactContext, it)
+                    // Log.d("status", it.toString())
                 }
         }
     }
