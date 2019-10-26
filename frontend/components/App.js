@@ -9,8 +9,8 @@ export default class App extends React.Component {
     const styles = JSON.parse(this.props.styles);
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.hello}>Hello, World</Text>
+      <View style={ styles.container }>
+        <Text style={ styles.hello }>Hello, World</Text>
       </View>
     );
   }

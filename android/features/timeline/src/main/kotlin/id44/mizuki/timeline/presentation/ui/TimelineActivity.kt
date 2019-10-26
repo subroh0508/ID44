@@ -10,6 +10,7 @@ import id44.mizuki.timeline.R
 import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject
 import id44.mizuki.timeline.reactnative.emit
+import kotlinx.android.synthetic.main.activity_timeline.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,10 +28,14 @@ class TimelineActivity : ScopedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_timeline)
 
         inject()
 
-        setContentView(R.layout.activity_timeline)
+        reactRootView.startReactApplication(
+            reactInstanceManager,
+            "Timeline"
+        )
     }
 
     override fun onResume() {
