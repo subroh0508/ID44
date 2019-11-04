@@ -2,6 +2,7 @@ import com.android.build.VariantOutput
 import com.android.build.gradle.api.ApkVariantOutput
 import groovy.lang.Closure
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import java.net.InetAddress
 
 plugins {
     id("com.android.application")
@@ -50,6 +51,12 @@ android {
         getByName("release") {
             isMinifyEnabled = enableProguardInReleaseBuilds
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            buildConfigField("String", "DEV_HOST", "\"0.0.0.0:8081\"")
+        }
+        getByName("debug") {
+            val host = InetAddress.getLocalHost().hostAddress
+            buildConfigField("String", "DEV_HOST", "\"$host:8081\"")
         }
     }
 

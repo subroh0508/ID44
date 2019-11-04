@@ -5,9 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.common.LifecycleState
@@ -28,17 +30,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startActivity(Intent(this, AuthenticationActivity::class.java))
-        /*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && BuildConfig.DEBUG) {
-            if (!Settings.canDrawOverlays(this)) {
+        if (BuildConfig.DEBUG) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
                 requestOverlayPermission()
                 return
             }
+
+            PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
+                putString("debug_http_host", BuildConfig.DEV_HOST)
+            }
         }
 
-        setReactRootView()
-        */
+        startActivity(Intent(this, AuthenticationActivity::class.java))
     }
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -58,11 +61,12 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "You need permission for overlay", Toast.LENGTH_SHORT).show()
                     return
                 }
-
-                setReactRootView()
             }
 
-            return
+            PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
+                putString("debug_http_host", BuildConfig.DEV_HOST)
+            }
+            startActivity(Intent(this, AuthenticationActivity::class.java))
         }
 
         super.onActivityResult(requestCode, resultCode, data)
