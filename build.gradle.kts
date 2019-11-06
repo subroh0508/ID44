@@ -15,8 +15,8 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven(url = "$rootDir/frontend/node_modules/react-native/android")
-        maven(url = "$rootDir/frontend/node_modules/jsc-android/dist")
+        maven(url = "$REACT_NATIVE_NODE_MODULE_PATH/react-native/android")
+        maven(url = "$REACT_NATIVE_NODE_MODULE_PATH/jsc-android/dist")
     }
 }
 

@@ -13,16 +13,16 @@ plugins {
 
 val react by extra {
     mapOf(
-        "cliPath" to "$rootDir/frontend/node_modules/react-native/cli.js",
-        "composeSourceMapsPath" to "$rootDir/frontend/node_modules/react-native/scripts/compose-source-maps.js",
+        "cliPath" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native/cli.js",
+        "composeSourceMapsPath" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native/scripts/compose-source-maps.js",
         "entryFile" to "index.js",
-        "root" to "$rootDir/frontend",
-        "hermesCommand" to "$rootDir/frontend/node_modules/hermes-engine/%OS-BIN%/hermes",
+        "root" to REACT_NATIVE_PATH,
+        "hermesCommand" to "$REACT_NATIVE_NODE_MODULE_PATH/hermes-engine/%OS-BIN%/hermes",
         "enableHermes" to true
     )
 }
 
-apply(from = "$rootDir/frontend/node_modules/react-native/react.gradle")
+apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native/react.gradle")
 //apply(from = "$rootDir/frontend/node_modules/react-native-vector-icons/fonts.gradle")
 
 val enableSeparateBuildPerCPUArchitecture = false
