@@ -11,10 +11,19 @@ plugins {
     kotlin("android.extensions")
 }
 
-val react by extra { mapOf("entryFile" to "index.js", "enableHermes" to true) }
+val react by extra {
+    mapOf(
+        "cliPath" to "$rootDir/frontend/node_modules/react-native/cli.js",
+        "composeSourceMapsPath" to "$rootDir/frontend/node_modules/react-native/scripts/compose-source-maps.js",
+        "entryFile" to "index.js",
+        "root" to "$rootDir/frontend",
+        "hermesCommand" to "$rootDir/frontend/node_modules/hermes-engine/%OS-BIN%/hermes",
+        "enableHermes" to true
+    )
+}
 
 apply(from = "$rootDir/frontend/node_modules/react-native/react.gradle")
-apply(from = "$rootDir/frontend/node_modules/react-native-vector-icons/fonts.gradle")
+//apply(from = "$rootDir/frontend/node_modules/react-native-vector-icons/fonts.gradle")
 
 val enableSeparateBuildPerCPUArchitecture = false
 
@@ -85,6 +94,10 @@ android {
                 "-Xuse-experimental=kotlin.Experimental"
         )
     }
+
+    lintOptions {
+        isCheckReleaseBuilds = false
+    }
 }
 
 dependencies {
@@ -111,7 +124,7 @@ dependencies {
     androidTestImplementation(Libraries.Jetpack.Test.espresso)
 
     if ((react["enableHermes"] as Boolean?) == true) {
-        val hermesPath = "$rootDir/frontend/node_modules/hermesvm/android/"
+        val hermesPath = "$rootDir/frontend/node_modules/hermes-engine/android/"
         implementation(Libraries.Webkit.jscIntl)
         debugImplementation(files(hermesPath + "hermes-debug.aar"))
         releaseImplementation(files(hermesPath + "hermes-release.aar"))
