@@ -21,8 +21,11 @@ include(
     ":libraries:timeline:domain:entity",
     ":libraries:timeline:domain:valueobject",
     ":libraries:timeline:domain:usecase:subscribe",
-    ":libraries:timeline:domain:usecase:unsubscribe"
+    ":libraries:timeline:domain:usecase:unsubscribe",
+    ":react-native-vector-icons"
 )
+
+project(":react-native-vector-icons").projectDir = file("$rootDir/frontend/node_modules/react-native-vector-icons/android")
 
 pluginManagement {
     repositories {

@@ -23,7 +23,7 @@ val react by extra {
 }
 
 apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native/react.gradle")
-//apply(from = "$rootDir/frontend/node_modules/react-native-vector-icons/fonts.gradle")
+apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/fonts.gradle")
 
 val enableSeparateBuildPerCPUArchitecture = false
 
@@ -108,6 +108,7 @@ dependencies {
     implementation(project(":android:components:timeline"))
     implementation(project(":android:features:auth"))
     implementation(project(":android:features:timeline"))
+    implementation(project(":react-native-vector-icons"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
 
