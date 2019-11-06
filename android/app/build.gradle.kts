@@ -141,4 +141,4 @@ task("copyDownloadableDepsToLibs", Copy::class) {
 apply(from = "$rootDir/frontend/node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
 val applyNativeModulesAppBuildGradle: Closure<Unit> by extra
 
-applyNativeModulesAppBuildGradle(project, "$rootDir/frontend")
+applyNativeModulesAppBuildGradle(project)
