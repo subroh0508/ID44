@@ -94,10 +94,6 @@ android {
                 "-Xuse-experimental=kotlin.Experimental"
         )
     }
-
-    lintOptions {
-        isCheckReleaseBuilds = false
-    }
 }
 
 dependencies {
@@ -125,7 +121,7 @@ dependencies {
     androidTestImplementation(Libraries.Jetpack.Test.espresso)
 
     if ((react["enableHermes"] as Boolean?) == true) {
-        val hermesPath = "$rootDir/frontend/node_modules/hermes-engine/android/"
+        val hermesPath = "$REACT_NATIVE_NODE_MODULE_PATH/hermes-engine/android/"
         implementation(Libraries.Webkit.jscIntl)
         debugImplementation(files(hermesPath + "hermes-debug.aar"))
         releaseImplementation(files(hermesPath + "hermes-release.aar"))
@@ -139,7 +135,7 @@ task("copyDownloadableDepsToLibs", Copy::class) {
     into("libs")
 }
 
-apply(from = "$rootDir/frontend/node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
+apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/@react-native-community/cli-platform-android/native_modules.gradle")
 val applyNativeModulesAppBuildGradle: Closure<Unit> by extra
 
 applyNativeModulesAppBuildGradle(project)

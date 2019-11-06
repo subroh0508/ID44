@@ -25,7 +25,7 @@ include(
     ":react-native-vector-icons"
 )
 
-project(":react-native-vector-icons").projectDir = file("$rootDir/frontend/node_modules/react-native-vector-icons/android")
+project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/android")
 
 pluginManagement {
     repositories {
