@@ -11,6 +11,8 @@ plugins {
     kotlin("android.extensions")
 }
 
+// ReactNativeのディレクトリを任意の場所に配置するための設定
+// https://github.com/facebook/react-native/blob/e99b926d27fffe8d069f9af75b976845cc3ad43f/react.gradle#L24-L33
 val react by extra {
     mapOf(
         "cliPath" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native/cli.js",
