@@ -1,4 +1,4 @@
-package id44.mizuki.timeline.presentation.ui
+package id44.mizuki.timeline.presentation.ui.activity
 
 import android.os.Bundle
 import com.facebook.react.ReactInstanceManager

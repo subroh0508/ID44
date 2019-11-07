@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.timeline.BuildConfig
-import id44.mizuki.timeline.presentation.ui.TimelineActivity
+import id44.mizuki.timeline.presentation.ui.activity.TimelineActivity
 import id44.mizuki.timeline.reactnative.TimelineActivityPackage
 
 @Module
