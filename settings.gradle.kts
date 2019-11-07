@@ -21,8 +21,11 @@ include(
     ":libraries:timeline:domain:entity",
     ":libraries:timeline:domain:valueobject",
     ":libraries:timeline:domain:usecase:subscribe",
-    ":libraries:timeline:domain:usecase:unsubscribe"
+    ":libraries:timeline:domain:usecase:unsubscribe",
+    ":react-native-vector-icons"
 )
+
+project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/android")
 
 pluginManagement {
     repositories {
@@ -31,15 +34,5 @@ pluginManagement {
         gradlePluginPortal()
         mavenLocal()
         maven("https://kotlin.bintray.com/kotlinx")
-    }
-
-    resolutionStrategy {
-        eachPlugin {
-            when {
-                requested.id.id.startsWith("org.jetbrains.kotlin") -> useModule(Libraries.GradlePlugin.kotlin)
-                requested.id.id.startsWith("com.android") -> useModule(Libraries.GradlePlugin.android)
-                requested.id.id == "kotlinx-serialization" -> useModule(Libraries.GradlePlugin.kotlinSerialization)
-            }
-        }
     }
 }

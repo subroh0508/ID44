@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/android/features/auth" />
             <option value="$PROJECT_DIR$/android/features/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/frontend/node_modules/react-native-vector-icons/android" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/api" />
             <option value="$PROJECT_DIR$/libraries/auth" />

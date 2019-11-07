@@ -11,10 +11,21 @@ plugins {
     kotlin("android.extensions")
 }
 
-val react by extra { mapOf("entryFile" to "index.js", "enableHermes" to true) }
+// ReactNativeのディレクトリを任意の場所に配置するための設定
+// https://github.com/facebook/react-native/blob/e99b926d27fffe8d069f9af75b976845cc3ad43f/react.gradle#L24-L33
+val react by extra {
+    mapOf(
+        "cliPath" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native/cli.js",
+        "composeSourceMapsPath" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native/scripts/compose-source-maps.js",
+        "entryFile" to "index.js",
+        "root" to REACT_NATIVE_PATH,
+        "hermesCommand" to "$REACT_NATIVE_NODE_MODULE_PATH/hermesvm/%OS-BIN%/hermes",
+        "enableHermes" to true
+    )
+}
 
-apply(from = "$rootDir/frontend/node_modules/react-native/react.gradle")
-apply(from = "$rootDir/frontend/node_modules/react-native-vector-icons/fonts.gradle")
+apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native/react.gradle")
+apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/fonts.gradle")
 
 val enableSeparateBuildPerCPUArchitecture = false
 
@@ -95,6 +106,7 @@ dependencies {
     implementation(project(":android:components:timeline"))
     implementation(project(":android:features:auth"))
     implementation(project(":android:features:timeline"))
+    implementation(project(":react-native-vector-icons"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
 
@@ -111,7 +123,7 @@ dependencies {
     androidTestImplementation(Libraries.Jetpack.Test.espresso)
 
     if ((react["enableHermes"] as Boolean?) == true) {
-        val hermesPath = "$rootDir/frontend/node_modules/hermesvm/android/"
+        val hermesPath = "$REACT_NATIVE_NODE_MODULE_PATH/hermesvm/android/"
         implementation(Libraries.Webkit.jscIntl)
         debugImplementation(files(hermesPath + "hermes-debug.aar"))
         releaseImplementation(files(hermesPath + "hermes-release.aar"))
@@ -125,7 +137,7 @@ task("copyDownloadableDepsToLibs", Copy::class) {
     into("libs")
 }
 
-apply(from = "$rootDir/frontend/node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
+apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/@react-native-community/cli-platform-android/native_modules.gradle")
 val applyNativeModulesAppBuildGradle: Closure<Unit> by extra
 
 applyNativeModulesAppBuildGradle(project, "$rootDir/frontend")

@@ -5,6 +5,7 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import com.oblador.vectoricons.VectorIconsPackage
 import id44.mizuki.components.auth.AuthComponent
 import id44.mizuki.components.auth.AuthComponentProvider
 import id44.mizuki.components.core.CoreComponent
@@ -24,7 +25,7 @@ class MainApplication : Application(), ReactApplication,
     override lateinit var timelineComponent: TimelineComponent
 
     private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
-        override fun getPackages() = listOf(MainReactPackage())
+        override fun getPackages() = listOf(MainReactPackage(), VectorIconsPackage())
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
         override fun getJSMainModuleName() = "index"
     }
