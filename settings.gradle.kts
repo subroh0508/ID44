@@ -8,6 +8,7 @@ applyNativeModulesSettingsGradle(settings, "$rootDir/frontend")
 include(
     ":android:app",
     ":android:base",
+    ":android:auth",
     ":android:components:core",
     ":android:components:auth",
     ":android:components:timeline",

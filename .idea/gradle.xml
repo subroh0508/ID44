@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android" />
             <option value="$PROJECT_DIR$/android/app" />
+            <option value="$PROJECT_DIR$/android/auth" />
             <option value="$PROJECT_DIR$/android/base" />
             <option value="$PROJECT_DIR$/android/components" />
             <option value="$PROJECT_DIR$/android/components/auth" />
