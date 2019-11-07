@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import id44.mizuki.libraries.api.TokenExpiredException
 
-internal actual class AccessTokenStoreClient(
+actual class AccessTokenStoreClient(
     private val sharedPreferences: SharedPreferences
 ) : AccessTokenStore {
     companion object {

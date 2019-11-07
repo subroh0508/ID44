@@ -1,8 +1,8 @@
-package id44.mizuki.timeline.presentation.ui.activity
+package id44.mizuki.timeline.presentation.ui
 
 import android.os.Bundle
 import com.facebook.react.ReactInstanceManager
-import id44.mizuki.base.ui.ScopedActivity
+import id44.mizuki.auth.presentation.ui.RequireAuthActivity
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TimelineActivity : ScopedActivity() {
+class TimelineActivity : RequireAuthActivity() {
     @Inject
     lateinit var subscribeUseCase: TimelineSubscribeUseCase
     @Inject

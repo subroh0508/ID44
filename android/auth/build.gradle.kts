@@ -32,6 +32,11 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
+    implementation(project(":android:base"))
+    implementation(project(":android:components:core"))
+    implementation(project(":libraries:api"))
+    implementation(project(":libraries:auth:infra"))
+
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
 

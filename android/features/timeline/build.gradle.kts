@@ -33,6 +33,7 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":android:base"))
+    implementation(project(":android:auth"))
     implementation(project(":android:components:core"))
     implementation(project(":android:components:timeline"))
     implementation(project(":libraries:auth:infra"))

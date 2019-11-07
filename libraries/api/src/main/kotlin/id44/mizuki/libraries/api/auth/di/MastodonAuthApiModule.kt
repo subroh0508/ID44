@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.api.di
+package id44.mizuki.libraries.api.auth.di
 
 import android.app.Application
 import android.content.Context

@@ -6,13 +6,14 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
 import dagger.Module
 import dagger.Provides
+import id44.mizuki.auth.di.AuthActivityModule
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.timeline.BuildConfig
-import id44.mizuki.timeline.presentation.ui.activity.TimelineActivity
+import id44.mizuki.timeline.presentation.ui.TimelineActivity
 import id44.mizuki.timeline.reactnative.TimelineActivityPackage
 
 @Module
-abstract class TimelineActivityModule {
+abstract class TimelineActivityModule : AuthActivityModule<TimelineActivity>() {
     @Module
     companion object {
         @JvmStatic
