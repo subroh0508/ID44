@@ -6,8 +6,8 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
 import com.oblador.vectoricons.VectorIconsPackage
-import id44.mizuki.components.auth.AuthComponent
-import id44.mizuki.components.auth.AuthComponentProvider
+import id44.mizuki.components.authentication.AuthComponent
+import id44.mizuki.components.authentication.AuthComponentProvider
 import id44.mizuki.components.core.CoreComponent
 import id44.mizuki.components.core.CoreComponentProvider
 import id44.mizuki.components.core.CoreModule

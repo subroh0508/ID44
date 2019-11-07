@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="id44.mizuki.authentication">
+    <application>
+        <activity
+            android:name=".presentation.ui.AuthenticationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/auth_client_name"
+                    android:scheme="@string/auth_oauth_scheme" />
+            </intent-filter>
+
+        </activity>
+    </application>
+</manifest>

@@ -16,7 +16,7 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
 import id44.mizuki.BuildConfig
 import id44.mizuki.R
-import id44.mizuki.auth.presentation.ui.AuthenticationActivity
+import id44.mizuki.authentication.presentation.ui.AuthenticationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
