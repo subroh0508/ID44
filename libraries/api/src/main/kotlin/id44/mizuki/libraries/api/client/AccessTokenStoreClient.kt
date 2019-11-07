@@ -15,7 +15,7 @@ actual class AccessTokenStoreClient(
             = sharedPreferences.getStringSet(AUTHENTICATED_HOST_NAMES, setOf())?.toList() ?: listOf()
 
     override fun getAccessToken(hostName: String): String
-            = sharedPreferences.getString(hostName, null) ?: throw TokenExpiredException()
+            = sharedPreferences.getString(hostName, null) ?: throw TokenExpiredException(hostName)
 
     override fun cacheAccessToken(hostName: String, token: String) {
         val hostNames = getAuthenticatedHostNames().toMutableSet()

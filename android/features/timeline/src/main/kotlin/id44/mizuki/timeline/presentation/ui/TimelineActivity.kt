@@ -24,7 +24,7 @@ class TimelineActivity : RequireAuthActivity() {
     lateinit var reactInstanceManager: ReactInstanceManager
 
     private val hostName: String
-        get() = intent.getStringExtra("hostname") ?: throw IllegalStateException()
+        get() = intent.getStringExtra("hostname") ?: "pawoo.net"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
