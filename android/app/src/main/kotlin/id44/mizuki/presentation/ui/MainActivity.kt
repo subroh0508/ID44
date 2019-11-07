@@ -1,4 +1,4 @@
-package id44.mizuki
+package id44.mizuki.presentation.ui
 
 import android.annotation.TargetApi
 import android.content.Intent
@@ -14,6 +14,8 @@ import androidx.core.os.bundleOf
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
+import id44.mizuki.BuildConfig
+import id44.mizuki.R
 import id44.mizuki.auth.presentation.ui.AuthenticationActivity
 import kotlinx.android.synthetic.main.activity_main.*
 

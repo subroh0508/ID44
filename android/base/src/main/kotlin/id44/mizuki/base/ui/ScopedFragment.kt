@@ -12,9 +12,9 @@ import kotlinx.coroutines.SupervisorJob
 abstract class ScopedFragment : Fragment(), CoroutineScope {
     protected lateinit var job: Job
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         job = SupervisorJob()
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onDestroy() {

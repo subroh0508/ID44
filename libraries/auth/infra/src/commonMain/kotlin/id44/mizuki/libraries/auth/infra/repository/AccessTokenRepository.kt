@@ -1,6 +1,8 @@
 package id44.mizuki.libraries.auth.infra.repository
 
 interface AccessTokenRepository {
+    fun getAuthenticatedHostNames(): List<String>
+
     fun buildAuthorizeUrl(
         hostName: String,
         clientId: String,

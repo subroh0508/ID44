@@ -9,6 +9,8 @@ internal class AccessTokenRepositoryImpl(
     private val authApi: MastodonAuthApi,
     private val localStore: AccessTokenStore
 ) : AccessTokenRepository {
+    override fun getAuthenticatedHostNames(): List<String> = localStore.getAuthenticatedHostNames()
+
     override fun buildAuthorizeUrl(
         hostName: String,
         clientId: String,
