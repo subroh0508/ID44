@@ -33,20 +33,13 @@ val enableProguardInReleaseBuilds = false
 
 val useIntlJsc = false
 
+androidCommons()
 android {
-    compileSdkVersion(Package.Versions.compileSdk)
     defaultConfig {
         applicationId = Package.applicationId
-        minSdkVersion(Package.Versions.minSdk)
-        targetSdkVersion(Package.Versions.targetSdk)
         versionCode = Package.versionCode
         versionName = Package.versionName
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
     }
 
     splits {
@@ -79,10 +72,6 @@ android {
                 output.versionCodeOverride = (versionCodes[abi] ?: 0) * 1048576 + (defaultConfig.versionCode ?: 1)
             }
         }
-    }
-
-    sourceSets.forEach {
-        it.java.setSrcDirs(files("src/${it.name}/kotlin"))
     }
 
     packagingOptions {
