@@ -32,10 +32,12 @@ abstract class TimelineActivityModule : AuthActivityModule<TimelineActivity>() {
             .setApplication(app)
             .setCurrentActivity(activity)
             .setBundleAssetName("index.android.bundle")
-            .setJSMainModulePath("index")
+            .setJSMainModulePath("components/timeline/index")
             .addPackages(listOf(MainReactPackage(), `package`))
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
-            .build()
+            .build().apply {
+                devSupportManager.setReloadOnJSChangeEnabled(true)
+            }
     }
 }

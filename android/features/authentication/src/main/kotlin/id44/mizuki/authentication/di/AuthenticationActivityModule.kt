@@ -3,7 +3,9 @@ package id44.mizuki.authentication.di
 import android.app.Application
 import androidx.lifecycle.ViewModelProviders
 import com.facebook.react.ReactInstanceManager
+import com.facebook.react.bridge.NativeDeltaClient
 import com.facebook.react.common.LifecycleState
+import com.facebook.react.devsupport.interfaces.DevBundleDownloadListener
 import com.facebook.react.shell.MainReactPackage
 import dagger.Binds
 import dagger.Module
@@ -70,10 +72,12 @@ abstract class AuthenticationActivityModule {
             .setApplication(app)
             .setCurrentActivity(activity)
             .setBundleAssetName("index.android.bundle")
-            .setJSMainModulePath("index")
+            .setJSMainModulePath("components/auth/index")
             .addPackages(listOf(MainReactPackage(), `package`))
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
-            .build()
+            .build().apply {
+                devSupportManager.setReloadOnJSChangeEnabled(true)
+            }
     }
 }

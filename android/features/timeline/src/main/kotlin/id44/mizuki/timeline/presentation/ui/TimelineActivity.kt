@@ -56,5 +56,11 @@ class TimelineActivity : RequireAuthActivity() {
         unsubscribeUseCase.execute(hostName, Stream.LOCAL)
     }
 
+    override fun onDestroy() {
+        reactRootView.unmountReactApplication()
+        reactInstanceManager.destroy()
+        super.onDestroy()
+    }
+
     internal lateinit var timelineActivityComponent: TimelineActivityComponent
 }

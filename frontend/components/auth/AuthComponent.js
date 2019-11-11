@@ -82,7 +82,6 @@ class AuthComponent extends Component {
             style={ styles.textInput }
             label='Host Name'
             mode='outlined'
-            value={ AuthenticationContract.hostName() }
             onChangeText={ text => AuthenticationContract.onChangedHostName(text) }
           />
           <Button

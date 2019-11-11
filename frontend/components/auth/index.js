@@ -46,7 +46,7 @@ const theme = {
 };
 */
 
-export const Auth = () => {
+const Auth = () => {
   return (
     <PaperProvider theme={ theme }>
       <AuthComponent/>
@@ -54,4 +54,4 @@ export const Auth = () => {
   );
 };
 
-//AppRegistry.registerComponent('Auth', () => Auth);
+AppRegistry.registerComponent('Auth', () => Auth);
