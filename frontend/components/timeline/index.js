@@ -16,7 +16,7 @@ const theme = {
   },
 };
 
-const Timeline = () => {
+export const Timeline = () => {
   return (
       <PaperProvider theme={ DefaultTheme }>
         <TimelineComponent/>
@@ -24,4 +24,4 @@ const Timeline = () => {
   );
 };
 
-AppRegistry.registerComponent('Timeline', () => Timeline);
+//AppRegistry.registerComponent('Timeline', () => Timeline);

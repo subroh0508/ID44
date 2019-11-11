@@ -1,4 +1,6 @@
 import { AppRegistry } from 'react-native';
-import App from './components/App';
+import { Timeline } from "./components/timeline/index";
+import { Auth } from "./components/auth/index";
 
-AppRegistry.registerComponent("App", () => App);
+AppRegistry.registerComponent('Auth', () => Auth);
+AppRegistry.registerComponent('Timeline', () => Timeline);

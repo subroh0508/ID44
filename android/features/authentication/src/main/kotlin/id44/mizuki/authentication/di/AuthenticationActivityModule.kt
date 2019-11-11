@@ -70,7 +70,7 @@ abstract class AuthenticationActivityModule {
             .setApplication(app)
             .setCurrentActivity(activity)
             .setBundleAssetName("index.android.bundle")
-            .setJSMainModulePath("components/auth/index")
+            .setJSMainModulePath("index")
             .addPackages(listOf(MainReactPackage(), `package`))
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)

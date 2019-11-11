@@ -17,13 +17,14 @@ import id44.mizuki.components.timeline.TimelineComponentProvider
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import kotlinx.serialization.json.Json
 
-class MainApplication : Application(), ReactApplication,
+class MainApplication : Application(),
     CoreComponentProvider, AuthComponentProvider, TimelineComponentProvider {
 
     override lateinit var coreComponent: CoreComponent
     override lateinit var authComponent: AuthComponent
     override lateinit var timelineComponent: TimelineComponent
 
+    /*
     private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
         override fun getPackages() = listOf(MainReactPackage(), VectorIconsPackage())
         override fun getUseDeveloperSupport() = BuildConfig.DEBUG
@@ -31,6 +32,7 @@ class MainApplication : Application(), ReactApplication,
     }
 
     override fun getReactNativeHost() = reactNativeHost
+    */
 
     override fun onCreate() {
         super.onCreate()
