@@ -21,6 +21,8 @@
             <option value="$PROJECT_DIR$/android/features/authentication" />
             <option value="$PROJECT_DIR$/android/features/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/frontend/node_modules/react-native-gesture-handler/android" />
+            <option value="$PROJECT_DIR$/frontend/node_modules/react-native-reanimated/android" />
             <option value="$PROJECT_DIR$/frontend/node_modules/react-native-vector-icons/android" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/api" />

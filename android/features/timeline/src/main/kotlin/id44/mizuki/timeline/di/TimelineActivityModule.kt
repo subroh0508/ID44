@@ -4,6 +4,9 @@ import android.app.Application
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
+import com.oblador.vectoricons.VectorIconsPackage
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
+import com.swmansion.reanimated.ReanimatedPackage
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.auth.di.AuthActivityModule
@@ -33,7 +36,13 @@ abstract class TimelineActivityModule : AuthActivityModule<TimelineActivity>() {
             .setCurrentActivity(activity)
             .setBundleAssetName("index.android.bundle")
             .setJSMainModulePath("components/timeline/index")
-            .addPackages(listOf(MainReactPackage(), `package`))
+            .addPackages(listOf(
+                MainReactPackage(),
+                VectorIconsPackage(),
+                RNGestureHandlerPackage(),
+                ReanimatedPackage(),
+                `package`
+            ))
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build().apply {

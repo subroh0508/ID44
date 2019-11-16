@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import TimelineComponent from "./TimelineComponent";
+import { TimelineFrame } from "./TimelineFrame";
 
 // mizuki
 const theme = {
@@ -19,7 +20,7 @@ const theme = {
 const Timeline = () => {
   return (
       <PaperProvider theme={ DefaultTheme }>
-        <TimelineComponent/>
+        <TimelineFrame/>
       </PaperProvider>
   );
 };

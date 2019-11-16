@@ -19,6 +19,9 @@ dependencies {
     implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
     implementation(project(":libraries:timeline:domain:entity"))
     implementation(project(":libraries:timeline:domain:valueobject"))
+    implementation(project(":react-native-vector-icons"))
+    implementation(project(":react-native-gesture-handler"))
+    implementation(project(":react-native-reanimated"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
