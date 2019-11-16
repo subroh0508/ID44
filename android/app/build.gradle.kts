@@ -24,6 +24,12 @@ val react by extra {
     )
 }
 
+val vectoricons by extra {
+    mapOf(
+        "iconFontsDir" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/Fonts"
+    )
+}
+
 apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native/react.gradle")
 apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/fonts.gradle")
 
