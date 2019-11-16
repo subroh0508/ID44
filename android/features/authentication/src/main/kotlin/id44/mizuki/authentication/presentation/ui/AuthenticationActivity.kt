@@ -5,37 +5,32 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.facebook.react.ReactInstanceManager
 import id44.mizuki.authentication.R
 import id44.mizuki.authentication.di.AuthenticationActivityComponent
 import id44.mizuki.authentication.di.inject
 import id44.mizuki.authentication.presentation.AuthenticationContract
-import id44.mizuki.base.ui.ScopedActivity
-import kotlinx.android.synthetic.main.activity_authentication.*
+import id44.mizuki.base.Activities
+import id44.mizuki.base.intentTo
+import id44.mizuki.base.ui.ScopedReactActivity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
+class AuthenticationActivity : ScopedReactActivity(), AuthenticationContract.View {
     @Inject
     internal lateinit var presenter: AuthenticationContract.Presenter
     @Inject
     internal lateinit var viewModel: AuthenticationContract.Model
     @Inject
     internal lateinit var authorizeErrorHandler: CoroutineExceptionHandler
-    @Inject
-    internal lateinit var reactInstanceManager: ReactInstanceManager
+
+    override fun getMainComponentName(): String = "Auth"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_authentication)
-
         inject()
 
-        reactRootView.startReactApplication(
-            reactInstanceManager,
-            "Auth"
-        )
+        super.onCreate(savedInstanceState)
+
         viewModel.accessToken.observe(this, Observer(presenter::onRequestedAccessToken))
     }
 
@@ -62,18 +57,15 @@ class AuthenticationActivity : ScopedActivity(), AuthenticationContract.View {
     override fun openAuthorizePage(url: String) {
         Intent(Intent.ACTION_VIEW, Uri.parse(url)).takeIf {
             it.resolveActivity(packageManager) != null
-        }?.let {
-            startActivity(it)
-        } ?: presenter.notifyBrowserNotFound()
+        }?.let(this::startActivity) ?: presenter.notifyBrowserNotFound()
     }
 
     override fun bindAccessToken(accessToken: String) {
-        val intent = Intent().apply {
-            setClassName(this@AuthenticationActivity, "id44.mizuki.timeline.presentation.ui.TimelineActivity")
-            putExtra("hostname", viewModel.hostName.value)
-        }
-
-        startActivity(intent)
+        startActivity(
+            intentTo(Activities.Timeline).apply {
+                putExtra("hostname", viewModel.hostName.value)
+            }
+        )
     }
 
     override fun showErrorMessage(message: String) {

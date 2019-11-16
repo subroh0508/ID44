@@ -3,7 +3,6 @@
     <application>
         <activity
             android:name=".presentation.ui.AuthenticationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

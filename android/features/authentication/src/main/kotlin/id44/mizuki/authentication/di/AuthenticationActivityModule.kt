@@ -3,6 +3,8 @@ package id44.mizuki.authentication.di
 import android.app.Application
 import androidx.lifecycle.ViewModelProviders
 import com.facebook.react.ReactInstanceManager
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactRootView
 import com.facebook.react.bridge.NativeDeltaClient
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.devsupport.interfaces.DevBundleDownloadListener
@@ -16,6 +18,7 @@ import id44.mizuki.authentication.presentation.model.AuthenticationViewModel
 import id44.mizuki.authentication.presentation.presenter.AuthenticationPresenter
 import id44.mizuki.authentication.presentation.ui.AuthenticationActivity
 import id44.mizuki.authentication.reactnative.AuthenticationActivityPackage
+import id44.mizuki.authentication.reactnative.AuthenticationReactNativeHost
 import id44.mizuki.base.scope.ActivityScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import java.net.UnknownHostException
@@ -64,20 +67,14 @@ abstract class AuthenticationActivityModule {
         @JvmStatic
         @Provides
         @ActivityScope
-        fun provideReactInstanceManager(
+        fun provideReactNativeHost(
             app: Application,
-            activity: AuthenticationActivity,
-            `package`: AuthenticationActivityPackage
-        ): ReactInstanceManager = ReactInstanceManager.builder()
-            .setApplication(app)
-            .setCurrentActivity(activity)
-            .setBundleAssetName("index.android.bundle")
-            .setJSMainModulePath("components/auth/index")
-            .addPackages(listOf(MainReactPackage(), `package`))
-            .setUseDeveloperSupport(BuildConfig.DEBUG)
-            .setInitialLifecycleState(LifecycleState.RESUMED)
-            .build().apply {
-                devSupportManager.setReloadOnJSChangeEnabled(true)
-            }
+            authenticationPackage: AuthenticationActivityPackage
+        ): ReactNativeHost = AuthenticationReactNativeHost(app, authenticationPackage)
+
+        @JvmStatic
+        @Provides
+        @ActivityScope
+        fun provideReactRootView(activity: AuthenticationActivity) = ReactRootView(activity)
     }
 }

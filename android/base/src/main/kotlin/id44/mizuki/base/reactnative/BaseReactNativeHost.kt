@@ -1,6 +1,7 @@
 package id44.mizuki.base.reactnative
 
 import android.app.Application
+import androidx.annotation.CallSuper
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
@@ -9,6 +10,7 @@ import com.oblador.vectoricons.VectorIconsPackage
 import id44.mizuki.base.BuildConfig
 
 abstract class BaseReactNativeHost(app: Application) : ReactNativeHost(app) {
+    @CallSuper
     override fun getPackages(): MutableList<ReactPackage> = mutableListOf(
         MainReactPackage(), VectorIconsPackage()
     )
