@@ -10,6 +10,8 @@ androidCommons()
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
+    implementation(project(":react-native-vector-icons"))
+
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
 
@@ -21,6 +23,8 @@ dependencies {
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.fragment)
     implementation(Libraries.Jetpack.fragmentKtx)
+
+    implementation(Libraries.reactNative)
 
     implementation(Libraries.Dagger.core)
     kapt(Libraries.Dagger.compiler)

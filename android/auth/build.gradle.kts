@@ -27,6 +27,8 @@ dependencies {
     implementation(Libraries.Jetpack.fragment)
     implementation(Libraries.Jetpack.fragmentKtx)
 
+    implementation(Libraries.reactNative)
+
     implementation(Libraries.Dagger.core)
     kapt(Libraries.Dagger.compiler)
 }
