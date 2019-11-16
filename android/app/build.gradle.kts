@@ -19,7 +19,7 @@ val react by extra {
         "composeSourceMapsPath" to "$REACT_NATIVE_NODE_MODULE_PATH/react-native/scripts/compose-source-maps.js",
         "entryFile" to "index.js",
         "root" to REACT_NATIVE_PATH,
-        "hermesCommand" to "$REACT_NATIVE_NODE_MODULE_PATH/hermesvm/%OS-BIN%/hermes",
+        "hermesCommand" to "$REACT_NATIVE_NODE_MODULE_PATH/hermes-engine/%OS-BIN%/hermes",
         "enableHermes" to true
     )
 }
@@ -112,7 +112,7 @@ dependencies {
     androidTestImplementation(Libraries.Jetpack.Test.espresso)
 
     if ((react["enableHermes"] as Boolean?) == true) {
-        val hermesPath = "$REACT_NATIVE_NODE_MODULE_PATH/hermesvm/android/"
+        val hermesPath = "$REACT_NATIVE_NODE_MODULE_PATH/hermes-engine/android/"
         implementation(Libraries.Webkit.jscIntl)
         debugImplementation(files(hermesPath + "hermes-debug.aar"))
         releaseImplementation(files(hermesPath + "hermes-release.aar"))
@@ -129,4 +129,4 @@ task("copyDownloadableDepsToLibs", Copy::class) {
 apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/@react-native-community/cli-platform-android/native_modules.gradle")
 val applyNativeModulesAppBuildGradle: Closure<Unit> by extra
 
-applyNativeModulesAppBuildGradle(project, "$rootDir/frontend")
+applyNativeModulesAppBuildGradle(project)
