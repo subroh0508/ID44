@@ -29,12 +29,12 @@ abstract class ScopedReactActivity : ReactActivity(), CoroutineScope {
     }
 
     @Inject
-    lateinit var host: dagger.Lazy<ReactNativeHost>
+    lateinit var host: ReactNativeHost
     @Inject
-    lateinit var reactRootView: dagger.Lazy<ReactRootView>
+    lateinit var reactRootView: ReactRootView
 
     override fun createReactActivityDelegate() = object : ReactActivityDelegate(this, mainComponentName) {
-        override fun getReactNativeHost(): ReactNativeHost = host.get()
-        override fun createRootView(): ReactRootView = reactRootView.get()
+        override fun getReactNativeHost(): ReactNativeHost = host
+        override fun createRootView(): ReactRootView = reactRootView
     }
 }
