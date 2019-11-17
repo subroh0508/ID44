@@ -2,14 +2,14 @@ package id44.mizuki.libraries.api.client
 
 import id44.mizuki.libraries.api.Endpoints
 import id44.mizuki.libraries.api.json.AccountJson
-import id44.mizuki.libraries.api.params.VerifyAppCredential
+import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 
 internal class MastodonApiClient(
     private val httpClient: HttpClient
 ) : MastodonApi {
-    override suspend fun verifyAppCredential(hostName: String): VerifyAppCredential.Response =
+    override suspend fun verifyAppCredential(hostName: String): GetAppsVerifyCredential.Response =
         httpClient.get(
             host = hostName,
             path = Endpoints.getAppsVerifyCredentials()

@@ -14,7 +14,6 @@ import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApiClient
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.AccessTokenStoreClient
-import io.ktor.client.HttpClient
 import io.ktor.client.features.UserAgent
 import kotlinx.serialization.json.Json
 

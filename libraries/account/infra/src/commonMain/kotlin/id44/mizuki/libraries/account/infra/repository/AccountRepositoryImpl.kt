@@ -3,7 +3,7 @@ package id44.mizuki.libraries.account.infra.repository
 import id44.mizuki.libraries.account.domain.entity.Account
 import id44.mizuki.libraries.api.client.LocalCacheStore
 import id44.mizuki.libraries.api.client.MastodonApi
-import id44.mizuki.libraries.api.params.VerifyAppCredential
+import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
 import id44.mizuki.libraries.shared.valueobject.HostName
 
 internal class AccountRepositoryImpl(
@@ -23,7 +23,7 @@ internal class AccountRepositoryImpl(
     override fun revokeAccount(hostName: HostName, account: Account) =
         cache.removeVerifyAppCredential(hostName.value, account.id)
 
-    private fun VerifyAppCredential.Response.toEntity(hostName: HostName) = Account(
+    private fun GetAppsVerifyCredential.Response.toEntity(hostName: HostName) = Account(
         id = id,
         username = username,
         displayName = displayName,

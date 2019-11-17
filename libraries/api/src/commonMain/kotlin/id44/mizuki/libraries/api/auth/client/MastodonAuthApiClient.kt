@@ -6,9 +6,14 @@ import id44.mizuki.libraries.api.auth.model.AccessToken
 import id44.mizuki.libraries.api.auth.model.AppCredential
 import id44.mizuki.libraries.api.auth.params.PostApps
 import id44.mizuki.libraries.api.auth.params.PostOauthToken
+import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
 import io.ktor.client.HttpClient
+import io.ktor.client.request.get
+import io.ktor.client.request.header
+import io.ktor.client.request.host
 import io.ktor.client.request.post
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 
@@ -59,6 +64,14 @@ internal class MastodonAuthApiClient(
     ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.postOauthToken())) {
         contentType(ContentType.Application.Json)
         body = PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
+    }
+
+    override suspend fun getVerifyAppCredentials(
+        hostName: String,
+        accessToken: String
+    ): GetAppsVerifyCredential.Response = httpClient.get(AuthEndpoints.getAppsVerifyCredentials()) {
+        host = hostName
+        header(HttpHeaders.Authorization, "Bearer $accessToken")
     }
 
     private fun buildUrl(hostName: String, endpoint: String) = "${URLProtocol.HTTPS.name}://$hostName$endpoint"

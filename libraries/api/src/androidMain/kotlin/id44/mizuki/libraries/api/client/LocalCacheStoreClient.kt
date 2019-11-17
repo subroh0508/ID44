@@ -2,7 +2,7 @@ package id44.mizuki.libraries.api.client
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import id44.mizuki.libraries.api.params.VerifyAppCredential
+import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
@@ -12,9 +12,9 @@ internal actual class LocalCacheStoreClient(
     private val sharedPreferences: SharedPreferences,
     private val json: Json
 ) : LocalCacheStore {
-    override fun getVerifyAppCredentials(): List<VerifyAppCredential.Cache> =
-        get(VERIFY_APP_CREDENTIALS, VerifyAppCredential.Cache.serializer().list)
-    override fun cacheVerifyAppCredential(hostName: String, response: VerifyAppCredential.Response) {
+    override fun getVerifyAppCredentials(): List<GetAppsVerifyCredential.Cache> =
+        get(VERIFY_APP_CREDENTIALS, GetAppsVerifyCredential.Cache.serializer().list)
+    override fun cacheVerifyAppCredential(hostName: String, response: GetAppsVerifyCredential.Response) {
         val caches = getVerifyAppCredentials().toMutableList()
         if (caches.find { it.hostName == hostName && it.response.id == response.id } != null) {
             return
@@ -22,14 +22,14 @@ internal actual class LocalCacheStoreClient(
 
         put(
             VERIFY_APP_CREDENTIALS,
-            VerifyAppCredential.Cache.serializer().list,
-            caches.apply { add(VerifyAppCredential.Cache(hostName, response)) }
+            GetAppsVerifyCredential.Cache.serializer().list,
+            caches.apply { add(GetAppsVerifyCredential.Cache(hostName, response)) }
         )
     }
     override fun removeVerifyAppCredential(hostName: String, id: String) {
         put(
             VERIFY_APP_CREDENTIALS,
-            VerifyAppCredential.Cache.serializer().list,
+            GetAppsVerifyCredential.Cache.serializer().list,
             getVerifyAppCredentials().filter { it.hostName != hostName || it.response.id != id }
         )
     }
