@@ -39,4 +39,10 @@ abstract class VerifyAppCredential {
         val sensitive: String?,
         val language: String?
     )
+
+    @Serializable
+    data class Cache(
+        val hostName: String,
+        val response: Response
+    )
 }

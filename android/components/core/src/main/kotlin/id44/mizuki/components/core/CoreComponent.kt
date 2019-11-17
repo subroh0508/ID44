@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.Component
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.json.JsonSerializer
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @Singleton
@@ -20,5 +21,5 @@ interface CoreComponent {
 
     fun provideApp(): Application
     fun provideUserAgent(): UserAgent
-    fun provideJsonSerializer(): JsonSerializer
+    fun provideJson(): Json
 }

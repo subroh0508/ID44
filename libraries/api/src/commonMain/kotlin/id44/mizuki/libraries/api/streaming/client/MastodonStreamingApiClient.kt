@@ -7,6 +7,7 @@ import io.ktor.client.features.websocket.wss
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.readText
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -34,6 +35,7 @@ internal class MastodonStreamingApiClient(
                         val json = Json.parse(StreamingEventJson.serializer(), text)
 
                         println(text)
+                        @UseExperimental(ExperimentalCoroutinesApi::class)
                         send(json)
                     }
                 }

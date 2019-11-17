@@ -11,8 +11,11 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest
 import io.ktor.client.features.UserAgent
-import io.ktor.client.features.websocket.WebSockets
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.http.userAgent
+import io.ktor.util.KtorExperimentalAPI
+import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
 
 @Module(includes = [
@@ -24,7 +27,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 class TimelineModule {
     @Provides
     @ModuleScope
-    fun provideHttpClient(userAgent: UserAgent): HttpClient = HttpClient(OkHttp) {
+    fun provideHttpClient(userAgent: UserAgent, json: Json): HttpClient = HttpClient(OkHttp) {
         engine {
             if (BuildConfig.DEBUG) {
                 val loggingInterceptor = HttpLoggingInterceptor()
@@ -32,9 +35,12 @@ class TimelineModule {
                 addInterceptor(loggingInterceptor)
             }
         }
-        install(WebSockets)
+        @UseExperimental(KtorExperimentalAPI::class)
         install(DefaultRequest) {
             userAgent(userAgent.agent)
+        }
+        install(JsonFeature) {
+            serializer = KotlinxSerializer(json)
         }
     }
 }

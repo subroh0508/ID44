@@ -12,6 +12,8 @@ dependencies {
     implementation(project(":android:base"))
     implementation(project(":android:components:core"))
     implementation(project(":libraries:api"))
+    implementation(project(":libraries:account:infra"))
+    implementation(project(":libraries:account:domain:entity"))
     implementation(project(":libraries:timeline:infra"))
     implementation(project(":libraries:timeline:domain:usecase:subscribe"))
     implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
