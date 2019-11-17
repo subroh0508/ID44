@@ -7,4 +7,6 @@ data class Account(
     val username: String,
     val displayName: String,
     val hostName: HostName
-)
+) {
+    val screen: String = "$displayName@${hostName.value}"
+}

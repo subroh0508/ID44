@@ -1,7 +1,7 @@
 package id44.mizuki.libraries.api.client
 
 import id44.mizuki.libraries.api.Endpoints
-import id44.mizuki.libraries.api.json.AccountJson
+import id44.mizuki.libraries.api.json.account.AccountJson
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get

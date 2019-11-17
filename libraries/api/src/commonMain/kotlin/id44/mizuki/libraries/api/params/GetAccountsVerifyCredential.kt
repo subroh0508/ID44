@@ -1,43 +1,40 @@
 package id44.mizuki.libraries.api.params
 
-import id44.mizuki.libraries.api.json.AccountJson
-import id44.mizuki.libraries.api.json.EmojiJson
-import id44.mizuki.libraries.api.json.FieldJson
-import id44.mizuki.libraries.api.json.account.SourceJson
+import id44.mizuki.libraries.api.json.account.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 abstract class GetAccountsVerifyCredential {
     @Serializable
     data class Response(
-        val id: String,
-        val username: String,
-        val acct: String,
+        override val id: String,
+        override val username: String,
+        override val acct: String,
         @SerialName("display_name")
-        val displayName: String,
-        val locked: Boolean,
+        override val displayName: String,
+        override val locked: Boolean,
         @SerialName("created_at")
-        val createdAt: String,
+        override val createdAt: String,
         @SerialName("followers_count")
-        val followersCount: Int,
+        override val followersCount: Int,
         @SerialName("following_count")
-        val followingCount: Int,
+        override val followingCount: Int,
         @SerialName("statuses_count")
-        val statusesCount: Int,
-        val note: String,
-        val url: String,
-        val avatar: String,
+        override val statusesCount: Int,
+        override val note: String,
+        override val url: String,
+        override val avatar: String,
         @SerialName("avatar_static")
-        val avatarStatic: String,
-        val header: String,
+        override val avatarStatic: String,
+        override val header: String,
         @SerialName("header_static")
-        val headerStatic: String,
-        val emojis: List<EmojiJson>? = null,
+        override val headerStatic: String,
+        override val emojis: List<EmojiJson>? = null,
+        override val fields: List<FieldJson>? = null,
+        override val bot: Boolean,
         val moved: AccountJson? = null,
-        val fields: List<FieldJson>? = null,
-        val bot: Boolean,
         val source: SourceJson
-    )
+    ) : AccountJsonFacade
 
     @Serializable
     data class Cache(

@@ -1,6 +1,5 @@
 package id44.mizuki.libraries.api.json.account
 
-import id44.mizuki.libraries.api.json.FieldJson
 import kotlinx.serialization.Serializable
 
 @Serializable

@@ -1,6 +1,6 @@
 package id44.mizuki.libraries.api.client
 
-import id44.mizuki.libraries.api.json.AccountJson
+import id44.mizuki.libraries.api.json.account.AccountJson
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 
 interface MastodonApi {

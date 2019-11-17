@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.api.json
+package id44.mizuki.libraries.api.json.account
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
