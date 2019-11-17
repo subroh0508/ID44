@@ -18,6 +18,8 @@ include(
     ":libraries:api",
     ":libraries:account:infra",
     ":libraries:account:domain:entity",
+    ":libraries:account:domain:usecase:fetchownaccount",
+    ":libraries:account:domain:usecase:fetchownaccounts",
     ":libraries:auth:infra",
     ":libraries:auth:domain:usecase:requestappcredential",
     ":libraries:auth:domain:usecase:requestaccesstoken",

@@ -28,6 +28,9 @@
             <option value="$PROJECT_DIR$/libraries/account" />
             <option value="$PROJECT_DIR$/libraries/account/domain" />
             <option value="$PROJECT_DIR$/libraries/account/domain/entity" />
+            <option value="$PROJECT_DIR$/libraries/account/domain/usecase" />
+            <option value="$PROJECT_DIR$/libraries/account/domain/usecase/fetchownaccount" />
+            <option value="$PROJECT_DIR$/libraries/account/domain/usecase/fetchownaccounts" />
             <option value="$PROJECT_DIR$/libraries/account/infra" />
             <option value="$PROJECT_DIR$/libraries/api" />
             <option value="$PROJECT_DIR$/libraries/auth" />
