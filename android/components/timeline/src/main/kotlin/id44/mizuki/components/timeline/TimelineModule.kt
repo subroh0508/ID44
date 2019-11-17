@@ -13,7 +13,9 @@ import io.ktor.client.features.DefaultRequest
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
+import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.serialization.json.Json
@@ -39,6 +41,7 @@ class TimelineModule {
         @UseExperimental(KtorExperimentalAPI::class)
         install(DefaultRequest) {
             url { protocol = URLProtocol.HTTPS }
+            contentType(ContentType.Application.Json)
             userAgent(userAgent.agent)
         }
         install(JsonFeature) {

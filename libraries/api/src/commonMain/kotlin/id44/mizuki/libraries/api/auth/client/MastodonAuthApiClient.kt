@@ -12,10 +12,8 @@ import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.host
 import io.ktor.client.request.post
-import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
-import io.ktor.http.contentType
 
 internal class MastodonAuthApiClient(
     private val httpClient: HttpClient
@@ -33,7 +31,6 @@ internal class MastodonAuthApiClient(
         clientName: String,
         redirectUri: String
     ): AppCredential = httpClient.post(buildUrl(hostName, AuthEndpoints.postApps())) {
-        contentType(ContentType.Application.Json)
         body = PostApps.Request(clientName, redirectUri, Constants.SCOPE, Constants.WEBSITE)
     }
 
@@ -62,7 +59,6 @@ internal class MastodonAuthApiClient(
         redirectUri: String,
         code: String
     ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.postOauthToken())) {
-        contentType(ContentType.Application.Json)
         body = PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
     }
 
