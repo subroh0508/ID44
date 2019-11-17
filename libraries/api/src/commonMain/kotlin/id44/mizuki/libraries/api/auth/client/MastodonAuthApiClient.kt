@@ -2,19 +2,18 @@ package id44.mizuki.libraries.api.auth.client
 
 import id44.mizuki.libraries.api.auth.AuthEndpoints
 import id44.mizuki.libraries.api.auth.Constants
-import id44.mizuki.libraries.api.auth.params.PostApps
-import id44.mizuki.libraries.api.auth.params.PostOauthToken
 import id44.mizuki.libraries.api.auth.model.AccessToken
 import id44.mizuki.libraries.api.auth.model.AppCredential
+import id44.mizuki.libraries.api.auth.params.PostApps
+import id44.mizuki.libraries.api.auth.params.PostOauthToken
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonSerializer
-import io.ktor.client.features.json.defaultSerializer
 import io.ktor.client.request.post
+import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
+import io.ktor.http.contentType
 
 internal class MastodonAuthApiClient(
-    private val httpClient: HttpClient,
-    private val json: JsonSerializer = defaultSerializer()
+    private val httpClient: HttpClient
 ): MastodonAuthApi {
     companion object {
         private const val RESPONSE_TYPE = "response_type"
@@ -29,7 +28,8 @@ internal class MastodonAuthApiClient(
         clientName: String,
         redirectUri: String
     ): AppCredential = httpClient.post(buildUrl(hostName, AuthEndpoints.postApps())) {
-        body = json.write(PostApps.Request(clientName, redirectUri, Constants.SCOPE, Constants.WEBSITE))
+        contentType(ContentType.Application.Json)
+        body = PostApps.Request(clientName, redirectUri, Constants.SCOPE, Constants.WEBSITE)
     }
 
     override fun buildAuthorizeUrl(
@@ -57,9 +57,8 @@ internal class MastodonAuthApiClient(
         redirectUri: String,
         code: String
     ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.postOauthToken())) {
-        body = json.write(
-            PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
-        )
+        contentType(ContentType.Application.Json)
+        body = PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
     }
 
     private fun buildUrl(hostName: String, endpoint: String) = "${URLProtocol.HTTPS.name}://$hostName$endpoint"

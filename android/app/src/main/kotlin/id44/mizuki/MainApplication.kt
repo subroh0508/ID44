@@ -47,7 +47,7 @@ class MainApplication : Application(),
                 CoreModule(
                     this,
                     BuildConfig.APPLICATION_ID, BuildConfig.VERSION_NAME,
-                    KotlinxSerializer(Json.nonstrict)
+                    Json.nonstrict
                 )
             )
             .build()

@@ -14,7 +14,6 @@ import id44.mizuki.libraries.api.auth.client.MastodonAuthApiClient
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.AccessTokenStoreClient
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonSerializer
 
 @Module
 class MastodonAuthApiModule {
@@ -30,6 +29,6 @@ class MastodonAuthApiModule {
 
     @Provides
     @ModuleScope
-    fun provideMastodonAuthApi(httpClient: HttpClient, json: JsonSerializer): MastodonAuthApi
-            = MastodonAuthApiClient(httpClient, json)
+    fun provideMastodonAuthApi(httpClient: HttpClient): MastodonAuthApi
+            = MastodonAuthApiClient(httpClient)
 }

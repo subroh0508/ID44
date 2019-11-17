@@ -42,6 +42,9 @@ kotlin {
                 implementation(Libraries.Ktor.jsonJvm)
                 implementation(Libraries.Ktor.serializationJvm)
 
+                implementation(Libraries.Okhttp3.client)
+                implementation(Libraries.Okhttp3.loggingIntercerptor)
+
                 implementation(Libraries.Klock.jvm)
 
                 implementation(Libraries.Dagger.core)
