@@ -1,7 +1,7 @@
 package id44.mizuki.libraries.api
 
 internal object Endpoints {
-    fun getAppsVerifyCredentials() = "/api/v1/accounts/verify_credentials"
+    fun getAccountsVerifyCredentials() = "/api/v1/accounts/verify_credentials"
 
     fun getAccounts(id: String) = "/api/v1/accounts/$id"
 

@@ -5,7 +5,7 @@ import id44.mizuki.libraries.api.auth.model.AccessToken
 import id44.mizuki.libraries.api.auth.model.AppCredential
 import id44.mizuki.libraries.api.auth.params.PostApps
 import id44.mizuki.libraries.api.auth.params.PostOauthToken
-import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
+import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest
@@ -36,7 +36,7 @@ internal object AuthHttpClientProvider {
                 setMapper(PostOauthToken.Request::class, PostOauthToken.Request.serializer())
                 setMapper(AccessToken::class, AccessToken.serializer())
                 setMapper(AppCredential::class, AppCredential.serializer())
-                setMapper(GetAppsVerifyCredential.Response::class, GetAppsVerifyCredential.Response.serializer())
+                setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
             }
         }
     }

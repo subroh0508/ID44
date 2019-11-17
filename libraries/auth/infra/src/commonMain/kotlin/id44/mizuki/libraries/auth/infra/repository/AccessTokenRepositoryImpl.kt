@@ -38,8 +38,8 @@ internal class AccessTokenRepositoryImpl(
     override suspend fun saveOwnAccount(
         hostName: String,
         accessToken: String
-    ) = localStore.cacheVerifyAppCredential(
+    ) = localStore.cacheVerifyAccountsCredential(
         hostName,
-        authApi.getVerifyAppCredentials(hostName, accessToken)
+        authApi.getVerifyAccountsCredentials(hostName, accessToken)
     )
 }

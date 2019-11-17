@@ -6,7 +6,7 @@ import id44.mizuki.libraries.api.auth.model.AccessToken
 import id44.mizuki.libraries.api.auth.model.AppCredential
 import id44.mizuki.libraries.api.auth.params.PostApps
 import id44.mizuki.libraries.api.auth.params.PostOauthToken
-import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
+import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.header
@@ -66,10 +66,10 @@ internal class MastodonAuthApiClient(
         body = PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
     }
 
-    override suspend fun getVerifyAppCredentials(
+    override suspend fun getVerifyAccountsCredentials(
         hostName: String,
         accessToken: String
-    ): GetAppsVerifyCredential.Response = httpClient.get(AuthEndpoints.getAppsVerifyCredentials()) {
+    ): GetAccountsVerifyCredential.Response = httpClient.get(AuthEndpoints.getAccountsVerifyCredentials()) {
         host = hostName
         header(HttpHeaders.Authorization, "Bearer $accessToken")
     }

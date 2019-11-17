@@ -2,7 +2,7 @@ package id44.mizuki.libraries.api.auth.client
 
 import id44.mizuki.libraries.api.auth.model.AccessToken
 import id44.mizuki.libraries.api.auth.model.AppCredential
-import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
+import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 
 interface MastodonAuthApi {
     suspend fun requestAppCredential(
@@ -26,8 +26,8 @@ interface MastodonAuthApi {
         code: String
     ): AccessToken
 
-    suspend fun getVerifyAppCredentials(
+    suspend fun getVerifyAccountsCredentials(
         hostName: String,
         accessToken: String
-    ): GetAppsVerifyCredential.Response
+    ): GetAccountsVerifyCredential.Response
 }

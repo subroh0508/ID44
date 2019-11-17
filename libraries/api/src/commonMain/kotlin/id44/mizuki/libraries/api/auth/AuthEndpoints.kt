@@ -4,5 +4,5 @@ internal object AuthEndpoints {
     fun postApps() = "/api/v1/apps"
     fun getOauthAuthorize() = "/oauth/authorize"
     fun postOauthToken() = "/oauth/token"
-    fun getAppsVerifyCredentials() = "/api/v1/accounts/verify_credentials"
+    fun getAccountsVerifyCredentials() = "/api/v1/accounts/verify_credentials"
 }

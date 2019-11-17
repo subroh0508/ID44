@@ -7,7 +7,7 @@ import id44.mizuki.libraries.api.json.account.SourceJson
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-abstract class GetAppsVerifyCredential {
+abstract class GetAccountsVerifyCredential {
     @Serializable
     data class Response(
         val id: String,

@@ -1,9 +1,9 @@
 package id44.mizuki.libraries.api.client
 
-import id44.mizuki.libraries.api.params.GetAppsVerifyCredential
+import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 
 interface LocalCacheStore {
-    fun getVerifyAppCredentials(): List<GetAppsVerifyCredential.Cache>
-    fun cacheVerifyAppCredential(hostName: String, response: GetAppsVerifyCredential.Response)
-    fun removeVerifyAppCredential(hostName: String, id: String)
+    fun getVerifyAccountsCredentials(): List<GetAccountsVerifyCredential.Cache>
+    fun cacheVerifyAccountsCredential(hostName: String, response: GetAccountsVerifyCredential.Response)
+    fun removeVerifyAccountsCredential(hostName: String, id: String)
 }
