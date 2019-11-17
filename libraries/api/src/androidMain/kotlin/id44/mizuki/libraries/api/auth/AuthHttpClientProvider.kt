@@ -27,8 +27,8 @@ internal object AuthHttpClientProvider {
             }
         }
         install(DefaultRequest) {
-            userAgent(userAgent.agent)
             url { protocol = URLProtocol.HTTPS }
+            userAgent(userAgent.agent)
         }
         install(JsonFeature) {
             serializer = KotlinxSerializer(json).apply {
