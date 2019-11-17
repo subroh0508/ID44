@@ -7,6 +7,7 @@ import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_APP_CREDENTIAL_PREFERENCES
+import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
 import id44.mizuki.libraries.api.auth.AuthHttpClientProvider
 import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.AppCredentialStoreClient
@@ -14,6 +15,8 @@ import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApiClient
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.AccessTokenStoreClient
+import id44.mizuki.libraries.api.client.LocalCacheStore
+import id44.mizuki.libraries.api.client.LocalCacheStoreClient
 import io.ktor.client.features.UserAgent
 import kotlinx.serialization.json.Json
 
@@ -33,4 +36,9 @@ class MastodonAuthApiModule {
     @ModuleScope
     fun provideMastodonAuthApi(userAgent: UserAgent, json: Json): MastodonAuthApi =
         MastodonAuthApiClient(AuthHttpClientProvider.provide(userAgent, json))
+
+    @Provides
+    @ModuleScope
+    fun provideLocalCacheStore(app: Application, json: Json): LocalCacheStore =
+        LocalCacheStoreClient(app.getSharedPreferences(NAME_CACHE_PREFERENCES, Context.MODE_PRIVATE), json)
 }

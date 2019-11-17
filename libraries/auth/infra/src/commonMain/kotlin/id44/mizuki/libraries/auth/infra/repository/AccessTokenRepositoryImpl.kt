@@ -2,14 +2,14 @@ package id44.mizuki.libraries.auth.infra.repository
 
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.client.AccessTokenStore
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import id44.mizuki.libraries.api.client.LocalCacheStore
 
 internal class AccessTokenRepositoryImpl(
     private val authApi: MastodonAuthApi,
-    private val localStore: AccessTokenStore
+    private val authLocalStore: AccessTokenStore,
+    private val localStore: LocalCacheStore
 ) : AccessTokenRepository {
-    override fun getAuthenticatedHostNames(): List<String> = localStore.getAuthenticatedHostNames()
+    override fun getAuthenticatedHostNames(): List<String> = authLocalStore.getAuthenticatedHostNames()
 
     override fun buildAuthorizeUrl(
         hostName: String,
@@ -24,15 +24,22 @@ internal class AccessTokenRepositoryImpl(
         clientSecret: String,
         redirectUri: String,
         code: String
-    ): String = withContext(Dispatchers.Default) {
-        authApi.requestAccessToken(hostName, clientId, clientSecret, redirectUri, code).accessToken
-    }
+    ): String = authApi.requestAccessToken(hostName, clientId, clientSecret, redirectUri, code).accessToken
 
-    override fun cacheAccessToken(hostName: String, token: String) {
-        localStore.cacheAccessToken(hostName, token)
-    }
+    override fun cacheAccessToken(
+        hostName: String,
+        token: String
+    ) = authLocalStore.cacheAccessToken(hostName, token)
 
-    override fun clearAccessToken(hostName: String) {
-        localStore.clearAccessToken(hostName)
-    }
+    override fun clearAccessToken(
+        hostName: String
+    ) = authLocalStore.clearAccessToken(hostName)
+
+    override suspend fun saveOwnAccount(
+        hostName: String,
+        accessToken: String
+    ) = localStore.cacheVerifyAppCredential(
+        hostName,
+        authApi.getVerifyAppCredentials(hostName, accessToken)
+    )
 }

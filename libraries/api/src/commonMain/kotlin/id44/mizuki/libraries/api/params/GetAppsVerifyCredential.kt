@@ -3,6 +3,7 @@ package id44.mizuki.libraries.api.params
 import id44.mizuki.libraries.api.json.AccountJson
 import id44.mizuki.libraries.api.json.EmojiJson
 import id44.mizuki.libraries.api.json.FieldJson
+import id44.mizuki.libraries.api.json.account.SourceJson
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -35,9 +36,7 @@ abstract class GetAppsVerifyCredential {
         val moved: AccountJson? = null,
         val fields: List<FieldJson>? = null,
         val bot: Boolean,
-        val privacy: String?,
-        val sensitive: String?,
-        val language: String?
+        val source: SourceJson
     )
 
     @Serializable

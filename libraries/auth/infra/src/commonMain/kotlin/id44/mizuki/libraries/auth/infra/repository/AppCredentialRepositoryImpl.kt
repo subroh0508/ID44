@@ -2,8 +2,6 @@ package id44.mizuki.libraries.auth.infra.repository
 
 import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 internal class AppCredentialRepositoryImpl(
     private val apiClient: MastodonAuthApi,
@@ -13,10 +11,10 @@ internal class AppCredentialRepositoryImpl(
         hostName: String,
         clientName: String,
         redirectUri: String
-    ): Pair<String, String> = withContext(Dispatchers.Default) {
+    ): Pair<String, String> {
         val (clientId, clientSecret) = apiClient.requestAppCredential(hostName, clientName, redirectUri)
 
-        clientId to clientSecret
+        return clientId to clientSecret
     }
 
     override fun getClientId(hostName: String): String? = localStore.getClientId(hostName)

@@ -13,7 +13,7 @@ internal actual class LocalCacheStoreClient(
     private val json: Json
 ) : LocalCacheStore {
     override fun getVerifyAppCredentials(): List<GetAppsVerifyCredential.Cache> =
-        get(VERIFY_APP_CREDENTIALS, GetAppsVerifyCredential.Cache.serializer().list)
+        get(VERIFY_APP_CREDENTIALS, GetAppsVerifyCredential.Cache.serializer().list) ?: mutableListOf()
     override fun cacheVerifyAppCredential(hostName: String, response: GetAppsVerifyCredential.Response) {
         val caches = getVerifyAppCredentials().toMutableList()
         if (caches.find { it.hostName == hostName && it.response.id == response.id } != null) {
@@ -34,8 +34,8 @@ internal actual class LocalCacheStoreClient(
         )
     }
 
-    private fun <T: Any> get(key: String, strategy: DeserializationStrategy<T>): T =
-        json.parse(strategy, sharedPreferences.getString(key, "") ?: "")
+    private fun <T: Any> get(key: String, strategy: DeserializationStrategy<T>): T? =
+        sharedPreferences.getString(key, null)?.let { json.parse(strategy, it) }
     private fun <T: Any> put(key: String, strategy: SerializationStrategy<T>, value: T) =
         sharedPreferences.edit { putString(key, json.stringify(strategy, value)) }
 

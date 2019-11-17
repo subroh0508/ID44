@@ -21,4 +21,9 @@ interface AccessTokenRepository {
     fun cacheAccessToken(hostName: String, token: String)
 
     fun clearAccessToken(hostName: String)
+
+    suspend fun saveOwnAccount(
+        hostName: String,
+        accessToken: String
+    )
 }
