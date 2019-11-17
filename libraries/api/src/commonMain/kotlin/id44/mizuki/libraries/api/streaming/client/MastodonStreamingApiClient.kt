@@ -15,7 +15,8 @@ import kotlinx.coroutines.channels.produce
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
-    private val httpClient: HttpClient
+    private val httpClient: HttpClient,
+    private val json: Json
 ) : MastodonStreamingApi {
     override suspend fun openEventChannel(
         hostName: String,
@@ -32,11 +33,10 @@ internal class MastodonStreamingApiClient(
                 when (frame) {
                     is Frame.Text -> {
                         val text = frame.readText()
-                        val json = Json.parse(StreamingEventJson.serializer(), text)
 
                         println(text)
                         @UseExperimental(ExperimentalCoroutinesApi::class)
-                        send(json)
+                        send(json.parse(StreamingEventJson.serializer(), text))
                     }
                 }
             }

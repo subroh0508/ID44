@@ -12,6 +12,7 @@ import id44.mizuki.libraries.api.client.AccessTokenStoreClient
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApiClient
 import io.ktor.client.features.UserAgent
+import kotlinx.serialization.json.Json
 
 @Module
 class MastodonStreamingApiModule {
@@ -22,6 +23,6 @@ class MastodonStreamingApiModule {
 
     @Provides
     @ModuleScope
-    fun provideMastodonStreamingApi(userAgent: UserAgent): MastodonStreamingApi =
-        MastodonStreamingApiClient(WebSocketClientProvider.provide(userAgent))
+    fun provideMastodonStreamingApi(userAgent: UserAgent, json: Json): MastodonStreamingApi =
+        MastodonStreamingApiClient(WebSocketClientProvider.provide(userAgent), json)
 }
