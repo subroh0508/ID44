@@ -25,6 +25,10 @@
             <option value="$PROJECT_DIR$/frontend/node_modules/react-native-reanimated/android" />
             <option value="$PROJECT_DIR$/frontend/node_modules/react-native-vector-icons/android" />
             <option value="$PROJECT_DIR$/libraries" />
+            <option value="$PROJECT_DIR$/libraries/account" />
+            <option value="$PROJECT_DIR$/libraries/account/domain" />
+            <option value="$PROJECT_DIR$/libraries/account/domain/entity" />
+            <option value="$PROJECT_DIR$/libraries/account/infra" />
             <option value="$PROJECT_DIR$/libraries/api" />
             <option value="$PROJECT_DIR$/libraries/auth" />
             <option value="$PROJECT_DIR$/libraries/auth/domain" />
@@ -32,6 +36,7 @@
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
             <option value="$PROJECT_DIR$/libraries/auth/infra" />
+            <option value="$PROJECT_DIR$/libraries/shared" />
             <option value="$PROJECT_DIR$/libraries/timeline" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/entity" />
