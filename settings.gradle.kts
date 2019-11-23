@@ -1,10 +1,3 @@
-import groovy.lang.Closure
-
-apply(from = "$rootDir/frontend/node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
-val applyNativeModulesSettingsGradle: Closure<Unit> by extra
-
-applyNativeModulesSettingsGradle(settings)
-
 include(
     ":android:app",
     ":android:base",

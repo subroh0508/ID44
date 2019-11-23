@@ -1,6 +1,5 @@
 import com.android.build.VariantOutput
 import com.android.build.gradle.api.ApkVariantOutput
-import groovy.lang.Closure
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import java.net.InetAddress
 
@@ -131,8 +130,3 @@ task("copyDownloadableDepsToLibs", Copy::class) {
     from(configurations.compile)
     into("libs")
 }
-
-apply(from = "$REACT_NATIVE_NODE_MODULE_PATH/@react-native-community/cli-platform-android/native_modules.gradle")
-val applyNativeModulesAppBuildGradle: Closure<Unit> by extra
-
-applyNativeModulesAppBuildGradle(project)
