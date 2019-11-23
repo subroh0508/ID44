@@ -6,7 +6,6 @@
     "start": "yarn react-native start"
   },
   "dependencies": {
-    "@react-native-community/cli-platform-android": "3.0.2",
     "react": "16.9.0",
     "react-native": "0.61.3",
     "react-native-elements": "^1.2.7",
