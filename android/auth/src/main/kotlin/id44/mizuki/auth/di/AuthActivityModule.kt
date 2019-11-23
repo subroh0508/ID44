@@ -5,7 +5,7 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import id44.mizuki.auth.infra.AccessTokenStoreClientWrapper
+import id44.mizuki.auth.infra.AccessTokenRepository
 import id44.mizuki.auth.presentation.RequireAuthContract
 import id44.mizuki.auth.presentation.presenter.RequireAuthPresenter
 import id44.mizuki.base.scope.ActivityScope
@@ -34,8 +34,8 @@ abstract class AuthActivityModule<in V: RequireAuthContract.View> {
         @JvmStatic
         @Provides
         @ActivityScope
-        internal fun provideAccessTokenStoreClientWrapper(app: Application): AccessTokenStoreClientWrapper =
-            AccessTokenStoreClientWrapper(
+        internal fun provideAccessTokenRepository(app: Application): AccessTokenRepository =
+            AccessTokenRepository(
                 AccessTokenStoreClient(app.getSharedPreferences(PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE))
             )
     }
