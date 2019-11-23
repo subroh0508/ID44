@@ -38,8 +38,6 @@ kotlin {
 
                 implementation(Libraries.Jetpack.ktx)
 
-                implementation(Libraries.Klock.jvm)
-
                 implementation(Libraries.Dagger.core)
             }
         }

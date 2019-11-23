@@ -2,7 +2,7 @@
 object Versions {
     const val buildTools = "3.4.2"
 
-    const val kotlin = "1.3.50"
+    const val kotlin = "1.3.60"
     const val coroutines = "1.3.1"
     const val kotlinxSerialization = "0.12.0"
 
@@ -27,7 +27,7 @@ object Versions {
     const val ktor = "1.2.2"
     const val okhttp3 = "3.11.0"
 
-    const val klock = "1.5.0"
+    const val klock = "1.8.0"
 
     const val dagger = "2.23.1"
 

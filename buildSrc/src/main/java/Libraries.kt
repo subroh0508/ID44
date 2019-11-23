@@ -75,8 +75,8 @@ object Libraries {
     }
 
     object Klock {
-        const val common = "com.soywiz.korlibs.klock:klock-metadata:${Versions.klock}"
-        const val jvm = "com.soywiz.korlibs.klock:klock-jvm:${Versions.klock}"
+        const val common = "com.soywiz.korlibs.klock:klock:${Versions.klock}"
+        const val android = "com.soywiz.korlibs.klock:klock-android:${Versions.klock}"
     }
 
     object Dagger {

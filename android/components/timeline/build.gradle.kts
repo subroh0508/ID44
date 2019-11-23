@@ -23,7 +23,7 @@ dependencies {
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)
 
-    implementation(Libraries.Klock.jvm)
+    implementation(Libraries.Klock.android)
 
     implementation(Libraries.Ktor.clientCommon)
     implementation(Libraries.Ktor.clientAndroid)

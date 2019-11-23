@@ -45,8 +45,6 @@ kotlin {
                 implementation(Libraries.Okhttp3.client)
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
 
-                implementation(Libraries.Klock.jvm)
-
                 implementation(Libraries.Dagger.core)
             }
         }

@@ -30,7 +30,7 @@ dependencies {
     implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)
 
-    implementation(Libraries.Klock.jvm)
+    implementation(Libraries.Klock.android)
 
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)

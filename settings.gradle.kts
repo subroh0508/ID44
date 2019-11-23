@@ -37,12 +37,3 @@ project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODU
 project(":react-native-gesture-handler").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-gesture-handler/android")
 project(":react-native-reanimated").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-reanimated/android")
 
-pluginManagement {
-    repositories {
-        google()
-        jcenter()
-        gradlePluginPortal()
-        mavenLocal()
-        maven("https://kotlin.bintray.com/kotlinx")
-    }
-}

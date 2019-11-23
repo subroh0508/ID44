@@ -22,8 +22,6 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(Libraries.Kotlin.stdlibJvm)
-
-                implementation(Libraries.Klock.jvm)
             }
         }
     }
