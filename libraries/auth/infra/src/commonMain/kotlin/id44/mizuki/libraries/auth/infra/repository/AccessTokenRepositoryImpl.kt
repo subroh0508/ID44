@@ -26,6 +26,17 @@ internal class AccessTokenRepositoryImpl(
     override fun clearAccessToken(hostName: HostName, id: AccountId) =
         authLocalStore.clearAccessToken(id.value)
 
+    override fun getNowAccessToken(): AccessToken =
+        localStore.getNowVerifyAccountsCredential()?.let { (host, response) ->
+            getAccessToken(HostName(host), AccountId(response.id))
+        }  ?: throw NullPointerException()
+
+    override fun saveNowAuthenticatedAccount(hostName: HostName, id: AccountId) {
+        localStore.getVerifyAccountsCredential(hostName.value, id.value)?.let { (host, response) ->
+            localStore.cacheNowVerifyAccountsCredential(host, response)
+        }
+    }
+
     private fun getVerifyAccountsCredentialId(hostName: HostName, id: AccountId) =
         localStore.getVerifyAccountsCredential(hostName.value, id.value)?.response?.id
 }

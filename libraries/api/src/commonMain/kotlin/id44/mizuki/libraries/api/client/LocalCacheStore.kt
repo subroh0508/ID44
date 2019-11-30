@@ -7,4 +7,6 @@ interface LocalCacheStore {
     fun getVerifyAccountsCredential(hostName: String, id: String): GetAccountsVerifyCredential.Cache?
     fun cacheVerifyAccountsCredential(hostName: String, response: GetAccountsVerifyCredential.Response)
     fun removeVerifyAccountsCredential(hostName: String, id: String)
+    fun getNowVerifyAccountsCredential(): GetAccountsVerifyCredential.Cache?
+    fun cacheNowVerifyAccountsCredential(hostName: String, response: GetAccountsVerifyCredential.Response)
 }
