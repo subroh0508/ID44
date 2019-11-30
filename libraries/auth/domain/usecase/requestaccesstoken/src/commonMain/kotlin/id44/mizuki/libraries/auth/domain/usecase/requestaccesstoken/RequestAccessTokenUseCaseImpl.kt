@@ -1,26 +1,28 @@
 package id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken
 
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.libraries.auth.infra.repository.AccountCredentialRepository
 import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepository
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class RequestAccessTokenUseCaseImpl(
     private val appCredentialRepository: AppCredentialRepository,
-    private val accessTokenRepository: AccessTokenRepository
+    private val accountCredentialRepository: AccountCredentialRepository
 ) : RequestAccessTokenUseCase {
     override suspend fun execute(
-        hostName: String,
-        redirectUri: String,
+        hostName: HostName,
+        redirectUri: Uri,
         code: String
-    ): String = withContext(Dispatchers.Default) {
+    ): AccessToken = withContext(Dispatchers.Default) {
         val clientId = appCredentialRepository.getClientId(hostName) ?: throw IllegalStateException()
         val clientSecret = appCredentialRepository.getClientSecret(hostName) ?: throw IllegalStateException()
 
-        val accessToken = accessTokenRepository.fetchAccessToken(hostName, clientId, clientSecret, redirectUri, code)
+        val accessToken = accountCredentialRepository.fetchAccessToken(hostName, clientId, clientSecret, redirectUri, code)
 
-        accessTokenRepository.cacheAccessToken(hostName, accessToken)
-        accessTokenRepository.saveOwnAccount(hostName, accessToken)
+        accountCredentialRepository.saveOwnAccount(hostName, accessToken)
 
         accessToken
     }

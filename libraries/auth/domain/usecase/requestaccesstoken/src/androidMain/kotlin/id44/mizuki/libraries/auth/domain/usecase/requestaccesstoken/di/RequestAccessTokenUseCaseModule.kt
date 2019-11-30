@@ -5,7 +5,7 @@ import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCaseImpl
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.libraries.auth.infra.repository.AccountCredentialRepository
 import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepository
 
 @Module
@@ -14,6 +14,6 @@ class RequestAccessTokenUseCaseModule {
     @ModuleScope
     fun provideRequestAppCredentialUseCase(
         appCredentialRepository: AppCredentialRepository,
-        accessTokenRepository: AccessTokenRepository
-    ): RequestAccessTokenUseCase = RequestAccessTokenUseCaseImpl(appCredentialRepository, accessTokenRepository)
+        accountCredentialRepository: AccountCredentialRepository
+    ): RequestAccessTokenUseCase = RequestAccessTokenUseCaseImpl(appCredentialRepository, accountCredentialRepository)
 }
