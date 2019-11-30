@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
+import id44.mizuki.libraries.api.CredentialProvider
 import id44.mizuki.libraries.api.PrefKeys
 import id44.mizuki.libraries.api.WebSocketClientProvider
 import id44.mizuki.libraries.api.client.AccessTokenStore
@@ -30,6 +31,6 @@ class MastodonStreamingApiModule {
 
     @Provides
     @ModuleScope
-    fun provideMastodonStreamingApi(userAgent: UserAgent, json: Json): MastodonStreamingApi =
-        MastodonStreamingApiClient(WebSocketClientProvider.provide(userAgent), json)
+    fun provideMastodonStreamingApi(userAgent: UserAgent, provider: CredentialProvider, json: Json): MastodonStreamingApi =
+        MastodonStreamingApiClient(WebSocketClientProvider.provide(userAgent), provider, json)
 }

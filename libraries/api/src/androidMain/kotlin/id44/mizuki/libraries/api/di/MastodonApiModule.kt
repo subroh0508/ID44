@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
+import id44.mizuki.libraries.api.CredentialProvider
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
 import id44.mizuki.libraries.api.client.*
@@ -25,5 +26,5 @@ class MastodonApiModule {
 
     @Provides
     @ModuleScope
-    fun provideMastodonApi(httpClient: HttpClient): MastodonApi = MastodonApiClient(httpClient)
+    fun provideMastodonApi(httpClient: HttpClient, provider: CredentialProvider): MastodonApi = MastodonApiClient(httpClient, provider)
 }

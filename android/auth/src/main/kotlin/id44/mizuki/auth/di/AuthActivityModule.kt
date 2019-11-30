@@ -1,14 +1,11 @@
 package id44.mizuki.auth.di
 
-import android.app.Application
-import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.auth.presentation.RequireAuthContract
 import id44.mizuki.auth.presentation.presenter.RequireAuthPresenter
 import id44.mizuki.base.scope.ActivityScope
-import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import kotlinx.coroutines.CoroutineExceptionHandler
 
 @Module

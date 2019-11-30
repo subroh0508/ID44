@@ -44,7 +44,11 @@ class TimelineActivity : RequireAuthReactActivity() {
     override fun onPause() {
         super.onPause()
 
-        unsubscribeUseCase.execute(Stream.LOCAL)
+        try {
+            unsubscribeUseCase.execute(Stream.LOCAL)
+        } catch (e: Throwable) {
+
+        }
     }
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent

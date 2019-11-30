@@ -13,7 +13,5 @@ interface AccessTokenRepository {
 
     fun clearAccessToken(hostName: HostName, id: AccountId)
 
-    fun getNowAccessToken(): AccessToken
-
     fun saveNowAuthenticatedAccount(hostName: HostName, id: AccountId)
 }
