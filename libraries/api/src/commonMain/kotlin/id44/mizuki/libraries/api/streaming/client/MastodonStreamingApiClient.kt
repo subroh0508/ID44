@@ -29,7 +29,7 @@ internal class MastodonStreamingApiClient(
     ) {
         httpClient.wss(
             host = host.value,
-            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=$${provider.nowToken.value}"
+            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=${provider.nowToken.value}"
         ) {
             for (frame in incoming) {
                 when (frame) {
