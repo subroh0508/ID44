@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":android:components:core"))
     implementation(project(":libraries:api"))
     implementation(project(":libraries:auth:infra"))
+    implementation(project(":libraries:auth:domain:valueobject"))
     implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
     implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
 

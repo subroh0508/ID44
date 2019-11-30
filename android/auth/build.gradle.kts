@@ -15,6 +15,7 @@ dependencies {
     implementation(project(":libraries:api"))
     implementation(project(":libraries:shared"))
     implementation(project(":libraries:auth:infra"))
+    implementation(project(":libraries:auth:domain:valueobject"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)

@@ -5,15 +5,13 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import id44.mizuki.auth.infra.AccessTokenRepository
 import id44.mizuki.auth.presentation.RequireAuthContract
 import id44.mizuki.auth.presentation.presenter.RequireAuthPresenter
 import id44.mizuki.base.scope.ActivityScope
-import id44.mizuki.libraries.api.PrefKeys
-import id44.mizuki.libraries.api.client.AccessTokenStoreClient
+import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import kotlinx.coroutines.CoroutineExceptionHandler
 
-@Module
+@Module(includes = [AccessTokenRepositoryModule::class])
 abstract class AuthActivityModule<in V: RequireAuthContract.View> {
     @Binds
     @ActivityScope
@@ -30,13 +28,5 @@ abstract class AuthActivityModule<in V: RequireAuthContract.View> {
         @ActivityScope
         fun provideHttpsExceptionHandler(presenter: RequireAuthContract.Presenter): CoroutineExceptionHandler =
             CoroutineExceptionHandler { _, e -> presenter.onHttpError(e) }
-
-        @JvmStatic
-        @Provides
-        @ActivityScope
-        internal fun provideAccessTokenRepository(app: Application): AccessTokenRepository =
-            AccessTokenRepository(
-                AccessTokenStoreClient(app.getSharedPreferences(PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE))
-            )
     }
 }
