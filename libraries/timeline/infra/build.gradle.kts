@@ -14,6 +14,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:api"))
+                implementation(project(":libraries:shared"))
                 implementation(project(":libraries:timeline:domain:entity"))
                 implementation(project(":libraries:timeline:domain:valueobject"))
 
