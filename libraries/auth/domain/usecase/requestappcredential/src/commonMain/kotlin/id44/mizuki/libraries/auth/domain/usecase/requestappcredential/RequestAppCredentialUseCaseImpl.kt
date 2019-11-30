@@ -1,23 +1,25 @@
 package id44.mizuki.libraries.auth.domain.usecase.requestappcredential
 
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.libraries.auth.infra.repository.AccountCredentialRepository
 import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepository
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class RequestAppCredentialUseCaseImpl(
     private val appCredentialRepository: AppCredentialRepository,
-    private val accessTokenRepository: AccessTokenRepository
+    private val accountCredentialRepository: AccountCredentialRepository
 ) : RequestAppCredentialUseCase {
     override suspend fun execute(
-        hostName: String,
+        hostName: HostName,
         clientName: String,
-        redirectUri: String
-    ): String = withContext(Dispatchers.Default) {
+        redirectUri: Uri
+    ): Uri = withContext(Dispatchers.Default) {
         val (clientId, clientSecret) = appCredentialRepository.fetchAppCredential(hostName, clientName, redirectUri)
 
         appCredentialRepository.cacheAppCredential(hostName, clientId, clientSecret)
 
-        accessTokenRepository.buildAuthorizeUrl(hostName, clientId, clientSecret, redirectUri)
+        accountCredentialRepository.buildAuthorizeUrl(hostName, clientId, clientSecret, redirectUri)
     }
 }

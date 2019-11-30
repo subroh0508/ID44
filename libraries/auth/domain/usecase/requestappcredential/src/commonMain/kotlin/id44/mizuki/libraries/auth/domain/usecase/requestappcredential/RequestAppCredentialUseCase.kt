@@ -1,5 +1,8 @@
 package id44.mizuki.libraries.auth.domain.usecase.requestappcredential
 
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
+
 interface RequestAppCredentialUseCase {
-    suspend fun execute(hostName: String, clientName: String, redirectUri: String): String
+    suspend fun execute(hostName: HostName, clientName: String, redirectUri: Uri): Uri
 }
