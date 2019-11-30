@@ -4,6 +4,7 @@ import id44.mizuki.libraries.account.domain.entity.Account
 import id44.mizuki.libraries.api.client.LocalCacheStore
 import id44.mizuki.libraries.api.client.MastodonApi
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
+import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 
 internal class AccountRepositoryImpl(
@@ -21,10 +22,10 @@ internal class AccountRepositoryImpl(
         }
 
     override fun revokeAccount(hostName: HostName, account: Account) =
-        cache.removeVerifyAccountsCredential(hostName.value, account.id)
+        cache.removeVerifyAccountsCredential(hostName.value, account.id.value)
 
     private fun GetAccountsVerifyCredential.Response.toEntity(hostName: HostName) = Account(
-        id = id,
+        id = AccountId(id),
         username = username,
         displayName = displayName,
         hostName = hostName
