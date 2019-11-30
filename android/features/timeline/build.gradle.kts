@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":android:auth"))
     implementation(project(":android:components:core"))
     implementation(project(":android:components:timeline"))
+    implementation(project(":libraries:shared"))
     implementation(project(":libraries:auth:infra"))
     implementation(project(":libraries:timeline:domain:usecase:subscribe"))
     implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))

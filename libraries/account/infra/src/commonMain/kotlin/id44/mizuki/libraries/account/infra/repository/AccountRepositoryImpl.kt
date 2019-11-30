@@ -11,18 +11,18 @@ internal class AccountRepositoryImpl(
     private val api: MastodonApi,
     private val cache: LocalCacheStore
 ) : AccountRepository {
-    override suspend fun fetchOwnAccount(hostName: HostName): Account =
-        api.getVerifyAccountsCredential(hostName.value).also { ownAccount ->
-            cache.cacheVerifyAccountsCredential(hostName.value, ownAccount)
-        }.toEntity(hostName)
+    override suspend fun fetchOwnAccount(): Account =
+        api.getVerifyAccountsCredential().also { ownAccount ->
+            cache.cacheVerifyAccountsCredential(api.host.value, ownAccount)
+        }.toEntity(api.host)
 
     override fun fetchOwnAccounts(): List<Account> =
         cache.getVerifyAccountsCredentials().map { (hostName, response) ->
             response.toEntity(HostName(hostName))
         }
 
-    override fun revokeAccount(hostName: HostName, account: Account) =
-        cache.removeVerifyAccountsCredential(hostName.value, account.id.value)
+    override fun revokeAccount(hostName: HostName, id: AccountId) =
+        cache.removeVerifyAccountsCredential(hostName.value, id.value)
 
     private fun GetAccountsVerifyCredential.Response.toEntity(hostName: HostName) = Account(
         id = AccountId(id),

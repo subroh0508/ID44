@@ -1,5 +1,6 @@
 package id44.mizuki.libraries.auth.infra.repository
 
+import id44.mizuki.libraries.api.Credentials
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.LocalCacheStore
@@ -38,5 +39,7 @@ internal actual class AccountCredentialRepositoryImpl(
 
         localStore.cacheVerifyAccountsCredential(hostName.value, res)
         authLocalStore.cacheAccessToken(res.id, accessToken.value)
+
+        Credentials.setNowCredentials(hostName, accessToken)
     }
 }
