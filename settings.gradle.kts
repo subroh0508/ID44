@@ -14,6 +14,7 @@ include(
     ":libraries:account:domain:usecase:fetchownaccount",
     ":libraries:account:domain:usecase:fetchownaccounts",
     ":libraries:auth:infra",
+    ":libraries:auth:domain:valueobject",
     ":libraries:auth:domain:usecase:requestappcredential",
     ":libraries:auth:domain:usecase:requestaccesstoken",
     ":libraries:timeline:infra",
