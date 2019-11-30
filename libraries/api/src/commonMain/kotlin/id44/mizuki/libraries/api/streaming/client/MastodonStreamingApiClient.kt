@@ -1,5 +1,6 @@
 package id44.mizuki.libraries.api.streaming.client
 
+import id44.mizuki.libraries.api.Credentials
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
 import io.ktor.client.HttpClient
@@ -18,16 +19,16 @@ internal class MastodonStreamingApiClient(
     private val httpClient: HttpClient,
     private val json: Json
 ) : MastodonStreamingApi {
-    override suspend fun openEventChannel(
-        hostName: String,
-        accessToken: String,
-        stream: StreamType
-    ): ReceiveChannel<StreamingEventJson> = GlobalScope.produce(
+    override val host get() = Credentials.nowHost
+    override fun streamKey(stream: StreamType) =
+        listOf(host.value, Credentials.nowToken.value, stream.realValue).joinToString("/")
+
+    override suspend fun openEventChannel(stream: StreamType): ReceiveChannel<StreamingEventJson> = GlobalScope.produce(
         Dispatchers.Unconfined, capacity = Channel.UNLIMITED
     ) {
         httpClient.wss(
-            host = hostName,
-            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=$accessToken"
+            host = host.value,
+            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=$${Credentials.nowToken.value}"
         ) {
             for (frame in incoming) {
                 when (frame) {

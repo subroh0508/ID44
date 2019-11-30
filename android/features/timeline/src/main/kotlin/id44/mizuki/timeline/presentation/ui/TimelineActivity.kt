@@ -33,7 +33,7 @@ class TimelineActivity : RequireAuthReactActivity() {
         super.onResume()
 
         launch {
-            subscribeUseCase.execute(hostName, Stream.LOCAL)
+            subscribeUseCase.execute(Stream.LOCAL)
                 .collect {
                     emit(reactInstanceManager.currentReactContext, it)
                     // Log.d("status", it.toString())
@@ -44,7 +44,7 @@ class TimelineActivity : RequireAuthReactActivity() {
     override fun onPause() {
         super.onPause()
 
-        unsubscribeUseCase.execute(hostName, Stream.LOCAL)
+        unsubscribeUseCase.execute(Stream.LOCAL)
     }
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent

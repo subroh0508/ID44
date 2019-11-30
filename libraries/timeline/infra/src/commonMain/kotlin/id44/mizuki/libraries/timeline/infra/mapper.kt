@@ -20,7 +20,7 @@ internal fun Stream.toStreamType(): StreamType = when (this) {
     Stream.LIST -> StreamType.LIST
 }
 
-internal suspend fun StreamingEventJson.toStatus(): Status? {
+internal fun StreamingEventJson.toStatus(): Status? {
     if (EventType.realValueOf(event) != EventType.update) {
         return null
     }

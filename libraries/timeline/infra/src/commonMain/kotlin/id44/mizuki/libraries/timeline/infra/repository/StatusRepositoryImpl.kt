@@ -14,26 +14,21 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.mapNotNull
 
 internal class StatusRepositoryImpl(
-    private val streamingApi: MastodonStreamingApi,
-    private val localStore: AccessTokenStore
+    private val streamingApi: MastodonStreamingApi
 ) : StatusRepository {
     private val channels: HashMap<String, Flow<Status>> = hashMapOf()
 
-    override suspend fun openSubscription(hostName: HostName, id: AccountId, stream: Stream): Flow<Status> {
-        val accessToken = localStore.getAccessToken(id.value) ?: throw TokenExpiredException(hostName, id)
-        val key = genKey(hostName, id, stream)
+    override suspend fun openSubscription(stream: Stream): Flow<Status> {
+        val streamType = stream.toStreamType()
+        val key = streamingApi.streamKey(streamType)
 
-        return channels[key] ?: streamingApi.openEventChannel(
-            hostName.value, accessToken, stream.toStreamType()
-        ).consumeAsFlow()
+        return channels[key] ?: streamingApi.openEventChannel(streamType)
+            .consumeAsFlow()
             .mapNotNull { it.toStatus() }
             .also { channels[key] = it }
     }
 
-    override fun closeSubscription(hostName: HostName, id: AccountId, stream: Stream) {
-        channels.remove(genKey(hostName, id, stream))
+    override fun closeSubscription(stream: Stream) {
+        channels.remove(streamingApi.streamKey(stream.toStreamType()))
     }
-
-    private fun genKey(host: HostName, id: AccountId, stream: Stream) =
-        listOf(host.value, id.value, stream.toStreamType().realValue).joinToString("/")
 }
