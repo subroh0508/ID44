@@ -1,29 +1,15 @@
 package id44.mizuki.libraries.auth.infra.repository
 
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.AccountId
+import id44.mizuki.libraries.shared.valueobject.HostName
+
 interface AccessTokenRepository {
-    fun getAuthenticatedHostNames(): List<String>
+    fun existAnyAuthenticatedAccounts(): Boolean
 
-    fun buildAuthorizeUrl(
-        hostName: String,
-        clientId: String,
-        clientSecret: String,
-        redirectUri: String
-    ): String
+    fun existAccessToken(hostName: HostName, id: AccountId): Boolean
 
-    suspend fun fetchAccessToken(
-        hostName: String,
-        clientId: String,
-        clientSecret: String,
-        redirectUri: String,
-        code: String
-    ): String
+    fun getAccessToken(hostName: HostName, id: AccountId): AccessToken
 
-    fun cacheAccessToken(hostName: String, token: String)
-
-    fun clearAccessToken(hostName: String)
-
-    suspend fun saveOwnAccount(
-        hostName: String,
-        accessToken: String
-    )
+    fun clearAccessToken(hostName: HostName, id: AccountId)
 }

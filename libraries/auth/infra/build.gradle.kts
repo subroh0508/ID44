@@ -14,6 +14,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:api"))
+                implementation(project(":libraries:shared"))
+                implementation(project(":libraries:auth:domain:valueobject"))
                 implementation(Libraries.Kotlin.stdlibCommon)
 
                 implementation(Libraries.Coroutines.common)

@@ -1,15 +1,20 @@
 package id44.mizuki.libraries.auth.infra.repository
 
+import id44.mizuki.libraries.auth.domain.valueobject.ClientId
+import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
+
 interface AppCredentialRepository {
     suspend fun fetchAppCredential(
-        hostName: String,
+        hostName: HostName,
         clientName: String,
-        redirectUri: String
-    ): Pair<String, String>
+        redirectUri: Uri
+    ): Pair<ClientId, ClientSecret>
 
-    fun getClientId(hostName: String): String?
+    fun getClientId(hostName: HostName): ClientId?
 
-    fun getClientSecret(hostName: String): String?
+    fun getClientSecret(hostName: HostName): ClientSecret?
 
-    fun cacheAppCredential(hostName: String, clientId: String, clientSecret: String)
+    fun cacheAppCredential(hostName: HostName, clientId: ClientId, clientSecret: ClientSecret)
 }

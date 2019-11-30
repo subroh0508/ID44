@@ -2,26 +2,32 @@ package id44.mizuki.libraries.auth.infra.repository
 
 import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
+import id44.mizuki.libraries.auth.domain.valueobject.ClientId
+import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
 
 internal class AppCredentialRepositoryImpl(
     private val apiClient: MastodonAuthApi,
     private val localStore: AppCredentialStore
 ) : AppCredentialRepository {
     override suspend fun fetchAppCredential(
-        hostName: String,
+        hostName: HostName,
         clientName: String,
-        redirectUri: String
-    ): Pair<String, String> {
-        val (clientId, clientSecret) = apiClient.requestAppCredential(hostName, clientName, redirectUri)
+        redirectUri: Uri
+    ): Pair<ClientId, ClientSecret> {
+        val (clientId, clientSecret) = apiClient.requestAppCredential(hostName.value, clientName, redirectUri.toString())
 
-        return clientId to clientSecret
+        return ClientId(clientId) to ClientSecret(clientSecret)
     }
 
-    override fun getClientId(hostName: String): String? = localStore.getClientId(hostName)
+    override fun getClientId(hostName: HostName): ClientId? =
+        localStore.getClientId(hostName.value)?.let(::ClientId)
 
-    override fun getClientSecret(hostName: String): String? = localStore.getClientSecret(hostName)
+    override fun getClientSecret(hostName: HostName): ClientSecret? =
+        localStore.getClientSecret(hostName.value)?.let(::ClientSecret)
 
-    override fun cacheAppCredential(hostName: String, clientId: String, clientSecret: String) {
-        localStore.cacheAppCredential(hostName, clientId, clientSecret)
+    override fun cacheAppCredential(hostName: HostName, clientId: ClientId, clientSecret: ClientSecret) {
+        localStore.cacheAppCredential(hostName.value, clientId.value, clientSecret.value)
     }
 }

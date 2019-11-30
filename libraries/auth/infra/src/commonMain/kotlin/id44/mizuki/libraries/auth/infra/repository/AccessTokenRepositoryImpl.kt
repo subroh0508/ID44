@@ -1,45 +1,31 @@
 package id44.mizuki.libraries.auth.infra.repository
 
-import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
+import id44.mizuki.libraries.api.TokenExpiredException
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.LocalCacheStore
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.AccountId
+import id44.mizuki.libraries.shared.valueobject.HostName
 
 internal class AccessTokenRepositoryImpl(
-    private val authApi: MastodonAuthApi,
     private val authLocalStore: AccessTokenStore,
     private val localStore: LocalCacheStore
 ) : AccessTokenRepository {
-    override fun getAuthenticatedHostNames(): List<String> = authLocalStore.getAuthenticatedHostNames()
+    override fun existAnyAuthenticatedAccounts() =
+        authLocalStore.getAllAuthenticatedAccountIds().isNotEmpty()
 
-    override fun buildAuthorizeUrl(
-        hostName: String,
-        clientId: String,
-        clientSecret: String,
-        redirectUri: String
-    ): String = authApi.buildAuthorizeUrl(hostName, clientId, clientSecret, redirectUri)
+    override fun existAccessToken(hostName: HostName, id: AccountId) =
+        getVerifyAccountsCredentialId(hostName, id)?.let(authLocalStore::getAccessToken) != null
 
-    override suspend fun fetchAccessToken(
-        hostName: String,
-        clientId: String,
-        clientSecret: String,
-        redirectUri: String,
-        code: String
-    ): String = authApi.requestAccessToken(hostName, clientId, clientSecret, redirectUri, code).accessToken
-
-    override fun cacheAccessToken(
-        hostName: String,
-        token: String
-    ) = authLocalStore.cacheAccessToken(hostName, token)
-
-    override fun clearAccessToken(
-        hostName: String
-    ) = authLocalStore.clearAccessToken(hostName)
-
-    override suspend fun saveOwnAccount(
-        hostName: String,
-        accessToken: String
-    ) = localStore.cacheVerifyAccountsCredential(
-        hostName,
-        authApi.getVerifyAccountsCredentials(hostName, accessToken)
+    override fun getAccessToken(hostName: HostName, id: AccountId) = AccessToken(
+        getVerifyAccountsCredentialId(hostName, id)?.let(
+            authLocalStore::getAccessToken
+        ) ?: throw TokenExpiredException(hostName, id)
     )
+
+    override fun clearAccessToken(hostName: HostName, id: AccountId) =
+        authLocalStore.clearAccessToken(id.value)
+
+    private fun getVerifyAccountsCredentialId(hostName: HostName, id: AccountId) =
+        localStore.getVerifyAccountsCredential(hostName.value, id.value)?.response?.id
 }

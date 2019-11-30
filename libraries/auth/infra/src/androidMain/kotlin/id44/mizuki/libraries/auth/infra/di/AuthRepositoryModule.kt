@@ -7,10 +7,7 @@ import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.LocalCacheStore
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepositoryImpl
-import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepository
-import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepositoryImpl
+import id44.mizuki.libraries.auth.infra.repository.*
 
 @Module
 class AuthRepositoryModule {
@@ -23,9 +20,9 @@ class AuthRepositoryModule {
 
     @Provides
     @ModuleScope
-    fun provideAccessTokenRepository(
+    fun provideAccountCredentialRepository(
             mastodonAuthApi: MastodonAuthApi,
             accessTokenStore: AccessTokenStore,
             localCacheStore: LocalCacheStore
-    ): AccessTokenRepository = AccessTokenRepositoryImpl(mastodonAuthApi, accessTokenStore, localCacheStore)
+    ): AccountCredentialRepository = AccountCredentialRepositoryImpl(mastodonAuthApi, accessTokenStore, localCacheStore)
 }
