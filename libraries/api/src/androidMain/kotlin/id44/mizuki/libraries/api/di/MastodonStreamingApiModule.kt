@@ -9,6 +9,8 @@ import id44.mizuki.libraries.api.PrefKeys
 import id44.mizuki.libraries.api.WebSocketClientProvider
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.AccessTokenStoreClient
+import id44.mizuki.libraries.api.client.LocalCacheStore
+import id44.mizuki.libraries.api.client.LocalCacheStoreClient
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApiClient
 import io.ktor.client.features.UserAgent
@@ -20,6 +22,11 @@ class MastodonStreamingApiModule {
     @ModuleScope
     fun provideAccessTokenStore(app: Application): AccessTokenStore =
         AccessTokenStoreClient(app.getSharedPreferences(PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE))
+
+    @Provides
+    @ModuleScope
+    fun provideLocalCacheStore(app: Application, json: Json): LocalCacheStore =
+        LocalCacheStoreClient(app.getSharedPreferences(PrefKeys.NAME_CACHE_PREFERENCES, Context.MODE_PRIVATE), json)
 
     @Provides
     @ModuleScope

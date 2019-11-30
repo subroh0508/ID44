@@ -11,7 +11,7 @@ import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import kotlinx.coroutines.CoroutineExceptionHandler
 
-@Module(includes = [AccessTokenRepositoryModule::class])
+@Module
 abstract class AuthActivityModule<in V: RequireAuthContract.View> {
     @Binds
     @ActivityScope

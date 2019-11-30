@@ -1,9 +1,15 @@
 package id44.mizuki.authentication.presentation.presenter
 
-import id44.mizuki.authentication.*
+import id44.mizuki.authentication.AccessDeniedError
+import id44.mizuki.authentication.AuthorizeError
+import id44.mizuki.authentication.BrowserAppNotFoundError
+import id44.mizuki.authentication.UnknownError
 import id44.mizuki.authentication.presentation.AuthenticationContract
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
 import kotlinx.coroutines.CompletableDeferred
 import javax.inject.Inject
 
@@ -32,18 +38,17 @@ internal class AuthenticationPresenter @Inject constructor(
     }
 
 
-    override suspend fun fetchAuthorizeCode(hostName: String, clientName: String, redirectUri: String): String {
+    override suspend fun fetchAuthorizeCode(hostName: HostName, clientName: String, redirectUri: Uri): String {
         view.openAuthorizePage(requestAppCredentialUseCase.execute(hostName, clientName, redirectUri))
 
         deferred = CompletableDeferred()
         return deferred.await()
     }
 
-    override suspend fun requestAccessToken(hostName: String, redirectUri: String, code: String): String
-            = requestAccessTokenUseCase.execute(hostName, redirectUri, code)
+    override suspend fun requestAccessToken(hostName: HostName, redirectUri: Uri, code: String) =
+        requestAccessTokenUseCase.execute(hostName, redirectUri, code)
 
-    override fun onRequestedAccessToken(accessToken: String)
-            = view.bindAccessToken(accessToken)
+    override fun onRequestedAccessToken(token: AccessToken) = view.bindAccessToken(token)
 
     override fun notifyBrowserNotFound() {
         deferred.completeExceptionally(BrowserAppNotFoundError())

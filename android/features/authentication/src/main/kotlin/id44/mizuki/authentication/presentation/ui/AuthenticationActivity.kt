@@ -1,7 +1,6 @@
 package id44.mizuki.authentication.presentation.ui
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -12,6 +11,9 @@ import id44.mizuki.authentication.presentation.AuthenticationContract
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.ScopedReactActivity
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.shared.valueobject.Uri
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -44,7 +46,7 @@ class AuthenticationActivity : ScopedReactActivity(), AuthenticationContract.Vie
 
     override fun startOauth2Flow() {
         launch(authorizeErrorHandler) {
-            val hostName = viewModel.hostName.value ?: ""
+            val hostName = viewModel.hostName.value ?: HostName("")
 
             val code = presenter.fetchAuthorizeCode(hostName, clientName, redirectUri)
 
@@ -54,16 +56,16 @@ class AuthenticationActivity : ScopedReactActivity(), AuthenticationContract.Vie
         }
     }
 
-    override fun openAuthorizePage(url: String) {
-        Intent(Intent.ACTION_VIEW, Uri.parse(url)).takeIf {
+    override fun openAuthorizePage(url: Uri) {
+        Intent(Intent.ACTION_VIEW, url).takeIf {
             it.resolveActivity(packageManager) != null
         }?.let(this::startActivity) ?: presenter.notifyBrowserNotFound()
     }
 
-    override fun bindAccessToken(accessToken: String) {
+    override fun bindAccessToken(token: AccessToken) {
         startActivity(
             intentTo(Activities.Timeline).apply {
-                putExtra("hostname", viewModel.hostName.value)
+                putExtra("hostname", viewModel.hostName.value?.value)
             }
         )
     }
@@ -75,7 +77,7 @@ class AuthenticationActivity : ScopedReactActivity(), AuthenticationContract.Vie
     private fun Intent?.getAuthorizeCode(): Pair<String?, String?> {
         val uri = this?.data
 
-        if (uri != null && uri.toString().startsWith(redirectUri)) {
+        if (uri != null && uri.toString().startsWith(redirectUri.toString())) {
             val code = uri.getQueryParameter(QUERY_CODE)
             val error = uri.getQueryParameter(QUERY_ERROR)
 
@@ -86,7 +88,7 @@ class AuthenticationActivity : ScopedReactActivity(), AuthenticationContract.Vie
     }
 
     private val clientName by lazy { getString(R.string.auth_client_name) }
-    private val redirectUri by lazy { "${getString(R.string.auth_oauth_scheme)}://$clientName/" }
+    private val redirectUri by lazy { id44.mizuki.libraries.shared.valueobject.Uri.parse("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
 
     companion object {
         private const val QUERY_CODE = "code"

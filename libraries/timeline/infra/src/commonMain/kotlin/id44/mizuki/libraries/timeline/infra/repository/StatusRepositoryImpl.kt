@@ -1,10 +1,6 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
-import id44.mizuki.libraries.api.TokenExpiredException
-import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
-import id44.mizuki.libraries.shared.valueobject.AccountId
-import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.entity.Status
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import id44.mizuki.libraries.timeline.infra.toStatus
