@@ -14,11 +14,14 @@ internal actual class LocalCacheStoreClient(
 ) : LocalCacheStore {
     override fun getVerifyAccountsCredentials(): List<GetAccountsVerifyCredential.Cache> =
         get(VERIFY_APP_CREDENTIALS, GetAccountsVerifyCredential.Cache.serializer().list) ?: mutableListOf()
+    override fun getVerifyAccountsCredential(hostName: String, id: String): GetAccountsVerifyCredential.Cache? =
+        getVerifyAccountsCredentials().find { it.hostName == hostName && it.response.id == id }
     override fun cacheVerifyAccountsCredential(hostName: String, response: GetAccountsVerifyCredential.Response) {
-        val caches = getVerifyAccountsCredentials().toMutableList()
-        if (caches.find { it.hostName == hostName && it.response.id == response.id } != null) {
+        if (getVerifyAccountsCredential(hostName, response.id) != null) {
             return
         }
+
+        val caches = getVerifyAccountsCredentials().toMutableList()
 
         put(
             VERIFY_APP_CREDENTIALS,

@@ -2,36 +2,35 @@ package id44.mizuki.libraries.api.client
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import id44.mizuki.libraries.api.TokenExpiredException
 
 actual class AccessTokenStoreClient(
     private val sharedPreferences: SharedPreferences
 ) : AccessTokenStore {
     companion object {
-        private const val AUTHENTICATED_HOST_NAMES = "AUTHENTICATED_HOST_NAMES"
+        private const val ALL_AUTHENTICATED_ACCOUNT_ID = "ALL_AUTHENTICATED_ACCOUNT_ID"
     }
 
-    override fun getAuthenticatedHostNames(): List<String>
-            = sharedPreferences.getStringSet(AUTHENTICATED_HOST_NAMES, setOf())?.toList() ?: listOf()
+    override fun getAllAuthenticatedAccountIds(): List<String> =
+        sharedPreferences.getStringSet(ALL_AUTHENTICATED_ACCOUNT_ID, setOf())?.toList() ?: listOf()
 
-    override fun getAccessToken(hostName: String): String
-            = sharedPreferences.getString(hostName, null) ?: throw TokenExpiredException(hostName)
+    override fun getAccessToken(id: String): String? =
+        sharedPreferences.getString(id, null)
 
-    override fun cacheAccessToken(hostName: String, token: String) {
-        val hostNames = getAuthenticatedHostNames().toMutableSet()
+    override fun cacheAccessToken(id: String, token: String) {
+        val keys = getAllAuthenticatedAccountIds().toMutableSet()
 
         sharedPreferences.edit {
-            putString(hostName, token)
-            putStringSet(AUTHENTICATED_HOST_NAMES, hostNames.apply { add(hostName) })
+            putString(id, token)
+            putStringSet(ALL_AUTHENTICATED_ACCOUNT_ID, keys.apply { if (!contains(id)) add(id) })
         }
     }
 
-    override fun clearAccessToken(hostName: String) {
-        val hostNames = getAuthenticatedHostNames().toMutableSet()
+    override fun clearAccessToken(id: String) {
+        val accountIds = getAllAuthenticatedAccountIds()
 
         sharedPreferences.edit {
-            remove(hostName)
-            putStringSet(AUTHENTICATED_HOST_NAMES, hostNames.apply { remove(hostName) })
+            remove(id)
+            putStringSet(ALL_AUTHENTICATED_ACCOUNT_ID, accountIds.apply { remove(id) }.toSet())
         }
     }
 }

@@ -1,11 +1,11 @@
 package id44.mizuki.libraries.api.client
 
 interface AccessTokenStore {
-    fun getAuthenticatedHostNames(): List<String>
+    fun getAllAuthenticatedAccountIds(): List<String>
 
-    fun getAccessToken(hostName: String): String
+    fun getAccessToken(id: String): String?
 
-    fun cacheAccessToken(hostName: String, token: String)
+    fun cacheAccessToken(id: String, token: String)
 
-    fun clearAccessToken(hostName: String)
+    fun clearAccessToken(id: String)
 }
