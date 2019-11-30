@@ -1,7 +1,10 @@
 package id44.mizuki.libraries.api.auth.client
 
-import id44.mizuki.libraries.api.auth.AuthEndpoints
+import id44.mizuki.libraries.api.GET_ACCOUNTS_VERIFY_CREDENTIALS
 import id44.mizuki.libraries.api.auth.Constants
+import id44.mizuki.libraries.api.auth.GET_OAUTH_AUTHORIZE
+import id44.mizuki.libraries.api.auth.POST_APPS
+import id44.mizuki.libraries.api.auth.POST_OAUTH_TOKEN
 import id44.mizuki.libraries.api.auth.model.AccessToken
 import id44.mizuki.libraries.api.auth.model.AppCredential
 import id44.mizuki.libraries.api.auth.params.PostApps
@@ -12,8 +15,10 @@ import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.host
 import io.ktor.client.request.post
+import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
+import io.ktor.http.contentType
 
 internal class MastodonAuthApiClient(
     private val httpClient: HttpClient
@@ -30,7 +35,9 @@ internal class MastodonAuthApiClient(
         hostName: String,
         clientName: String,
         redirectUri: String
-    ): AppCredential = httpClient.post(buildUrl(hostName, AuthEndpoints.postApps())) {
+    ): AppCredential = httpClient.post(POST_APPS) {
+        host = hostName
+        contentType(ContentType.Application.Json)
         body = PostApps.Request(clientName, redirectUri, Constants.SCOPE, Constants.WEBSITE)
     }
 
@@ -40,7 +47,7 @@ internal class MastodonAuthApiClient(
         clientSecret: String,
         redirectUri: String
     ): String = buildString {
-        append("${buildUrl(hostName, AuthEndpoints.getOauthAuthorize())}?")
+        append("${URLProtocol.HTTPS.name}://$hostName$GET_OAUTH_AUTHORIZE?")
         append(
             mapOf(
                 RESPONSE_TYPE to "code",
@@ -58,17 +65,17 @@ internal class MastodonAuthApiClient(
         clientSecret: String,
         redirectUri: String,
         code: String
-    ): AccessToken = httpClient.post(buildUrl(hostName, AuthEndpoints.postOauthToken())) {
+    ): AccessToken = httpClient.post(POST_OAUTH_TOKEN) {
+        host = hostName
+        contentType(ContentType.Application.Json)
         body = PostOauthToken.Request(clientId, clientSecret, redirectUri, code)
     }
 
     override suspend fun getVerifyAccountsCredentials(
         hostName: String,
         accessToken: String
-    ): GetAccountsVerifyCredential.Response = httpClient.get(AuthEndpoints.getAccountsVerifyCredentials()) {
+    ): GetAccountsVerifyCredential.Response = httpClient.get(GET_ACCOUNTS_VERIFY_CREDENTIALS) {
         host = hostName
         header(HttpHeaders.Authorization, "Bearer $accessToken")
     }
-
-    private fun buildUrl(hostName: String, endpoint: String) = "${URLProtocol.HTTPS.name}://$hostName$endpoint"
 }

@@ -9,8 +9,11 @@ import id44.mizuki.libraries.shared.valueobject.HostName
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.header
+import io.ktor.client.request.post
 import io.ktor.client.request.host
+import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.contentType
 
 internal class MastodonApiClient(
     private val httpClient: HttpClient,
@@ -25,8 +28,15 @@ internal class MastodonApiClient(
         httpClient.get("$GET_ACCOUNTS/id")
 
     private suspend inline fun <reified T: Any> HttpClient.get(urlString: String) =
-        get<T>(urlString) {
+        get<T>(urlString, block = {
             host = provider.nowHost.value
             header(HttpHeaders.Authorization, "Bearer ${provider.nowToken.value}")
-        }
+        })
+
+    private suspend inline fun <reified T: Any> HttpClient.post(urlString: String) =
+        post<T>(urlString, block = {
+            host = provider.nowHost.value
+            header(HttpHeaders.Authorization, "Bearer ${provider.nowToken.value}")
+            contentType(ContentType.Application.Json)
+        })
 }
