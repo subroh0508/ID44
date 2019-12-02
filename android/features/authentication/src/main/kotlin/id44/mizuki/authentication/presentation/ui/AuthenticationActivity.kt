@@ -10,7 +10,7 @@ import id44.mizuki.authentication.di.inject
 import id44.mizuki.authentication.presentation.AuthenticationContract
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
-import id44.mizuki.base.ui.ScopedReactActivity
+import id44.mizuki.base.ui.InjectableReactActivity
 import id44.mizuki.libraries.shared.valueobject.AccessToken
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.shared.valueobject.Uri
@@ -18,7 +18,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class AuthenticationActivity : ScopedReactActivity(), AuthenticationContract.View {
+class AuthenticationActivity : InjectableReactActivity(), AuthenticationContract.View {
     @Inject
     internal lateinit var presenter: AuthenticationContract.Presenter
     @Inject

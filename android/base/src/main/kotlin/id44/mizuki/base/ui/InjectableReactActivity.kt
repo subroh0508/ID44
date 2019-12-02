@@ -12,7 +12,7 @@ import kotlinx.coroutines.SupervisorJob
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-abstract class ScopedReactActivity : ReactActivity(), CoroutineScope {
+abstract class InjectableReactActivity : ReactActivity(), CoroutineScope {
     protected lateinit var job: Job
 
     override val coroutineContext: CoroutineContext
