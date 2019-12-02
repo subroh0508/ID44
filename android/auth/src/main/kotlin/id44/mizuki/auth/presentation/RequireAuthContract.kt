@@ -8,15 +8,6 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Job
 
 interface RequireAuthContract {
-    interface View {
-        fun showHttpErrorMessage(e: Throwable)
-        fun openAuthentication()
-    }
-
-    interface Presenter {
-        fun onHttpError(e: Throwable)
-    }
-
     interface ViewModel {
         fun launch(
             start: CoroutineStart = CoroutineStart.DEFAULT,
