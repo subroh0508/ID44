@@ -1,25 +1,17 @@
 package id44.mizuki.timeline.presentation.ui
 
 import android.os.Bundle
-import id44.mizuki.auth.presentation.ui.RequireAuthReactActivity
-import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
-import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import androidx.lifecycle.Observer
+import id44.mizuki.auth.presentation.ui.RequireAuthActivity
 import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject
+import id44.mizuki.timeline.presentation.model.TimelineViewModel
 import id44.mizuki.timeline.reactnative.emit
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TimelineActivity : RequireAuthReactActivity() {
+class TimelineActivity : RequireAuthActivity() {
     @Inject
-    lateinit var subscribeUseCase: TimelineSubscribeUseCase
-    @Inject
-    lateinit var unsubscribeUseCase: TimelineUnsubscribeUseCase
-
-    private val hostName: String
-        get() = intent.getStringExtra("hostname") ?: "pawoo.net"
+    lateinit var viewModel: TimelineViewModel
 
     override fun getMainComponentName(): String = "Timeline"
 
@@ -27,28 +19,10 @@ class TimelineActivity : RequireAuthReactActivity() {
         inject()
 
         super.onCreate(savedInstanceState)
-    }
 
-    override fun onResume() {
-        super.onResume()
-
-        launch {
-            subscribeUseCase.execute(Stream.LOCAL)
-                .collect {
-                    emit(reactInstanceManager.currentReactContext, it)
-                    // Log.d("status", it.toString())
-                }
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        try {
-            unsubscribeUseCase.execute(Stream.LOCAL)
-        } catch (e: Throwable) {
-
-        }
+        viewModel.status.observe(this, Observer {
+            emit(reactInstanceManager.currentReactContext, it)
+        })
     }
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent

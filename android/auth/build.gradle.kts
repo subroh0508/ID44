@@ -28,6 +28,9 @@ dependencies {
     implementation(Libraries.Jetpack.appCompat)
     implementation(Libraries.Jetpack.fragment)
     implementation(Libraries.Jetpack.fragmentKtx)
+    implementation(Libraries.Jetpack.Lifecycle.extensions)
+    implementation(Libraries.Jetpack.Lifecycle.viewModelKtx)
+    implementation(Libraries.Jetpack.Lifecycle.liveDataKtx)
 
     implementation(Libraries.reactNative)
 

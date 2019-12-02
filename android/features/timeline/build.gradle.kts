@@ -38,8 +38,9 @@ dependencies {
     implementation(Libraries.Jetpack.constraintLayout)
     implementation(Libraries.Jetpack.recyclerView)
     implementation(Libraries.Jetpack.material)
-    implementation(Libraries.Jetpack.Lifecycle.runtime)
     implementation(Libraries.Jetpack.Lifecycle.extensions)
+    implementation(Libraries.Jetpack.Lifecycle.viewModelKtx)
+    implementation(Libraries.Jetpack.Lifecycle.liveDataKtx)
 
     implementation(Libraries.reactNative)
 

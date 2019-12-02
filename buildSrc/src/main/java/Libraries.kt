@@ -31,7 +31,7 @@ object Libraries {
 
     object Jetpack {
         const val core = "androidx.core:core:${Versions.Jetpack.core}"
-        const val ktx = "androidx.core:core-ktx:${Versions.Jetpack.ktx}"
+        const val ktx = "androidx.core:core-ktx:${Versions.Jetpack.core}"
         const val appCompat = "androidx.appcompat:appcompat:${Versions.Jetpack.appCompat}"
         const val fragment = "androidx.fragment:fragment:${Versions.Jetpack.fragment}"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.Jetpack.fragment}"
@@ -44,9 +44,10 @@ object Libraries {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.Jetpack.constraintLayout}"
 
         object Lifecycle {
-            const val runtime = "androidx.lifecycle:lifecycle-runtime:${Versions.Jetpack.lifecycle}"
             const val extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.Jetpack.lifecycle}"
             const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.Jetpack.lifecycle}"
+            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Jetpack.lifecycle}"
+            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Jetpack.lifecycle}"
         }
 
         object Test {

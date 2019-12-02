@@ -25,6 +25,10 @@ internal class StatusRepositoryImpl(
     }
 
     override fun closeSubscription(stream: Stream) {
+        if (channels.isEmpty()) {
+            return
+        }
+
         channels.remove(streamingApi.streamKey(stream.toStreamType()))
     }
 }
