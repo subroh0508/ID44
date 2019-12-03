@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {
-  Button,
   StyleSheet,
   View,
 } from 'react-native';
 import {
-  Icon, ListItem,
+  Icon, ListItem, Button,
 } from 'react-native-elements';
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import TimelineComponent from "./TimelineComponent";
+import { openAuthentication } from "./native/TimelineContract";
 
 const styles = StyleSheet.create({
   icon: {
@@ -36,6 +36,9 @@ export const TimelineFrame = createAppContainer(
             </ListItem>
           ))
         }
+        <Button title='アカウント追加'
+          type='outline'
+          onPress={ e => openAuthentication() }/>
       </View>
     )
   }),

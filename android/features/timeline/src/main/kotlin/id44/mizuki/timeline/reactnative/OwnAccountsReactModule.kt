@@ -5,5 +5,8 @@ import com.facebook.react.bridge.ReactMethod
 
 interface OwnAccountsReactModule {
     @ReactMethod
+    fun openAuthentication()
+
+    @ReactMethod
     fun fetchOwnAccounts(promise: Promise)
 }

@@ -1,5 +1,7 @@
 package id44.mizuki.timeline.presentation.model
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.facebook.react.bridge.Arguments
@@ -13,6 +15,8 @@ class OwnAccountsViewModel(
     private val fetchOwnAccountsUseCase: FetchOwnAccountsUseCase
 ) : ViewModel(), OwnAccountsReactModule {
     val ownAccounts get() = fetchOwnAccountsUseCase.execute()
+    val openAuthentication: LiveData<Unit> get() = _openAuthentication
+    private val _openAuthentication: MutableLiveData<Unit> by lazy(::MutableLiveData)
 
     class Factory @Inject constructor(
         private val fetchOwnAccountsUseCase: FetchOwnAccountsUseCase
@@ -21,6 +25,8 @@ class OwnAccountsViewModel(
         override fun <T : ViewModel?> create(modelClass: Class<T>): T =
             OwnAccountsViewModel(fetchOwnAccountsUseCase) as T
     }
+
+    override fun openAuthentication() = _openAuthentication.postValue(Unit)
 
     override fun fetchOwnAccounts(promise: Promise) = promise.resolve(
         Arguments.makeNativeArray(
