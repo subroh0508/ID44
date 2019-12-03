@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { PureComponent } from 'react';
 import { AppRegistry } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import TimelineComponent from "./TimelineComponent";
 import { TimelineFrame } from "./TimelineFrame";
+import { fetchOwnAccounts } from "./native/TimelineContract";
 
 // mizuki
 const theme = {
@@ -17,12 +18,25 @@ const theme = {
   },
 };
 
-const Timeline = () => {
-  return (
+class Timeline extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { ownAccounts: [] };
+  }
+
+  async componentDidMount() {
+    this.setState({ ownAccounts: await fetchOwnAccounts() });
+  }
+
+  render() {
+    const { ownAccounts } = this.state;
+
+    return (
       <PaperProvider theme={ DefaultTheme }>
-        <TimelineFrame/>
+        <TimelineFrame screenProps={ { ownAccounts } }/>
       </PaperProvider>
-  );
-};
+    )
+  }
+}
 
 AppRegistry.registerComponent('Timeline', () => Timeline);
