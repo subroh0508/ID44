@@ -3,6 +3,9 @@ package id44.mizuki.components.timeline
 import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
+import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.di.FetchOwnAccountsUseCaseModule
+import id44.mizuki.libraries.account.infra.di.AccountRepositoryModule
+import id44.mizuki.libraries.api.di.MastodonApiModule
 import id44.mizuki.libraries.api.di.MastodonStreamingApiModule
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.subscribe.di.TimelineSubscribeUseCaseModule
@@ -23,8 +26,13 @@ import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
 
 @Module(includes = [
+    MastodonApiModule::class,
     MastodonStreamingApiModule::class,
     AccessTokenRepositoryModule::class,
+
+    AccountRepositoryModule::class,
+    FetchOwnAccountsUseCaseModule::class,
+
     StatusRepositoryModule::class,
     TimelineSubscribeUseCaseModule::class,
     TimelineUnsubscribeUseCaseModule::class

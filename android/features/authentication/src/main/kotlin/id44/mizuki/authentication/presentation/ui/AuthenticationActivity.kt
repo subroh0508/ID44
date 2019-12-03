@@ -88,7 +88,7 @@ class AuthenticationActivity : InjectableReactActivity(), AuthenticationContract
     }
 
     private val clientName by lazy { getString(R.string.auth_client_name) }
-    private val redirectUri by lazy { id44.mizuki.libraries.shared.valueobject.Uri.parse("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
+    private val redirectUri by lazy { Uri.parse("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
 
     companion object {
         private const val QUERY_CODE = "code"

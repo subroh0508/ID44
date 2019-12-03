@@ -2,12 +2,13 @@ package id44.mizuki.timeline.reactnative
 
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
+import id44.mizuki.timeline.presentation.model.OwnAccountsViewModel
 
 class TimelineActivityReactModule(
-    reactContext: ReactApplicationContext
-    // private val viewModel: TimelineContract.Model,
-    //private val presenter: TimelineContract.Presenter
-) : ReactContextBaseJavaModule(reactContext) {
+    reactContext: ReactApplicationContext,
+    private val ownAccountsViewModel: OwnAccountsViewModel
+) : ReactContextBaseJavaModule(reactContext),
+        OwnAccountsReactModule by ownAccountsViewModel {
     override fun getName() = "TimelineContract"
 
     override fun getConstants() = mutableMapOf<String, Any>(

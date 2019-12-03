@@ -5,14 +5,15 @@ import com.facebook.react.ReactPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.swmansion.reanimated.ReanimatedPackage
 import id44.mizuki.base.reactnative.BaseReactNativeHost
+import javax.inject.Inject
 
-class TimelineReactNativeHost(
+class TimelineReactNativeHost @Inject constructor(
     app: Application,
-    private val timelinePackage: TimelineActivityPackage
+    private val `package`: ReactPackage
 ) : BaseReactNativeHost(app) {
     override fun getPackages(): MutableList<ReactPackage> =
         super.getPackages().apply {
-            addAll(listOf(RNGestureHandlerPackage(), ReanimatedPackage(), timelinePackage))
+            addAll(listOf(RNGestureHandlerPackage(), ReanimatedPackage(), `package`))
         }
     override fun getBundleAssetName() = "index.android.bundle"
     override fun getJSMainModuleName() = "components/timeline/index"
