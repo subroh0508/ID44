@@ -38,6 +38,7 @@
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
+            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/switchaccesstoken" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/auth/infra" />
             <option value="$PROJECT_DIR$/libraries/shared" />

@@ -17,6 +17,7 @@ include(
     ":libraries:auth:domain:valueobject",
     ":libraries:auth:domain:usecase:requestappcredential",
     ":libraries:auth:domain:usecase:requestaccesstoken",
+    ":libraries:auth:domain:usecase:switchaccesstoken",
     ":libraries:timeline:infra",
     ":libraries:timeline:domain:entity",
     ":libraries:timeline:domain:valueobject",
