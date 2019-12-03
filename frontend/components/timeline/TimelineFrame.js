@@ -9,7 +9,7 @@ import {
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import TimelineComponent from "./TimelineComponent";
-import { openAuthentication } from "./native/TimelineContract";
+import { openAuthentication, switchAccount } from "./native/TimelineContract";
 
 const styles = StyleSheet.create({
   icon: {
@@ -32,7 +32,8 @@ export const TimelineFrame = createAppContainer(
               leftAvatar={ { source: { uri: account.avatar } } }
               title={ account.displayName }
               subtitle={ account.screen }
-              bottomDivider>
+              bottomDivider
+              onPress={ e => switchAccount(account.hostName, account.id) }>
             </ListItem>
           ))
         }

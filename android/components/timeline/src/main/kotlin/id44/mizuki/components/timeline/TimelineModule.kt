@@ -8,6 +8,7 @@ import id44.mizuki.libraries.account.infra.di.AccountRepositoryModule
 import id44.mizuki.libraries.api.di.MastodonApiModule
 import id44.mizuki.libraries.api.di.MastodonStreamingApiModule
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
+import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.SwitchAccessTokenUseCaseModule
 import id44.mizuki.libraries.timeline.domain.subscribe.di.TimelineSubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.domain.unsubscribe.di.TimelineUnsubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
@@ -28,7 +29,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 @Module(includes = [
     MastodonApiModule::class,
     MastodonStreamingApiModule::class,
+
     AccessTokenRepositoryModule::class,
+    SwitchAccessTokenUseCaseModule::class,
 
     AccountRepositoryModule::class,
     FetchOwnAccountsUseCaseModule::class,

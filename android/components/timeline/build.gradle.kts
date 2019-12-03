@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":android:components:core"))
     implementation(project(":libraries:api"))
     implementation(project(":libraries:auth:infra"))
+    implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
     implementation(project(":libraries:account:infra"))
     implementation(project(":libraries:account:domain:usecase:fetchownaccounts"))
     implementation(project(":libraries:account:domain:entity"))

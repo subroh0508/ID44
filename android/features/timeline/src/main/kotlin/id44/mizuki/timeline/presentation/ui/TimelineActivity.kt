@@ -29,6 +29,10 @@ class TimelineActivity : RequireAuthReactActivity() {
             finish()
             startActivity(intentTo(Activities.Authentication))
         })
+        ownAccountsViewModel.restart.observe(this, Observer {
+            finish()
+            startActivity(intent)
+        })
         viewModel.status.observe(this, Observer {
             emit(reactInstanceManager.currentReactContext, it)
         })

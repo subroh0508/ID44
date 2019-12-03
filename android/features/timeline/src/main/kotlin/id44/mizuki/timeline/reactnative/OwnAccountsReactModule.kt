@@ -9,4 +9,7 @@ interface OwnAccountsReactModule {
 
     @ReactMethod
     fun fetchOwnAccounts(promise: Promise)
+
+    @ReactMethod
+    fun switchAccount(host: String, id: String)
 }
