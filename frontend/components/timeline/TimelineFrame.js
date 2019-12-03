@@ -27,9 +27,10 @@ export const TimelineFrame = createAppContainer(
     contentComponent: ({ screenProps }) => (
       <View>
         {
-          (screenProps || []).ownAccounts.map((account, i) => (
+          screenProps.ownAccounts.map((account, i) => (
             <ListItem key={ i }
-              title={ account.username }
+              leftAvatar={ { source: { uri: account.avatar } } }
+              title={ account.displayName }
               subtitle={ account.screen }
               bottomDivider>
             </ListItem>

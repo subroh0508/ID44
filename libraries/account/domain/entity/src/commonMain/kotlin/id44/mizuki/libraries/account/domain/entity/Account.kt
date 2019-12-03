@@ -7,7 +7,8 @@ data class Account(
     val id: AccountId,
     val username: String,
     val displayName: String,
-    val hostName: HostName
+    val hostName: HostName,
+    val avatar: String
 ) {
-    val screen: String = "$displayName@${hostName.value}"
+    val screen: String = "$username@${hostName.value}"
 }

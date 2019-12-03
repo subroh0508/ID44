@@ -27,8 +27,9 @@ class OwnAccountsViewModel(
             fetchOwnAccountsUseCase.execute().map { account ->
                 Arguments.makeNativeMap(mapOf(
                     "id" to account.id.value,
-                    "username" to account.username,
-                    "screen" to account.screen
+                    "displayName" to account.displayName,
+                    "screen" to account.screen,
+                    "avatar" to account.avatar
                 ))
             }
         )

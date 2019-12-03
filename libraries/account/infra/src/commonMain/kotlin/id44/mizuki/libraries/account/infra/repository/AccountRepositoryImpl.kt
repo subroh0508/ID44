@@ -28,6 +28,7 @@ internal class AccountRepositoryImpl(
         id = AccountId(id),
         username = username,
         displayName = displayName,
-        hostName = hostName
+        hostName = hostName,
+        avatar = avatar
     )
 }
