@@ -1,20 +1,15 @@
 package id44.mizuki
 
 import android.app.Application
-import com.facebook.react.ReactApplication
-import com.facebook.react.ReactNativeHost
-import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
-import com.oblador.vectoricons.VectorIconsPackage
+import id44.mizuki.bridges.timeline.di.TimelineComponent
+import id44.mizuki.bridges.timeline.di.TimelineComponentProvider
 import id44.mizuki.components.authentication.AuthComponent
 import id44.mizuki.components.authentication.AuthComponentProvider
 import id44.mizuki.components.core.CoreComponent
 import id44.mizuki.components.core.CoreComponentProvider
 import id44.mizuki.components.core.CoreModule
 import id44.mizuki.components.core.DaggerCoreComponent
-import id44.mizuki.components.timeline.TimelineComponent
-import id44.mizuki.components.timeline.TimelineComponentProvider
-import io.ktor.client.features.json.serializer.KotlinxSerializer
 import kotlinx.serialization.json.Json
 
 class MainApplication : Application(),

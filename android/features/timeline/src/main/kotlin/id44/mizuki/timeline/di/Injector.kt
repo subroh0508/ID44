@@ -1,6 +1,6 @@
 package id44.mizuki.timeline.di
 
-import id44.mizuki.components.timeline.buildTimelineComponent
+import id44.mizuki.bridges.timeline.di.buildTimelineComponent
 import id44.mizuki.timeline.presentation.ui.TimelineActivity
 
 fun TimelineActivity.inject() {

@@ -13,7 +13,7 @@ dependencies {
     implementation(project(":android:base"))
     implementation(project(":android:auth"))
     implementation(project(":android:components:core"))
-    implementation(project(":android:components:timeline"))
+    implementation(project(":bridges:timeline"))
     implementation(project(":libraries:shared"))
     implementation(project(":libraries:auth:infra"))
     implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))

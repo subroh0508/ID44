@@ -97,7 +97,7 @@ dependencies {
 
     implementation(project(":android:components:core"))
     implementation(project(":android:components:authentication"))
-    implementation(project(":android:components:timeline"))
+    implementation(project(":bridges:timeline"))
     implementation(project(":android:features:authentication"))
     implementation(project(":android:features:timeline"))
     implementation(project(":react-native-vector-icons"))
