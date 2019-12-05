@@ -23,6 +23,7 @@ include(
     ":libraries:timeline:domain:valueobject",
     ":libraries:timeline:domain:usecase:subscribe",
     ":libraries:timeline:domain:usecase:unsubscribe",
+    ":bridges:timeline",
     ":react-native-vector-icons",
     ":react-native-gesture-handler",
     ":react-native-reanimated"
