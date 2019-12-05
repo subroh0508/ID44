@@ -3,7 +3,7 @@ import { AppRegistry } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import TimelineComponent from "./TimelineComponent";
 import { TimelineFrame } from "./TimelineFrame";
-import { fetchOwnAccounts } from "./native/TimelineContract";
+import { fetchOwnAccounts } from "./native/TimelineModule";
 
 // mizuki
 const theme = {

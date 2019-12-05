@@ -13,7 +13,7 @@ import {
   withTheme
 } from 'react-native-paper';
 
-import TimelineContract from './native/TimelineContract';
+import TimelineModule from './native/TimelineModule';
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -33,8 +33,8 @@ class TimelineComponent extends Component {
   }
 
   componentDidMount() {
-    const eventEmitter = new NativeEventEmitter(TimelineContract);
-    eventEmitter.addListener(TimelineContract.EVENT_APPEND_STATUS, (status) => {
+    const eventEmitter = new NativeEventEmitter(TimelineModule);
+    eventEmitter.addListener(TimelineModule.EVENT_APPEND_STATUS, (status) => {
       this.setState({ content: status.content })
     })
   }

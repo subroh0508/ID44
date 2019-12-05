@@ -9,7 +9,7 @@ import {
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import TimelineComponent from "./TimelineComponent";
-import { openAuthentication, switchAccount } from "./native/TimelineContract";
+import { openAuthentication, switchAccount } from "./native/TimelineModule";
 
 const styles = StyleSheet.create({
   icon: {
