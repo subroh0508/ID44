@@ -1,4 +1,4 @@
-package id44.mizuki.timeline.reactnative
+package id44.mizuki.bridges.timeline
 
 import android.app.Application
 import com.facebook.react.ReactPackage
@@ -7,7 +7,7 @@ import com.swmansion.reanimated.ReanimatedPackage
 import id44.mizuki.base.reactnative.BaseReactNativeHost
 import javax.inject.Inject
 
-class TimelineReactNativeHost @Inject constructor(
+internal class TimelineReactNativeHost @Inject constructor(
     app: Application,
     private val `package`: ReactPackage
 ) : BaseReactNativeHost(app) {

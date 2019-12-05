@@ -1,4 +1,4 @@
-package id44.mizuki.timeline.reactnative
+package id44.mizuki.bridges.timeline
 
 import android.view.View
 import com.facebook.react.ReactPackage
@@ -6,11 +6,10 @@ import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ReactShadowNode
 import com.facebook.react.uimanager.ViewManager
-import id44.mizuki.timeline.presentation.model.OwnAccountsViewModel
 import javax.inject.Inject
 
-class TimelineActivityPackage @Inject constructor(
-    private val ownAccountsViewModel: OwnAccountsViewModel
+internal class TimelinePackage @Inject constructor(
+    private val bridge: TimelineBridge
 ) : ReactPackage {
     override fun createViewManagers(
         reactContext: ReactApplicationContext
@@ -19,6 +18,6 @@ class TimelineActivityPackage @Inject constructor(
     override fun createNativeModules(
         reactContext: ReactApplicationContext
     ): MutableList<NativeModule> = mutableListOf(
-        TimelineActivityReactModule(reactContext, ownAccountsViewModel)
+        TimelineReactModule(reactContext, bridge)
     )
 }
