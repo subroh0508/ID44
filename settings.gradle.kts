@@ -4,7 +4,6 @@ include(
     ":android:auth",
     ":android:components:core",
     ":android:components:authentication",
-    ":android:components:timeline",
     ":android:features:authentication",
     ":android:features:timeline",
     ":libraries:shared",
