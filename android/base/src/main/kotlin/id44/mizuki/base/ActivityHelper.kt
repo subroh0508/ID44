@@ -17,6 +17,6 @@ object Activities {
     }
 
     object Timeline : AddressableActivity {
-        override val className = "$PACKAGE_NAME.timeline.presentation.ui.TimelineActivity"
+        override val className = "$PACKAGE_NAME.timeline.TimelineActivity"
     }
 }
