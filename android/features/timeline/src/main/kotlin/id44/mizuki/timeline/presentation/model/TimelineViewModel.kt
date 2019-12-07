@@ -18,7 +18,7 @@ class TimelineViewModel(
     authViewModel: RequireAuthViewModel
 ) : ViewModel(), RequireAuthContract.ViewModel by authViewModel {
     val status: LiveData<Status> = liveData {
-        subscribeUseCase.execute(Stream.LOCAL).collect { emit(it) }
+        subscribeUseCase.execute(Stream.LOCAL)?.collect { emit(it) }
     }
 
     override fun onCleared() = unsubscribeUseCase.execute(Stream.LOCAL)

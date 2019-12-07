@@ -13,7 +13,12 @@ import {
   withTheme
 } from 'react-native-paper';
 
-import TimelineModule from './native/TimelineModule';
+import TimelineModule, {
+  EVENT_APPEND_STATUS,
+  STREAM,
+  subscribe,
+  unsubscribe,
+} from './native/TimelineModule';
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -33,10 +38,14 @@ class TimelineComponent extends Component {
   }
 
   componentDidMount() {
-    const eventEmitter = new NativeEventEmitter(TimelineModule);
-    eventEmitter.addListener(TimelineModule.EVENT_APPEND_STATUS, (status) => {
-      this.setState({ content: status.content })
-    })
+    new NativeEventEmitter(TimelineModule).addListener(
+      EVENT_APPEND_STATUS,
+      (status) => {
+        this.setState({ content: status.content })
+      },
+    );
+
+    subscribe(STREAM.LOCAL);
   }
 
   render() {

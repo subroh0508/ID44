@@ -2,6 +2,7 @@ package id44.mizuki.timeline.presentation.ui
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.facebook.react.bridge.Arguments
 import id44.mizuki.auth.presentation.ui.RequireAuthReactActivity
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
@@ -37,6 +38,10 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView {
         finish()
         startActivity(intent)
     }
+
+    override fun emitStatus(key: String, status: Map<String, Any>) =
+            emitter?.emit(key, Arguments.makeNativeMap(status)) ?: Unit
+
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent
 }

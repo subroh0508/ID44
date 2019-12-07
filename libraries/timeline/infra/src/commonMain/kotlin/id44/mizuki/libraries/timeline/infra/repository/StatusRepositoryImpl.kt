@@ -14,11 +14,15 @@ internal class StatusRepositoryImpl(
 ) : StatusRepository {
     private val channels: HashMap<String, Flow<Status>> = hashMapOf()
 
-    override suspend fun openSubscription(stream: Stream): Flow<Status> {
+    override suspend fun openSubscription(stream: Stream): Flow<Status>? {
         val streamType = stream.toStreamType()
         val key = streamingApi.streamKey(streamType)
 
-        return channels[key] ?: streamingApi.openEventChannel(streamType)
+        if (channels.containsKey(key)) {
+            return null
+        }
+
+        return streamingApi.openEventChannel(streamType)
             .consumeAsFlow()
             .mapNotNull { it.toStatus() }
             .also { channels[key] = it }

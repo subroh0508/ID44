@@ -9,7 +9,8 @@ import com.facebook.react.uimanager.ViewManager
 import javax.inject.Inject
 
 internal class TimelinePackage @Inject constructor(
-    private val bridge: TimelineBridge
+    private val ownAccountsBridge: OwnAccountsBridge,
+    private val timelineBridge: TimelineBridge
 ) : ReactPackage {
     override fun createViewManagers(
         reactContext: ReactApplicationContext
@@ -18,6 +19,6 @@ internal class TimelinePackage @Inject constructor(
     override fun createNativeModules(
         reactContext: ReactApplicationContext
     ): MutableList<NativeModule> = mutableListOf(
-        TimelineReactModule(reactContext, bridge)
+        TimelineReactModule(reactContext, ownAccountsBridge, timelineBridge)
     )
 }

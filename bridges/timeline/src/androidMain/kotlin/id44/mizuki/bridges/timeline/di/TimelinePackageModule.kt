@@ -9,6 +9,8 @@ import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.bridges.timeline.*
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
+import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
+import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
 
 @Module
 abstract class TimelinePackageModule {
@@ -25,10 +27,19 @@ abstract class TimelinePackageModule {
         @JvmStatic
         @Provides
         @ActivityScope
-        internal fun provideTimelineBridge(
+        internal fun provideOwnAccountsBridge(
             view: TimelineView,
             fetchOwnAccountsUseCase: FetchOwnAccountsUseCase,
             switchAccessTokenUseCase: SwitchAccessTokenUseCase
-        ): TimelineBridge = TimelineBridgeImpl(view, fetchOwnAccountsUseCase, switchAccessTokenUseCase)
+        ) = OwnAccountsBridge(view, fetchOwnAccountsUseCase, switchAccessTokenUseCase)
+
+        @JvmStatic
+        @Provides
+        @ActivityScope
+        internal fun provideTimelineBridge(
+            view: TimelineView,
+            subscribeUseCase: TimelineSubscribeUseCase,
+            unsubscribeUseCase: TimelineUnsubscribeUseCase
+        ) = TimelineBridge(view, subscribeUseCase, unsubscribeUseCase)
     }
 }

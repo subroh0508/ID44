@@ -5,14 +5,14 @@ import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessT
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 
-internal class TimelineBridgeImpl(
+internal class OwnAccountsBridge(
     private val view: TimelineView,
     private val fetchOwnAccountsUseCase: FetchOwnAccountsUseCase,
     private val switchAccessTokenUseCase: SwitchAccessTokenUseCase
-) : TimelineBridge {
-    override fun openAuthentication() = view.openAuthentication()
+) {
+    fun openAuthentication() = view.openAuthentication()
 
-    override fun fetchOwnAccounts(): List<Map<String, Any>> = fetchOwnAccountsUseCase.execute().map { account ->
+    fun fetchOwnAccounts(): List<Map<String, Any>> = fetchOwnAccountsUseCase.execute().map { account ->
         mapOf(
             "id" to account.id.value,
             "displayName" to account.displayName,
@@ -22,8 +22,8 @@ internal class TimelineBridgeImpl(
         )
     }
 
-    override fun switchAccount(host: String, id: String) {
-        switchAccessTokenUseCase.execute(HostName(host), AccountId(id))
+    fun switchAccount(host: HostName, id: AccountId) {
+        switchAccessTokenUseCase.execute(host, id)
         view.restart()
     }
 }
