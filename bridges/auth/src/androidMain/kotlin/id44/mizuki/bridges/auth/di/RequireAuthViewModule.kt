@@ -15,19 +15,4 @@ abstract class RequireAuthViewModule<in V: RequireAuthView> {
     @Binds
     @ActivityScope
     abstract fun bindRequireAuthView(view: V): RequireAuthView
-
-    @Module
-    companion object {
-        @JvmStatic
-        @Provides
-        @ActivityScope
-        internal fun provideRequireAuthBridge(view: RequireAuthView, repository: AccessTokenRepository) =
-            RequireAuthBridge(view, repository)
-
-        @JvmStatic
-        @Provides
-        @ActivityScope
-        internal fun provideHttpExceptionHandler(bridge: RequireAuthBridge) =
-            CoroutineExceptionHandler { _, throwable -> bridge.handleOnHttpException(throwable) }
-    }
 }

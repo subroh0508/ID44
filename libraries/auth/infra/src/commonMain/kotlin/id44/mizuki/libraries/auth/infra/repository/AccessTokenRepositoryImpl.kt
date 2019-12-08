@@ -38,7 +38,7 @@ internal class AccessTokenRepositoryImpl(
 
     override val nowToken get() = localStore.getNowVerifyAccountsCredential()?.let { (host, response) ->
         getAccessToken(HostName(host), AccountId(response.id))
-    } ?: throw NullPointerException()
+    } ?: throw IllegalStateException()
     override val nowHost get() =
-        HostName(localStore.getNowVerifyAccountsCredential()?.hostName ?: throw NullPointerException())
+        HostName(localStore.getNowVerifyAccountsCredential()?.hostName ?: throw IllegalStateException())
 }

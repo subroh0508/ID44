@@ -10,6 +10,7 @@ import id44.mizuki.bridges.auth.di.RequireAuthViewModule
 import id44.mizuki.bridges.timeline.*
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
+import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
 
@@ -42,9 +43,9 @@ abstract class TimelineViewModule<in V: TimelineView> : RequireAuthViewModule<V>
         @Provides
         @ActivityScope
         internal fun provideTimelineBridge(
-            view: TimelineView,
+            view: TimelineView, accessTokenRepository: AccessTokenRepository,
             subscribeUseCase: TimelineSubscribeUseCase,
             unsubscribeUseCase: TimelineUnsubscribeUseCase
-        ) = TimelineBridge(view, subscribeUseCase, unsubscribeUseCase)
+        ) = TimelineBridge(view, accessTokenRepository, subscribeUseCase, unsubscribeUseCase)
     }
 }

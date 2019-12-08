@@ -1,6 +1,5 @@
 package id44.mizuki.bridges.timeline
 
-import android.util.Log
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
@@ -32,11 +31,7 @@ internal actual class TimelineReactModule(
     fun switchAccount(host: String, id: String) = ownAccountsBridge.switchAccount(HostName(host), AccountId(id))
 
     @ReactMethod
-    fun subscribe(stream: String, promise: Promise) {
-        runCatching { timelineBridge.subscribe(Stream.valueOf(stream)) }
-            .onSuccess { promise.resolve(null) }
-            .onFailure { e -> promise.resolve(e.message) }
-    }
+    fun subscribe(stream: String, promise: Promise) = timelineBridge.subscribe(Stream.valueOf(stream), promise)
     @ReactMethod
     fun unsubscribe(stream: String) = timelineBridge.unsubscribe(Stream.valueOf(stream))
 }
