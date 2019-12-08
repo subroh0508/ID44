@@ -1,4 +1,4 @@
-package id44.mizuki.auth.presentation.ui
+package id44.mizuki.auth.presentation
 
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
