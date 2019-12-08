@@ -37,7 +37,7 @@ class TimelineComponent extends Component {
     this.state = { content: 'init' };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     new NativeEventEmitter(TimelineModule).addListener(
       EVENT_APPEND_STATUS,
       (status) => {
@@ -45,7 +45,11 @@ class TimelineComponent extends Component {
       },
     );
 
-    subscribe(STREAM.LOCAL);
+    try {
+      await subscribe(STREAM.LOCAL);
+    } catch (e) {
+      console.log('error', e);
+    }
   }
 
   render() {

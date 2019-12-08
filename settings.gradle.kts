@@ -6,6 +6,8 @@ include(
     ":android:components:authentication",
     ":android:features:authentication",
     ":android:features:timeline",
+    ":bridges:auth",
+    ":bridges:timeline",
     ":libraries:shared",
     ":libraries:api",
     ":libraries:account:infra",
@@ -22,7 +24,6 @@ include(
     ":libraries:timeline:domain:valueobject",
     ":libraries:timeline:domain:usecase:subscribe",
     ":libraries:timeline:domain:usecase:unsubscribe",
-    ":bridges:timeline",
     ":react-native-vector-icons",
     ":react-native-gesture-handler",
     ":react-native-reanimated"

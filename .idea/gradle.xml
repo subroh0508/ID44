@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/android/features/authentication" />
             <option value="$PROJECT_DIR$/android/features/timeline" />
             <option value="$PROJECT_DIR$/bridges" />
+            <option value="$PROJECT_DIR$/bridges/auth" />
             <option value="$PROJECT_DIR$/bridges/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/frontend/node_modules/react-native-gesture-handler/android" />
