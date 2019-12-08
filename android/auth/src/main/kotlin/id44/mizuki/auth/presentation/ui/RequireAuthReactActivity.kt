@@ -1,25 +1,22 @@
 package id44.mizuki.auth.presentation.ui
 
-import android.os.Bundle
-import androidx.lifecycle.Observer
-import id44.mizuki.auth.presentation.viewmodel.RequireAuthViewModel
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.InjectableReactActivity
+import id44.mizuki.bridges.auth.RequireAuthView
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-abstract class RequireAuthReactActivity : InjectableReactActivity() {
+abstract class RequireAuthReactActivity : InjectableReactActivity(), RequireAuthView {
     @Inject
-    internal lateinit var viewModel: RequireAuthViewModel
+    internal lateinit var httpExceptionHandler: CoroutineExceptionHandler
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main + httpExceptionHandler
 
-        viewModel.httpException.observe(this, Observer(this::showHttpErrorMessage))
-        viewModel.openAuthentication.observe(this, Observer { openAuthentication() })
-    }
-
-    private fun openAuthentication() {
+    override fun openAuthentication() {
         finish()
         startActivity(intentTo(Activities.Authentication))
     }

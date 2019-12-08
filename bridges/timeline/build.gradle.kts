@@ -13,6 +13,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":bridges:auth"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:auth:infra"))
@@ -36,8 +37,6 @@ kotlin {
                 implementation(Libraries.Ktor.serializationCommon)
 
                 implementation(Libraries.Klock.common)
-
-                implementation(Libraries.reactNative)
             }
         }
 
@@ -62,6 +61,8 @@ kotlin {
 
                 implementation(Libraries.Okhttp3.client)
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
+
+                implementation(Libraries.reactNative)
 
                 implementation(Libraries.Dagger.core)
             }
