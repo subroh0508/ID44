@@ -11,7 +11,6 @@ import id44.mizuki.libraries.shared.valueobject.Uri
 import id44.mizuki.signin.AccessDeniedError
 import id44.mizuki.signin.AuthorizeError
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,18 +31,17 @@ internal class SignInViewModelImpl(
 
     private val hostName: MutableLiveData<HostName> = MutableLiveData()
 
-    private val authorizeErrorHandler =
-        CoroutineExceptionHandler { _, throwable -> _authorizeError.postValue(throwable) }
-
     override fun onChangeHostName(host: HostName) = hostName.postValue(host)
     override fun startOauth2Flow(clientName: String, redirectUri: Uri) {
-        viewModelScope.launch(authorizeErrorHandler) {
+        viewModelScope.launch {
             val host = hostName.value ?: return@launch
 
-            _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
-            deferredCode = CompletableDeferred()
+            runCatching {
+                _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
+                deferredCode = CompletableDeferred()
 
-            _accessToken.postValue(requestAccessTokenUseCase.execute(host, redirectUri, deferredCode.await()))
+                _accessToken.postValue(requestAccessTokenUseCase.execute(host, redirectUri, deferredCode.await()))
+            }.onFailure(_authorizeError::postValue)
         }
     }
     fun onNewIntent(intent: Intent?, redirectUri: Uri) {

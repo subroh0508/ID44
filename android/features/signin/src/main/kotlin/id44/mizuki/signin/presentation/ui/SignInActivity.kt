@@ -31,7 +31,7 @@ class SignInActivity : InjectableReactActivity(), SignInView {
         super.onCreate(savedInstanceState)
 
         viewModel.authorizeUri.observe(this, Observer(this::openAuthorizePage))
-        viewModel.accessToken.observe(this, Observer { startActivity(intentTo(Activities.Timeline)) })
+        viewModel.accessToken.observe(this, Observer { openTimeline() })
         viewModel.authorizeError.observe(this, Observer(this::showErrorMessage))
     }
 
@@ -44,6 +44,11 @@ class SignInActivity : InjectableReactActivity(), SignInView {
         Intent(Intent.ACTION_VIEW, url).takeIf {
             it.resolveActivity(packageManager) != null
         }?.let(this::startActivity) ?: showErrorMessage(BrowserAppNotFoundError())
+    }
+
+    private fun openTimeline() {
+        finish()
+        startActivity(intentTo(Activities.Timeline))
     }
 
     private fun showErrorMessage(throwable: Throwable) {
