@@ -7,6 +7,7 @@ include(
     ":android:features:authentication",
     ":android:features:timeline",
     ":bridges:auth",
+    ":bridges:signin",
     ":bridges:timeline",
     ":libraries:shared",
     ":libraries:api",
