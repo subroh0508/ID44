@@ -2,7 +2,7 @@ package id44.mizuki.timeline
 
 import android.os.Bundle
 import com.facebook.react.bridge.Arguments
-import id44.mizuki.auth.presentation.RequireAuthReactActivity
+import id44.mizuki.auth.RequireAuthReactActivity
 import id44.mizuki.bridges.timeline.TimelineView
 import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject

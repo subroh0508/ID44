@@ -3,7 +3,6 @@ include(
     ":android:base",
     ":android:auth",
     ":android:components:core",
-    //":android:components:authentication",
     ":android:features:signin",
     ":android:features:timeline",
     ":bridges:auth",
