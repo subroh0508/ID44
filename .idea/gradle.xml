@@ -14,10 +14,9 @@
             <option value="$PROJECT_DIR$/android/auth" />
             <option value="$PROJECT_DIR$/android/base" />
             <option value="$PROJECT_DIR$/android/components" />
-            <option value="$PROJECT_DIR$/android/components/authentication" />
             <option value="$PROJECT_DIR$/android/components/core" />
             <option value="$PROJECT_DIR$/android/features" />
-            <option value="$PROJECT_DIR$/android/features/authentication" />
+            <option value="$PROJECT_DIR$/android/features/signin" />
             <option value="$PROJECT_DIR$/android/features/timeline" />
             <option value="$PROJECT_DIR$/bridges" />
             <option value="$PROJECT_DIR$/bridges/auth" />

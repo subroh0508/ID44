@@ -1,4 +1,4 @@
-package id44.mizuki.authentication
+package id44.mizuki.signin
 
 class AccessDeniedError : Throwable()
 class AuthorizeError(message: String?) : Throwable(message)

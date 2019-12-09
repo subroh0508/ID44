@@ -96,9 +96,9 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":android:components:core"))
-    implementation(project(":android:components:authentication"))
+    implementation(project(":bridges:signin"))
     implementation(project(":bridges:timeline"))
-    implementation(project(":android:features:authentication"))
+    implementation(project(":android:features:signin"))
     implementation(project(":android:features:timeline"))
     implementation(project(":react-native-vector-icons"))
 

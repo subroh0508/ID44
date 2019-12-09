@@ -16,7 +16,7 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
 import id44.mizuki.BuildConfig
 import id44.mizuki.R
-import id44.mizuki.authentication.presentation.ui.AuthenticationActivity
+import id44.mizuki.signin.presentation.ui.SignInActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        startActivity(Intent(this, AuthenticationActivity::class.java))
+        startActivity(Intent(this, SignInActivity::class.java))
     }
 
     @TargetApi(Build.VERSION_CODES.N)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             PreferenceManager.getDefaultSharedPreferences(applicationContext).edit {
                 putString("debug_http_host", BuildConfig.DEV_HOST)
             }
-            startActivity(Intent(this, AuthenticationActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
         }
 
         super.onActivityResult(requestCode, resultCode, data)

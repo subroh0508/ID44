@@ -12,7 +12,7 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":android:components:core"))
-    implementation(project(":android:components:authentication"))
+    implementation(project(":bridges:signin"))
     implementation(project(":libraries:shared"))
     implementation(project(":libraries:auth:domain:valueobject"))
     implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
@@ -31,6 +31,7 @@ dependencies {
     implementation(Libraries.Jetpack.recyclerView)
     implementation(Libraries.Jetpack.material)
     implementation(Libraries.Jetpack.Lifecycle.extensions)
+    implementation(Libraries.Jetpack.Lifecycle.viewModelKtx)
 
     implementation(Libraries.reactNative)
 

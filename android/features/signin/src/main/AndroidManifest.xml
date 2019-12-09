@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="id44.mizuki.authentication">
+          package="id44.mizuki.signin">
     <application>
         <activity
-            android:name=".presentation.ui.AuthenticationActivity"
+            android:name=".presentation.ui.SignInActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

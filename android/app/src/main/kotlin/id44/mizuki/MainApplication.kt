@@ -2,10 +2,10 @@ package id44.mizuki
 
 import android.app.Application
 import com.facebook.soloader.SoLoader
+import id44.mizuki.bridges.signin.di.SignInComponent
+import id44.mizuki.bridges.signin.di.SignInComponentProvider
 import id44.mizuki.bridges.timeline.di.TimelineComponent
 import id44.mizuki.bridges.timeline.di.TimelineComponentProvider
-import id44.mizuki.components.authentication.AuthComponent
-import id44.mizuki.components.authentication.AuthComponentProvider
 import id44.mizuki.components.core.CoreComponent
 import id44.mizuki.components.core.CoreComponentProvider
 import id44.mizuki.components.core.CoreModule
@@ -13,10 +13,10 @@ import id44.mizuki.components.core.DaggerCoreComponent
 import kotlinx.serialization.json.Json
 
 class MainApplication : Application(),
-    CoreComponentProvider, AuthComponentProvider, TimelineComponentProvider {
+    CoreComponentProvider, SignInComponentProvider, TimelineComponentProvider {
 
     override lateinit var coreComponent: CoreComponent
-    override lateinit var authComponent: AuthComponent
+    override lateinit var signInComponent: SignInComponent
     override lateinit var timelineComponent: TimelineComponent
 
     /*
