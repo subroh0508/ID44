@@ -23,7 +23,7 @@ class SignInActivity : InjectableReactActivity(), SignInView {
     @Inject
     internal lateinit var viewModel: SignInViewModelImpl
 
-    override fun getMainComponentName(): String = "Auth"
+    override fun getMainComponentName(): String = "SignIn"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()

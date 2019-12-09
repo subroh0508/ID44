@@ -12,7 +12,7 @@ import {
 } from 'react-native-paper';
 
 import wallpaper from '../../assets/mizuki.png';
-import AuthenticationContract from './native/AuthenticationContract';
+import SignInModule from './native/SignInModule';
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -64,7 +64,7 @@ const withStyles = ({ colors }) => (
   })
 );
 
-class AuthComponent extends Component {
+class SignInComponent extends Component {
   render() {
     const styles = withStyles(this.props.theme);
 
@@ -82,12 +82,12 @@ class AuthComponent extends Component {
             style={ styles.textInput }
             label='Host Name'
             mode='outlined'
-            onChangeText={ text => AuthenticationContract.onChangedHostName(text) }
+            onChangeText={ text => SignInModule.onChangedHostName(text) }
           />
           <Button
             style={ styles.button }
             mode='outlined'
-            onPress={ () => AuthenticationContract.onClickAuthorize() }
+            onPress={ () => SignInModule.onClickAuthorize() }
           >Authorize</Button>
         </View>
       </View>
@@ -95,4 +95,4 @@ class AuthComponent extends Component {
   }
 }
 
-export default withTheme(AuthComponent);
+export default withTheme(SignInComponent);

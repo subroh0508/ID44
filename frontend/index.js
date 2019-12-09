@@ -1,2 +1,2 @@
-import './components/auth/index';
+import './components/signin/index';
 import './components/timeline/index';

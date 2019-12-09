@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import AuthComponent from './AuthComponent';
+import SignInComponent from './SignInComponent';
 
 // mizuki
 const theme = {
@@ -46,12 +46,12 @@ const theme = {
 };
 */
 
-const Auth = () => {
+const SignIn = () => {
   return (
     <PaperProvider theme={ theme }>
-      <AuthComponent/>
+      <SignInComponent/>
     </PaperProvider>
   );
 };
 
-AppRegistry.registerComponent('Auth', () => Auth);
+AppRegistry.registerComponent('SignIn', () => SignIn);
