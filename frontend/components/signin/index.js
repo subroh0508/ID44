@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { createStore } from "redux";
+import { Provider } from 'react-redux';
 import { AppRegistry } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import SignInComponent from './SignInComponent';
+import SignIn from './containers/SignIn';
+import signIn from './reducers';
 
 // mizuki
 const theme = {
@@ -46,12 +49,16 @@ const theme = {
 };
 */
 
-const SignIn = () => {
+const store = createStore(signIn);
+
+const SignInComponent = () => {
   return (
-    <PaperProvider theme={ theme }>
-      <SignInComponent/>
-    </PaperProvider>
+    <Provider store={ store }>
+      <PaperProvider theme={ theme }>
+        <SignIn/>
+      </PaperProvider>
+    </Provider>
   );
 };
 
-AppRegistry.registerComponent('SignIn', () => SignIn);
+AppRegistry.registerComponent('SignIn', () => SignInComponent);

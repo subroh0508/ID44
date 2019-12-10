@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Image,
@@ -11,8 +12,9 @@ import {
   withTheme
 } from 'react-native-paper';
 
-import wallpaper from '../../assets/mizuki.png';
-import SignInModule from './native/SignInModule';
+import wallpaper from '../../../assets/mizuki.png';
+import SignInModule from '../native/SignInModule';
+import { onChangedHostName } from '../actions';
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -64,8 +66,11 @@ const withStyles = ({ colors }) => (
   })
 );
 
-class SignInComponent extends Component {
+class SignIn extends Component {
   render() {
+    const { hostName } = this.props;
+
+    console.log("hostName:", hostName);
     const styles = withStyles(this.props.theme);
 
     return (
@@ -82,7 +87,7 @@ class SignInComponent extends Component {
             style={ styles.textInput }
             label='Host Name'
             mode='outlined'
-            onChangeText={ text => SignInModule.onChangedHostName(text) }
+            onChangeText={ this.props.onChangedHostName.bind(null) }
           />
           <Button
             style={ styles.button }
@@ -95,4 +100,15 @@ class SignInComponent extends Component {
   }
 }
 
-export default withTheme(SignInComponent);
+const mapStateToProps = (state, _ownProps) => ({
+  hostName: state.hostName,
+});
+
+const mapDispatchToProps = {
+  onChangedHostName,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withTheme(SignIn));
