@@ -24,5 +24,7 @@ internal actual class SignInReactModule(
         }
     }
     @ReactMethod
+    fun showToast(message: String) = viewModel.showToast(message)
+    @ReactMethod
     fun openTimeline() = viewModel.openTimeline()
 }

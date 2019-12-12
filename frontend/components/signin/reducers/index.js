@@ -10,7 +10,6 @@ const initialState = {
 };
 
 const signIn = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case ON_CHANGED_HOST_NAME:
       return { ...state, hostName: action.value };

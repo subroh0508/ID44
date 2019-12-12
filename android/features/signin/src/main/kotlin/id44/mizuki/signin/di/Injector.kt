@@ -9,8 +9,7 @@ fun SignInActivity.inject() {
     val clientName: String by lazy { getString(R.string.auth_client_name) }
     val redirectUri: Uri by lazy { Uri.parse("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
 
-    signInActivityComponent = DaggerSignInActivityComponent.factory()
+    DaggerSignInActivityComponent.factory()
         .create(buildSignInComponent(), this, clientName, redirectUri)
-
-    signInActivityComponent.inject(this)
+        .inject(this)
 }

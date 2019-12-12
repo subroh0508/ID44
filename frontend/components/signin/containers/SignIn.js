@@ -69,7 +69,6 @@ class SignIn extends Component {
   render() {
     const { hostName } = this.props;
 
-    console.log("hostName:", hostName);
     const styles = withStyles(this.props.theme);
 
     return (

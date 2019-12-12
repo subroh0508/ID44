@@ -7,5 +7,6 @@ interface SignInViewModel {
     val scope: CoroutineScope
 
     suspend fun startOauth2Flow(host: HostName)
+    fun showToast(message: String)
     fun openTimeline()
 }

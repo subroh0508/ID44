@@ -3,6 +3,7 @@ package id44.mizuki.signin.presentation.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.lifecycle.Observer
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
@@ -30,6 +31,7 @@ class SignInActivity : InjectableReactActivity() {
         super.onCreate(savedInstanceState)
 
         viewModel.authorizeUri.observe(this, Observer(this::openAuthorizePage))
+        viewModel.message.observe(this, Observer(this::showToast))
         viewModel.openTimeline.observe(this, Observer { openTimeline() })
     }
 
@@ -38,15 +40,17 @@ class SignInActivity : InjectableReactActivity() {
         viewModel.onNewIntent(intent)
     }
 
-    private fun openTimeline() {
-        finish()
-        startActivity(intentTo(Activities.Timeline))
-    }
-
     private fun openAuthorizePage(url: Uri) {
         Intent(Intent.ACTION_VIEW, url).takeIf {
             it.resolveActivity(packageManager) != null
         }?.let(this::startActivity) ?: viewModel.onNotFoundBrowser()
+    }
+
+    private fun showToast(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
+
+    private fun openTimeline() {
+        finish()
+        startActivity(intentTo(Activities.Timeline))
     }
 
     private fun showErrorMessage(throwable: Throwable) {
@@ -60,6 +64,4 @@ class SignInActivity : InjectableReactActivity() {
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
-
-    internal lateinit var signInActivityComponent: SignInActivityComponent
 }

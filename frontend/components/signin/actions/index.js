@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { startOauth2Flow, openTimeline } from '../native/SignInModule';
+import { startOauth2Flow, showToast, openTimeline } from '../native/SignInModule';
 
 const prefix = 'sign_in';
 
@@ -33,7 +33,7 @@ export const onClickedAuthorize = host => async (dispatch, _getState) => {
       message = i18next.t('signIn.exceptions.unknown');
     }
 
-    console.log(message);
+    showToast(message);
     dispatch(toggleAuthorizationStatus(STATUS_ERROR, message))
   }
 };

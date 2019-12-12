@@ -28,15 +28,18 @@ internal class SignInViewModelImpl(
 
         requestAccessTokenUseCase.execute(host, redirectUri, code)
     }
+
+    override fun showToast(message: String) = _message.postValue(message)
     override fun openTimeline() = _openTimeline.postValue(Unit)
 
     private lateinit var deferredCode: CompletableDeferred<String>
 
     val authorizeUri: LiveData<Uri> get() = _authorizeUri
     private val _authorizeUri: MutableLiveData<Uri> = MutableLiveData()
-
     val openTimeline: LiveData<Unit> get() = _openTimeline
     private val _openTimeline: MutableLiveData<Unit> = MutableLiveData()
+    val message: LiveData<String> get() = _message
+    private val _message: MutableLiveData<String> = MutableLiveData()
 
     fun onNotFoundBrowser() = deferredCode.completeExceptionally(SignInException(SignInError.BROWSER_APP_NOT_FOUND))
     fun onNewIntent(intent: Intent?) {
