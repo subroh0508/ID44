@@ -7,9 +7,8 @@ import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAcces
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.shared.valueobject.Uri
-import id44.mizuki.signin.AccessDeniedError
-import id44.mizuki.signin.AuthorizeError
-import id44.mizuki.signin.BrowserAppNotFoundError
+import id44.mizuki.signin.SignInError
+import id44.mizuki.signin.SignInException
 import kotlinx.coroutines.CompletableDeferred
 import javax.inject.Inject
 
@@ -39,7 +38,7 @@ internal class SignInViewModelImpl(
     val openTimeline: LiveData<Unit> get() = _openTimeline
     private val _openTimeline: MutableLiveData<Unit> = MutableLiveData()
 
-    fun onNotFoundBrowser() = deferredCode.completeExceptionally(BrowserAppNotFoundError())
+    fun onNotFoundBrowser() = deferredCode.completeExceptionally(SignInException(SignInError.BROWSER_APP_NOT_FOUND))
     fun onNewIntent(intent: Intent?) {
         val authorizeCode = AuthorizeCode.fromIntent(intent, redirectUri)
 
@@ -51,9 +50,9 @@ internal class SignInViewModelImpl(
         val error = authorizeCode?.error
         deferredCode.completeExceptionally(
             when (error) {
-                "access_denied" -> AccessDeniedError()
-                null -> UnknownError(error)
-                else -> AuthorizeError(error)
+                "access_denied" -> SignInException(SignInError.ACCESS_DENIED)
+                null -> SignInException(SignInError.UNKNOWN)
+                else -> SignInException(SignInError.AUTHORIZE_FAILED, error)
             }
         )
     }
