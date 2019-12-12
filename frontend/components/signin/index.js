@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from "redux-thunk";
 import { AppRegistry } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import SignIn from './containers/SignIn';
@@ -49,7 +50,7 @@ const theme = {
 };
 */
 
-const store = createStore(signIn);
+const store = createStore(signIn, applyMiddleware(thunk));
 
 const SignInComponent = () => {
   return (
