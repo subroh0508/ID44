@@ -9,7 +9,6 @@ import com.facebook.react.uimanager.ViewManager
 import javax.inject.Inject
 
 internal class SignInPackage @Inject constructor(
-    private val view: SignInView,
     private val viewModel: SignInViewModel
 ) : ReactPackage {
     override fun createViewManagers(
@@ -19,6 +18,6 @@ internal class SignInPackage @Inject constructor(
     override fun createNativeModules(
         reactContext: ReactApplicationContext
     ): MutableList<NativeModule> = mutableListOf(
-        SignInReactModule(reactContext, view, viewModel)
+        SignInReactModule(reactContext, viewModel)
     )
 }

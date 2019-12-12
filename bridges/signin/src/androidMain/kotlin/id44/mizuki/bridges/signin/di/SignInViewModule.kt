@@ -7,14 +7,9 @@ import dagger.Module
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.bridges.signin.SignInPackage
 import id44.mizuki.bridges.signin.SignInReactNativeHost
-import id44.mizuki.bridges.signin.SignInView
 
 @Module
-abstract class SignInViewModule<in V: SignInView> {
-    @Binds
-    @ActivityScope
-    abstract fun bindSignInView(view: V): SignInView
-
+abstract class SignInViewModule {
     @Binds
     @ActivityScope
     internal abstract fun bindSignInPackage(`package`: SignInPackage): ReactPackage

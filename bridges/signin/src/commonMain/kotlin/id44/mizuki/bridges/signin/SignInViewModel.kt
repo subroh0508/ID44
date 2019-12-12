@@ -1,10 +1,11 @@
 package id44.mizuki.bridges.signin
 
 import id44.mizuki.libraries.shared.valueobject.HostName
-import id44.mizuki.libraries.shared.valueobject.Uri
+import kotlinx.coroutines.CoroutineScope
 
 interface SignInViewModel {
-    fun onChangeHostName(host: HostName)
+    val scope: CoroutineScope
 
-    fun startOauth2Flow(clientName: String, redirectUri: Uri)
+    suspend fun startOauth2Flow(host: HostName)
+    fun openTimeline()
 }

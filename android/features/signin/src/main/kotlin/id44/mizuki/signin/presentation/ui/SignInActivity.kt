@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.InjectableReactActivity
-import id44.mizuki.bridges.signin.SignInView
 import id44.mizuki.libraries.shared.valueobject.Uri
 import id44.mizuki.signin.AccessDeniedError
 import id44.mizuki.signin.AuthorizeError
@@ -19,7 +18,7 @@ import id44.mizuki.signin.presentation.model.SignInViewModelImpl
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class SignInActivity : InjectableReactActivity(), SignInView {
+class SignInActivity : InjectableReactActivity() {
     @Inject
     internal lateinit var viewModel: SignInViewModelImpl
 
@@ -31,24 +30,23 @@ class SignInActivity : InjectableReactActivity(), SignInView {
         super.onCreate(savedInstanceState)
 
         viewModel.authorizeUri.observe(this, Observer(this::openAuthorizePage))
-        viewModel.accessToken.observe(this, Observer { openTimeline() })
-        viewModel.authorizeError.observe(this, Observer(this::showErrorMessage))
+        viewModel.openTimeline.observe(this, Observer { openTimeline() })
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        viewModel.onNewIntent(intent, redirectUri)
-    }
-
-    private fun openAuthorizePage(url: Uri) {
-        Intent(Intent.ACTION_VIEW, url).takeIf {
-            it.resolveActivity(packageManager) != null
-        }?.let(this::startActivity) ?: showErrorMessage(BrowserAppNotFoundError())
+        viewModel.onNewIntent(intent)
     }
 
     private fun openTimeline() {
         finish()
         startActivity(intentTo(Activities.Timeline))
+    }
+
+    private fun openAuthorizePage(url: Uri) {
+        Intent(Intent.ACTION_VIEW, url).takeIf {
+            it.resolveActivity(packageManager) != null
+        }?.let(this::startActivity) ?: viewModel.onNotFoundBrowser()
     }
 
     private fun showErrorMessage(throwable: Throwable) {
@@ -62,9 +60,6 @@ class SignInActivity : InjectableReactActivity(), SignInView {
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
-
-    override val clientName: String by lazy { getString(R.string.auth_client_name) }
-    override val redirectUri: Uri by lazy { Uri.parse("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
 
     internal lateinit var signInActivityComponent: SignInActivityComponent
 }

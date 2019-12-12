@@ -5,46 +5,42 @@ import androidx.lifecycle.*
 import id44.mizuki.bridges.signin.SignInViewModel
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
-import id44.mizuki.libraries.shared.valueobject.AccessToken
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.shared.valueobject.Uri
 import id44.mizuki.signin.AccessDeniedError
 import id44.mizuki.signin.AuthorizeError
+import id44.mizuki.signin.BrowserAppNotFoundError
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class SignInViewModelImpl(
+        private val clientName: String,
+        private val redirectUri: Uri,
         private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
         private val requestAccessTokenUseCase: RequestAccessTokenUseCase
 ) : ViewModel(), SignInViewModel {
+    override val scope get() = viewModelScope
+
+    override suspend fun startOauth2Flow(host: HostName) {
+        _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
+
+        deferredCode = CompletableDeferred()
+        val code = deferredCode.await()
+
+        requestAccessTokenUseCase.execute(host, redirectUri, code)
+    }
+    override fun openTimeline() = _openTimeline.postValue(Unit)
+
     private lateinit var deferredCode: CompletableDeferred<String>
 
     val authorizeUri: LiveData<Uri> get() = _authorizeUri
     private val _authorizeUri: MutableLiveData<Uri> = MutableLiveData()
 
-    val accessToken: LiveData<AccessToken> get() = _accessToken
-    private val _accessToken: MutableLiveData<AccessToken> = MutableLiveData()
+    val openTimeline: LiveData<Unit> get() = _openTimeline
+    private val _openTimeline: MutableLiveData<Unit> = MutableLiveData()
 
-    val authorizeError: LiveData<Throwable> get() = _authorizeError
-    private val _authorizeError: MutableLiveData<Throwable> = MutableLiveData()
-
-    private val hostName: MutableLiveData<HostName> = MutableLiveData()
-
-    override fun onChangeHostName(host: HostName) = hostName.postValue(host)
-    override fun startOauth2Flow(clientName: String, redirectUri: Uri) {
-        viewModelScope.launch {
-            val host = hostName.value ?: return@launch
-
-            runCatching {
-                _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
-                deferredCode = CompletableDeferred()
-
-                _accessToken.postValue(requestAccessTokenUseCase.execute(host, redirectUri, deferredCode.await()))
-            }.onFailure(_authorizeError::postValue)
-        }
-    }
-    fun onNewIntent(intent: Intent?, redirectUri: Uri) {
+    fun onNotFoundBrowser() = deferredCode.completeExceptionally(BrowserAppNotFoundError())
+    fun onNewIntent(intent: Intent?) {
         val authorizeCode = AuthorizeCode.fromIntent(intent, redirectUri)
 
         if (authorizeCode?.isSuccess == true) {
@@ -63,11 +59,13 @@ internal class SignInViewModelImpl(
     }
 
     class Factory @Inject constructor(
+            private val clientName: String,
+            private val redirectUri: Uri,
             private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
             private val requestAccessTokenUseCase: RequestAccessTokenUseCase
     ) : ViewModelProvider.NewInstanceFactory() {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            SignInViewModelImpl(requestAppCredentialUseCase, requestAccessTokenUseCase) as T
+            SignInViewModelImpl(clientName, redirectUri, requestAppCredentialUseCase, requestAccessTokenUseCase) as T
     }
 }

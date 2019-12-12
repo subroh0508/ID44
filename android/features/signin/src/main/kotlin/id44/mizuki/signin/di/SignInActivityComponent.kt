@@ -4,6 +4,7 @@ import dagger.BindsInstance
 import dagger.Component
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.bridges.signin.di.SignInComponent
+import id44.mizuki.libraries.shared.valueobject.Uri
 import id44.mizuki.signin.presentation.ui.SignInActivity
 
 @ActivityScope
@@ -12,12 +13,14 @@ import id44.mizuki.signin.presentation.ui.SignInActivity
     dependencies = [SignInComponent::class]
 )
 interface SignInActivityComponent {
-    @Component.Builder
+    @Component.Factory
     interface Builder {
-        fun build(): SignInActivityComponent
-
-        fun signInComponent(signInComponent: SignInComponent): Builder
-        @BindsInstance fun signInActivity(activity: SignInActivity): Builder
+        fun create(
+            signInComponent: SignInComponent,
+            @BindsInstance activity: SignInActivity,
+            @BindsInstance clientName: String,
+            @BindsInstance redirectUri: Uri
+        ): SignInActivityComponent
     }
 
     fun inject(activity: SignInActivity)

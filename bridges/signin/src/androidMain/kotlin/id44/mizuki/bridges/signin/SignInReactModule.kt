@@ -3,17 +3,26 @@ package id44.mizuki.bridges.signin
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import id44.mizuki.libraries.shared.reactnative.ReactContextBaseModule
+import id44.mizuki.libraries.shared.reactnative.ReactPromise
 import id44.mizuki.libraries.shared.valueobject.HostName
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 internal actual class SignInReactModule(
         reactContext: ReactApplicationContext,
-        private val view: SignInView,
         private val viewModel: SignInViewModel
 ) : ReactContextBaseModule(reactContext) {
     override fun getName() = "SignInModule"
 
     @ReactMethod
-    fun onChangedHostName(hostName: String) = viewModel.onChangeHostName(HostName(hostName))
+    fun startOauth2Flow(host: String, promise: ReactPromise) {
+        viewModel.scope.launch {
+            runCatching { viewModel.startOauth2Flow(HostName(host)) }
+                .onSuccess { promise.resolve(null) }
+                .onFailure(promise::reject)
+        }
+    }
     @ReactMethod
-    fun onClickAuthorize() = viewModel.startOauth2Flow(view.clientName, view.redirectUri)
+    fun openTimeline() = viewModel.openTimeline()
 }
