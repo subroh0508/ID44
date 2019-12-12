@@ -6,6 +6,7 @@
     "start": "yarn react-native start"
   },
   "dependencies": {
+    "i18next": "^19.0.2",
     "react": "16.9.0",
     "react-native": "0.61.3",
     "react-native-elements": "^1.2.7",
