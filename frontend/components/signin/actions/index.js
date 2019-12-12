@@ -14,13 +14,13 @@ export const onChangedHostName = host => ({
 });
 
 export const onClickedAuthorize = host => async (dispatch, _getState) => {
-  dispatch(toggleAuthorizationStatus(STATUS_START));
+  dispatch(onChangeAuthorizationStatus(STATUS_START));
 
   try {
     await startOauth2Flow(host);
 
     openTimeline();
-    dispatch(toggleAuthorizationStatus(STATUS_FINISH));
+    dispatch(onChangeAuthorizationStatus(STATUS_FINISH));
   } catch (e) {
     let message = e.message || '';
     if (message.startsWith('ACCESS_DENIED')) {
@@ -34,12 +34,12 @@ export const onClickedAuthorize = host => async (dispatch, _getState) => {
     }
 
     showToast(message);
-    dispatch(toggleAuthorizationStatus(STATUS_ERROR, message))
+    dispatch(onChangeAuthorizationStatus(STATUS_ERROR, message))
   }
 };
 
-export const TOGGLE_AUTHORIZATION_STATUS = `${prefix}/TOGGLE_AUTHORIZATION_STATUS`;
-export const toggleAuthorizationStatus = (status, message = null) => ({
-  type: TOGGLE_AUTHORIZATION_STATUS,
+export const ON_CHANGE_AUTHORIZATION_STATUS = `${prefix}/ON_CHANGE_AUTHORIZATION_STATUS`;
+export const onChangeAuthorizationStatus = (status, message = null) => ({
+  type: ON_CHANGE_AUTHORIZATION_STATUS,
   status, message,
 });
