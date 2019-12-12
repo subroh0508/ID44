@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { startOauth2Flow, openTimeline } from '../native/SignInModule';
 
 const prefix = 'sign_in';
@@ -21,8 +22,19 @@ export const onClickedAuthorize = host => async (dispatch, _getState) => {
     openTimeline();
     dispatch(toggleAuthorizationStatus(STATUS_FINISH));
   } catch (e) {
-    console.log(e);
-    dispatch(toggleAuthorizationStatus(STATUS_ERROR, e.message))
+    let message = e.message || '';
+    if (message.startsWith('ACCESS_DENIED')) {
+      message = i18next.t('signIn.exceptions.accessDenied');
+    } else if (message.startsWith('AUTHORIZE_FAILED')) {
+      message = i18next.t('signIn.exceptions.authorizeFailed');
+    } else if (message.startsWith('BROWSER_APP_NOT_FOUND')) {
+      message = i18next.t('signIn.exceptions.browserAppNotFound');
+    } else if (message.startsWith('UNKNOWN')) {
+      message = i18next.t('signIn.exceptions.unknown');
+    }
+
+    console.log(message);
+    dispatch(toggleAuthorizationStatus(STATUS_ERROR, message))
   }
 };
 
