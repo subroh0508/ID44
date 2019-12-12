@@ -13,8 +13,7 @@ import {
 } from 'react-native-paper';
 
 import wallpaper from '../../../assets/mizuki.png';
-import SignInModule from '../native/SignInModule';
-import { onChangedHostName } from '../actions';
+import { onChangedHostName, onClickedAuthorize } from '../actions';
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -92,7 +91,7 @@ class SignIn extends Component {
           <Button
             style={ styles.button }
             mode='outlined'
-            onPress={ () => SignInModule.onClickAuthorize() }
+            onPress={ this.props.onClickedAuthorize.bind(null, hostName) }
           >Authorize</Button>
         </View>
       </View>
@@ -106,6 +105,7 @@ const mapStateToProps = (state, _ownProps) => ({
 
 const mapDispatchToProps = {
   onChangedHostName,
+  onClickedAuthorize,
 };
 
 export default connect(
