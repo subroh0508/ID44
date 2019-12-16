@@ -1,29 +1,19 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { AppRegistry } from 'react-native';
 import { ThemeProvider } from "react-native-elements";
-import { TimelineFrame } from "./TimelineFrame";
+import { TimelineFrame } from "./containers/TimelineFrame";
 import { createTheme, colors } from "../../assets/themes";
-import { fetchOwnAccounts } from "./native/TimelineModule";
+import { applyMiddleware, createStore } from "redux";
+import reducers from "./reducers";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
 
-class Timeline extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { ownAccounts: [] };
-  }
+const store = createStore(reducers, applyMiddleware(thunk));
 
-  async componentDidMount() {
-    this.setState({ ownAccounts: await fetchOwnAccounts() });
-  }
-
-  render() {
-    const { ownAccounts } = this.state;
-
-    return (
-      <ThemeProvider theme={ createTheme(colors.mizuki) }>
-        <TimelineFrame screenProps={ { ownAccounts } }/>
-      </ThemeProvider>
-    )
-  }
-}
-
-AppRegistry.registerComponent('Timeline', () => Timeline);
+AppRegistry.registerComponent('Timeline', () => () => (
+  <Provider store={ store }>
+    <ThemeProvider theme={ createTheme(colors.mizuki) }>
+      <TimelineFrame/>
+    </ThemeProvider>
+  </Provider>
+));

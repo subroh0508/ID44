@@ -15,7 +15,7 @@ import TimelineModule, {
   STREAM,
   subscribe,
   unsubscribe,
-} from './native/TimelineModule';
+} from '../native/TimelineModule';
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -29,7 +29,7 @@ const withStyles = ({ colors }) => (
   })
 );
 
-class TimelineComponent extends Component {
+class Timeline extends Component {
   constructor(props) {
     super(props);
     this.state = { content: 'init' };
@@ -61,4 +61,4 @@ class TimelineComponent extends Component {
   }
 }
 
-export default withTheme(TimelineComponent);
+export default withTheme(Timeline);
