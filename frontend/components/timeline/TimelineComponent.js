@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import {
   View,
-  Image,
-  Text,
   StyleSheet,
   NativeEventEmitter,
   NativeModules,
 } from 'react-native';
 import {
-  TextInput,
-  Button,
-  withTheme
-} from 'react-native-paper';
+  Text,
+  withTheme,
+} from 'react-native-elements';
 
 import TimelineModule, {
   EVENT_APPEND_STATUS,
@@ -27,6 +24,7 @@ const withStyles = ({ colors }) => (
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
+      backgroundColor: colors.background,
     },
   })
 );

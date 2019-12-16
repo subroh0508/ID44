@@ -1,22 +1,9 @@
 import React, { PureComponent } from 'react';
 import { AppRegistry } from 'react-native';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import TimelineComponent from "./TimelineComponent";
+import { ThemeProvider } from "react-native-elements";
 import { TimelineFrame } from "./TimelineFrame";
+import { createTheme, colors } from "../../assets/themes";
 import { fetchOwnAccounts } from "./native/TimelineModule";
-
-// mizuki
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#00ffff',
-    text: '#00ffff',
-    disabled: '#afeeee',
-    placeholder: '#afeeee',
-    background: '#000'
-  },
-};
 
 class Timeline extends PureComponent {
   constructor(props) {
@@ -32,9 +19,9 @@ class Timeline extends PureComponent {
     const { ownAccounts } = this.state;
 
     return (
-      <PaperProvider theme={ DefaultTheme }>
+      <ThemeProvider theme={ createTheme(colors.mizuki) }>
         <TimelineFrame screenProps={ { ownAccounts } }/>
-      </PaperProvider>
+      </ThemeProvider>
     )
   }
 }

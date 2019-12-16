@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import {
   View,
   Image,
-  Text,
   StyleSheet,
 } from 'react-native';
 import {
-  TextInput,
+  Text,
+  Input,
   Button,
-  withTheme
-} from 'react-native-paper';
+  withTheme,
+} from 'react-native-elements';
 
 import wallpaper from '../../../assets/mizuki.png';
 import { onChangedHostName, onClickedAuthorize } from '../actions';
@@ -49,11 +49,10 @@ const withStyles = ({ colors }) => (
       elevation: 5,
     },
     title: {
-      color: colors.primary,
       paddingTop: 8,
       paddingBottom: 16,
     },
-    textInput: {
+    input: {
       width: '90%',
     },
     button: {
@@ -81,17 +80,17 @@ class SignIn extends Component {
           <Text style={ styles.title }>
             Device ID: 44
           </Text>
-          <TextInput
-            style={ styles.textInput }
-            label='Host Name'
-            mode='outlined'
+          <Input
+            containerStyle={ styles.input }
+            placeholder='Host Name'
             onChangeText={ this.props.onChangedHostName.bind(null) }
           />
           <Button
-            style={ styles.button }
-            mode='outlined'
+            containerStyle={ styles.button }
+            type='clear'
+            title='AUTHORIZE'
             onPress={ this.props.onClickedAuthorize.bind(null, hostName) }
-          >Authorize</Button>
+          />
         </View>
       </View>
     )

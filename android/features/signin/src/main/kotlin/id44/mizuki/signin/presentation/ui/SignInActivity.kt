@@ -9,14 +9,8 @@ import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.InjectableReactActivity
 import id44.mizuki.libraries.shared.valueobject.Uri
-import id44.mizuki.signin.AccessDeniedError
-import id44.mizuki.signin.AuthorizeError
-import id44.mizuki.signin.BrowserAppNotFoundError
-import id44.mizuki.signin.R
-import id44.mizuki.signin.di.SignInActivityComponent
 import id44.mizuki.signin.di.inject
 import id44.mizuki.signin.presentation.model.SignInViewModelImpl
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 class SignInActivity : InjectableReactActivity() {
@@ -53,6 +47,7 @@ class SignInActivity : InjectableReactActivity() {
         startActivity(intentTo(Activities.Timeline))
     }
 
+    /*
     private fun showErrorMessage(throwable: Throwable) {
         val message = when (throwable) {
             is AccessDeniedError -> getString(R.string.auth_error_access_denied)
@@ -64,4 +59,5 @@ class SignInActivity : InjectableReactActivity() {
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+    */
 }
