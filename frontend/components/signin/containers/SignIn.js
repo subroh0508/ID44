@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
   Image,
@@ -9,11 +9,44 @@ import {
   Text,
   Input,
   Button,
-  withTheme,
+  ThemeContext,
 } from 'react-native-elements';
 
 import wallpaper from '../../../assets/mizuki.png';
 import { onChangedHostName, onClickedAuthorize } from '../actions';
+
+export const SignIn = () => {
+  const { theme } = useContext(ThemeContext);
+  const hostName = useSelector(state => state.hostName);
+  const dispatch = useDispatch();
+
+  const styles = withStyles(theme);
+
+  return (
+    <View style={ styles.root }>
+      <Image
+        style={ styles.backgroundImage }
+        source={ wallpaper }
+      />
+      <View style={ styles.container }>
+        <Text style={ styles.title }>
+          Device ID: 44
+        </Text>
+        <Input
+          containerStyle={ styles.input }
+          placeholder='Host Name'
+          onChangeText={ text => dispatch(onChangedHostName(text)) }
+        />
+        <Button
+          containerStyle={ styles.button }
+          type='clear'
+          title='AUTHORIZE'
+          onPress={ () => dispatch(onClickedAuthorize(hostName)) }
+        />
+      </View>
+    </View>
+  )
+};
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
@@ -63,50 +96,3 @@ const withStyles = ({ colors }) => (
     },
   })
 );
-
-class SignIn extends Component {
-  render() {
-    const { hostName } = this.props;
-
-    const styles = withStyles(this.props.theme);
-
-    return (
-      <View style={ styles.root }>
-        <Image
-          style={ styles.backgroundImage }
-          source={ wallpaper }
-        />
-        <View style={ styles.container }>
-          <Text style={ styles.title }>
-            Device ID: 44
-          </Text>
-          <Input
-            containerStyle={ styles.input }
-            placeholder='Host Name'
-            onChangeText={ this.props.onChangedHostName.bind(null) }
-          />
-          <Button
-            containerStyle={ styles.button }
-            type='clear'
-            title='AUTHORIZE'
-            onPress={ this.props.onClickedAuthorize.bind(null, hostName) }
-          />
-        </View>
-      </View>
-    )
-  }
-}
-
-const mapStateToProps = (state, _ownProps) => ({
-  hostName: state.hostName,
-});
-
-const mapDispatchToProps = {
-  onChangedHostName,
-  onClickedAuthorize,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withTheme(SignIn));
