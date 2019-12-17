@@ -12,6 +12,7 @@ import {
 } from 'react-native-elements';
 import { subscribe, unsubscribe } from "../actions/timelines";
 import { STREAM } from '../native/TimelineModule';
+import HTMLView from "react-native-htmlview";
 
 export const Timeline = () => {
   const { theme } = useContext(ThemeContext);
@@ -32,7 +33,7 @@ export const Timeline = () => {
         (timelines.statuses[STREAM.LOCAL] || []).map((status, i) => (
           <ListItem key={ i }
             leftAvatar={{ source: { uri: status.tooter.avatar } }}
-            title={ status.content.toString() }
+            title={ <HTMLView value={ status.content } stylesheet={{ p: { color: theme.colors.primary } }}/> }
             subtitle={ status.tooter.username }
             bottomDivider>
           </ListItem>
