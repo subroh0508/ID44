@@ -24,6 +24,6 @@ internal class OwnAccountsBridge(
 
     fun switchAccount(host: HostName, id: AccountId) {
         switchAccessTokenUseCase.execute(host, id)
-        view.restart()
+        //view.restart()
     }
 }

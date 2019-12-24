@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const timelines = (state = initialState, action) => {
+  console.log(`type: ${action.type}`);
   switch (action.type) {
     case Actions.SET_READY_FOR_SUBSCRIPTION:
       return {
@@ -20,6 +21,12 @@ const timelines = (state = initialState, action) => {
 
       return { ...state };
     }
+    case Actions.CLEAR_SUBSCRIPTION: {
+      return {
+        ...state,
+        subscriptions: {},
+      };
+    }
     case Actions.APPEND_STATUS:
       return {
         ...state,
@@ -27,6 +34,11 @@ const timelines = (state = initialState, action) => {
           ...state.statuses,
           [action.value]: [action.status, ...(state.statuses[action.value] || [])],
         }
+      };
+    case Actions.CLEAR_STATUS:
+      return {
+        ...state,
+        statuses: {},
       };
     default:
       return state;

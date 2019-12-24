@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, ListItem, ThemeContext } from "react-native-elements";
-import { openAuthentication, switchAccount } from "../native/TimelineModule";
 
-export const OwnAccountsDrawer = ({ screenProps }) => {
+export const OwnAccountsDrawer = ({ accounts, onClickedSwitchAccount, onClickedAddAccount }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
@@ -11,19 +10,19 @@ export const OwnAccountsDrawer = ({ screenProps }) => {
   return (
     <View style={ styles.root }>
       {
-        screenProps.ownAccounts.map((account, i) => (
+        accounts.map((account, i) => (
           <ListItem key={ i }
             leftAvatar={{ source: { uri: account.avatar } }}
             title={ account.displayName }
             subtitle={ account.screen }
             bottomDivider
-            onPress={ switchAccount.bind(null, account.hostName, account.id) }>
+            onPress={ onClickedSwitchAccount.bind(null, account) }>
           </ListItem>
         ))
       }
       <Button title='アカウント追加'
         type='clear'
-        onPress={ openAuthentication.bind(null) }/>
+        onPress={ onClickedAddAccount.bind(null) }/>
     </View>
   );
 };

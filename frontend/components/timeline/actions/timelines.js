@@ -8,30 +8,41 @@ import TimelineModule, {
 
 const prefix = 'timeline';
 
-export const subscribe = (stream, subscription) => async (dispatch, _getState) => {
-  if (subscription === null) {
-    try {
-      await nativeSubscribe(stream);
+export const subscribe = (stream, subscriptions) => async (dispatch, _getState) => {
+  console.log(subscriptions);
+  if (subscriptions.hasOwnProperty(stream)) {
+    const subscription = subscriptions[stream];
 
-      dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
-    } catch (e) {
+    subscription.remove();
 
-    }
+    dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
 
-    return
+    return;
   }
 
-  subscription.remove();
+  try {
+    await nativeSubscribe(stream);
 
-  dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
+    dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
+  } catch (e) {
+
+  }
 };
 
-export const unsubscribe = (stream, subscription) => async (dispatch, _getState) => {
-  if (subscription !== null) {
-    subscription.remove();
+export const unsubscribe = (stream, subscriptions) => async (dispatch, _getState) => {
+  if (subscriptions.hasOwnProperty(stream)) {
+    subscriptions[stream].remove();
   }
 
   dispatch(removeSubscription(stream));
+};
+
+export const unsubscribeAll = (subscriptions) => async (dispatch, _getState) => {
+  Object.keys(subscriptions).forEach(key => {
+    subscriptions[key].remove();
+  });
+
+  dispatch(clearSubscription());
 };
 
 const addEventListener = (stream, dispatch) => new NativeEventEmitter(TimelineModule)
@@ -53,9 +64,19 @@ export const removeSubscription = (stream) => ({
   value: stream,
 });
 
+export const CLEAR_SUBSCRIPTION = `${prefix}/CLEAR_SUBSCRIPTION`;
+export const clearSubscription = () => ({
+  type: CLEAR_SUBSCRIPTION,
+});
+
 export const APPEND_STATUS = `${prefix}/APPEND_STATUS`;
 export const appendStatus = (stream, status) => ({
   type: APPEND_STATUS,
   value: stream,
   status,
+});
+
+export const CLEAR_STATUS = `${prefix}/CLEAR_STATUS`;
+export const clearStatus = () => ({
+  type: CLEAR_STATUS,
 });
