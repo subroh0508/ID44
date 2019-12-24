@@ -9,7 +9,6 @@ import TimelineModule, {
 const prefix = 'timeline';
 
 export const subscribe = (stream, subscriptions) => async (dispatch, _getState) => {
-  console.log(subscriptions);
   if (subscriptions.hasOwnProperty(stream)) {
     const subscription = subscriptions[stream];
 

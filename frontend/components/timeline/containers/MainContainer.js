@@ -37,7 +37,7 @@ const Drawer = () => {
   );
 };
 
-export const TimelineFrame = createAppContainer(
+export const MainContainer = createAppContainer(
   createDrawerNavigator({
     Home: {
       screen: Home,

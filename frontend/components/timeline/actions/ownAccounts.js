@@ -1,13 +1,13 @@
 import {
-  fetchOwnAccounts as fetchNativeOwnAccounts,
+  fetchOwnAccounts as nativeFetchOwnAccounts,
   switchAccount,
-  openAuthentication as openNativeAuthentication,
+  openAuthentication as nativeOpenAuthentication,
 } from "../native/TimelineModule";
 
 const prefix = 'own_accounts';
 
 export const fetchOwnAccounts = () => async (dispatch, _getState) => {
-  const ownAccounts = await fetchNativeOwnAccounts();
+  const ownAccounts = await nativeFetchOwnAccounts();
 
   dispatch(setOwnAccounts(ownAccounts));
   dispatch(selectAccount(ownAccounts[0]));
@@ -20,7 +20,7 @@ export const onClickSwitchAccount = (account) => (dispatch, _getState) => {
 };
 
 export const openAuthentication = () => (dispatch, _getState) => {
-  openNativeAuthentication();
+  nativeOpenAuthentication();
 
   dispatch(selectAccount(null));
 };

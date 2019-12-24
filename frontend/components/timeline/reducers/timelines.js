@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const timelines = (state = initialState, action) => {
-  console.log(`type: ${action.type}`);
   switch (action.type) {
     case Actions.SET_READY_FOR_SUBSCRIPTION:
       return {
