@@ -1,6 +1,5 @@
 package id44.mizuki.libraries.api.streaming.client
 
-import id44.mizuki.libraries.api.CredentialProvider
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
 import id44.mizuki.libraries.shared.valueobject.AccessToken
@@ -20,10 +19,8 @@ import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
     private val httpClient: HttpClient,
-    private val provider: CredentialProvider,
     private val json: Json
 ) : MastodonStreamingApi {
-    override val host get() = provider.nowHost
     private fun streamKey(host: HostName, token: AccessToken, stream: StreamType) =
         listOf(host.value, token.value, stream.realValue).joinToString("/")
 
