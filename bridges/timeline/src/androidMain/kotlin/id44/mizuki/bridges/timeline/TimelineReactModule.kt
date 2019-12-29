@@ -26,12 +26,9 @@ internal actual class TimelineReactModule(
     @ReactMethod
     fun openAuthentication() = ownAccountsBridge.openAuthentication()
     @ReactMethod
-    fun fetchOwnAccount(promise: Promise) = ownAccountsBridge.fetchOwnAccount(
-        onSuccess = { promise.resolve(Arguments.makeNativeMap(it)) },
-        onFailure = promise::reject
-    )
+    fun fetchOwnAccount(promise: Promise) = ownAccountsBridge.fetchOwnAccount(promise)
     @ReactMethod
-    fun fetchOwnAccounts(promise: Promise) = promise.resolve(Arguments.makeNativeArray(ownAccountsBridge.fetchOwnAccounts()))
+    fun fetchOwnAccounts(promise: Promise) = ownAccountsBridge.fetchOwnAccounts(promise)
     @ReactMethod
     fun switchAccount(host: String, id: String) = ownAccountsBridge.switchAccount(HostName(host), AccountId(id))
 

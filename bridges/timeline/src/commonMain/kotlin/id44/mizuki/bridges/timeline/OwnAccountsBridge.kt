@@ -6,6 +6,8 @@ import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAcco
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.libraries.shared.reactnative.ReactArguments
+import id44.mizuki.libraries.shared.reactnative.ReactPromise
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 import kotlinx.coroutines.launch
@@ -18,15 +20,14 @@ internal class OwnAccountsBridge(
 ) : RequireAuthBridge(view, accessTokenRepository) {
     fun openAuthentication() = view.openAuthentication()
 
-    fun fetchOwnAccounts(): List<Map<String, Any>> = fetchOwnAccountsUseCase.execute().map { it.toMap() }
+    fun fetchOwnAccounts(promise: ReactPromise) = promise.resolve(ReactArguments.makeNativeArray(
+        fetchOwnAccountsUseCase.execute().map { it.toMap() }
+    ))
 
-    fun fetchOwnAccount(
-        onSuccess: (Map<String, Any>) -> Unit,
-        onFailure: (Throwable) -> Unit
-    ) = view.launch {
+    fun fetchOwnAccount(promise: ReactPromise) = view.launch {
         runCatching { fetchOwnAccountUseCase.execute() }
-            .onSuccess { onSuccess(it.toMap()) }
-            .onHttpFailure(onFailure)
+            .onSuccess { promise.resolve(it.toMap()) }
+            .onHttpFailure(promise::reject)
     }
 
     fun switchAccount(host: HostName, id: AccountId) {
@@ -34,11 +35,11 @@ internal class OwnAccountsBridge(
         //view.restart()
     }
 
-    private fun Account.toMap() = mapOf(
+    private fun Account.toMap() = ReactArguments.makeNativeMap(mapOf(
         "id" to id.value,
         "displayName" to displayName,
         "screen" to screen,
         "avatar" to avatar,
         "hostName" to hostName.value
-    )
+    ))
 }
