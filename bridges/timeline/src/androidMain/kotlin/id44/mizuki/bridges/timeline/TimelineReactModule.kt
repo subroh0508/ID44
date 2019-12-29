@@ -31,7 +31,9 @@ internal actual class TimelineReactModule(
     fun switchAccount(host: String, id: String) = ownAccountsBridge.switchAccount(HostName(host), AccountId(id))
 
     @ReactMethod
-    fun subscribe(stream: String, promise: Promise) = timelineBridge.subscribe(Stream.valueOf(stream), promise)
+    fun subscribe(host: String, id: String, stream: String, promise: Promise) =
+        timelineBridge.subscribe(HostName(host), AccountId(id), Stream.valueOf(stream), promise)
     @ReactMethod
-    fun unsubscribe(stream: String) = timelineBridge.unsubscribe(Stream.valueOf(stream))
+    fun unsubscribe(host: String, id: String, stream: String, promise: Promise) =
+        timelineBridge.unsubscribe(HostName(host), AccountId(id), Stream.valueOf(stream), promise)
 }

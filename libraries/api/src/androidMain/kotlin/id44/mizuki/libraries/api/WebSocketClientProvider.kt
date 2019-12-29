@@ -5,6 +5,7 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.websocket.WebSockets
+import io.ktor.http.URLProtocol
 import io.ktor.http.userAgent
 import io.ktor.util.KtorExperimentalAPI
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,6 +22,7 @@ internal object WebSocketClientProvider {
         @UseExperimental(KtorExperimentalAPI::class)
         install(WebSockets)
         install(DefaultRequest) {
+            url { protocol = URLProtocol.WSS }
             userAgent(userAgent.agent)
         }
     }

@@ -1,6 +1,9 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
+import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.entity.Status
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import id44.mizuki.libraries.timeline.infra.toStatus
@@ -12,27 +15,17 @@ import kotlinx.coroutines.flow.mapNotNull
 internal class StatusRepositoryImpl(
     private val streamingApi: MastodonStreamingApi
 ) : StatusRepository {
-    private val channels: HashMap<String, Flow<Status>> = hashMapOf()
-
-    override suspend fun openSubscription(stream: Stream): Flow<Status>? {
+    override suspend fun openSubscription(host: HostName, token: AccessToken, stream: Stream): Flow<Status>? {
         val streamType = stream.toStreamType()
-        val key = streamingApi.streamKey(streamType)
-
-        if (channels.containsKey(key)) {
+        if (streamingApi.sessionStarted(host, token, streamType)) {
             return null
         }
 
-        return streamingApi.openEventChannel(streamType)
+        return streamingApi.openEventChannel(host, token, streamType)
             .consumeAsFlow()
             .mapNotNull { it.toStatus() }
-            .also { channels[key] = it }
     }
 
-    override fun closeSubscription(stream: Stream) {
-        if (channels.isEmpty()) {
-            return
-        }
-
-        channels.remove(streamingApi.streamKey(stream.toStreamType()))
-    }
+    override suspend fun closeSubscription(host: HostName, token: AccessToken, stream: Stream) =
+            streamingApi.closeEventChannel(host, token, stream.toStreamType())
 }

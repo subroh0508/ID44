@@ -9,9 +9,9 @@ export const Timeline = ({ account }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(subscribe(STREAM.LOCAL, subscriptions));
+    dispatch(subscribe(account, STREAM.LOCAL, subscriptions));
 
-    return () => dispatch(unsubscribe(STREAM.LOCAL, subscriptions));
+    return () => dispatch(unsubscribe(account, STREAM.LOCAL, subscriptions));
   }, [account]);
 
   return (<StreamPane stream={ STREAM.LOCAL }/>)

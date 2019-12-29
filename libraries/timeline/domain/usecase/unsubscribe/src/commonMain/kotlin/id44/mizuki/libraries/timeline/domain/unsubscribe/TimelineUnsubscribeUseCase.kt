@@ -5,5 +5,5 @@ import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 
 interface TimelineUnsubscribeUseCase {
-    fun execute(stream: Stream)
+    suspend fun execute(host: HostName, accountId: AccountId, stream: Stream)
 }

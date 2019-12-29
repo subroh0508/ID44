@@ -3,16 +3,16 @@ package id44.mizuki.libraries.api.streaming.client
 import id44.mizuki.libraries.api.CredentialProvider
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
+import id44.mizuki.libraries.shared.valueobject.AccessToken
+import id44.mizuki.libraries.shared.valueobject.HostName
 import io.ktor.client.HttpClient
-import io.ktor.client.features.websocket.wss
+import io.ktor.client.features.websocket.webSocketSession
 import io.ktor.http.cio.websocket.Frame
+import io.ktor.http.cio.websocket.WebSocketSession
 import io.ktor.http.cio.websocket.readText
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.produce
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
@@ -21,17 +21,20 @@ internal class MastodonStreamingApiClient(
     private val json: Json
 ) : MastodonStreamingApi {
     override val host get() = provider.nowHost
-    override fun streamKey(stream: StreamType) =
-        listOf(host.value, provider.nowToken.value, stream.realValue).joinToString("/")
+    private fun streamKey(host: HostName, token: AccessToken, stream: StreamType) =
+        listOf(host.value, token.value, stream.realValue).joinToString("/")
 
-    override suspend fun openEventChannel(stream: StreamType): ReceiveChannel<StreamingEventJson> = GlobalScope.produce(
-        Dispatchers.Unconfined, capacity = Channel.UNLIMITED
-    ) {
-        httpClient.wss(
-            host = host.value,
-            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=${provider.nowToken.value}"
-        ) {
-            for (frame in incoming) {
+    private val sessions: HashMap<String, WebSocketSession> = hashMapOf()
+
+    override fun sessionStarted(host: HostName, token: AccessToken, stream: StreamType) = sessions.containsKey(streamKey(host, token, stream))
+
+    override suspend fun openEventChannel(host: HostName, token: AccessToken, stream: StreamType): ReceiveChannel<StreamingEventJson> {
+        val session = startWebsocketSession(host, token, stream).also {
+            sessions[streamKey(host, token, stream)] = it
+        }
+
+        return Channel<StreamingEventJson>(Channel.UNLIMITED).apply {
+            for (frame in session.incoming) {
                 when (frame) {
                     is Frame.Text -> {
                         val text = frame.readText()
@@ -45,7 +48,13 @@ internal class MastodonStreamingApiClient(
         }
     }
 
-    override fun closeEventChannel() {
-        httpClient.close()
+    override suspend fun closeEventChannel(host: HostName, token: AccessToken, stream: StreamType) {
+        sessions.remove(streamKey(host, token, stream))?.close()
     }
+
+    private suspend fun startWebsocketSession(host: HostName, token: AccessToken, stream: StreamType): WebSocketSession =
+        httpClient.webSocketSession(
+            host = host.value,
+            path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=${token.value}"
+        )
 }

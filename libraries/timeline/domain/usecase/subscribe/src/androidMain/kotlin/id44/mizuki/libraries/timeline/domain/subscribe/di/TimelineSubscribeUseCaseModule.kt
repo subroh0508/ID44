@@ -6,12 +6,14 @@ import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCaseImpl
 import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
+import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 
 @Module
 class TimelineSubscribeUseCaseModule {
     @Provides
     @ModuleScope
     fun provideTimelineSubscribeUseCase(
-        repository: StatusRepository
-    ): TimelineSubscribeUseCase = TimelineSubscribeUseCaseImpl(repository)
+        repository: StatusRepository,
+        accessTokenRepository: AccessTokenRepository
+    ): TimelineSubscribeUseCase = TimelineSubscribeUseCaseImpl(repository, accessTokenRepository)
 }

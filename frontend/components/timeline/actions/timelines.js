@@ -8,7 +8,8 @@ import TimelineModule, {
 
 const prefix = 'timeline';
 
-export const subscribe = (stream, subscriptions) => async (dispatch, _getState) => {
+export const subscribe = (account, stream, subscriptions) => async (dispatch, _getState) => {
+  console.log("subscribe: ", subscriptions);
   if (subscriptions.hasOwnProperty(stream)) {
     const subscription = subscriptions[stream];
 
@@ -20,7 +21,8 @@ export const subscribe = (stream, subscriptions) => async (dispatch, _getState) 
   }
 
   try {
-    await nativeSubscribe(stream);
+    console.log("subscribe: ", account);
+    await nativeSubscribe(account.hostName, account.id, stream);
 
     dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
   } catch (e) {
@@ -28,9 +30,17 @@ export const subscribe = (stream, subscriptions) => async (dispatch, _getState) 
   }
 };
 
-export const unsubscribe = (stream, subscriptions) => async (dispatch, _getState) => {
+export const unsubscribe = (account, stream, subscriptions) => async (dispatch, _getState) => {
+  console.log("unsubscribe: ", subscriptions);
   if (subscriptions.hasOwnProperty(stream)) {
     subscriptions[stream].remove();
+  }
+
+  try {
+    console.log("unsubscribe: ", account);
+    await nativeUnsubscribe(account.hostName, account.id, stream);
+  } catch (e) {
+
   }
 
   dispatch(removeSubscription(stream));
