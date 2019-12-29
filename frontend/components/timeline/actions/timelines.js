@@ -9,41 +9,39 @@ import TimelineModule, {
 const prefix = 'timeline';
 
 export const subscribe = (account, stream, subscriptions) => async (dispatch, _getState) => {
-  console.log("subscribe: ", subscriptions);
-  if (subscriptions.hasOwnProperty(stream)) {
-    const subscription = subscriptions[stream];
+  const key = streamKey(account, stream);
+  if (subscriptions.hasOwnProperty(key)) {
+    const subscription = subscriptions[key];
 
     subscription.remove();
 
-    dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
+    dispatch(setReadyForSubscription(key, addEventListener(key, dispatch)));
 
     return;
   }
 
   try {
-    console.log("subscribe: ", account);
     await nativeSubscribe(account.hostName, account.id, stream);
 
-    dispatch(setReadyForSubscription(stream, addEventListener(stream, dispatch)));
+    dispatch(setReadyForSubscription(key, addEventListener(key, dispatch)));
   } catch (e) {
 
   }
 };
 
 export const unsubscribe = (account, stream, subscriptions) => async (dispatch, _getState) => {
-  console.log("unsubscribe: ", subscriptions);
-  if (subscriptions.hasOwnProperty(stream)) {
-    subscriptions[stream].remove();
+  const key = streamKey(account, stream);
+  if (subscriptions.hasOwnProperty(key)) {
+    subscriptions[key].remove();
   }
 
   try {
-    console.log("unsubscribe: ", account);
     await nativeUnsubscribe(account.hostName, account.id, stream);
   } catch (e) {
 
   }
 
-  dispatch(removeSubscription(stream));
+  dispatch(removeSubscription(key));
 };
 
 export const unsubscribeAll = (subscriptions) => async (dispatch, _getState) => {
@@ -54,23 +52,23 @@ export const unsubscribeAll = (subscriptions) => async (dispatch, _getState) => 
   dispatch(clearSubscription());
 };
 
-const addEventListener = (stream, dispatch) => new NativeEventEmitter(TimelineModule)
+const addEventListener = (streamKey, dispatch) => new NativeEventEmitter(TimelineModule)
   .addListener(EVENT_APPEND_STATUS, status => {
     console.log(status.content);
-    dispatch(appendStatus(stream, status));
+    dispatch(appendStatus(streamKey, status));
   });
 
 export const SET_READY_FOR_SUBSCRIPTION = `${prefix}/SET_READY_FOR_SUBSCRIPTION`;
-export const setReadyForSubscription = (stream, subscription) => ({
+export const setReadyForSubscription = (streamKey, subscription) => ({
   type: SET_READY_FOR_SUBSCRIPTION,
-  value: stream,
+  value: streamKey,
   subscription,
 });
 
 export const REMOVE_SUBSCRIPTION = `${prefix}/REMOVE_SUBSCRIPTION`;
-export const removeSubscription = (stream) => ({
+export const removeSubscription = (streamKey) => ({
   type: REMOVE_SUBSCRIPTION,
-  value: stream,
+  value: streamKey,
 });
 
 export const CLEAR_SUBSCRIPTION = `${prefix}/CLEAR_SUBSCRIPTION`;
@@ -79,9 +77,9 @@ export const clearSubscription = () => ({
 });
 
 export const APPEND_STATUS = `${prefix}/APPEND_STATUS`;
-export const appendStatus = (stream, status) => ({
+export const appendStatus = (streamKey, status) => ({
   type: APPEND_STATUS,
-  value: stream,
+  value: streamKey,
   status,
 });
 
@@ -89,3 +87,5 @@ export const CLEAR_STATUS = `${prefix}/CLEAR_STATUS`;
 export const clearStatus = () => ({
   type: CLEAR_STATUS,
 });
+
+export const streamKey = (account, stream) => account ? `${account.screen}/${stream}` : null;

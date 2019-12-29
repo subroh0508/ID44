@@ -18,18 +18,16 @@ internal class TimelineBridge(
     private val timelineUnsubscribeUseCase: TimelineUnsubscribeUseCase
 ) : RequireAuthBridge(view, accessTokenRepository) {
     fun subscribe(host: HostName, accountId: AccountId, stream: Stream, promise: ReactPromise) = view.launch {
-        runCatching {
-            timelineSubscribeUseCase.execute(host, accountId, stream)
-                ?.collect { view.emitStatus(EVENT_APPEND_STATUS, it.toMap()) }
-        }
-            .onSuccess { promise.resolve(null) }
+        runCatching { timelineSubscribeUseCase.execute(host, accountId, stream) }
+            .onSuccess { flow ->
+                promise.resolve(null)
+                flow?.collect { view.emitStatus(EVENT_APPEND_STATUS, it.toMap()) }
+            }
             .onHttpFailure(promise::reject)
     }
 
     fun unsubscribe(host: HostName, accountId: AccountId, stream: Stream, promise: ReactPromise) = view.launch {
-        runCatching {
-            timelineUnsubscribeUseCase.execute(host, accountId, stream)
-        }
+        runCatching { timelineUnsubscribeUseCase.execute(host, accountId, stream) }
             .onSuccess { promise.resolve(null) }
             .onHttpFailure(promise::reject)
     }

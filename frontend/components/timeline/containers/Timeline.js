@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { subscribe, unsubscribe } from "../actions/timelines";
+import { useDispatch, useStore } from "react-redux";
+import { subscribe, unsubscribe, streamKey } from "../actions/timelines";
 import { STREAM } from '../native/TimelineModule';
 import { StreamPane } from "../components/StreamPane";
 
 export const Timeline = ({ account }) => {
-  const subscriptions = useSelector(state => state.timelines.subscriptions);
+  const { getState } = useStore();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(subscribe(account, STREAM.LOCAL, subscriptions));
+    function getSubscriptions() {
+      return getState().timelines.subscriptions;
+    }
 
-    return () => dispatch(unsubscribe(account, STREAM.LOCAL, subscriptions));
+    dispatch(subscribe(account, STREAM.LOCAL, getSubscriptions()));
+
+    return () => dispatch(unsubscribe(account, STREAM.LOCAL, getSubscriptions()));
   }, [account]);
 
-  return (<StreamPane stream={ STREAM.LOCAL }/>)
+  return (<StreamPane streamKey={ streamKey(account, STREAM.LOCAL) }/>)
 };

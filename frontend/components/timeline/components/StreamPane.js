@@ -10,9 +10,9 @@ import {
 } from 'react-native-elements';
 import HTMLView from "react-native-htmlview";
 
-export const StreamPane = ({ stream }) => {
+export const StreamPane = ({ streamKey }) => {
   const { theme } = useContext(ThemeContext);
-  const statuses = useSelector(state => state.timelines.statuses[stream] || []);
+  const statuses = useSelector(state => state.timelines.statuses[streamKey] || []);
 
   const styles = withStyles(theme);
 

@@ -10,9 +10,12 @@ import io.ktor.client.features.websocket.webSocketSession
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.WebSocketSession
 import io.ktor.http.cio.websocket.readText
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
@@ -34,17 +37,7 @@ internal class MastodonStreamingApiClient(
         }
 
         return Channel<StreamingEventJson>(Channel.UNLIMITED).apply {
-            for (frame in session.incoming) {
-                when (frame) {
-                    is Frame.Text -> {
-                        val text = frame.readText()
-
-                        println(text)
-                        @UseExperimental(ExperimentalCoroutinesApi::class)
-                        send(json.parse(StreamingEventJson.serializer(), text))
-                    }
-                }
-            }
+            sendStreamingEvent(session)
         }
     }
 
@@ -57,4 +50,20 @@ internal class MastodonStreamingApiClient(
             host = host.value,
             path = "/api/v1/streaming/?stream=${stream.realValue}&access_token=${token.value}"
         )
+
+    private fun Channel<StreamingEventJson>.sendStreamingEvent(
+        session: WebSocketSession
+    ) = CoroutineScope(Dispatchers.Default).launch {
+        for (frame in session.incoming) {
+            when (frame) {
+                is Frame.Text -> {
+                    val text = frame.readText()
+
+                    println(text)
+                    @UseExperimental(ExperimentalCoroutinesApi::class)
+                    send(json.parse(StreamingEventJson.serializer(), text))
+                }
+            }
+        }
+    }
 }
