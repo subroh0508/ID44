@@ -5,7 +5,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Timeline } from "../containers/Timeline";
 import { OwnAccountsDrawer } from "../components/OwnAccountsDrawer";
 import { fetchOwnAccounts, onClickSwitchAccount, openAuthentication } from "../actions/ownAccounts";
-import { clearStatus, unsubscribeAll } from "../actions/timelines";
+import { clearStreams, unsubscribeAll } from "../actions/timelines";
 
 const Home = () => {
   const selectedAccount = useSelector(state => state.ownAccounts.selectedAccount);
@@ -14,7 +14,7 @@ const Home = () => {
 };
 
 const Drawer = () => {
-  const subscriptions = useSelector(state => state.timelines.subscriptions);
+  const timelines = useSelector(state => state.timelines);
   const accounts = useSelector(state => state.ownAccounts.accounts);
   const dispatch = useDispatch();
 
@@ -26,11 +26,11 @@ const Drawer = () => {
     <OwnAccountsDrawer
       accounts={ accounts }
       onClickedSwitchAccount={ (account) => {
-        dispatch(clearStatus());
+        dispatch(clearStreams());
         dispatch(onClickSwitchAccount(account));
       }}
       onClickedAddAccount={ () => {
-        dispatch(unsubscribeAll(subscriptions));
+        dispatch(unsubscribeAll(timelines));
         dispatch(openAuthentication());
       }}
     />

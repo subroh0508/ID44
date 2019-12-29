@@ -12,14 +12,14 @@ import HTMLView from "react-native-htmlview";
 
 export const StreamPane = ({ streamKey }) => {
   const { theme } = useContext(ThemeContext);
-  const statuses = useSelector(state => state.timelines.statuses[streamKey] || []);
+  const streams = useSelector(state => state.timelines.streams[streamKey] || []);
 
   const styles = withStyles(theme);
 
   return (
     <ScrollView style={ styles.root }>
       {
-        statuses.map((status, i) => (
+        streams.map((status, i) => (
           <ListItem key={ i }
             leftAvatar={{ source: { uri: status.tooter.avatar } }}
             title={

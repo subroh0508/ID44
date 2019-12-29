@@ -1,21 +1,22 @@
 import { NativeEventEmitter } from 'react-native';
 import TimelineModule, {
   EVENT_APPEND_STATUS,
-  STREAM,
   subscribe as nativeSubscribe,
   unsubscribe as nativeUnsubscribe,
 } from '../native/TimelineModule';
 
 const prefix = 'timeline';
 
-export const subscribe = (account, stream, subscriptions) => async (dispatch, _getState) => {
+export const subscribe = (account, stream, active) => async (dispatch, _getState) => {
   const key = streamKey(account, stream);
-  if (subscriptions.hasOwnProperty(key)) {
-    const subscription = subscriptions[key];
 
-    subscription.remove();
+  if (key === null) {
+    return;
+  }
 
-    dispatch(setReadyForSubscription(key, addEventListener(key, dispatch)));
+  if (active.hasOwnProperty(key)) {
+    active[key].remove();
+    dispatch(activateSubscription(key, addEventListener(key, dispatch)));
 
     return;
   }
@@ -23,16 +24,16 @@ export const subscribe = (account, stream, subscriptions) => async (dispatch, _g
   try {
     await nativeSubscribe(account.hostName, account.id, stream);
 
-    dispatch(setReadyForSubscription(key, addEventListener(key, dispatch)));
+    dispatch(activateSubscription(key, addEventListener(key, dispatch)));
   } catch (e) {
 
   }
 };
 
-export const unsubscribe = (account, stream, subscriptions) => async (dispatch, _getState) => {
+export const unsubscribe = (account, stream) => async (dispatch, _getState) => {
   const key = streamKey(account, stream);
-  if (subscriptions.hasOwnProperty(key)) {
-    subscriptions[key].remove();
+  if (key === null) {
+    return;
   }
 
   try {
@@ -41,15 +42,16 @@ export const unsubscribe = (account, stream, subscriptions) => async (dispatch, 
 
   }
 
-  dispatch(removeSubscription(key));
+  dispatch(inactivateSubscription(key));
 };
 
-export const unsubscribeAll = (subscriptions) => async (dispatch, _getState) => {
+export const unsubscribeAll = ({ active, inactive }) => async (dispatch, _getState) => {
+  const subscriptions = Object.assign(inactive, active);
   Object.keys(subscriptions).forEach(key => {
     subscriptions[key].remove();
   });
 
-  dispatch(clearSubscription());
+  dispatch(clearAllSubscription());
 };
 
 const addEventListener = (streamKey, dispatch) => new NativeEventEmitter(TimelineModule)
@@ -58,22 +60,39 @@ const addEventListener = (streamKey, dispatch) => new NativeEventEmitter(Timelin
     dispatch(appendStatus(streamKey, status));
   });
 
-export const SET_READY_FOR_SUBSCRIPTION = `${prefix}/SET_READY_FOR_SUBSCRIPTION`;
-export const setReadyForSubscription = (streamKey, subscription) => ({
-  type: SET_READY_FOR_SUBSCRIPTION,
+export const removeEventListener = (inactive) => async (dispatch, _getState) => {
+  const inactiveKeys = Object.keys(inactive);
+  if (inactiveKeys.length === 0) {
+    return;
+  }
+
+  inactiveKeys.forEach(inactiveKey => {
+    inactive[inactiveKey].remove();
+  });
+  dispatch(clearInactiveSubscription());
+};
+
+export const ACTIVATE_SUBSCRIPTION = `${prefix}/ACTIVATE_SUBSCRIPTION`;
+export const activateSubscription = (streamKey, subscription) => ({
+  type: ACTIVATE_SUBSCRIPTION,
   value: streamKey,
   subscription,
 });
 
-export const REMOVE_SUBSCRIPTION = `${prefix}/REMOVE_SUBSCRIPTION`;
-export const removeSubscription = (streamKey) => ({
-  type: REMOVE_SUBSCRIPTION,
+export const INACTIVATE_SUBSCRIPTION = `${prefix}/INACTIVATE_SUBSCRIPTION`;
+export const inactivateSubscription = (streamKey) => ({
+  type: INACTIVATE_SUBSCRIPTION,
   value: streamKey,
 });
 
-export const CLEAR_SUBSCRIPTION = `${prefix}/CLEAR_SUBSCRIPTION`;
-export const clearSubscription = () => ({
-  type: CLEAR_SUBSCRIPTION,
+export const CLEAR_INACTIVE_SUBSCRIPTION = `${prefix}/CLEAR_INACTIVE_SUBSCRIPTION`;
+export const clearInactiveSubscription = () => ({
+  type: CLEAR_INACTIVE_SUBSCRIPTION,
+});
+
+export const CLEAR_ALL_SUBSCRIPTION = `${prefix}/CLEAR_ALL_SUBSCRIPTION`;
+export const clearAllSubscription = () => ({
+  type: CLEAR_ALL_SUBSCRIPTION,
 });
 
 export const APPEND_STATUS = `${prefix}/APPEND_STATUS`;
@@ -83,9 +102,9 @@ export const appendStatus = (streamKey, status) => ({
   status,
 });
 
-export const CLEAR_STATUS = `${prefix}/CLEAR_STATUS`;
-export const clearStatus = () => ({
-  type: CLEAR_STATUS,
+export const CLEAR_STREAMS = `${prefix}/CLEAR_STREAMS`;
+export const clearStreams = () => ({
+  type: CLEAR_STREAMS,
 });
 
 export const streamKey = (account, stream) => account ? `${account.screen}/${stream}` : null;

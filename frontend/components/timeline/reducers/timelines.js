@@ -1,43 +1,57 @@
 import * as Actions from "../actions/timelines";
 
 const initialState = {
-  subscriptions: {},
-  statuses: {},
+  active: {},
+  inactive: {},
+  streams: {},
 };
 
 const timelines = (state = initialState, action) => {
   switch (action.type) {
-    case Actions.SET_READY_FOR_SUBSCRIPTION:
+    case Actions.ACTIVATE_SUBSCRIPTION:
       return {
         ...state,
-        subscriptions: {
-          ...state.subscriptions,
+        active: {
+          ...state.active,
           [action.value]: action.subscription,
         }
       };
-    case Actions.REMOVE_SUBSCRIPTION: {
-      delete state.subscriptions[action.value];
+    case Actions.INACTIVATE_SUBSCRIPTION: {
+      const subscription = state.active[action.value];
+      delete state.active[action.value];
 
-      return { ...state };
-    }
-    case Actions.CLEAR_SUBSCRIPTION: {
       return {
         ...state,
-        subscriptions: {},
+        inactive: {
+          ...state.inactive,
+          [action.value]: subscription,
+        },
+      };
+    }
+    case Actions.CLEAR_INACTIVE_SUBSCRIPTION:
+      return {
+        ...state,
+        inactive: {},
+      };
+    case Actions.CLEAR_ALL_SUBSCRIPTION: {
+      return {
+        ...state,
+        active: {},
+        inactive: {},
       };
     }
     case Actions.APPEND_STATUS:
       return {
         ...state,
-        statuses: {
-          ...state.statuses,
-          [action.value]: [action.status, ...(state.statuses[action.value] || [])],
+        streams: {
+          ...state.streams,
+          [action.value]: [action.status, ...(state.streams[action.value] || [])],
         }
       };
-    case Actions.CLEAR_STATUS:
+    case Actions.CLEAR_STREAMS:
       return {
         ...state,
-        statuses: {},
+        streams: {},
       };
     default:
       return state;
