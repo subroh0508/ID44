@@ -8,6 +8,7 @@ import dagger.Provides
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.bridges.auth.di.RequireAuthViewModule
 import id44.mizuki.bridges.timeline.*
+import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAccountUseCase
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
@@ -34,10 +35,11 @@ abstract class TimelineViewModule<in V: TimelineView> : RequireAuthViewModule<V>
         @Provides
         @ActivityScope
         internal fun provideOwnAccountsBridge(
-            view: TimelineView,
+            view: TimelineView, accessTokenRepository: AccessTokenRepository,
+            fetchOwnAccountUseCase: FetchOwnAccountUseCase,
             fetchOwnAccountsUseCase: FetchOwnAccountsUseCase,
             switchAccessTokenUseCase: SwitchAccessTokenUseCase
-        ) = OwnAccountsBridge(view, fetchOwnAccountsUseCase, switchAccessTokenUseCase)
+        ) = OwnAccountsBridge(view, accessTokenRepository, fetchOwnAccountUseCase, fetchOwnAccountsUseCase, switchAccessTokenUseCase)
 
         @JvmStatic
         @Provides

@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.Component
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.components.core.CoreComponent
+import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAccountUseCase
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
@@ -26,6 +27,7 @@ interface TimelineComponent {
     fun provideApp(): Application
     fun provideAccessTokenRepository(): AccessTokenRepository
     fun provideSwitchAccessTokenUseCase(): SwitchAccessTokenUseCase
+    fun provideFetchOwnAccountUseCase(): FetchOwnAccountUseCase
     fun provideFetchOwnAccountsUseCase(): FetchOwnAccountsUseCase
     fun provideTimelineSubscribeUseCase(): TimelineSubscribeUseCase
     fun provideTimelineUnsubscribeUseCase(): TimelineUnsubscribeUseCase

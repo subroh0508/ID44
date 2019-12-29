@@ -4,12 +4,13 @@ import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.bridges.timeline.BuildConfig
+import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.di.FetchOwnAccountUseCaseModule
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.di.FetchOwnAccountsUseCaseModule
 import id44.mizuki.libraries.account.infra.di.AccountRepositoryModule
 import id44.mizuki.libraries.api.di.MastodonApiModule
 import id44.mizuki.libraries.api.di.MastodonStreamingApiModule
-import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.SwitchAccessTokenUseCaseModule
+import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.subscribe.di.TimelineSubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.domain.unsubscribe.di.TimelineUnsubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
@@ -19,9 +20,7 @@ import io.ktor.client.features.DefaultRequest
 import io.ktor.client.features.UserAgent
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
-import io.ktor.http.contentType
 import io.ktor.http.userAgent
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.serialization.json.Json
@@ -35,6 +34,7 @@ import okhttp3.logging.HttpLoggingInterceptor
     SwitchAccessTokenUseCaseModule::class,
 
     AccountRepositoryModule::class,
+    FetchOwnAccountUseCaseModule::class,
     FetchOwnAccountsUseCaseModule::class,
 
     StatusRepositoryModule::class,
@@ -55,7 +55,6 @@ class TimelineModule {
         @UseExperimental(KtorExperimentalAPI::class)
         install(DefaultRequest) {
             url { protocol = URLProtocol.HTTPS }
-            contentType(ContentType.Application.Json)
             userAgent(userAgent.agent)
         }
         install(JsonFeature) {

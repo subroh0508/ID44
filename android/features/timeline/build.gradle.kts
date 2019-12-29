@@ -18,6 +18,7 @@ dependencies {
     implementation(project(":libraries:shared"))
     implementation(project(":libraries:auth:infra"))
     implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
+    implementation(project(":libraries:account:domain:usecase:fetchownaccount"))
     implementation(project(":libraries:account:domain:usecase:fetchownaccounts"))
     implementation(project(":libraries:account:domain:entity"))
     implementation(project(":libraries:timeline:domain:usecase:subscribe"))

@@ -1,4 +1,5 @@
 import {
+  fetchOwnAccount as nativeFetchOwnAccount,
   fetchOwnAccounts as nativeFetchOwnAccounts,
   switchAccount,
   openAuthentication as nativeOpenAuthentication,
@@ -7,10 +8,11 @@ import {
 const prefix = 'own_accounts';
 
 export const fetchOwnAccounts = () => async (dispatch, _getState) => {
+  const ownAccount = await nativeFetchOwnAccount();
   const ownAccounts = await nativeFetchOwnAccounts();
 
   dispatch(setOwnAccounts(ownAccounts));
-  dispatch(selectAccount(ownAccounts[0]));
+  dispatch(selectAccount(ownAccount));
 };
 
 export const onClickSwitchAccount = (account) => (dispatch, _getState) => {
