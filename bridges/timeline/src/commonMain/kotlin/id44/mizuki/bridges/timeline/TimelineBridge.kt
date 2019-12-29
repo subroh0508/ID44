@@ -21,6 +21,8 @@ internal class TimelineBridge(
         runCatching { timelineSubscribeUseCase.execute(host, accountId, stream) }
             .onSuccess { flow ->
                 promise.resolve(null)
+
+                view.onSubscribe()
                 flow?.collect { view.emitStatus(EVENT_APPEND_STATUS, it.toMap()) }
             }
             .onHttpFailure(promise::reject)
@@ -28,7 +30,11 @@ internal class TimelineBridge(
 
     fun unsubscribe(host: HostName, accountId: AccountId, stream: Stream, promise: ReactPromise) = view.launch {
         runCatching { timelineUnsubscribeUseCase.execute(host, accountId, stream) }
-            .onSuccess { promise.resolve(null) }
+            .onSuccess {
+                promise.resolve(null)
+
+                view.onUnsubscribe()
+            }
             .onHttpFailure(promise::reject)
     }
 

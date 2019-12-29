@@ -5,7 +5,6 @@ import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
-import com.facebook.react.modules.core.DeviceEventManagerModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -37,10 +36,5 @@ abstract class InjectableReactActivity : ReactActivity(), CoroutineScope {
     override fun createReactActivityDelegate() = object : ReactActivityDelegate(this, mainComponentName) {
         override fun getReactNativeHost(): ReactNativeHost = host
         override fun createRootView(): ReactRootView = reactRootView
-    }
-
-    protected val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter? by lazy {
-        reactInstanceManager.currentReactContext
-            ?.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
     }
 }
