@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from 'reselect';
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Timeline } from "../containers/Timeline";
@@ -13,9 +14,19 @@ const Home = () => {
   return (<Timeline account={ selectedAccount }/>)
 };
 
-const Drawer = () => {
+const selectOwnAccounts = createSelector(
+  state => state.ownAccounts,
+  ({ accounts, selectedAccount }) => (
+    selectedAccount ? [
+      selectedAccount,
+      ...accounts.filter(account => account.id !== selectedAccount.id),
+    ] : []
+  ),
+);
+
+const Drawer = ({ navigation }) => {
   const timelines = useSelector(state => state.timelines);
-  const accounts = useSelector(state => state.ownAccounts.accounts);
+  const accounts = useSelector(selectOwnAccounts);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,10 +39,12 @@ const Drawer = () => {
       onClickedSwitchAccount={ (account) => {
         dispatch(clearStreams());
         dispatch(onClickSwitchAccount(account));
+        navigation.closeDrawer();
       }}
       onClickedAddAccount={ () => {
         dispatch(unsubscribeAll(timelines));
         dispatch(openAuthentication());
+        navigation.closeDrawer();
       }}
     />
   );

@@ -67,7 +67,7 @@ export const removeEventListener = (inactive) => async (dispatch, _getState) => 
   }
 
   inactiveKeys.forEach(inactiveKey => {
-    inactive[inactiveKey].remove();
+    inactive[inactiveKey] && inactive[inactiveKey].remove();
   });
   dispatch(clearInactiveSubscription());
 };
