@@ -74,8 +74,10 @@ internal class MastodonAuthApiClient(
     override suspend fun getVerifyAccountsCredentials(
         hostName: String,
         accessToken: String
-    ): GetAccountsVerifyCredential.Response = httpClient.get(GET_ACCOUNTS_VERIFY_CREDENTIALS) {
-        host = hostName
-        header(HttpHeaders.Authorization, "Bearer $accessToken")
-    }
+    ) = GetAccountsVerifyCredential.Response(
+        raw = httpClient.get(GET_ACCOUNTS_VERIFY_CREDENTIALS) {
+            host = hostName
+            header(HttpHeaders.Authorization, "Bearer $accessToken")
+        }
+    )
 }

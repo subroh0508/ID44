@@ -16,6 +16,7 @@ kotlin {
                 implementation(project(":libraries:shared"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
+                implementation(Libraries.Kotlin.reflect)
                 implementation(Libraries.Kotlin.serializationCommon)
 
                 implementation(Libraries.Coroutines.common)

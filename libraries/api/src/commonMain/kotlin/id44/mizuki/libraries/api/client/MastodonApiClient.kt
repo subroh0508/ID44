@@ -14,6 +14,7 @@ import io.ktor.client.request.host
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
+import kotlinx.serialization.ImplicitReflectionSerializer
 
 internal class MastodonApiClient(
     private val httpClient: HttpClient,
@@ -21,8 +22,9 @@ internal class MastodonApiClient(
 ) : MastodonApi {
     override val host: HostName get() = provider.nowHost
 
-    override suspend fun getVerifyAccountsCredential(): GetAccountsVerifyCredential.Response =
-        httpClient.get(GET_ACCOUNTS_VERIFY_CREDENTIALS)
+    override suspend fun getVerifyAccountsCredential() = GetAccountsVerifyCredential.Response(
+        raw = httpClient.get(GET_ACCOUNTS_VERIFY_CREDENTIALS)
+    )
 
     override suspend fun getAccount(id: String): AccountJson =
         httpClient.get("$GET_ACCOUNTS/id")

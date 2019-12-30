@@ -1,12 +1,14 @@
 package id44.mizuki.libraries.api.json.account
 
-import kotlinx.serialization.Serializable
+import id44.mizuki.libraries.api.JsonData
+import id44.mizuki.libraries.api.RawJson
 
-@Serializable
 data class SourceJson(
-    val privacy: String,
-    val sensitive: Boolean,
-    val note: String,
-    val language: String? = null,
+    override val raw: RawJson
+) : JsonData {
+    val privacy: String by raw
+    val sensitive: Boolean by raw
+    val note: String by raw
+    val language: String? by raw
     val fields: List<FieldJson>? = null
-)
+}

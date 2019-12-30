@@ -20,7 +20,10 @@ internal actual class SignInReactModule(
         viewModel.scope.launch {
             runCatching { viewModel.startOauth2Flow(HostName(host)) }
                 .onSuccess { promise.resolve(null) }
-                .onFailure(promise::reject)
+                .onFailure {
+                    it.printStackTrace()
+                    promise.reject(it)
+                }
         }
     }
     @ReactMethod
