@@ -1,17 +1,19 @@
 package id44.mizuki.libraries.api.json
 
+import id44.mizuki.libraries.api.JsonData
+import id44.mizuki.libraries.api.RawJson
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class PollJson(
-    val id: String,
-    @SerialName("expires_at")
-    val expiresAt: String? = null,
-    val expired: Boolean,
-    val multiple: Boolean,
-    @SerialName("votes_count")
-    val votesCount: Int,
-    val options: List<PollOptionJson>,
-    val voted: Boolean
-)
+    override val raw: RawJson
+) : JsonData {
+    val id: String by raw
+    val expiresAt: String? by raw
+    val expired: Boolean by raw
+    val multiple: Boolean by raw
+    val votesCount: Int by raw
+    val options: List<PollOptionJson> by RawJson.ListDelegate(::PollOptionJson)
+    val voted: Boolean by raw
+}

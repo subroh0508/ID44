@@ -28,7 +28,7 @@ abstract class GetAccountsVerifyCredential {
         val header: String by raw
         val headerStatic: String by raw
         val bot: Boolean by raw
-        val source: SourceJson by RawJson.Delegate(SourceJson::class)
+        val source: SourceJson by RawJson.Delegate(::SourceJson)
     }
 
     @Serializable

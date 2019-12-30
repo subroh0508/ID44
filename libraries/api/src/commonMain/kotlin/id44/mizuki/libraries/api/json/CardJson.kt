@@ -1,24 +1,24 @@
 package id44.mizuki.libraries.api.json
 
+import id44.mizuki.libraries.api.JsonData
+import id44.mizuki.libraries.api.RawJson
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CardJson(
-    val url: String,
-    val title: String,
-    val description: String,
-    val image: String? = null,
-    val type: String,
-    @SerialName("author_name")
-    val authorName: String? = null,
-    @SerialName("author_url")
-    val authorUrl: String? = null,
-    @SerialName("provider_name")
-    val providerName: String? = null,
-    @SerialName("provider_url")
-    val providerUrl: String? = null,
-    val html: String? = null,
-    val width: Int,
-    val height: Int
-)
+    override val raw: RawJson
+) : JsonData {
+    val url: String by raw
+    val title: String by raw
+    val description: String by raw
+    val image: String? by raw
+    val type: String by raw
+    val authorName: String? by raw
+    val authorUrl: String? by raw
+    val providerName: String? by raw
+    val providerUrl: String? by raw
+    val html: String? by raw
+    val width: Int by raw
+    val height: Int by raw
+}

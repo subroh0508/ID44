@@ -1,34 +1,31 @@
 package id44.mizuki.libraries.api.json.account
 
+import id44.mizuki.libraries.api.JsonData
+import id44.mizuki.libraries.api.RawJson
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccountJson(
-    override val id: String,
-    override val username: String,
-    override val acct: String,
-    @SerialName("display_name")
-    override val displayName: String,
-    override val locked: Boolean,
-    @SerialName("created_at")
-    override val createdAt: String,
-    @SerialName("followers_count")
-    override val followersCount: Int,
-    @SerialName("following_count")
-    override val followingCount: Int,
-    @SerialName("statuses_count")
-    override val statusesCount: Int,
-    override val note: String,
-    override val url: String,
-    override val avatar: String,
-    @SerialName("avatar_static")
-    override val avatarStatic: String,
-    override val header: String,
-    @SerialName("header_static")
-    override val headerStatic: String,
-    override val emojis: List<EmojiJson>? = null,
-    override val fields: List<FieldJson>? = null,
-    override val bot: Boolean,
-    val moved: AccountJson? = null
-) : AccountJsonFacade
+    override val raw: RawJson
+) : JsonData {
+    val id: String by raw
+    val username: String by raw
+    val acct: String by raw
+    val displayName: String by raw
+    val locked: Boolean by raw
+    val createdAt: String by raw
+    val followersCount: Int by raw
+    val followingCount: Int by raw
+    val statusesCount: Int by raw
+    val note: String by raw
+    val url: String by raw
+    val avatar: String by raw
+    val avatarStatic: String by raw
+    val header: String by raw
+    val headerStatic: String by raw
+    val emojis: List<EmojiJson>? by RawJson.NullableListDelegate(::EmojiJson)
+    val fields: List<FieldJson>? by RawJson.NullableListDelegate(::FieldJson)
+    val bot: Boolean by raw
+    val moved: AccountJson? by RawJson.NullableDelegate(::AccountJson)
+}

@@ -25,7 +25,7 @@ internal fun StreamingEventJson.toStatus(): Status? {
         return null
     }
 
-    val payload = payload?.let(StatusJson.Companion::fromJson) ?: return null
+    val payload = payload?.let(::StatusJson) ?: return null
 
     return Status(
         id = payload.id,

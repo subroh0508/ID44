@@ -10,5 +10,5 @@ data class SourceJson(
     val sensitive: Boolean by raw
     val note: String by raw
     val language: String? by raw
-    val fields: List<FieldJson>? = null
+    val fields: List<FieldJson>? by RawJson.NullableListDelegate(::FieldJson)
 }
