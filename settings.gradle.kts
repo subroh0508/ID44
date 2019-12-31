@@ -9,6 +9,7 @@ include(
     ":bridges:signin",
     ":bridges:timeline",
     ":libraries:shared",
+    ":libraries:reactnativesupport",
     ":libraries:api",
     ":libraries:account:infra",
     ":libraries:account:domain:entity",

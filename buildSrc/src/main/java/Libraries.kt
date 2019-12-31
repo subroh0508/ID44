@@ -7,11 +7,13 @@ object Libraries {
     }
 
     object Kotlin {
-        const val stdlibJvm = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
+        const val stdlibJvm = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
         const val serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
         const val serializationJvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
+        const val serializationJs = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.kotlinxSerialization}"
         const val serializationIos = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
         const val androidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions-runtime:${Versions.kotlin}"
         const val test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
