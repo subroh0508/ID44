@@ -46,7 +46,7 @@ internal class TimelineBridge(
         "reblogCount" to reblogCount,
         "tooter" to mapOf(
             "id" to tooter.id,
-            "username" to tooter.usename,
+            "username" to tooter.username,
             "avatar" to tooter.avatarStatic
         )
     )
