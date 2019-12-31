@@ -51,6 +51,7 @@ kotlin {
                 implementation(project(":react-native-reanimated"))
 
                 implementation(Libraries.Kotlin.stdlibJvm)
+                implementation(Libraries.Kotlin.serializationJvm)
                 implementation(Libraries.Kotlin.reflect)
 
                 implementation(Libraries.Klock.android)

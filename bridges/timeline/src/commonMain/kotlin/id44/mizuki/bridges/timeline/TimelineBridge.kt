@@ -11,6 +11,7 @@ import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseC
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Mapper
 
 internal class TimelineBridge(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
@@ -23,7 +24,7 @@ internal class TimelineBridge(
                 promise.resolve(null)
 
                 view.onSubscribe()
-                flow?.collect { view.emitStatus(EVENT_APPEND_STATUS, it.toMap()) }
+                flow?.collect { view.emitStatus(EVENT_APPEND_STATUS, Mapper.map(Status.serializer(), it)) }
             }
             .onHttpFailure(promise::reject)
     }

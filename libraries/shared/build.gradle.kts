@@ -12,6 +12,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Libraries.Kotlin.stdlibCommon)
+                implementation(Libraries.Kotlin.serializationCommon)
 
                 implementation(Libraries.Klock.common)
             }
@@ -21,6 +22,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(Libraries.Kotlin.stdlibJvm)
+                implementation(Libraries.Kotlin.serializationJvm)
 
                 implementation(Libraries.reactNative)
             }

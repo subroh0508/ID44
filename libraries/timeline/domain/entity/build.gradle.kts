@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    id("kotlinx-serialization")
     id("com.android.library")
 }
 
@@ -11,7 +12,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":libraries:shared"))
+
                 implementation(Libraries.Kotlin.stdlibCommon)
+                implementation(Libraries.Kotlin.serializationCommon)
 
                 implementation(Libraries.Klock.common)
             }
@@ -21,6 +25,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(Libraries.Kotlin.stdlibJvm)
+                implementation(Libraries.Kotlin.serializationJvm)
             }
         }
     }

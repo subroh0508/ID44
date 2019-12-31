@@ -1,5 +1,8 @@
 package id44.mizuki.libraries.timeline.domain.entity
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Tooter(
     val id: String,
     val usename: String,

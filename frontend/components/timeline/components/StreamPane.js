@@ -21,7 +21,7 @@ export const StreamPane = ({ streamKey }) => {
       {
         streams.map((status, i) => (
           <ListItem key={ i }
-            leftAvatar={{ source: { uri: status.tooter.avatar } }}
+            leftAvatar={{ source: { uri: status.tooter.avatarStatic } }}
             title={
               <HTMLView value={ status.content }
                 stylesheet={{ p: { color: theme.colors.primary } }}/>
