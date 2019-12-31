@@ -1,5 +1,5 @@
 package id44.mizuki.bridges.signin
 
-import id44.mizuki.libraries.shared.reactnative.ReactContextBaseModule
+import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 
 internal expect class SignInReactModule : ReactContextBaseModule

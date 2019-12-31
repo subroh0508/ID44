@@ -1,10 +1,9 @@
 package id44.mizuki.bridges.timeline
 
-import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
-import id44.mizuki.libraries.shared.reactnative.ReactContextBaseModule
+import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream

@@ -15,6 +15,7 @@ kotlin {
             dependencies {
                 implementation(project(":bridges:auth"))
                 implementation(project(":libraries:shared"))
+                implementation(project(":libraries:reactnativesupport"))
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:auth:infra"))
                 implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
