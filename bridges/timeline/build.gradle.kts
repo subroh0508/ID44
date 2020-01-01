@@ -22,11 +22,11 @@ kotlin {
                 implementation(project(":libraries:account:infra"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccount"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccounts"))
-                implementation(project(":libraries:account:domain:entity"))
+                implementation(project(":libraries:account:domain:account-entity"))
                 implementation(project(":libraries:timeline:infra"))
                 implementation(project(":libraries:timeline:domain:usecase:subscribe"))
                 implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
-                implementation(project(":libraries:timeline:domain:entity"))
+                implementation(project(":libraries:timeline:domain:timeline-entity"))
                 implementation(project(":libraries:timeline:domain:valueobject"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)

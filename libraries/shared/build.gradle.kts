@@ -7,9 +7,7 @@ androidMPP()
 
 kotlin {
     android()
-    js {
-        nodejs()
-    }
+    js { nodejs() }
 
     sourceSets {
         val commonMain by getting {

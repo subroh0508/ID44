@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:account:infra"))
-                implementation(project(":libraries:account:domain:entity"))
+                implementation(project(":libraries:account:domain:account-entity"))
                 implementation(Libraries.Kotlin.stdlibCommon)
 
                 implementation(Libraries.Coroutines.common)

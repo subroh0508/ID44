@@ -8,11 +8,7 @@ androidMPP()
 
 kotlin {
     android()
-    js {
-        browser {
-
-        }
-    }
+    js { nodejs() }
 
     sourceSets {
         val commonMain by getting {
