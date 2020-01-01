@@ -25,10 +25,10 @@ internal class AccountRepositoryImpl(
         cache.removeVerifyAccountsCredential(hostName.value, id.value)
 
     private fun GetAccountsVerifyCredential.Response.toEntity(hostName: HostName) = Account(
-        id = AccountId(id),
+        id = id,
         username = username,
         displayName = displayName,
-        hostName = hostName,
+        hostName = hostName.value,
         avatar = avatar
     )
 }

@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="account-entity-js">
+    <output-path>$PROJECT_DIR$/libraries/account/domain/entity/build/libs</output-path>
+    <root id="archive" name="account-entity-js.jar" />
+  </artifact>
+</component>

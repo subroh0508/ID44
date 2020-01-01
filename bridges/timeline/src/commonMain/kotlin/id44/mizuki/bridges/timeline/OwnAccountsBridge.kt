@@ -11,6 +11,7 @@ import id44.mizuki.libraries.reactnativesupport.ReactPromise
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Mapper
 
 internal class OwnAccountsBridge(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
@@ -21,12 +22,12 @@ internal class OwnAccountsBridge(
     fun openAuthentication() = view.openAuthentication()
 
     fun fetchOwnAccounts(promise: ReactPromise) = promise.resolve(ReactArguments.makeNativeArray(
-        fetchOwnAccountsUseCase.execute().map { it.toMap() }
+        fetchOwnAccountsUseCase.execute().map { Mapper.map(Account.serializer(), it) }
     ))
 
     fun fetchOwnAccount(promise: ReactPromise) = view.launch {
         runCatching { fetchOwnAccountUseCase.execute() }
-            .onSuccess { promise.resolve(it.toMap()) }
+            .onSuccess { promise.resolve(Mapper.map(Account.serializer(), it)) }
             .onHttpFailure(promise::reject)
     }
 
@@ -36,10 +37,10 @@ internal class OwnAccountsBridge(
     }
 
     private fun Account.toMap() = ReactArguments.makeNativeMap(mapOf(
-        "id" to id.value,
+        "id" to id().value,
         "displayName" to displayName,
         "screen" to screen,
         "avatar" to avatar,
-        "hostName" to hostName.value
+        "hostName" to hostName().value
     ))
 }

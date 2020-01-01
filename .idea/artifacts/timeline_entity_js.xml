@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="timeline-entity-js">
+    <output-path>$PROJECT_DIR$/libraries/timeline/domain/entity/build/libs</output-path>
+    <root id="archive" name="timeline-entity-js.jar" />
+  </artifact>
+</component>
