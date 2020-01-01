@@ -35,12 +35,4 @@ internal class OwnAccountsBridge(
         switchAccessTokenUseCase.execute(host, id)
         //view.restart()
     }
-
-    private fun Account.toMap() = ReactArguments.makeNativeMap(mapOf(
-        "id" to id().value,
-        "displayName" to displayName,
-        "screen" to screen,
-        "avatar" to avatar,
-        "hostName" to hostName().value
-    ))
 }

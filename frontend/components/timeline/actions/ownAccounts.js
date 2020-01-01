@@ -4,6 +4,8 @@ import {
   switchAccount,
   openAuthentication as nativeOpenAuthentication,
 } from "../native/TimelineModule";
+import { serializer } from 'ID44-account-entity';
+import { mapper } from 'ID44-shared';
 
 const prefix = 'own_accounts';
 
@@ -11,8 +13,9 @@ export const fetchOwnAccounts = () => async (dispatch, _getState) => {
   const ownAccount = await nativeFetchOwnAccount();
   const ownAccounts = await nativeFetchOwnAccounts();
 
-  dispatch(setOwnAccounts(ownAccounts));
-  dispatch(selectAccount(ownAccount));
+  const account = mapper.unmap(serializer(), ownAccount);
+  dispatch(setOwnAccounts(ownAccounts.map(a => mapper.unmap(serializer(), a))));
+  dispatch(selectAccount(mapper.unmap(serializer(), ownAccount)));
 };
 
 export const onClickSwitchAccount = (account) => (dispatch, _getState) => {
