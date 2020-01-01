@@ -8,6 +8,11 @@ androidMPP()
 
 kotlin {
     android()
+    js {
+        browser {
+
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -28,6 +33,15 @@ kotlin {
                 implementation(Libraries.Kotlin.serializationJvm)
             }
         }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.serializationJs)
+            }
+        }
+
     }
 }
 

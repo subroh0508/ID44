@@ -5,6 +5,10 @@
   "scripts": {
     "start": "yarn react-native start"
   },
+  "workspaces": [
+    "build/js/packages/*",
+    "build/js/packages_imported/**"
+  ],
   "dependencies": {
     "i18next": "^19.0.2",
     "react": "16.9.0",
