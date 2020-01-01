@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsName
 
 @Serializable
-@JsName("Status")
 class Status(
     val id: String,
     val content: String,

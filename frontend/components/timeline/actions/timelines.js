@@ -4,7 +4,8 @@ import TimelineModule, {
   subscribe as nativeSubscribe,
   unsubscribe as nativeUnsubscribe,
 } from '../native/TimelineModule';
-import { unmapStatus } from 'ID44-entity';
+import { serializer } from 'ID44-timeline-entity';
+import { mapper } from 'ID44-shared';
 
 const prefix = 'timeline';
 
@@ -58,7 +59,7 @@ export const unsubscribeAll = ({ active, inactive }) => async (dispatch, _getSta
 const addEventListener = (streamKey, dispatch) => new NativeEventEmitter(TimelineModule)
   .addListener(EVENT_APPEND_STATUS, status => {
     console.log(status.content);
-    dispatch(appendStatus(streamKey, unmapStatus(status)));
+    dispatch(appendStatus(streamKey, mapper.unmap(serializer(), status)));
   });
 
 export const removeEventListener = (inactive) => async (dispatch, _getState) => {

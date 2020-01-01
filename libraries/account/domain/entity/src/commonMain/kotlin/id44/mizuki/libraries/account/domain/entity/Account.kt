@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsName
 
 @Serializable
-@JsName("Account")
 data class Account(
     private val id: String,
     val username: String,

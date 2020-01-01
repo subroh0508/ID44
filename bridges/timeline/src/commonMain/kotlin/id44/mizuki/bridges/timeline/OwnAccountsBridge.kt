@@ -27,7 +27,7 @@ internal class OwnAccountsBridge(
 
     fun fetchOwnAccount(promise: ReactPromise) = view.launch {
         runCatching { fetchOwnAccountUseCase.execute() }
-            .onSuccess { promise.resolve(Mapper.map(Account.serializer(), it)) }
+            .onSuccess { promise.resolve(ReactArguments.makeNativeMap(Mapper.map(Account.serializer(), it))) }
             .onHttpFailure(promise::reject)
     }
 
