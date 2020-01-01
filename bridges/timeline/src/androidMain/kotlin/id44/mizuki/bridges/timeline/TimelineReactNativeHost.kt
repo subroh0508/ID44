@@ -16,5 +16,5 @@ internal class TimelineReactNativeHost @Inject constructor(
             addAll(listOf(RNGestureHandlerPackage(), ReanimatedPackage(), `package`))
         }
     override fun getBundleAssetName() = "index.android.bundle"
-    override fun getJSMainModuleName() = "components/timeline/index"
+    override fun getJSMainModuleName() = "frontend/components/timeline/index"
 }

@@ -4,7 +4,7 @@ import TimelineModule, {
   subscribe as nativeSubscribe,
   unsubscribe as nativeUnsubscribe,
 } from '../native/TimelineModule';
-import { unmapStatus } from '../../../kotlin_build/packages/ID44-entity/kotlin/ID44-entity';
+import { unmapStatus } from 'ID44-entity';
 
 const prefix = 'timeline';
 
