@@ -17,7 +17,7 @@ import io.ktor.http.userAgent
 import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
 
-internal object AuthHttpClientProvider {
+internal object AuthHttpsClientProvider {
     fun provide(userAgent: UserAgent, json: Json): HttpClient = HttpClient(OkHttp) {
         engine {
             if (BuildConfig.DEBUG) {

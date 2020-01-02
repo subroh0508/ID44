@@ -8,7 +8,7 @@ import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_APP_CREDENTIAL_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
-import id44.mizuki.libraries.api.auth.AuthHttpClientProvider
+import id44.mizuki.libraries.api.auth.AuthHttpsClientProvider
 import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.AppCredentialStoreClient
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
@@ -35,7 +35,7 @@ class MastodonAuthApiModule {
     @Provides
     @ModuleScope
     fun provideMastodonAuthApi(userAgent: UserAgent, json: Json): MastodonAuthApi =
-        MastodonAuthApiClient(AuthHttpClientProvider.provide(userAgent, json))
+        MastodonAuthApiClient(AuthHttpsClientProvider.provide(userAgent, json))
 
     @Provides
     @ModuleScope

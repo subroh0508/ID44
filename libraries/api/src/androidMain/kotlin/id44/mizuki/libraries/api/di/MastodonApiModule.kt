@@ -6,10 +6,11 @@ import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.api.CredentialProvider
+import id44.mizuki.libraries.api.HttpsClientProvider
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
 import id44.mizuki.libraries.api.client.*
-import io.ktor.client.HttpClient
+import io.ktor.client.features.UserAgent
 import kotlinx.serialization.json.Json
 
 @Module
@@ -26,5 +27,11 @@ class MastodonApiModule {
 
     @Provides
     @ModuleScope
-    fun provideMastodonApi(httpClient: HttpClient, provider: CredentialProvider): MastodonApi = MastodonApiClient(httpClient, provider)
+    fun provideMastodonApi(
+        clientProvider: HttpsClientProvider,
+        userAgent: UserAgent,
+        json: Json,
+        credentialProvider: CredentialProvider
+    ): MastodonApi =
+        MastodonApiClient(clientProvider.provide(userAgent, json), credentialProvider)
 }
