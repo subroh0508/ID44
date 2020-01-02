@@ -3,7 +3,7 @@ import TimelineModule, {
   EVENT_APPEND_STATUS,
   subscribe as nativeSubscribe,
   unsubscribe as nativeUnsubscribe,
-} from '../native/TimelineModule';
+} from '../native/TimelineNativeActions';
 import { serializer } from 'ID44-timeline-entity';
 import { mapper } from 'ID44-shared';
 

@@ -3,7 +3,7 @@ import {
   fetchOwnAccounts as nativeFetchOwnAccounts,
   switchAccount,
   openAuthentication as nativeOpenAuthentication,
-} from "../native/TimelineModule";
+} from "../native/TimelineNativeActions";
 import { serializer } from 'ID44-account-entity';
 import { mapper } from 'ID44-shared';
 
