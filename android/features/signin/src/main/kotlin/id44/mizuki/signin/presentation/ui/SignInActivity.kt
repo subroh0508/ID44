@@ -8,12 +8,13 @@ import androidx.lifecycle.Observer
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.InjectableReactActivity
+import id44.mizuki.bridges.signin.SignInView
 import id44.mizuki.libraries.shared.valueobject.Uri
 import id44.mizuki.signin.di.inject
 import id44.mizuki.signin.presentation.model.SignInViewModelImpl
 import javax.inject.Inject
 
-class SignInActivity : InjectableReactActivity() {
+class SignInActivity : InjectableReactActivity(), SignInView {
     @Inject
     internal lateinit var viewModel: SignInViewModelImpl
 
@@ -25,8 +26,6 @@ class SignInActivity : InjectableReactActivity() {
         super.onCreate(savedInstanceState)
 
         viewModel.authorizeUri.observe(this, Observer(this::openAuthorizePage))
-        viewModel.message.observe(this, Observer(this::showToast))
-        viewModel.openTimeline.observe(this, Observer { openTimeline() })
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -40,9 +39,9 @@ class SignInActivity : InjectableReactActivity() {
         }?.let(this::startActivity) ?: viewModel.onNotFoundBrowser()
     }
 
-    private fun showToast(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
+    override fun showErrorMessage(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
 
-    private fun openTimeline() {
+    override fun openTimeline() {
         finish()
         startActivity(intentTo(Activities.Timeline))
     }

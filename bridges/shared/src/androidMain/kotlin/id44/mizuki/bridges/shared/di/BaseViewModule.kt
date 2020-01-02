@@ -15,11 +15,7 @@ import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.bridges.shared.ReactContextModuleProvider
 
 @Module
-abstract class BaseViewModule<in T: ReactNativeHost> {
-    @Binds
-    @ActivityScope
-    internal abstract fun bindReactNativeHost(host: T): ReactNativeHost
-
+abstract class BaseViewModule {
     @Module
     companion object {
         @JvmStatic
@@ -34,7 +30,7 @@ abstract class BaseViewModule<in T: ReactNativeHost> {
 
             override fun createNativeModules(
                 reactContext: ReactApplicationContext
-            ): MutableList<NativeModule> = mutableListOf(moduleProvider.invoke(reactContext))
+            ): MutableList<NativeModule> = mutableListOf(moduleProvider.provide(reactContext))
         }
     }
 }

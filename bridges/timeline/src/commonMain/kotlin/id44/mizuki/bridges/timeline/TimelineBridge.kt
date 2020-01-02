@@ -38,16 +38,4 @@ internal class TimelineBridge(
             }
             .onHttpFailure(promise::reject)
     }
-
-    private fun Status.toMap() = mapOf(
-        "id" to id,
-        "content" to content,
-        "favouriteCount" to favouriteCount,
-        "reblogCount" to reblogCount,
-        "tooter" to mapOf(
-            "id" to tooter.id,
-            "username" to tooter.username,
-            "avatar" to tooter.avatarStatic
-        )
-    )
 }

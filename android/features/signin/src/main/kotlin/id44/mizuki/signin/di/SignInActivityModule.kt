@@ -12,7 +12,7 @@ import id44.mizuki.signin.presentation.model.SignInViewModelImpl
 import id44.mizuki.signin.presentation.ui.SignInActivity
 
 @Module
-abstract class SignInActivityModule : SignInViewModule() {
+abstract class SignInActivityModule : SignInViewModule<SignInActivity>() {
     @Binds
     @ActivityScope
     internal abstract fun bindSignInViewModelFactory(factory: SignInViewModelImpl.Factory): ViewModelProvider.NewInstanceFactory
