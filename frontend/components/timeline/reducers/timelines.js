@@ -46,7 +46,15 @@ const timelines = (state = initialState, action) => {
         streams: {
           ...state.streams,
           [action.value]: [action.status, ...(state.streams[action.value] || [])],
-        }
+        },
+      };
+    case Actions.APPEND_STATUSES:
+      return {
+        ...state,
+        streams: {
+          ...state.streams,
+          [action.value]: [...action.statuses, ...(state.streams[action.value] || [])],
+        },
       };
     case Actions.CLEAR_STREAMS:
       return {
