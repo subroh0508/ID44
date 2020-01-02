@@ -10,7 +10,7 @@ fun <E: Enum<*>> parse(types: Array<E>, error: dynamic): SerializableException? 
 
 @JsName("key")
 fun SerializableException?.key(module: String, defaultKey: String) =
-    this?.let { "$module.exceptions.${reason.name.camelize()}" } ?: defaultKey
+    this?.let { "$module.exceptions.${reason.name.camelize()}" } ?: "$module.exceptions.$defaultKey"
 
 private fun <E: Enum<*>> Array<E>.findReason(error: dynamic) =
     find { it.name == (error.message as? String)?.split(":")?.getOrNull(0) }
