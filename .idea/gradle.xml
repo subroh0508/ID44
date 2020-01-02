@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/android/features/timeline" />
             <option value="$PROJECT_DIR$/bridges" />
             <option value="$PROJECT_DIR$/bridges/auth" />
+            <option value="$PROJECT_DIR$/bridges/shared" />
             <option value="$PROJECT_DIR$/bridges/signin" />
             <option value="$PROJECT_DIR$/bridges/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />

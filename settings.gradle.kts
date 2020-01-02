@@ -5,6 +5,7 @@ include(
     ":android:components:core",
     ":android:features:signin",
     ":android:features:timeline",
+    ":bridges:shared",
     ":bridges:auth",
     ":bridges:signin",
     ":bridges:timeline",
