@@ -8,9 +8,9 @@ import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAcco
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
-import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
-import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.subscribe.TimelineSubscribeUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase
 
 @ModuleScope
 @Component(

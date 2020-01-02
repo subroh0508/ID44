@@ -12,9 +12,9 @@ import id44.mizuki.libraries.api.di.MastodonStreamingApiModule
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.SwitchAccessTokenUseCaseModule
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
-import id44.mizuki.libraries.timeline.domain.subscribe.di.TimelineSubscribeUseCaseModule
-import id44.mizuki.libraries.timeline.domain.unsubscribe.di.TimelineUnsubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.FetchStatusesUseCaseModule
+import id44.mizuki.libraries.timeline.domain.usecase.subscribe.di.TimelineSubscribeUseCaseModule
+import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.di.TimelineUnsubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
 import id44.mizuki.libraries.timeline.infra.di.StreamingRepositoryModule
 

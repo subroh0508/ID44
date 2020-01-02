@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.timeline.domain.subscribe
+package id44.mizuki.libraries.timeline.domain.usecase.subscribe
 
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
