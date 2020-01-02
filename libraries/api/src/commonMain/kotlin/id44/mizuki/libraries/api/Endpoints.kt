@@ -6,7 +6,7 @@ internal fun String.append(vararg params: Pair<String, Any?>): String {
     }
 
     return buildString {
-        append("$this?")
+        append("${this@append}?")
         append(params.filter { (_, v) -> v != null }.joinToString("&") { (k, v) -> "$k=$v" })
     }
 }

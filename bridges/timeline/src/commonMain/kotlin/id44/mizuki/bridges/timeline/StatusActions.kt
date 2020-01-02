@@ -24,6 +24,6 @@ class StatusActions(
                     statuses.map { Mapper.map(Status.serializer(), it) }
                 ))
             }
-            .onFailure(reject)
+            .onHttpFailure(reject)
     }
 }

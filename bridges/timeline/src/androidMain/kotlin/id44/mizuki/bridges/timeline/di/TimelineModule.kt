@@ -10,6 +10,7 @@ import id44.mizuki.libraries.api.HttpsClientProvider
 import id44.mizuki.libraries.api.di.MastodonApiModule
 import id44.mizuki.libraries.api.di.MastodonStreamingApiModule
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
+import id44.mizuki.libraries.api.params.GetTimelines
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.SwitchAccessTokenUseCaseModule
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.FetchStatusesUseCaseModule
@@ -40,5 +41,6 @@ class TimelineModule {
     @ModuleScope
     fun provideHttpClientProvider() = HttpsClientProvider {
         setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
+        setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
     }
 }

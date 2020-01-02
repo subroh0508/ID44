@@ -1,25 +1,35 @@
 package id44.mizuki.libraries.api.serializers
 
 import id44.mizuki.libraries.api.RawJson
-import kotlinx.serialization.*
+import id44.mizuki.libraries.api.RawJsonArray
+import kotlinx.serialization.Decoder
+import kotlinx.serialization.Encoder
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializer
+import kotlinx.serialization.internal.ArrayListSerializer
 import kotlinx.serialization.internal.SerialClassDescImpl
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonLiteral
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
 
-@Serializer(forClass = RawJson::class)
-class RawJsonSerializer : KSerializer<RawJson> {
-    override val descriptor = SerialClassDescImpl("RawJson")
+@Serializer(forClass = RawJsonArray::class)
+class RawJsonArraySerializer : KSerializer<RawJsonArray> {
+    override val descriptor = SerialClassDescImpl("RawJsonArray")
 
-    override fun deserialize(decoder: Decoder): RawJson {
-        val input = decoder as? JsonInput ?: throw SerializationException("This class can be loaded only by Json")
-        val jsonObj = input.decodeJson() as? JsonObject ?: throw SerializationException("Expected Json Object")
+    override fun deserialize(decoder: Decoder): RawJsonArray {
+        val raw: List<RawJson> = decoder.decodeSerializableValue(
+            ArrayListSerializer(RawJsonSerializer())
+        )
 
-        return deserializeObject(jsonObj)
+        return RawJsonArray(raw)
     }
 
-    override fun serialize(encoder: Encoder, obj: RawJson) {
-        val output = encoder as? JsonOutput ?: throw SerializationException("This class can be saved only by Json")
-
-        output.encodeJson(serializeObject(obj.raw))
+    override fun serialize(encoder: Encoder, obj: RawJsonArray) {
+        encoder.encodeSerializableValue(
+            ArrayListSerializer(RawJsonSerializer()),
+            obj.raw
+        )
     }
 
     private fun deserializeObject(jsonObj: JsonObject): RawJson = RawJson(jsonObj.map { (key, element) ->
