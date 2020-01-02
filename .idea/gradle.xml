@@ -49,6 +49,7 @@
             <option value="$PROJECT_DIR$/libraries/timeline/domain" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/entity" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/fetchstatuses" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/subscribe" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/unsubscribe" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/valueobject" />
