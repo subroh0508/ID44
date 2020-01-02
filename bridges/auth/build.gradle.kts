@@ -21,6 +21,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":bridges:shared"))
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:auth:infra"))

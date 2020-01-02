@@ -13,6 +13,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":bridges:shared"))
                 implementation(project(":bridges:auth"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:reactnativesupport"))

@@ -1,8 +1,7 @@
 package id44.mizuki.bridges.timeline
 
-import id44.mizuki.bridges.auth.RequireAuthBridge
+import id44.mizuki.bridges.auth.RequireAuthActions
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
-import id44.mizuki.libraries.reactnativesupport.ReactPromise
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.entity.Status
@@ -13,29 +12,35 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Mapper
 
-internal class TimelineBridge(
+internal class TimelineActions(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
     private val timelineSubscribeUseCase: TimelineSubscribeUseCase,
     private val timelineUnsubscribeUseCase: TimelineUnsubscribeUseCase
-) : RequireAuthBridge(view, accessTokenRepository) {
-    fun subscribe(host: HostName, accountId: AccountId, stream: Stream, promise: ReactPromise) = view.launch {
+) : RequireAuthActions(view, accessTokenRepository) {
+    fun subscribe(
+        host: HostName, accountId: AccountId, stream: Stream,
+        resolve: (Any?) -> Unit, reject: (Throwable) -> Unit
+    ) = view.launch {
         runCatching { timelineSubscribeUseCase.execute(host, accountId, stream) }
             .onSuccess { flow ->
-                promise.resolve(null)
+                resolve(null)
 
                 view.onSubscribe()
                 flow?.collect { view.emitStatus(EVENT_APPEND_STATUS, Mapper.map(Status.serializer(), it)) }
             }
-            .onHttpFailure(promise::reject)
+            .onHttpFailure(reject)
     }
 
-    fun unsubscribe(host: HostName, accountId: AccountId, stream: Stream, promise: ReactPromise) = view.launch {
+    fun unsubscribe(
+        host: HostName, accountId: AccountId, stream: Stream,
+        resolve: (Any?) -> Unit, reject: (Throwable) -> Unit
+    ) = view.launch {
         runCatching { timelineUnsubscribeUseCase.execute(host, accountId, stream) }
             .onSuccess {
-                promise.resolve(null)
+                resolve(null)
 
                 view.onUnsubscribe()
             }
-            .onHttpFailure(promise::reject)
+            .onHttpFailure(reject)
     }
 }

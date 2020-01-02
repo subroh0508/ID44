@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import id44.mizuki.base.scope.ActivityScope
 import id44.mizuki.bridges.auth.di.RequireAuthViewModule
+import id44.mizuki.bridges.shared.ReactContextModuleProvider
 import id44.mizuki.bridges.timeline.*
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAccountUseCase
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
@@ -23,10 +24,6 @@ abstract class TimelineViewModule<in V: TimelineView> : RequireAuthViewModule<V>
 
     @Binds
     @ActivityScope
-    internal abstract fun bindTimelinePackage(`package`: TimelinePackage): ReactPackage
-
-    @Binds
-    @ActivityScope
     internal abstract fun bindReactNativeHost(host: TimelineReactNativeHost): ReactNativeHost
 
     @Module
@@ -34,20 +31,34 @@ abstract class TimelineViewModule<in V: TimelineView> : RequireAuthViewModule<V>
         @JvmStatic
         @Provides
         @ActivityScope
-        internal fun provideOwnAccountsBridge(
+        internal fun provideOwnAccountsActions(
             view: TimelineView, accessTokenRepository: AccessTokenRepository,
             fetchOwnAccountUseCase: FetchOwnAccountUseCase,
             fetchOwnAccountsUseCase: FetchOwnAccountsUseCase,
             switchAccessTokenUseCase: SwitchAccessTokenUseCase
-        ) = OwnAccountsBridge(view, accessTokenRepository, fetchOwnAccountUseCase, fetchOwnAccountsUseCase, switchAccessTokenUseCase)
+        ) = OwnAccountsActions(view, accessTokenRepository, fetchOwnAccountUseCase, fetchOwnAccountsUseCase, switchAccessTokenUseCase)
 
         @JvmStatic
         @Provides
         @ActivityScope
-        internal fun provideTimelineBridge(
+        internal fun provideTimelineActions(
             view: TimelineView, accessTokenRepository: AccessTokenRepository,
             subscribeUseCase: TimelineSubscribeUseCase,
             unsubscribeUseCase: TimelineUnsubscribeUseCase
-        ) = TimelineBridge(view, accessTokenRepository, subscribeUseCase, unsubscribeUseCase)
+        ) = TimelineActions(view, accessTokenRepository, subscribeUseCase, unsubscribeUseCase)
+
+        @JvmStatic
+        @Provides
+        @ActivityScope
+        internal fun provideReactContextModuleProvider(
+            ownAccountsActions: OwnAccountsActions,
+            timelineActions: TimelineActions
+        ) = ReactContextModuleProvider { context ->
+            TimelineReactModule(
+                context,
+                ownAccountsActions,
+                timelineActions
+            )
+        }
     }
 }

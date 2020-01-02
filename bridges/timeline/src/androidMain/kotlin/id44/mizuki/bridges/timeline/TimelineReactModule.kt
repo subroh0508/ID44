@@ -10,10 +10,10 @@ import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 
 internal actual class TimelineReactModule(
     reactContext: ReactApplicationContext,
-    private val ownAccountsBridge: OwnAccountsBridge,
-    private val timelineBridge: TimelineBridge
+    private val ownAccountsActions: OwnAccountsActions,
+    private val timelineActions: TimelineActions
 ) : ReactContextBaseModule(reactContext) {
-    override fun getName() = "TimelineModule"
+    override fun getName() = "TimelineNativeActions"
 
     override fun getConstants() = mutableMapOf(
         EVENT_APPEND_STATUS to EVENT_APPEND_STATUS,
@@ -23,18 +23,18 @@ internal actual class TimelineReactModule(
     )
 
     @ReactMethod
-    fun openAuthentication() = ownAccountsBridge.openAuthentication()
+    fun openAuthentication() = ownAccountsActions.openAuthentication()
     @ReactMethod
-    fun fetchOwnAccount(promise: Promise) = ownAccountsBridge.fetchOwnAccount(promise)
+    fun fetchOwnAccount(promise: Promise) = ownAccountsActions.fetchOwnAccount(promise::resolve, promise::reject)
     @ReactMethod
-    fun fetchOwnAccounts(promise: Promise) = ownAccountsBridge.fetchOwnAccounts(promise)
+    fun fetchOwnAccounts(promise: Promise) = ownAccountsActions.fetchOwnAccounts(promise::resolve)
     @ReactMethod
-    fun switchAccount(host: String, id: String) = ownAccountsBridge.switchAccount(HostName(host), AccountId(id))
+    fun switchAccount(host: String, id: String) = ownAccountsActions.switchAccount(HostName(host), AccountId(id))
 
     @ReactMethod
     fun subscribe(host: String, id: String, stream: String, promise: Promise) =
-        timelineBridge.subscribe(HostName(host), AccountId(id), Stream.valueOf(stream), promise)
+        timelineActions.subscribe(HostName(host), AccountId(id), Stream.valueOf(stream), promise::resolve, promise::reject)
     @ReactMethod
     fun unsubscribe(host: String, id: String, stream: String, promise: Promise) =
-        timelineBridge.unsubscribe(HostName(host), AccountId(id), Stream.valueOf(stream), promise)
+        timelineActions.unsubscribe(HostName(host), AccountId(id), Stream.valueOf(stream), promise::resolve, promise::reject)
 }

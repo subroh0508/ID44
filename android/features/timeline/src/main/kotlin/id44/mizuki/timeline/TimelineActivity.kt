@@ -17,11 +17,6 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView {
         super.onCreate(savedInstanceState)
     }
 
-    override fun restart() {
-        finish()
-        startActivity(intent)
-    }
-
     override fun onSubscribe() {
         emitter = reactInstanceManager.currentReactContext?.getJSModule(
             DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
