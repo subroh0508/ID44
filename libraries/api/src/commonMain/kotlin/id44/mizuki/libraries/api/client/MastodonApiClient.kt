@@ -1,8 +1,10 @@
 package id44.mizuki.libraries.api.client
 
-import id44.mizuki.libraries.api.CredentialProvider
+import id44.mizuki.libraries.api.*
 import id44.mizuki.libraries.api.GET_ACCOUNTS
 import id44.mizuki.libraries.api.GET_ACCOUNTS_VERIFY_CREDENTIALS
+import id44.mizuki.libraries.api.GET_TIMELINES_PUBLIC
+import id44.mizuki.libraries.api.json.StatusJson
 import id44.mizuki.libraries.api.json.account.AccountJson
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import id44.mizuki.libraries.shared.valueobject.HostName
@@ -25,9 +27,17 @@ internal class MastodonApiClient(
     override suspend fun getVerifyAccountsCredential() = GetAccountsVerifyCredential.Response(
         raw = httpClient.get(GET_ACCOUNTS_VERIFY_CREDENTIALS)
     )
-
     override suspend fun getAccount(id: String): AccountJson =
         httpClient.get("$GET_ACCOUNTS/id")
+
+    override suspend fun getTimelinesPublic(maxId: String?, limit: Int) =
+        httpClient.get<List<RawJson>>(
+            GET_TIMELINES_PUBLIC.append("max_id" to maxId, "limit" to limit)
+        ).map(::StatusJson)
+    override suspend fun getTimelinesLocal(maxId: String?, limit: Int) =
+        httpClient.get<List<RawJson>>(
+            GET_TIMELINES_PUBLIC.append("max_id" to maxId, "limit" to limit, "local" to true)
+        ).map(::StatusJson)
 
     private suspend inline fun <reified T: Any> HttpClient.get(urlString: String) =
         get<T>(urlString, block = {
