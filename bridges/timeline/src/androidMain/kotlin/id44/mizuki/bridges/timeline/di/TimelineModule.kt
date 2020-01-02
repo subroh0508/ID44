@@ -14,6 +14,8 @@ import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.SwitchAcce
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.subscribe.di.TimelineSubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.domain.unsubscribe.di.TimelineUnsubscribeUseCaseModule
+import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.FetchStatusesUseCaseModule
+import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
 import id44.mizuki.libraries.timeline.infra.di.StreamingRepositoryModule
 
 @Module(includes = [
@@ -28,6 +30,8 @@ import id44.mizuki.libraries.timeline.infra.di.StreamingRepositoryModule
     FetchOwnAccountsUseCaseModule::class,
 
     StreamingRepositoryModule::class,
+    StatusRepositoryModule::class,
+    FetchStatusesUseCaseModule::class,
     TimelineSubscribeUseCaseModule::class,
     TimelineUnsubscribeUseCaseModule::class
 ])

@@ -1,14 +1,17 @@
 package id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di
 
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import id44.mizuki.base.scope.ModuleScope
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCaseImpl
+import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
 
 @Module
-abstract class FetchStatusesUseCaseModule {
-    @Binds
+class FetchStatusesUseCaseModule {
+    @Provides
     @ModuleScope
-    internal abstract fun bindFetchStatusesUseCase(useCase: FetchStatusesUseCaseImpl): FetchStatusesUseCase
+    internal fun provideFetchStatusesUseCase(
+        repository: StatusRepository
+    ): FetchStatusesUseCase = FetchStatusesUseCaseImpl(repository)
 }

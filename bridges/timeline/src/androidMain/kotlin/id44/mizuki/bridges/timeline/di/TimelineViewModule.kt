@@ -1,7 +1,6 @@
 package id44.mizuki.bridges.timeline.di
 
 import com.facebook.react.ReactNativeHost
-import com.facebook.react.ReactPackage
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -13,6 +12,7 @@ import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAcco
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
 
@@ -41,23 +41,33 @@ abstract class TimelineViewModule<in V: TimelineView> : RequireAuthViewModule<V>
         @JvmStatic
         @Provides
         @ActivityScope
-        internal fun provideTimelineActions(
+        internal fun provideStatusActions(
+            view: TimelineView, accessTokenRepository: AccessTokenRepository,
+            fetchStatusesUseCase: FetchStatusesUseCase
+        ) = StatusActions(view, accessTokenRepository, fetchStatusesUseCase)
+
+        @JvmStatic
+        @Provides
+        @ActivityScope
+        internal fun provideSubscribeActions(
             view: TimelineView, accessTokenRepository: AccessTokenRepository,
             subscribeUseCase: TimelineSubscribeUseCase,
             unsubscribeUseCase: TimelineUnsubscribeUseCase
-        ) = TimelineActions(view, accessTokenRepository, subscribeUseCase, unsubscribeUseCase)
+        ) = SubscribeActions(view, accessTokenRepository, subscribeUseCase, unsubscribeUseCase)
 
         @JvmStatic
         @Provides
         @ActivityScope
         internal fun provideReactContextModuleProvider(
             ownAccountsActions: OwnAccountsActions,
-            timelineActions: TimelineActions
+            statusActions: StatusActions,
+            subscribeActions: SubscribeActions
         ) = ReactContextModuleProvider { context ->
             TimelineReactModule(
                 context,
                 ownAccountsActions,
-                timelineActions
+                statusActions,
+                subscribeActions
             )
         }
     }

@@ -10,6 +10,7 @@ import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessT
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.libraries.timeline.domain.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.unsubscribe.TimelineUnsubscribeUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
 
 @ModuleScope
 @Component(
@@ -29,6 +30,7 @@ interface TimelineComponent {
     fun provideSwitchAccessTokenUseCase(): SwitchAccessTokenUseCase
     fun provideFetchOwnAccountUseCase(): FetchOwnAccountUseCase
     fun provideFetchOwnAccountsUseCase(): FetchOwnAccountsUseCase
+    fun provideFetchStatusesUseCase(): FetchStatusesUseCase
     fun provideTimelineSubscribeUseCase(): TimelineSubscribeUseCase
     fun provideTimelineUnsubscribeUseCase(): TimelineUnsubscribeUseCase
 }

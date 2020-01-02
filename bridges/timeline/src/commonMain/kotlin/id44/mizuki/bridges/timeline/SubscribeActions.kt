@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Mapper
 
-internal class TimelineActions(
+internal class SubscribeActions(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
     private val timelineSubscribeUseCase: TimelineSubscribeUseCase,
     private val timelineUnsubscribeUseCase: TimelineUnsubscribeUseCase

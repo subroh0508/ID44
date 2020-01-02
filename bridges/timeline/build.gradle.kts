@@ -27,6 +27,7 @@ kotlin {
                 implementation(project(":libraries:timeline:infra"))
                 implementation(project(":libraries:timeline:domain:usecase:subscribe"))
                 implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
+                implementation(project(":libraries:timeline:domain:usecase:fetchstatuses"))
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
                 implementation(project(":libraries:timeline:domain:timeline-valueobject"))
 
