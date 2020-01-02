@@ -16,7 +16,7 @@ kotlin {
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:auth:infra"))
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
-                implementation(project(":libraries:timeline:domain:valueobject"))
+                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
                 implementation(project(":libraries:timeline:infra"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)

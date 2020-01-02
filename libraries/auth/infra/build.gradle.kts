@@ -16,7 +16,7 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:shared"))
-                implementation(project(":libraries:auth:domain:valueobject"))
+                implementation(project(":libraries:auth:domain:auth-valueobject"))
                 implementation(Libraries.Kotlin.stdlibCommon)
 
                 implementation(Libraries.Coroutines.common)

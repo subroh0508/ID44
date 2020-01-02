@@ -31,8 +31,11 @@ include(
     ":react-native-reanimated"
 )
 
+project(":libraries:auth:domain:valueobject").name = "auth-valueobject"
 project(":libraries:account:domain:entity").name = "account-entity"
 project(":libraries:timeline:domain:entity").name = "timeline-entity"
+project(":libraries:timeline:domain:valueobject").name = "timeline-valueobject"
+
 project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/android")
 project(":react-native-gesture-handler").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-gesture-handler/android")
 project(":react-native-reanimated").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-reanimated/android")

@@ -28,7 +28,7 @@ kotlin {
                 implementation(project(":libraries:timeline:domain:usecase:subscribe"))
                 implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
-                implementation(project(":libraries:timeline:domain:valueobject"))
+                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
                 implementation(Libraries.Kotlin.serializationCommon)

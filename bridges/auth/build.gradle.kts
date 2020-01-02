@@ -25,7 +25,7 @@ kotlin {
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:auth:infra"))
-                implementation(project(":libraries:auth:domain:valueobject"))
+                implementation(project(":libraries:auth:domain:auth-valueobject"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
                 implementation(Libraries.Kotlin.serializationCommon)

@@ -16,7 +16,7 @@ kotlin {
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
-                implementation(project(":libraries:timeline:domain:valueobject"))
+                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
                 implementation(Libraries.Kotlin.serializationCommon)
