@@ -4,12 +4,12 @@ import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
-import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
+import id44.mizuki.libraries.timeline.infra.repository.StreamingRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class TimelineUnsubscribeUseCaseImpl(
-    private val repository: StatusRepository,
+    private val repository: StreamingRepository,
     private val accessTokenRepository: AccessTokenRepository
 ) : TimelineUnsubscribeUseCase {
     override suspend fun execute(host: HostName, accountId: AccountId, stream: Stream) = withContext(Dispatchers.Default) {

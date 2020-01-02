@@ -14,7 +14,7 @@ import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.SwitchAcce
 import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.subscribe.di.TimelineSubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.domain.unsubscribe.di.TimelineUnsubscribeUseCaseModule
-import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
+import id44.mizuki.libraries.timeline.infra.di.StreamingRepositoryModule
 
 @Module(includes = [
     MastodonApiModule::class,
@@ -27,7 +27,7 @@ import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
     FetchOwnAccountUseCaseModule::class,
     FetchOwnAccountsUseCaseModule::class,
 
-    StatusRepositoryModule::class,
+    StreamingRepositoryModule::class,
     TimelineSubscribeUseCaseModule::class,
     TimelineUnsubscribeUseCaseModule::class
 ])
