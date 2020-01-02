@@ -9,6 +9,7 @@ androidMPP()
 
 kotlin {
     android()
+    js { nodejs() }
 
     sourceSets {
         val commonMain by getting {
@@ -49,6 +50,22 @@ kotlin {
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
 
                 implementation(Libraries.Dagger.core)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.serializationJs)
+
+                implementation(Libraries.Coroutines.js)
+
+                implementation(Libraries.Ktor.clientJs)
+                implementation(Libraries.Ktor.jsonJs)
+                implementation(Libraries.Ktor.serializationJs)
+
+                implementation(Libraries.Klock.js)
             }
         }
     }

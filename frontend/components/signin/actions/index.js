@@ -1,5 +1,6 @@
 import i18next from "i18next";
-import { startOauth2Flow, showToast, openTimeline } from '../native/SignInModule';
+import { startOauth2Flow, showToast, openTimeline } from '../native/SignInNativeActions';
+import { exceptions } from 'ID44-shared';
 
 const prefix = 'sign_in';
 
@@ -22,18 +23,7 @@ export const onClickedAuthorize = host => async (dispatch, _getState) => {
     openTimeline();
     dispatch(onChangeAuthorizationStatus(STATUS_FINISH));
   } catch (e) {
-    let message = e.message || '';
-    if (message.startsWith('ACCESS_DENIED')) {
-      message = i18next.t('signIn.exceptions.accessDenied');
-    } else if (message.startsWith('AUTHORIZE_FAILED')) {
-      message = i18next.t('signIn.exceptions.authorizeFailed');
-    } else if (message.startsWith('BROWSER_APP_NOT_FOUND')) {
-      message = i18next.t('signIn.exceptions.browserAppNotFound');
-    } else if (message.startsWith('UNKNOWN')) {
-      message = i18next.t('signIn.exceptions.unknown');
-    }
-
-    showToast(message);
+    showToast(i18next.t(exceptions.parseKey('signIn', e)));
     dispatch(onChangeAuthorizationStatus(STATUS_ERROR, message))
   }
 };

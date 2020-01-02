@@ -9,6 +9,7 @@ androidMPP()
 
 kotlin {
     android()
+    js { nodejs() }
 
     sourceSets {
         val commonMain by getting {
@@ -35,6 +36,15 @@ kotlin {
                 implementation(Libraries.Jetpack.ktx)
 
                 implementation(Libraries.Dagger.core)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+
+                implementation(Libraries.Coroutines.js)
             }
         }
     }

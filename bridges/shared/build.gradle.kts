@@ -9,12 +9,12 @@ androidMPP()
 
 kotlin {
     android()
+    js { nodejs() }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:api"))
-                implementation(project(":libraries:reactnativesupport"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
                 implementation(Libraries.Kotlin.serializationCommon)
@@ -32,6 +32,7 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
+                implementation(project(":libraries:reactnativesupport"))
                 implementation(project(":android:base"))
                 implementation(project(":android:components:core"))
                 implementation(project(":react-native-vector-icons"))
@@ -54,6 +55,20 @@ kotlin {
                 implementation(Libraries.reactNative)
 
                 implementation(Libraries.Dagger.core)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.serializationJs)
+
+                implementation(Libraries.Klock.js)
+
+                implementation(Libraries.Ktor.clientJs)
+                implementation(Libraries.Ktor.jsonJs)
+                implementation(Libraries.Ktor.serializationJs)
             }
         }
     }

@@ -29,6 +29,7 @@ object Libraries {
     object Coroutines {
         const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.coroutines}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        const val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
     }
 
     object Jetpack {
@@ -62,14 +63,17 @@ object Libraries {
         const val clientCommon = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val clientAndroid = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
         const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
+        const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
         const val loggingJvm = "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
         const val jsonCommon = "io.ktor:ktor-client-json:${Versions.ktor}"
         const val jsonJvm = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
         const val jsonNative = "io.ktor:ktor-client-json-native:${Versions.ktor}"
+        const val jsonJs = "io.ktor:ktor-client-json-js:${Versions.ktor}"
         const val serializationCommon = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val serializationJvm = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
         const val serializationIosArm64 = "io.ktor:ktor-client-serialization-iosarm64:${Versions.ktor}"
         const val serializationIosX64 = "io.ktor:ktor-client-serialization-iosx64:${Versions.ktor}"
+        const val serializationJs = "io.ktor:ktor-client-serialization-js:${Versions.ktor}"
     }
 
     object Okhttp3 {
@@ -80,6 +84,7 @@ object Libraries {
     object Klock {
         const val common = "com.soywiz.korlibs.klock:klock:${Versions.klock}"
         const val android = "com.soywiz.korlibs.klock:klock-android:${Versions.klock}"
+        const val js = "com.soywiz.korlibs.klock:klock-js:${Versions.klock}"
     }
 
     object Dagger {
