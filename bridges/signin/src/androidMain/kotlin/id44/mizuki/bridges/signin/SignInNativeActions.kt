@@ -11,24 +11,14 @@ import kotlinx.coroutines.launch
 
 internal actual class SignInNativeActions(
         reactContext: ReactApplicationContext,
-        private val view: SignInView,
-        private val viewModel: SignInViewModel
+        private val view: SignInView
 ) : ReactContextBaseModule(reactContext) {
     override fun getName() = "SignInNativeActions"
 
     @ReactMethod
-    fun startOauth2Flow(host: String, promise: ReactPromise) {
-        viewModel.scope.launch {
-            runCatching { viewModel.startOauth2Flow(HostName(host)) }
-                .onSuccess { promise.resolve(null) }
-                .onFailure {
-                    it.printStackTrace()
-                    promise.reject(it)
-                }
-        }
-    }
+    fun startOauth2Flow(host: String, promise: ReactPromise) = view.startOauth2Flow(host, promise::resolve, promise::reject)
     @ReactMethod
-    fun showToast(message: String) = view.showErrorMessage(message)
+    fun showErrorMessage(message: String) = view.showErrorMessage(message)
     @ReactMethod
     fun openTimeline() = view.openTimeline()
 }

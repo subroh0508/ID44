@@ -10,7 +10,6 @@ import id44.mizuki.bridges.shared.di.BaseViewModule
 import id44.mizuki.bridges.signin.SignInNativeActions
 import id44.mizuki.bridges.signin.SignInReactNativeHost
 import id44.mizuki.bridges.signin.SignInView
-import id44.mizuki.bridges.signin.SignInViewModel
 
 @Module
 abstract class SignInViewModule<in V: SignInView> : BaseViewModule() {
@@ -28,8 +27,7 @@ abstract class SignInViewModule<in V: SignInView> : BaseViewModule() {
         @Provides
         @ActivityScope
         internal fun provideReactContextModuleProvider(
-            view: SignInView,
-            viewModel: SignInViewModel
-        ) = ReactContextModuleProvider { context -> SignInNativeActions(context, view, viewModel) }
+            view: SignInView
+        ) = ReactContextModuleProvider { context -> SignInNativeActions(context, view) }
     }
 }

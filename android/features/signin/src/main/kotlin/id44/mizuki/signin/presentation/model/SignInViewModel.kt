@@ -1,8 +1,10 @@
 package id44.mizuki.signin.presentation.model
 
 import android.content.Intent
-import androidx.lifecycle.*
-import id44.mizuki.bridges.signin.SignInViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
 import id44.mizuki.libraries.shared.valueobject.HostName
@@ -12,15 +14,13 @@ import id44.mizuki.signin.SignInException
 import kotlinx.coroutines.CompletableDeferred
 import javax.inject.Inject
 
-internal class SignInViewModelImpl(
+internal class SignInViewModel(
         private val clientName: String,
         private val redirectUri: Uri,
         private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
         private val requestAccessTokenUseCase: RequestAccessTokenUseCase
-) : ViewModel(), SignInViewModel {
-    override val scope get() = viewModelScope
-
-    override suspend fun startOauth2Flow(host: HostName) {
+) : ViewModel() {
+    suspend fun startOauth2Flow(host: HostName) {
         _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
 
         deferredCode = CompletableDeferred()
@@ -61,6 +61,6 @@ internal class SignInViewModelImpl(
     ) : ViewModelProvider.NewInstanceFactory() {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-            SignInViewModelImpl(clientName, redirectUri, requestAppCredentialUseCase, requestAccessTokenUseCase) as T
+            SignInViewModel(clientName, redirectUri, requestAppCredentialUseCase, requestAccessTokenUseCase) as T
     }
 }
