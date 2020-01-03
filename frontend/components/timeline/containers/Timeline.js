@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {subscribe, unsubscribe, streamKey, removeEventListener} from "../actions/timelines";
+import { subscribe, unsubscribe, streamKey, removeEventListener } from "../actions/timelines";
 import { STREAM } from '../native/TimelineNativeActions';
 import { StreamPane } from "../components/StreamPane";
 

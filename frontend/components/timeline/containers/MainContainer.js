@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Timeline } from "../containers/Timeline";
-import { BottomBar } from '../components/BottomBar';
+import { BottomBar } from "../components/BottomBar";
 import { OwnAccountsDrawer } from "../components/OwnAccountsDrawer";
 import { fetchOwnAccounts, onClickSwitchAccount, openAuthentication } from "../actions/ownAccounts";
 import { clearStreams, unsubscribeAll } from "../actions/timelines";
