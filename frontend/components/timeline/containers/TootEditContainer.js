@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { View } from 'react-native';
 import { TootArea } from "../components/TootArea";
 import { TootOptions } from "../components/TootOptions";
-import { setTootText, submitToot } from "../actions/toots";
+import { setTootText, submitToot, setTootVisibility, toggleContentWarning } from "../actions/toots";
 
 export const TootEditContainer = ({ account, onClickAvatar }) => {
   const { text, state: { onProgress }, options } = useSelector(state => state.toots);
@@ -22,7 +22,9 @@ export const TootEditContainer = ({ account, onClickAvatar }) => {
         onClickSubmit={ () => dispatch(submitToot(text, visibility)) }/>
       <TootOptions
         remainTextCount={ 500 - text.length }
-        options={ options }/>
+        options={ options }
+        setTootVisibility={ visibility => dispatch(setTootVisibility(visibility)) }
+        toggleContentWarning={ cw => dispatch(toggleContentWarning(cw)) }/>
     </View>
   );
 };

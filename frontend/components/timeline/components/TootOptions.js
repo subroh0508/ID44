@@ -16,11 +16,14 @@ const getVisibilityIconType = visibility => {
   }
 };
 
-export const TootOptions = ({ remainTextCount, options }) => {
+export const TootOptions = ({
+  remainTextCount, options,
+  onClickOpenCamera = () => {}, setTootVisibility, toggleContentWarning,
+}) => {
   const { theme } = useContext(ThemeContext);
-  const { visibility, warning } = options;
+  const { visibility, contentWarning } = options;
 
-  const styles = withStyles(theme, warning);
+  const styles = withStyles(theme, contentWarning);
 
   return (
     <View style={ styles.root }>
@@ -29,15 +32,17 @@ export const TootOptions = ({ remainTextCount, options }) => {
           name='camera'
           underlayColor='transparent'
           size={ 20 }
-          containerStyle={ styles.optionsIcon }/>
+          containerStyle={ styles.optionsIcon }
+          onPress={ onClickOpenCamera }/>
         <Icon type='font-awesome'
           name={ getVisibilityIconType(visibility) }
           underlayColor='transparent'
           size={ 20 }
           containerStyle={ styles.optionsIcon }/>
-        <Text style={ styles.optionsText }>CW</Text>
+        <Text
+          style={ styles.optionsText }
+          onPress={ toggleContentWarning.bind(null, !contentWarning) }>CW</Text>
       </View>
-
       <Text style={ styles.counter }>
         { remainTextCount }
       </Text>
@@ -45,7 +50,7 @@ export const TootOptions = ({ remainTextCount, options }) => {
   )
 };
 
-const withStyles = ({ colors }, warning) => (
+const withStyles = ({ colors }, contentWarning) => (
   StyleSheet.create({
     root: {
       flexDirection: 'row',
@@ -60,7 +65,10 @@ const withStyles = ({ colors }, warning) => (
     optionsText: {
       marginEnd: 8,
       fontSize: 12,
-      color: warning ? colors.primary : colors.secondary,
+      paddingTop: 2,
+      paddingBottom: 2,
+      paddingEnd: 2,
+      color: contentWarning ? colors.primary : colors.secondary,
     },
     counter: {
       color: colors.secondary,
