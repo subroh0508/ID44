@@ -42,4 +42,11 @@ const setOptionsProperty = (property, value) => ({
 });
 
 export const setTootVisibility = setOptionsProperty.bind(null, 'visibility');
-export const toggleContentWarning = setOptionsProperty.bind(null, 'contentWarning');
+export const toggleContentWarning = (value) => (dispatch, _getState) => {
+  if (!value) {
+    dispatch(setWarningText(''));
+  }
+
+  dispatch(setOptionsProperty('contentWarning', value));
+};
+export const setWarningText = setOptionsProperty.bind(null, 'warningText');

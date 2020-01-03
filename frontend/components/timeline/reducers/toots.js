@@ -6,6 +6,7 @@ const initialState = {
   options: {
     visibility: STATUS_VISIBILITY.PUBLIC,
     contentWarning: false,
+    warningText: '',
   },
   state: {
     onProgress: false,

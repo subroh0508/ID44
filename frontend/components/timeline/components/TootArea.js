@@ -10,6 +10,8 @@ export const TootArea = ({
 
   const styles = withStyles(theme);
 
+  const disabledSubmit = tootText.length === 0 || onProgress;
+
   return (
     <View style={ styles.root }>
       <Avatar rounded
@@ -27,7 +29,8 @@ export const TootArea = ({
           name: 'paper-plane',
           underlayColor: 'transparent',
           onPress: onClickSubmit,
-          disabled: tootText.length === 0 || onProgress,
+          disabled: disabledSubmit,
+          iconStyle: disabledSubmit ? styles.disabledTootSubmitIcon : styles.tootSubmitIcon,
         }}
         value={ tootText }
         onChangeText={ onChangeText }/>
@@ -56,9 +59,11 @@ const withStyles = ({ colors }) => (
       paddingStart: 8,
       paddingEnd: 8,
     },
-    dropdown: {
-      marginTop: 24,
-      width: 24,
+    tootSubmitIcon: {
+      color: colors.primary,
+    },
+    disabledTootSubmitIcon: {
+      color: colors.placeholder,
     },
     tootOptionsRoot: {
       flexDirection: 'row',
