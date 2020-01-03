@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
 import { ThemeContext } from "react-native-elements";
-import { TootContainer } from '../containers/TootContainer';
+import { TootEditContainer } from '../containers/TootEditContainer';
 
 export const BottomBar = (props) => {
   const { theme } = useContext(ThemeContext);
@@ -9,7 +9,7 @@ export const BottomBar = (props) => {
   const styles = withStyles(theme);
 
   return (
-    <TootContainer {...{ rootStyle: styles.root, ...props }}/>
+    <TootEditContainer {...{ rootStyle: styles.root, ...props }}/>
   );
 };
 

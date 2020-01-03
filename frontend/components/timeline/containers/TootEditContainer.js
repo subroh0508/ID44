@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TootArea } from "../components/TootArea";
 import { setTootText, submitToot } from "../actions/toots";
 
-export const TootContainer = (props) => {
+export const TootEditContainer = (props) => {
   const { text } = useSelector(state => state.toots);
   const dispatch = useDispatch();
 
