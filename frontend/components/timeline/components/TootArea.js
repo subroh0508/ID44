@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from "react-native";
-import { Avatar, Input, Text, ThemeContext } from "react-native-elements";
+import { Avatar, Input, Icon, Text, ThemeContext } from "react-native-elements";
 
 export const TootArea = ({ rootStyle, account, tootText, onClickAvatar, onChangeText, onClickSubmit }) => {
   const { theme } = useContext(ThemeContext);
@@ -19,12 +19,14 @@ export const TootArea = ({ rootStyle, account, tootText, onClickAvatar, onChange
           multiline={ true }
           containerStyle={ styles.tootAreaContainer }
           inputContainerStyle={ styles.tootAreaInputContainer }
-          rightIcon={{
-            type: 'font-awesome',
-            name: 'pencil',
-            color: theme.colors.secondary,
-            onPress: onClickSubmit,
-          }}
+          rightIcon={
+            tootText.length > 0 ? (
+              <Icon type='font-awesome'
+                name='paper-plane'
+                color={ theme.colors.secondary }
+                onPress={ onClickSubmit }/>
+            ) : null
+          }
           value={ tootText }
           onChangeText={ onChangeText }/>
       </View>
