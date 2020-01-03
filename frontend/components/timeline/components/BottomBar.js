@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
-import { StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { ThemeContext } from "react-native-elements";
 import { TootEditContainer } from '../containers/TootEditContainer';
 
-export const BottomBar = (props) => {
+export const BottomBar = ({ account, openDrawer }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
 
   return (
-    <TootEditContainer {...{ rootStyle: styles.root, ...props }}/>
+    <View style={ styles.root }>
+      <TootEditContainer account={ account }
+        onClickAvatar={ openDrawer }/>
+    </View>
   );
 };
 

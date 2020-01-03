@@ -3,7 +3,9 @@ import * as Actions from "../actions/toots";
 
 const initialState = {
   text: '',
-  visibility: STATUS_VISIBILITY.PUBLIC,
+  options: {
+    visibility: STATUS_VISIBILITY.PUBLIC,
+  },
   state: {
     onProgress: false,
     openOptions: false,

@@ -16,7 +16,7 @@ const getVisibilityIconType = visibility => {
   }
 };
 
-export const TootOptions = ({ tootText, options }) => {
+export const TootOptions = ({ remainTextCount, options }) => {
   const { theme } = useContext(ThemeContext);
   const { visibility, warning } = options;
 
@@ -39,7 +39,7 @@ export const TootOptions = ({ tootText, options }) => {
       </View>
 
       <Text style={ styles.counter }>
-        { 500 - tootText.length }
+        { remainTextCount }
       </Text>
     </View>
   )
