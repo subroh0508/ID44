@@ -53,11 +53,7 @@ const withStyles = ({ colors }) => (
     },
     tootAreaInputContainer: {
       borderColor: colors.secondary,
-      borderWidth: 1,
-      borderRadius: 4,
       marginTop: 8,
-      paddingStart: 8,
-      paddingEnd: 8,
     },
     tootSubmitIcon: {
       color: colors.primary,
