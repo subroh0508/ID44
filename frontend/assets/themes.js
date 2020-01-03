@@ -1,23 +1,26 @@
 const colors = {
   mizuki: {
     primary: '#00ffff',
-    text: '#00ffff',
-    disabled: '#afeeee',
-    placeholder: '#afeeee',
+    secondary: '#008B8B',
+    text: '#afeeee',
+    disabled: '#7ea8a8',
+    placeholder: '#7ea8a8',
     background: '#000'
   },
   tsumugi: {
     primary: '#ff00ff',
-    text: '#ff00ff',
-    disabled: '#ee82ee',
-    placeholder: '#ee82ee',
+    secondary: '#8B008B',
+    text: '#eeafee',
+    disabled: '#a87ea8',
+    placeholder: '#a87ea8',
     background: '#000'
   },
   shiho: {
     primary: '#ffff00',
-    text: '#ffff00',
-    disabled: '#fffacd',
-    placeholder: '#fffacd',
+    secondary: '#8B8B00',
+    text: '#eeeeaf',
+    disabled: '#a8a87e',
+    placeholder: '#a8a87e',
     background: '#000',
   },
 };
@@ -34,7 +37,7 @@ const createTheme = colors => ({
       color: colors.text,
     },
     inputContainerStyle: {
-      borderColor: colors.placeholder,
+      borderColor: colors.primary,
       borderWidth: 1,
       borderRadius: 4,
       paddingStart: 8,
@@ -55,7 +58,7 @@ const createTheme = colors => ({
       color: colors.text,
     },
     subtitleStyle: {
-      color: colors.placeholder,
+      color: colors.secondary,
     },
   },
 });

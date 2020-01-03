@@ -14,7 +14,7 @@ const store = createStore(signIn, applyMiddleware(thunk));
 AppRegistry.registerComponent('SignIn', () => () => {
   useEffect(() => {
     initI18n(() => { console.log('loaded'); });
-  });
+  }, []);
 
   return (
     <Provider store={ store }>

@@ -12,6 +12,8 @@ import {
   ThemeContext,
 } from 'react-native-elements';
 import HTMLView from "react-native-htmlview";
+import { datetimes } from 'ID44-shared';
+import i18next from "i18next";
 
 const Status = ({ theme, styles, status }) => (
   <View style={ styles.status }>
@@ -19,28 +21,32 @@ const Status = ({ theme, styles, status }) => (
       <Text
         style={ styles.displayName }
         numberOfLines={ 1 }
-      >
+        ellipsizeMode='tail'>
         { status.tooter.displayName || status.tooter.username }
+        <Text
+          style={ styles.username }
+          numberOfLines={ 1 }
+          ellipsizeMode='tail'>
+          { `  @${status.tooter.username}` }
+        </Text>
       </Text>
       <Text
-        style={ styles.username }
-        numberOfLines={ 1 }
-        ellipsizeMode='tail'
-      >
-        { `@${status.tooter.username}` }
+        style={ styles.diffTime }
+        numberOfLines={ 1 }>
+        { datetimes.toDiffTime(status.createdAt, (key, option) => i18next.t(key, option)) }
       </Text>
     </View>
     <HTMLView value={ status.content }
-      stylesheet={{ p: { color: theme.colors.primary } }}/>
+      stylesheet={{ p: { color: theme.colors.text } }}/>
   </View>
 );
 
 const Actions = ({ theme, styles, status }) => (
   <View style={ styles.actions }>
     <Icon
-      type='material'
+      type='font-awesome'
       name='reply'
-      color='#dcdcdc'
+      color={ theme.colors.secondary }
       size={ 20 }/>
     {
       <Text style={ styles.counter }>
@@ -48,9 +54,9 @@ const Actions = ({ theme, styles, status }) => (
       </Text>
     }
     <Icon
-      type='material'
-      name='repeat'
-      color='#dcdcdc'
+      type='font-awesome'
+      name='retweet'
+      color={ theme.colors.secondary }
       size={ 20 }/>
     {
       <Text style={ styles.counter }>
@@ -58,9 +64,9 @@ const Actions = ({ theme, styles, status }) => (
       </Text>
     }
     <Icon
-      type='material'
+      type='font-awesome'
       name='star'
-      color='#dcdcdc'
+      color={ theme.colors.secondary }
       size={ 20 }/>
     {
       <Text style={ styles.counter }>
@@ -107,15 +113,21 @@ const withStyles = ({ colors }) => (
       paddingBottom: 12,
     },
     tooter: {
+      flex: 1,
       flexDirection: 'row',
+      justifyContent: 'space-between',
       paddingBottom: 4,
     },
     displayName: {
+      flexShrink: 1,
       fontWeight: 'bold',
     },
     username: {
-      paddingStart: 4,
-      color: colors.placeholder,
+      fontWeight: 'normal',
+      color: colors.secondary,
+    },
+    diffTime: {
+      color: colors.secondary,
     },
     actions: {
       flexDirection: 'row',
@@ -128,7 +140,7 @@ const withStyles = ({ colors }) => (
       paddingEnd: 4,
       paddingBottom: 2,
       fontSize: 12,
-      color: '#dcdcdc',
+      color: colors.secondary,
     },
   })
 );
