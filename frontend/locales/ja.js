@@ -18,6 +18,24 @@ const locales = {
       unknown: '予期せぬエラーが発生しました',
     },
   },
+  privacy: {
+    'public': {
+      short: '公開',
+      long: '公開TLに投稿する',
+    },
+    unlisted: {
+      short: '未収載',
+      long: '公開TLで表示しない',
+    },
+    'private': {
+      short: 'フォロワー限定',
+      long: 'フォロワーだけに公開',
+    },
+    direct: {
+      short: 'ダイレクト',
+      long: 'メンションしたユーザーだけに公開',
+    },
+  },
 };
 
 export default locales;

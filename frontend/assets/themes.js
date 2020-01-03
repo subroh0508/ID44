@@ -69,6 +69,14 @@ const createTheme = colors => ({
       backgroundColor: 'transparent',
     },
   },
+  Overlay: {
+    overlayStyle: {
+      backgroundColor: colors.background,
+      borderColor: colors.primary,
+      borderWidth: 1,
+      borderRadius: 4,
+    },
+  },
 });
 
 export { colors, createTheme }
