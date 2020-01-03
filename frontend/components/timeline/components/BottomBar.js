@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { ThemeContext } from "react-native-elements";
 import { TootEditContainer } from '../containers/TootEditContainer';
 
@@ -17,6 +17,7 @@ const withStyles = ({ colors }) => (
   StyleSheet.create({
     root: {
       position: 'absolute',
+      width: Dimensions.get('window').width - 16,
       margin: 8,
       padding: 8,
       bottom: 0,

@@ -6,6 +6,7 @@ const initialState = {
   visibility: STATUS_VISIBILITY.PUBLIC,
   state: {
     onProgress: false,
+    openOptions: false,
   },
 };
 
@@ -22,6 +23,14 @@ const toots = (state = initialState, action) => {
         state: {
           ...state.state,
           onProgress: action.value,
+        },
+      };
+    case Actions.TOGGLE_OPTIONS:
+      return {
+        ...state,
+        state: {
+          ...state.state,
+          openOptions: action.value,
         },
       };
     default:

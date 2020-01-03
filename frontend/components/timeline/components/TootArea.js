@@ -2,7 +2,11 @@ import React, { useContext } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Avatar, Input, Icon, Text, ThemeContext } from "react-native-elements";
 
-export const TootArea = ({ rootStyle, account, tootText, onProgress, onClickAvatar, onChangeText, onClickSubmit }) => {
+export const TootArea = ({
+  rootStyle,
+  account, tootText, onProgress, openOptions,
+  onClickAvatar, onChangeText, onClickSubmit, onToggleOptions,
+}) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
@@ -20,16 +24,20 @@ export const TootArea = ({ rootStyle, account, tootText, onProgress, onClickAvat
           disabled={ onProgress }
           containerStyle={ styles.tootAreaContainer }
           inputContainerStyle={ styles.tootAreaInputContainer }
-          rightIcon={
-            tootText.length > 0 && !onProgress ? (
-              <Icon type='font-awesome'
-                name='paper-plane'
-                color={ theme.colors.secondary }
-                onPress={ onClickSubmit }/>
-            ) : null
-          }
+          rightIcon={{
+            type: 'font-awesome',
+            name: 'paper-plane',
+            underlayColor: 'transparent',
+            onPress: onClickSubmit,
+            disabled: tootText.length === 0 || onProgress,
+          }}
           value={ tootText }
           onChangeText={ onChangeText }/>
+        <Icon type='font-awesome'
+          name={ openOptions ? 'chevron-up' : 'chevron-down' }
+          underlayColor='transparent'
+          containerStyle={ styles.dropdown }
+          onPress={ onToggleOptions.bind(null, !openOptions) }/>
       </View>
       <Text style={ styles.counter }>
         { 500 - tootText.length }
@@ -41,23 +49,28 @@ export const TootArea = ({ rootStyle, account, tootText, onProgress, onClickAvat
 const withStyles = ({ colors }) => (
   StyleSheet.create({
     avatar: {
-      marginTop: 8,
+      marginTop: 16,
       marginStart: 2,
       marginRight: 2,
     },
     tootAreaContainer: {
-      width: '90%',
+      flexShrink: 1,
     },
     tootAreaInputContainer: {
       borderColor: colors.secondary,
       borderWidth: 1,
       borderRadius: 4,
+      marginTop: 8,
       paddingStart: 8,
       paddingEnd: 8,
     },
+    dropdown: {
+      marginTop: 24,
+      width: 24,
+    },
     counter: {
       textAlign: 'right',
-      marginEnd: 12,
+      marginEnd: 36,
       color: colors.secondary,
     },
   })

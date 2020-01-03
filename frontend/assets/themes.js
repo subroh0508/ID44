@@ -61,6 +61,14 @@ const createTheme = colors => ({
       color: colors.secondary,
     },
   },
+  Icon: {
+    iconStyle: {
+      color: colors.secondary,
+    },
+    disabledStyle: {
+      backgroundColor: 'transparent',
+    },
+  },
 });
 
 export { colors, createTheme }

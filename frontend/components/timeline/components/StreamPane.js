@@ -46,7 +46,6 @@ const Actions = ({ theme, styles, status }) => (
     <Icon
       type='font-awesome'
       name='reply'
-      color={ theme.colors.secondary }
       size={ 20 }/>
     {
       <Text style={ styles.counter }>
@@ -56,7 +55,6 @@ const Actions = ({ theme, styles, status }) => (
     <Icon
       type='font-awesome'
       name='retweet'
-      color={ theme.colors.secondary }
       size={ 20 }/>
     {
       <Text style={ styles.counter }>
@@ -66,7 +64,6 @@ const Actions = ({ theme, styles, status }) => (
     <Icon
       type='font-awesome'
       name='star'
-      color={ theme.colors.secondary }
       size={ 20 }/>
     {
       <Text style={ styles.counter }>
