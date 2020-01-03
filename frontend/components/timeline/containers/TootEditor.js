@@ -12,7 +12,7 @@ export const TootEditor = ({ rootStyle = {} }) => {
   const { text, state: { onProgress }, options } = useSelector(state => state.toots);
   const dispatch = useDispatch();
 
-  const { visibility, contentWarning, warningText } = options;
+  const { contentWarning, warningText } = options;
 
   return (
     <View style={{ ...rootStyle }}>
@@ -26,7 +26,7 @@ export const TootEditor = ({ rootStyle = {} }) => {
         onProgress={ onProgress }
         enabledSubmitToot={ enableSubmitToot(text, warningText) }
         onChangeText={ s => dispatch(setTootText(s)) }
-        onClickSubmit={ () => dispatch(submitToot(text, visibility)) }/>
+        onClickSubmit={ () => dispatch(submitToot(text, options)) }/>
       <TootOptions
         remainTextCount={ 500 - (text.length + warningText.length) }
         options={ options }

@@ -36,6 +36,11 @@ const toots = (state = initialState, action) => {
           [action.property]: action.value,
         },
       };
+    case Actions.RESET_OPTIONS_PROPERTIES:
+      return {
+        ...state,
+        options: initialState.options,
+      };
     default:
       return state;
   }
