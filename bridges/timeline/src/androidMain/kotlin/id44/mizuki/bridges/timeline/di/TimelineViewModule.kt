@@ -13,6 +13,7 @@ import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAcc
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.SubmitStatusUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase
 
@@ -43,8 +44,9 @@ abstract class TimelineViewModule<in V: TimelineView> : RequireAuthViewModule<V>
         @ActivityScope
         internal fun provideStatusActions(
             view: TimelineView, accessTokenRepository: AccessTokenRepository,
-            fetchStatusesUseCase: FetchStatusesUseCase
-        ) = StatusActions(view, accessTokenRepository, fetchStatusesUseCase)
+            fetchStatusesUseCase: FetchStatusesUseCase,
+            submitStatusUseCase: SubmitStatusUseCase
+        ) = StatusActions(view, accessTokenRepository, fetchStatusesUseCase, submitStatusUseCase)
 
         @JvmStatic
         @Provides

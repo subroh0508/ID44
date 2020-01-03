@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactMethod
 import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 
 internal actual class TimelineReactModule(
@@ -19,6 +20,9 @@ internal actual class TimelineReactModule(
     override fun getConstants() = mutableMapOf(
         EVENT_APPEND_STATUS to EVENT_APPEND_STATUS,
         STREAM to Stream.values().map {
+            it.toString() to it.toString()
+        }.toMap(),
+        STATUS_VISIBILITY to StatusVisibility.values().map {
             it.toString() to it.toString()
         }.toMap()
     )
@@ -35,6 +39,9 @@ internal actual class TimelineReactModule(
     @ReactMethod
     fun fetchStatuses(stream: String, maxId: String? = null, promise: Promise) =
         statusActions.fetchStatuses(Stream.valueOf(stream), maxId, promise::resolve, promise::reject)
+    @ReactMethod
+    fun submitStatus(status: String, warningText: String?, visibility: String, promise: Promise) =
+        statusActions.submitStatus(status, StatusVisibility.valueOf(visibility), warningText, promise::resolve, promise::reject)
 
     @ReactMethod
     fun subscribe(host: String, id: String, stream: String, promise: Promise) =

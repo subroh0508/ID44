@@ -16,6 +16,7 @@ import id44.mizuki.libraries.auth.infra.di.AccessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.FetchStatusesUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.di.TimelineSubscribeUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.di.TimelineUnsubscribeUseCaseModule
+import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.di.SubmitStatusUseCaseModule
 import id44.mizuki.libraries.timeline.infra.di.StatusRepositoryModule
 import id44.mizuki.libraries.timeline.infra.di.StreamingRepositoryModule
 
@@ -34,7 +35,8 @@ import id44.mizuki.libraries.timeline.infra.di.StreamingRepositoryModule
     StatusRepositoryModule::class,
     FetchStatusesUseCaseModule::class,
     TimelineSubscribeUseCaseModule::class,
-    TimelineUnsubscribeUseCaseModule::class
+    TimelineUnsubscribeUseCaseModule::class,
+    SubmitStatusUseCaseModule::class
 ])
 class TimelineModule {
     @Provides

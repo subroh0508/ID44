@@ -8,7 +8,7 @@ import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.SubmitStatusUs
 import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
 
 @Module
-class FetchStatusesUseCaseModule {
+class SubmitStatusUseCaseModule {
     @Provides
     @ModuleScope
     internal fun provideFetchStatusesUseCase(

@@ -9,6 +9,7 @@ import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAcc
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.SubmitStatusUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase
 
@@ -33,4 +34,5 @@ interface TimelineComponent {
     fun provideFetchStatusesUseCase(): FetchStatusesUseCase
     fun provideTimelineSubscribeUseCase(): TimelineSubscribeUseCase
     fun provideTimelineUnsubscribeUseCase(): TimelineUnsubscribeUseCase
+    fun provideSubmitStatusUseCase(): SubmitStatusUseCase
 }
