@@ -8,7 +8,6 @@ const initialState = {
   },
   state: {
     onProgress: false,
-    openOptions: false,
   },
 };
 
@@ -27,12 +26,12 @@ const toots = (state = initialState, action) => {
           onProgress: action.value,
         },
       };
-    case Actions.TOGGLE_OPTIONS:
+    case Actions.SET_OPTIONS_PROPERTY:
       return {
         ...state,
-        state: {
-          ...state.state,
-          openOptions: action.value,
+        options: {
+          ...state.options,
+          [action.property]: action.value,
         },
       };
     default:

@@ -35,8 +35,11 @@ const stopProgress = () => ({
   value: false,
 });
 
-export const TOGGLE_OPTIONS = `${prefix}/TOGGLE_OPTIONS`;
-export const toggleOptions = (open) => ({
-  type: TOGGLE_OPTIONS,
-  value: open,
+export const SET_OPTIONS_PROPERTY = `${prefix}/SET_OPTIONS_PROPERTY`;
+const setOptionsProperty = (property, value) => ({
+  type: SET_OPTIONS_PROPERTY,
+  [property]: value,
 });
+
+export const setTootVisibility = setOptionsProperty.bind(null, 'visibility');
+export const toggleWarning = setOptionsProperty.bind(null, 'warning');
