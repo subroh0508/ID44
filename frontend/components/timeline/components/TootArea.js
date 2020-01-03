@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import {StyleSheet, View} from "react-native";
-import {Avatar, Input, Text, ThemeContext} from "react-native-elements";
+import React, { useContext } from 'react';
+import { StyleSheet, View } from "react-native";
+import { Avatar, Input, Text, ThemeContext } from "react-native-elements";
 
-export const TootArea = ({ rootStyle, account, onClickAvatar }) => {
+export const TootArea = ({ rootStyle, account, tootText, onClickAvatar, onChangeText, onClickSubmit }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
@@ -24,11 +23,13 @@ export const TootArea = ({ rootStyle, account, onClickAvatar }) => {
             type: 'font-awesome',
             name: 'pencil',
             color: theme.colors.secondary,
-            onPress: () => console.log('clicked'),
-          }}/>
+            onPress: onClickSubmit,
+          }}
+          value={ tootText }
+          onChangeText={ onChangeText }/>
       </View>
       <Text style={ styles.counter }>
-        140
+        { 500 - tootText.length }
       </Text>
     </View>
   );
