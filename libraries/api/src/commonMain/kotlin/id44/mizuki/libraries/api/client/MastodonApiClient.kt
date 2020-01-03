@@ -1,9 +1,6 @@
 package id44.mizuki.libraries.api.client
 
 import id44.mizuki.libraries.api.*
-import id44.mizuki.libraries.api.GET_ACCOUNTS
-import id44.mizuki.libraries.api.GET_ACCOUNTS_VERIFY_CREDENTIALS
-import id44.mizuki.libraries.api.GET_TIMELINES_PUBLIC
 import id44.mizuki.libraries.api.json.StatusJson
 import id44.mizuki.libraries.api.json.account.AccountJson
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
@@ -12,12 +9,11 @@ import id44.mizuki.libraries.shared.valueobject.HostName
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.header
-import io.ktor.client.request.post
 import io.ktor.client.request.host
+import io.ktor.client.request.post
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
-import kotlinx.serialization.ImplicitReflectionSerializer
 
 internal class MastodonApiClient(
     private val httpClient: HttpClient,
@@ -42,16 +38,28 @@ internal class MastodonApiClient(
         )
     ).raw.map(::StatusJson)
 
+    override suspend fun postStatus(
+        status: String, mediaIds: List<String>,
+        inReplyToId: String?,
+        sensitive: Boolean, spoilerText: String?, visibility: VisibilityType
+    ) = StatusJson(
+        raw = httpClient.post(
+            POST_STATUSES,
+            "status" to status, "media_ids" to mediaIds,
+            "in_reply_to_id" to inReplyToId,
+            "sensitive" to sensitive, "spoiler_text" to spoilerText, "visibility" to visibility.name
+        )
+    )
+
     private suspend inline fun <reified T: Any> HttpClient.get(urlString: String) =
         get<T>(urlString, block = {
             host = provider.nowHost.value
             header(HttpHeaders.Authorization, "Bearer ${provider.nowToken.value}")
         })
-
-    private suspend inline fun <reified T: Any> HttpClient.post(urlString: String) =
-        post<T>(urlString, block = {
-            host = provider.nowHost.value
-            header(HttpHeaders.Authorization, "Bearer ${provider.nowToken.value}")
-            contentType(ContentType.Application.Json)
-        })
+    private suspend inline fun <reified T: Any> HttpClient.post(urlString: String, vararg params: Pair<String, Any?>) = post<T>(urlString, block = {
+        host = provider.nowHost.value
+        header(HttpHeaders.Authorization, "Bearer ${provider.nowToken.value}")
+        contentType(ContentType.Application.Json)
+        body = RawJson(params.toMap())
+    })
 }
