@@ -27,6 +27,7 @@ include(
     ":libraries:timeline:domain:usecase:subscribe",
     ":libraries:timeline:domain:usecase:unsubscribe",
     ":libraries:timeline:domain:usecase:fetchstatuses",
+    ":libraries:timeline:domain:usecase:submitstatus",
     ":react-native-vector-icons",
     ":react-native-gesture-handler",
     ":react-native-reanimated"
