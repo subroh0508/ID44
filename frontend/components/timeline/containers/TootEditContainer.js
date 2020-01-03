@@ -4,7 +4,7 @@ import { TootArea } from "../components/TootArea";
 import { setTootText, submitToot } from "../actions/toots";
 
 export const TootEditContainer = (props) => {
-  const { text } = useSelector(state => state.toots);
+  const { text, visibility } = useSelector(state => state.toots);
   const dispatch = useDispatch();
 
   return (
@@ -12,7 +12,7 @@ export const TootEditContainer = (props) => {
       ...props,
       tootText: text,
       onChangeText: s => dispatch(setTootText(s)),
-      onClickSubmit: () => dispatch(submitToot(text)),
+      onClickSubmit: () => dispatch(submitToot(text, visibility)),
     }}/>
   );
 };

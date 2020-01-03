@@ -1,7 +1,15 @@
+import {
+  submitStatus as nativeSubmitStatus,
+} from '../native/TimelineNativeActions';
+
 const prefix = 'toots';
 
-export const submitToot = (text) => async (dispatch, _getState) => {
-  console.log('submit: ', text);
+export const submitToot = (text, visibility) => async (dispatch, _getState) => {
+  try {
+    await nativeSubmitStatus(text, null, visibility);
+  } catch (e) {
+
+  }
 
   dispatch(clearTootText());
 };

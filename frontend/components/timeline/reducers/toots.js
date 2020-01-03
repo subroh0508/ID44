@@ -1,7 +1,9 @@
+import { STATUS_VISIBILITY } from '../native/TimelineNativeActions';
 import * as Actions from "../actions/toots";
 
 const initialState = {
   text: '',
+  visibility: STATUS_VISIBILITY.PUBLIC,
 };
 
 const toots = (state = initialState, action) => {
