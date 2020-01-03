@@ -6,6 +6,8 @@ import { TootOptions } from "../components/TootOptions";
 import { setTootText, submitToot, setTootVisibility, toggleContentWarning, setWarningText } from "../actions/toots";
 import { WarningTextArea } from "../components/WarningTextArea";
 
+const enableSubmitToot = (tootText, warningText) => tootText.length > 0 || (warningText.length > 0 && tootText.length > 0)
+
 export const TootEditor = ({ rootStyle = {} }) => {
   const { text, state: { onProgress }, options } = useSelector(state => state.toots);
   const dispatch = useDispatch();
@@ -22,10 +24,11 @@ export const TootEditor = ({ rootStyle = {} }) => {
       <TootArea
         tootText={ text }
         onProgress={ onProgress }
+        enabledSubmitToot={ enableSubmitToot(text, warningText) }
         onChangeText={ s => dispatch(setTootText(s)) }
         onClickSubmit={ () => dispatch(submitToot(text, visibility)) }/>
       <TootOptions
-        remainTextCount={ 500 - text.length }
+        remainTextCount={ 500 - (text.length + warningText.length) }
         options={ options }
         setTootVisibility={ visibility => dispatch(setTootVisibility(visibility)) }
         toggleContentWarning={ cw => dispatch(toggleContentWarning(cw)) }/>

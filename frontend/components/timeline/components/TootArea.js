@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View } from "react-native";
-import { Avatar, Input, ThemeContext } from "react-native-elements";
+import { StyleSheet } from "react-native";
+import { Input, ThemeContext } from "react-native-elements";
 
 export const TootArea = ({
-  tootText, onProgress,
+  tootText, onProgress, enabledSubmitToot,
   onChangeText, onClickSubmit,
 }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
 
-  const disabledSubmit = tootText.length === 0 || onProgress;
+  const disabledSubmit = !enabledSubmitToot || onProgress;
 
   return (
     <Input
