@@ -1,17 +1,27 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from 'reselect';
+import { View } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Timeline } from "../containers/Timeline";
+import { BottomBar } from '../components/BottomBar';
 import { OwnAccountsDrawer } from "../components/OwnAccountsDrawer";
 import { fetchOwnAccounts, onClickSwitchAccount, openAuthentication } from "../actions/ownAccounts";
 import { clearStreams, unsubscribeAll } from "../actions/timelines";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const selectedAccount = useSelector(state => state.ownAccounts.selectedAccount);
 
-  return (<Timeline account={ selectedAccount }/>)
+  return (
+    <View style={{ flex: 1 }}>
+      <Timeline style={{ flex: 1 }}
+        account={ selectedAccount }/>
+      <BottomBar style={{ flex: 1 }}
+        account={ selectedAccount }
+        onClickAvatar={ () => navigation.openDrawer() }/>
+    </View>
+  );
 };
 
 const selectOwnAccounts = createSelector(
