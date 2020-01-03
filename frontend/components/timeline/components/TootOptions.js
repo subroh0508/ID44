@@ -108,7 +108,7 @@ const withStyles = ({ colors }, contentWarning) => (
       flexDirection: 'row',
       justifyContent: 'space-between',
       paddingTop: 8,
-      paddingStart: 48,
+      paddingStart: 16,
       paddingEnd: 16,
     },
     optionsIcon: {

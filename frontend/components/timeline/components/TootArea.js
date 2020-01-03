@@ -3,8 +3,8 @@ import { StyleSheet, View } from "react-native";
 import { Avatar, Input, ThemeContext } from "react-native-elements";
 
 export const TootArea = ({
-  account, tootText, onProgress,
-  onClickAvatar, onChangeText, onClickSubmit,
+  tootText, onProgress,
+  onChangeText, onClickSubmit,
 }) => {
   const { theme } = useContext(ThemeContext);
 
@@ -13,41 +13,27 @@ export const TootArea = ({
   const disabledSubmit = tootText.length === 0 || onProgress;
 
   return (
-    <View style={ styles.root }>
-      <Avatar rounded
-        containerStyle={ styles.avatar }
-        source={{ uri: account && account.avatar }}
-        onPress={ onClickAvatar }/>
-      <Input
-        placeholder='今なにしてる？'
-        multiline={ true }
-        disabled={ onProgress }
-        containerStyle={ styles.tootAreaContainer }
-        inputContainerStyle={ styles.tootAreaInputContainer }
-        rightIcon={{
-          type: 'font-awesome',
-          name: 'paper-plane',
-          underlayColor: 'transparent',
-          onPress: onClickSubmit,
-          disabled: disabledSubmit,
-          iconStyle: disabledSubmit ? styles.disabledTootSubmitIcon : styles.tootSubmitIcon,
-        }}
-        value={ tootText }
-        onChangeText={ onChangeText }/>
-    </View>
+    <Input
+      placeholder='今なにしてる？'
+      multiline={ true }
+      disabled={ onProgress }
+      containerStyle={ styles.tootAreaContainer }
+      inputContainerStyle={ styles.tootAreaInputContainer }
+      rightIcon={{
+        type: 'font-awesome',
+        name: 'paper-plane',
+        underlayColor: 'transparent',
+        onPress: onClickSubmit,
+        disabled: disabledSubmit,
+        iconStyle: disabledSubmit ? styles.disabledTootSubmitIcon : styles.tootSubmitIcon,
+      }}
+      value={ tootText }
+      onChangeText={ onChangeText }/>
   );
 };
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
-    root: {
-      flexDirection: 'row',
-    },
-    avatar: {
-      marginTop: 16,
-      marginStart: 2,
-      marginRight: 2,
-    },
     tootAreaContainer: {
       flexShrink: 1,
     },
