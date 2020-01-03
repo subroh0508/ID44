@@ -3,6 +3,7 @@ package id44.mizuki.libraries.api.client
 import id44.mizuki.libraries.api.*
 import id44.mizuki.libraries.api.json.StatusJson
 import id44.mizuki.libraries.api.json.account.AccountJson
+import id44.mizuki.libraries.api.json.enums.StatusVisibilityType
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import id44.mizuki.libraries.api.params.GetTimelines
 import id44.mizuki.libraries.shared.valueobject.HostName
@@ -39,9 +40,9 @@ internal class MastodonApiClient(
     ).raw.map(::StatusJson)
 
     override suspend fun postStatus(
-        status: String, mediaIds: List<String>,
+        status: String?, mediaIds: List<String>,
         inReplyToId: String?,
-        sensitive: Boolean, spoilerText: String?, visibility: VisibilityType
+        sensitive: Boolean, spoilerText: String?, visibility: StatusVisibilityType
     ) = StatusJson(
         raw = httpClient.post(
             POST_STATUSES,

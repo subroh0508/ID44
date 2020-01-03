@@ -3,11 +3,13 @@ package id44.mizuki.libraries.timeline.infra
 import com.soywiz.klock.DateFormat
 import com.soywiz.klock.parse
 import id44.mizuki.libraries.api.json.StatusJson
+import id44.mizuki.libraries.api.json.enums.StatusVisibilityType
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.EventType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
 import id44.mizuki.libraries.timeline.domain.entity.Status
 import id44.mizuki.libraries.timeline.domain.entity.Tooter
+import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 
 internal fun Stream.toStreamType(): StreamType = when (this) {
@@ -19,6 +21,8 @@ internal fun Stream.toStreamType(): StreamType = when (this) {
     Stream.HASH_TAG_GLOBAL -> StreamType.HASHTAG
     Stream.LIST -> StreamType.LIST
 }
+
+internal fun StatusVisibility.toStatusVisibilityType() = StatusVisibilityType.valueOf(name.toLowerCase())
 
 internal fun StreamingEventJson.toStatus(): Status? {
     if (EventType.realValueOf(event) != EventType.update) {
