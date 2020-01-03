@@ -4,6 +4,9 @@ import * as Actions from "../actions/toots";
 const initialState = {
   text: '',
   visibility: STATUS_VISIBILITY.PUBLIC,
+  state: {
+    onProgress: false,
+  },
 };
 
 const toots = (state = initialState, action) => {
@@ -12,6 +15,14 @@ const toots = (state = initialState, action) => {
       return {
         ...state,
         text: action.value,
+      };
+    case Actions.TOGGLE_PROGRESS:
+      return {
+        ...state,
+        state: {
+          ...state.state,
+          onProgress: action.value,
+        },
       };
     default:
       return state;

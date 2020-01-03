@@ -6,11 +6,13 @@ const prefix = 'toots';
 
 export const submitToot = (text, visibility) => async (dispatch, _getState) => {
   try {
+    dispatch(startProgress());
     await nativeSubmitStatus(text, null, visibility);
   } catch (e) {
-
+    dispatch(stopProgress());
   }
 
+  dispatch(stopProgress());
   dispatch(clearTootText());
 };
 
@@ -21,3 +23,14 @@ export const setTootText = (text) => ({
 });
 
 export const clearTootText = setTootText.bind(null, "");
+
+export const TOGGLE_PROGRESS = `${prefix}/TOGGLE_PROGRESS`;
+export const startProgress = () => ({
+  type: TOGGLE_PROGRESS,
+  value: true,
+});
+
+export const stopProgress = () => ({
+  type: TOGGLE_PROGRESS,
+  value: false,
+});

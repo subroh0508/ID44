@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Avatar, Input, Icon, Text, ThemeContext } from "react-native-elements";
 
-export const TootArea = ({ rootStyle, account, tootText, onClickAvatar, onChangeText, onClickSubmit }) => {
+export const TootArea = ({ rootStyle, account, tootText, onProgress, onClickAvatar, onChangeText, onClickSubmit }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
@@ -17,10 +17,11 @@ export const TootArea = ({ rootStyle, account, tootText, onClickAvatar, onChange
         <Input
           placeholder='今なにしてる？'
           multiline={ true }
+          disabled={ onProgress }
           containerStyle={ styles.tootAreaContainer }
           inputContainerStyle={ styles.tootAreaInputContainer }
           rightIcon={
-            tootText.length > 0 ? (
+            tootText.length > 0 && !onProgress ? (
               <Icon type='font-awesome'
                 name='paper-plane'
                 color={ theme.colors.secondary }
