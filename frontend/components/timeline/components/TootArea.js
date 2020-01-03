@@ -1,53 +1,45 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from "react-native";
-import { Avatar, Input, Icon, Text, ThemeContext } from "react-native-elements";
+import { Avatar, Input, ThemeContext } from "react-native-elements";
 
 export const TootArea = ({
-  rootStyle,
-  account, tootText, onProgress, openOptions,
-  onClickAvatar, onChangeText, onClickSubmit, onToggleOptions,
+  account, tootText, onProgress,
+  onClickAvatar, onChangeText, onClickSubmit,
 }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
 
   return (
-    <View style={ rootStyle }>
-      <View style={{ flexDirection: 'row' }}>
-        <Avatar rounded
-          containerStyle={ styles.avatar }
-          source={{ uri: account && account.avatar }}
-          onPress={ onClickAvatar }/>
-        <Input
-          placeholder='今なにしてる？'
-          multiline={ true }
-          disabled={ onProgress }
-          containerStyle={ styles.tootAreaContainer }
-          inputContainerStyle={ styles.tootAreaInputContainer }
-          rightIcon={{
-            type: 'font-awesome',
-            name: 'paper-plane',
-            underlayColor: 'transparent',
-            onPress: onClickSubmit,
-            disabled: tootText.length === 0 || onProgress,
-          }}
-          value={ tootText }
-          onChangeText={ onChangeText }/>
-        <Icon type='font-awesome'
-          name={ openOptions ? 'chevron-up' : 'chevron-down' }
-          underlayColor='transparent'
-          containerStyle={ styles.dropdown }
-          onPress={ onToggleOptions.bind(null, !openOptions) }/>
-      </View>
-      <Text style={ styles.counter }>
-        { 500 - tootText.length }
-      </Text>
+    <View style={ styles.root }>
+      <Avatar rounded
+        containerStyle={ styles.avatar }
+        source={{ uri: account && account.avatar }}
+        onPress={ onClickAvatar }/>
+      <Input
+        placeholder='今なにしてる？'
+        multiline={ true }
+        disabled={ onProgress }
+        containerStyle={ styles.tootAreaContainer }
+        inputContainerStyle={ styles.tootAreaInputContainer }
+        rightIcon={{
+          type: 'font-awesome',
+          name: 'paper-plane',
+          underlayColor: 'transparent',
+          onPress: onClickSubmit,
+          disabled: tootText.length === 0 || onProgress,
+        }}
+        value={ tootText }
+        onChangeText={ onChangeText }/>
     </View>
   );
 };
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
+    root: {
+      flexDirection: 'row',
+    },
     avatar: {
       marginTop: 16,
       marginStart: 2,
@@ -68,9 +60,22 @@ const withStyles = ({ colors }) => (
       marginTop: 24,
       width: 24,
     },
+    tootOptionsRoot: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingTop: 8,
+      paddingStart: 48,
+      paddingEnd: 16,
+    },
+    tootOptionsIcon: {
+      marginEnd: 16,
+    },
+    tootOptionsText: {
+      marginEnd: 8,
+      fontSize: 12,
+      color: colors.secondary,
+    },
     counter: {
-      textAlign: 'right',
-      marginEnd: 36,
       color: colors.secondary,
     },
   })
