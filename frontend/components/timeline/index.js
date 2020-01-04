@@ -6,10 +6,11 @@ import { createTheme, colors } from "../../assets/themes";
 import { applyMiddleware, createStore } from "redux";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
+import logger from 'redux-logger';
 import { Provider } from "react-redux";
 import initI18n from "../../initI18n";
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(reducers, applyMiddleware(thunk, logger));
 
 AppRegistry.registerComponent('Timeline', () => () => {
   useEffect(() => {
