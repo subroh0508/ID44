@@ -4,6 +4,7 @@ const initialState = {
   active: [],
   subscription: null,
   streams: {},
+  focusTab: null,
 };
 
 const timelines = (state = initialState, action) => {
@@ -28,6 +29,11 @@ const timelines = (state = initialState, action) => {
       return {
         ...state,
         active: state.active.filter(k => k === action.value),
+      };
+    case Actions.SET_FOCUS_TAB:
+      return {
+        ...state,
+        focusTab: action.value,
       };
     case Actions.APPEND_STATUS:
       return {

@@ -56,6 +56,10 @@ export const requestSubscribe = (account, stream, active) => async (dispatch, _g
   try {
     await nativeSubscribe(account.hostName, account.id, stream);
     dispatch(addActiveStream(key));
+
+    if (active.length === 0) {
+      dispatch(setFocusTab(key));
+    }
   } catch (e) {
 
   }
@@ -70,6 +74,9 @@ export const requestUnsubscribe = (account, stream, active) => async (dispatch, 
   try {
     await nativeUnsubscribe(account.hostName, account.id, stream);
     dispatch(removeActiveStream(key));
+    if (active.length === 1) {
+      dispatch(setFocusTab(null));
+    }
   } catch (e) {
 
   }
@@ -99,6 +106,12 @@ export const setSubscription = (subscription) => ({
 export const CLEAR_SUBSCRIPTION = `${prefix}/CLEAR_SUBSCRIPTION`;
 export const clearSubscription = () => ({
   type: CLEAR_SUBSCRIPTION,
+});
+
+export const SET_FOCUS_TAB =`${prefix}/SET_FOCUS_TAB`;
+export const setFocusTab = (tab) => ({
+  type: SET_FOCUS_TAB,
+  value: tab,
 });
 
 export const APPEND_STATUS = `${prefix}/APPEND_STATUS`;

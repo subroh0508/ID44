@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { subscribe, unsubscribe, requestSubscribe, requestUnsubscribe, fetchStatuses } from "../actions/timelines";
+import {
+  subscribe, unsubscribe,
+  requestSubscribe, requestUnsubscribe,
+  fetchStatuses,
+  setFocusTab,
+} from "../actions/timelines";
 import { HomeTab } from "../components/HomeTab";
 import { STREAM } from '../native/TimelineNativeActions';
 
@@ -23,6 +28,9 @@ export const Timelines = ({ account }) => {
   }, [account]);
 
   return (
-    <HomeTab screenProps={{ account }}/>
+    <HomeTab
+      account={ account }
+      streams={ streams }
+      onNavigationStateChange={ (_new, _prev, action) => dispatch(setFocusTab(action.routeName)) }/>
   );
 };
