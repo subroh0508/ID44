@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Header, Avatar, ThemeContext } from "react-native-elements";
 import { StyleSheet } from "react-native";
+import { Header, Avatar, Text, ThemeContext } from "react-native-elements";
 
 export const HomeHeader = ({ account }) => {
   const { theme } = useContext(ThemeContext);
@@ -10,22 +10,28 @@ export const HomeHeader = ({ account }) => {
   return (
     <Header
       placement='left'
-      //statusBarProps={{ translucent: true }}
       leftComponent={
         <Avatar rounded
-          //containerStyle={ styles.avatar }
+          containerStyle={ styles.avatar }
           source={{ uri: account && account.avatar }}/>
       }
-      centerComponent={{ text: account && account.hostName }}/>
+      centerComponent={
+        <Text style={ styles.title }>
+          { account && account.hostName }
+        </Text>
+      }/>
   );
 };
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
     avatar: {
-      marginTop: 16,
-      marginStart: 2,
-      marginRight: 2,
+      marginStart: 8,
+      marginEnd: 8,
     },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+    }
   })
 );
