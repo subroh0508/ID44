@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import {Avatar, ThemeContext} from "react-native-elements";
+import { Avatar, ThemeContext } from "react-native-elements";
 import { TootEditor } from '../containers/TootEditor';
 
 export const BottomBar = ({ account, onClickAvatar }) => {
