@@ -32,6 +32,11 @@ const createTheme = colors => ({
       color: colors.text,
     },
   },
+  Header: {
+    containerStyle: {
+      backgroundColor: colors.background,
+    },
+  },
   Input: {
     inputStyle: {
       color: colors.text,
