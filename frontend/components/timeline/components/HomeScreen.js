@@ -13,12 +13,10 @@ export const HomeScreen = ({ account, onClickHeaderAvatar }) => {
   return (
     <View style={ styles.root }>
       <HomeHeader
-        account={ account }/>
-      <Timeline
-        account={ account }/>
-      <BottomBar
         account={ account }
-        onClickAvatar={ onClickHeaderAvatar }/>
+        onClickHeaderAvatar={ onClickHeaderAvatar }/>
+      <Timeline account={ account }/>
+      <BottomBar account={ account }/>
     </View>
   );
 };

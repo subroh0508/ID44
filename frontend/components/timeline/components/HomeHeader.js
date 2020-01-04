@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
 import { Header, Avatar, Text, ThemeContext } from "react-native-elements";
 
-export const HomeHeader = ({ account }) => {
+export const HomeHeader = ({ account, onClickHeaderAvatar }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
@@ -13,7 +13,8 @@ export const HomeHeader = ({ account }) => {
       leftComponent={
         <Avatar rounded
           containerStyle={ styles.avatar }
-          source={{ uri: account && account.avatar }}/>
+          source={{ uri: account && account.avatar }}
+          onPress={ onClickHeaderAvatar }/>
       }
       centerComponent={
         <Text style={ styles.title }>
