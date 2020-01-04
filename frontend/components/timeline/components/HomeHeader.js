@@ -10,6 +10,7 @@ export const HomeHeader = ({ account }) => {
   return (
     <Header
       placement='left'
+      //statusBarProps={{ translucent: true }}
       leftComponent={
         <Avatar rounded
           //containerStyle={ styles.avatar }

@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 const colors = {
   mizuki: {
     primary: '#00ffff',
@@ -35,6 +37,9 @@ const createTheme = colors => ({
   Header: {
     containerStyle: {
       backgroundColor: colors.background,
+      ...Platform.select({
+        android: { paddingTop: 0, height: 56 },
+      }),
     },
   },
   Input: {
