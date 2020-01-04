@@ -25,8 +25,13 @@ internal class SubscribeActions(
             .onSuccess { flow ->
                 resolve(null)
 
-                view.onSubscribe()
-                flow?.collect { view.emitStatus(EVENT_APPEND_STATUS, Mapper.map(Status.serializer(), it)) }
+                flow?.collect {
+                    view.emitStatus(
+                        EVENT_APPEND_STATUS,
+                        "${host.value}/${accountId.value}/${stream.name}",
+                        Mapper.map(Status.serializer(), it)
+                    )
+                }
             }
             .onHttpFailure(reject)
     }
@@ -36,11 +41,7 @@ internal class SubscribeActions(
         resolve: (Any?) -> Unit, reject: (Throwable) -> Unit
     ) = view.launch {
         runCatching { timelineUnsubscribeUseCase.execute(host, accountId, stream) }
-            .onSuccess {
-                resolve(null)
-
-                view.onUnsubscribe()
-            }
+            .onSuccess { resolve(null) }
             .onHttpFailure(reject)
     }
 }

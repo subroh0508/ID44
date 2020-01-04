@@ -2,9 +2,5 @@ package id44.mizuki.bridges.timeline
 import id44.mizuki.bridges.auth.RequireAuthView
 
 interface TimelineView : RequireAuthView {
-    fun onSubscribe()
-
-    fun onUnsubscribe()
-
-    fun emitStatus(key: String, status: Map<String, Any>)
+    fun emitStatus(key: String, streamKey: String, status: Map<String, Any>)
 }

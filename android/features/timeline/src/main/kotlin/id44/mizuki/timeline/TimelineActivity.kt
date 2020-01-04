@@ -17,20 +17,19 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onSubscribe() {
-        emitter = reactInstanceManager.currentReactContext?.getJSModule(
-            DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
-        )
-    }
-
-    override fun onUnsubscribe() {
-        emitter = null
-    }
-
-    override fun emitStatus(key: String, status: Map<String, Any>) =
-            emitter?.emit(key, Arguments.makeNativeMap(status)) ?: Unit
+    override fun emitStatus(key: String, streamKey: String, status: Map<String, Any>) =
+            emitter?.emit(
+                key,
+                Arguments.makeNativeMap(
+                    mapOf("streamKey" to streamKey, "status" to Arguments.makeNativeMap(status))
+                )
+            ) ?: Unit
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent
 
-    private var emitter: DeviceEventManagerModule.RCTDeviceEventEmitter? = null
+    private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter? by lazy {
+        reactInstanceManager.currentReactContext?.getJSModule(
+            DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
+        )
+    }
 }
