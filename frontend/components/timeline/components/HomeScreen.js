@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Timeline } from '../containers/Timeline';
 import { HomeHeader } from '../components/HomeHeader';
+import { HomeTab } from './HomeTab';
 import { BottomBar } from '../components/BottomBar';
 import { ThemeContext } from 'react-native-elements';
 
@@ -15,7 +15,7 @@ export const HomeScreen = ({ account, onClickHeaderAvatar }) => {
       <HomeHeader
         account={ account }
         onClickHeaderAvatar={ onClickHeaderAvatar }/>
-      <Timeline account={ account }/>
+      <HomeTab screenProps={{ account }}/>
       <BottomBar account={ account }/>
     </View>
   );
