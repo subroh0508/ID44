@@ -10,44 +10,17 @@ import { mapper } from 'ID44-shared';
 
 const prefix = 'timeline';
 
-export const subscribe = (account, stream, active) => async (dispatch, _getState) => {
-  const key = streamKey(account, stream);
+export const subscribe = (dispatch) => {
+  const subscription = addEventListener(dispatch);
+  dispatch(setSubscription(subscription));
 
-  if (key === null) {
-    return;
-  }
-
-  if (active.hasOwnProperty(key)) {
-    active[key].remove();
-    dispatch(activateSubscription(key, addEventListener(key, dispatch)));
-
-    return;
-  }
-
-  try {
-    const statuses = await nativeFetchStatuses(stream, null);
-    dispatch(appendStatuses(key, statuses.map(status => mapper.unmap(serializer(), status))));
-
-    await nativeSubscribe(account.hostName, account.id, stream);
-    dispatch(activateSubscription(key, addEventListener(key, dispatch)));
-  } catch (e) {
-
-  }
+  return subscription;
 };
 
-export const unsubscribe = (account, stream) => async (dispatch, _getState) => {
-  const key = streamKey(account, stream);
-  if (key === null) {
-    return;
-  }
+export const unsubscribe = (subscription) => async (dispatch, _getState) => {
+  subscription.remove();
 
-  try {
-    await nativeUnsubscribe(account.hostName, account.id, stream);
-  } catch (e) {
-
-  }
-
-  dispatch(inactivateSubscription(key));
+  dispatch(clearSubscription());
 };
 
 export const unsubscribeAll = ({ active, inactive }) => async (dispatch, _getState) => {
@@ -59,45 +32,73 @@ export const unsubscribeAll = ({ active, inactive }) => async (dispatch, _getSta
   dispatch(clearAllSubscription());
 };
 
-const addEventListener = (streamKey, dispatch) => new NativeEventEmitter(TimelineModule)
-  .addListener(EVENT_APPEND_STATUS, status => {
-    console.log(status.content);
-    dispatch(appendStatus(streamKey, mapper.unmap(serializer(), status)));
+const addEventListener = (dispatch) => new NativeEventEmitter(TimelineModule)
+  .addListener(EVENT_APPEND_STATUS, data => {
+    console.log(data.status.content);
+    dispatch(appendStatus(data.streamKey, mapper.unmap(serializer(), data.status)));
   });
 
-export const removeEventListener = (inactive) => async (dispatch, _getState) => {
-  const inactiveKeys = Object.keys(inactive);
-  if (inactiveKeys.length === 0) {
-    return;
+export const fetchStatuses = (account, stream, maxId = null) => async (dispatch, _getState) => {
+  try {
+    const statuses = await nativeFetchStatuses(stream, maxId);
+    dispatch(appendStatuses(streamKey(account, stream), statuses.map(status => mapper.unmap(serializer(), status))));
+  } catch (e) {
+
   }
-
-  inactiveKeys.forEach(inactiveKey => {
-    inactive[inactiveKey] && inactive[inactiveKey].remove();
-  });
-  dispatch(clearInactiveSubscription());
 };
 
-export const ACTIVATE_SUBSCRIPTION = `${prefix}/ACTIVATE_SUBSCRIPTION`;
-export const activateSubscription = (streamKey, subscription) => ({
-  type: ACTIVATE_SUBSCRIPTION,
+export const requestSubscribe = (account, stream, active) => async (dispatch, _getState) => {
+  const key = streamKey(account, stream);
+  if (active.includes(key)) {
+    return
+  }
+
+  try {
+    await nativeSubscribe(account.hostName, account.id, stream);
+    dispatch(addActiveStream(key));
+  } catch (e) {
+
+  }
+};
+
+export const requestUnsubscribe = (account, stream, active) => async (dispatch, _getState) => {
+  const key = streamKey(account, stream);
+  if (!active.includes(key)) {
+    return
+  }
+
+  try {
+    await nativeUnsubscribe(account.hostName, account.id, stream);
+    dispatch(removeActiveStream(key));
+  } catch (e) {
+
+  }
+};
+
+export const requestUnsubscribeAll = (account, active) => async (dispatch, _getState) =>
+  active.forEach(key => dispatch(requestUnsubscribe(account, streamFromKey(key), active)));
+
+export const ADD_ACTIVE_STREAM = `${prefix}/ADD_ACTIVE_STREAM`;
+export const addActiveStream = (streamKey) => ({
+  type: ADD_ACTIVE_STREAM,
   value: streamKey,
-  subscription,
 });
 
-export const INACTIVATE_SUBSCRIPTION = `${prefix}/INACTIVATE_SUBSCRIPTION`;
-export const inactivateSubscription = (streamKey) => ({
-  type: INACTIVATE_SUBSCRIPTION,
+export const REMOVE_ACTIVE_STREAM = `${prefix}/REMOVE_ACTIVE_STREAM`;
+export const removeActiveStream = (streamKey) => ({
+  type: REMOVE_ACTIVE_STREAM,
   value: streamKey,
 });
 
-export const CLEAR_INACTIVE_SUBSCRIPTION = `${prefix}/CLEAR_INACTIVE_SUBSCRIPTION`;
-export const clearInactiveSubscription = () => ({
-  type: CLEAR_INACTIVE_SUBSCRIPTION,
+export const SET_SUBSCRIPTION = `${prefix}/SET_SUBSCRIPTION`;
+export const setSubscription = (subscription) => ({
+  type: SET_SUBSCRIPTION,
+  value: subscription,
 });
 
-export const CLEAR_ALL_SUBSCRIPTION = `${prefix}/CLEAR_ALL_SUBSCRIPTION`;
-export const clearAllSubscription = () => ({
-  type: CLEAR_ALL_SUBSCRIPTION,
+export const CLEAR_SUBSCRIPTION = `${prefix}/CLEAR_SUBSCRIPTION`;
+export const clearSubscription = () => ({
+  type: CLEAR_SUBSCRIPTION,
 });
 
 export const APPEND_STATUS = `${prefix}/APPEND_STATUS`;
@@ -119,4 +120,5 @@ export const clearStreams = () => ({
   type: CLEAR_STREAMS,
 });
 
-export const streamKey = (account, stream) => account ? `${account.screen}/${stream}` : null;
+export const streamKey = (account, stream) => `${account.hostName}/${account.id}/${stream}`;
+const streamFromKey = (streamKey) => streamKey.split('/')[2];

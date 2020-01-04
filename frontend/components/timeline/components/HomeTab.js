@@ -3,14 +3,15 @@ import { StyleSheet, View } from 'react-native';
 import { Avatar, ThemeContext } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
-import { Timeline } from "../containers/Timeline";
+import { StreamPane } from "./StreamPane";
+import { streamKey } from "../actions/timelines";
 import { STREAM } from '../native/TimelineNativeActions';
 
 export const HomeTab = createAppContainer(
   createMaterialTopTabNavigator({
     Local: {
       screen: ({ screenProps: { account } }) => (
-        <Timeline account={ account } stream={ STREAM.LOCAL }/>
+        <StreamPane streamKey={ streamKey(account, STREAM.LOCAL) }/>
       ),
       navigationOptions: {
         title: 'ローカル',
@@ -18,7 +19,7 @@ export const HomeTab = createAppContainer(
     },
     Home: {
       screen: ({ screenProps: { account } }) => (
-        <Timeline account={ account } stream={ STREAM.HOME }/>
+        <StreamPane streamKey={ streamKey(account, STREAM.HOME) }/>
       ),
       navigationOptions: {
         title: 'ホーム',
@@ -26,7 +27,7 @@ export const HomeTab = createAppContainer(
     },
     Global: {
       screen: ({ screenProps: { account } }) => (
-        <Timeline account={ account } stream={ STREAM.GLOBAL }/>
+        <StreamPane streamKey={ streamKey(account, STREAM.GLOBAL) }/>
       ),
       navigationOptions: {
         title: '連合',
