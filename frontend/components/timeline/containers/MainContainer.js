@@ -14,10 +14,10 @@ const Home = ({ navigation }) => {
   const selectedAccount = useSelector(state => state.ownAccounts.selectedAccount);
 
   return (
-    <View style={{ flex: 1 }}>
-      <Timeline style={{ flex: 1 }}
+    <View>
+      <Timeline
         account={ selectedAccount }/>
-      <BottomBar style={{ flex: 1 }}
+      <BottomBar
         account={ selectedAccount }
         onClickAvatar={ () => navigation.openDrawer() }/>
     </View>
