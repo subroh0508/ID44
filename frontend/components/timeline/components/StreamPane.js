@@ -12,12 +12,8 @@ import {
   Icon,
   ThemeContext, Avatar,
 } from 'react-native-elements';
-import HTMLView from 'react-native-htmlview';
-import { DiffTime } from './DiffTime';
-import { TooterName } from './TooterName';
+import { Status } from './Status';
 import { Actions } from './Actions';
-import { datetimes } from 'ID44-shared';
-import i18next from 'i18next';
 
 const getStreams  = (streamKey) => createSelector(
   [
@@ -62,32 +58,6 @@ const TooterAvatar = memo(
   ({ tooter }) => (<Avatar rounded source={{ uri: tooter.avatar }}/>),
   (prev, next) => prev.tooter.id === next.tooter.id,
 );
-
-const Content = memo(({ status }) => {
-  const { theme } = useContext(ThemeContext);
-
-  return (
-    <HTMLView
-      value={ status.content }
-      stylesheet={{ p: { color: theme.colors.text } }}/>
-  );
-}, (prev, next) => prev.status.id === next.status.id);
-
-const Status = ({ status }) => {
-  const { theme } = useContext(ThemeContext);
-
-  const styles = withStyles(theme);
-
-  return (
-    <View style={ styles.status }>
-      <View style={ styles.tooter }>
-        <TooterName tooter={ status.tooter }/>
-        <DiffTime time={ status.createdAt }/>
-      </View>
-      <Content status={ status }/>
-    </View>
-  )
-};
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
