@@ -65,35 +65,5 @@ const withStyles = ({ colors }) => (
       width: '100%',
       backgroundColor: colors.background,
     },
-    status: {
-      paddingBottom: 12,
-    },
-    tooter: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingBottom: 4,
-    },
-    displayName: {
-      flexShrink: 1,
-      fontWeight: 'bold',
-    },
-    username: {
-      fontWeight: 'normal',
-      color: colors.secondary,
-    },
-    actions: {
-      flexDirection: 'row',
-      paddingTop: 4,
-    },
-    counter: {
-      minWidth: 48,
-      paddingTop: 2,
-      paddingStart: 4,
-      paddingEnd: 4,
-      paddingBottom: 2,
-      fontSize: 12,
-      color: colors.secondary,
-    },
   })
 );
