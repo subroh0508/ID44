@@ -28,7 +28,7 @@ internal class MastodonApiClient(
     override suspend fun getAccount(id: String): AccountJson =
         httpClient.get("$GET_ACCOUNTS/id")
 
-    override suspend fun getTimelinesPublic(maxId: String?, limit: Int) = GetTimelines.Response(
+    override suspend fun getTimelinesGlobal(maxId: String?, limit: Int) = GetTimelines.Response(
         raw = httpClient.get(
             GET_TIMELINES_PUBLIC.append("max_id" to maxId, "limit" to limit)
         )

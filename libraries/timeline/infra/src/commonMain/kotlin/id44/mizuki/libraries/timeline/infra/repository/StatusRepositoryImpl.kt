@@ -12,10 +12,10 @@ import id44.mizuki.libraries.timeline.infra.toStatusVisibilityType
 class StatusRepositoryImpl(
     private val api: MastodonApi
 ) : StatusRepository {
-    override suspend fun getLocalStatuses(maxId: String?, limit: Int) =
-        api.getTimelinesPublic(maxId, limit).map { it.toStatus() }
+    override suspend fun getGlobalStatuses(maxId: String?, limit: Int) =
+        api.getTimelinesGlobal(maxId, limit).map { it.toStatus() }
 
-    override suspend fun getPublicStatuses(maxId: String?, limit: Int) =
+    override suspend fun getLocalStatuses(maxId: String?, limit: Int) =
         api.getTimelinesLocal(maxId, limit).map { it.toStatus() }
 
     override suspend fun postStatus(status: String, visibility: StatusVisibility, warningText: String?) =

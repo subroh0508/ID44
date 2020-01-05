@@ -12,7 +12,7 @@ interface MastodonApi {
     suspend fun getVerifyAccountsCredential(): GetAccountsVerifyCredential.Response
     suspend fun getAccount(id: String): AccountJson
 
-    suspend fun getTimelinesPublic(maxId: String? = null, limit: Int = 20): List<StatusJson>
+    suspend fun getTimelinesGlobal(maxId: String? = null, limit: Int = 20): List<StatusJson>
     suspend fun getTimelinesLocal(maxId: String? = null, limit: Int = 20): List<StatusJson>
 
     suspend fun postStatus(

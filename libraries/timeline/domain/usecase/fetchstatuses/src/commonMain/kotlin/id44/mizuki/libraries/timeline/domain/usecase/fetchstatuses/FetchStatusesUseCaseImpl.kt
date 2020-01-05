@@ -10,8 +10,8 @@ internal class FetchStatusesUseCaseImpl(
 ) : FetchStatusesUseCase {
     override suspend fun execute(stream: Stream, maxId: String?, limit: Int) = withContext(Dispatchers.Default) {
         when (stream) {
+            Stream.GLOBAL -> repository.getGlobalStatuses(maxId, limit)
             Stream.LOCAL -> repository.getLocalStatuses(maxId, limit)
-            Stream.GLOBAL -> repository.getPublicStatuses(maxId, limit)
             else -> listOf()
         }
     }
