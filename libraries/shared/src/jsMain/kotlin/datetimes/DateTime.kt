@@ -26,7 +26,7 @@ fun toDiffTime(
             i18next("commons.time.hours", option)
         }
         diff.days < 7 -> {
-            option.day = diff.days.toString()
+            option.day = diff.days.toInt().toString()
             i18next("commons.time.days", option)
         }
         else -> {

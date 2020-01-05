@@ -5,7 +5,7 @@ const locales = {
       seconds: '{{time}}秒',
       minutes: '{{time}}分',
       hours: '{{time}}時間',
-      day: '{{day}}日',
+      days: '{{day}}日',
       date: '{{date}}',
     },
   },
