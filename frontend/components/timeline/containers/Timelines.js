@@ -11,7 +11,9 @@ import { STREAM } from '../native/TimelineNativeActions';
 
 const streams = [STREAM.LOCAL, STREAM.HOME, STREAM.GLOBAL];
 
-export const Timelines = ({ account }) => {
+export const Timelines = ({ account }) => account ? (<InternalTimelines account={ account }/>) : null;
+
+const InternalTimelines = ({ account }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
