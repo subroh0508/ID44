@@ -55,6 +55,7 @@
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/unsubscribe" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/timeline/infra" />
+            <option value="$PROJECT_DIR$/node_modules/react-native-fast-image/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-reanimated/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-vector-icons/android" />

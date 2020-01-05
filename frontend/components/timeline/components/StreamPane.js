@@ -1,17 +1,9 @@
 import React, { memo, useContext } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
-import {
-  ScrollView,
-  View,
-  StyleSheet,
-} from 'react-native';
-import {
-  ListItem,
-  Text,
-  Icon,
-  ThemeContext, Avatar,
-} from 'react-native-elements';
+import { StyleSheet, FlatList } from 'react-native';
+import { ListItem, ThemeContext } from 'react-native-elements';
+import FastImage from 'react-native-fast-image';
 import { Status } from './Status';
 import { Actions } from './Actions';
 
@@ -35,27 +27,34 @@ export const StreamPane = ({ streamKey }) => {
   const styles = withStyles(theme);
 
   return (
-    <ScrollView style={ styles.root }>
-      {
-        streams.map(status => (
-          <ListItem key={ status.id }
-            leftAvatar={ <TooterAvatar tooter={ status.tooter }/>}
-            title={ <Status status={ status }/> }
-            subtitle={
-              <Actions
-                reblogCount={ status.reblogCount }
-                favouriteCount={ status.favouriteCount }/>
-            }
-            bottomDivider>
-          </ListItem>
-        ))
-      }
-    </ScrollView>
+    <FlatList
+      style={ styles.root }
+      data={ streams }
+      keyExtractor={ status => status.id }
+      renderItem={ renderItem }/>
   );
 };
 
+const renderItem = ({ item }) => (
+  <ListItem
+    leftAvatar={ <TooterAvatar tooter={ item.tooter }/>}
+    title={ <Status status={ item }/> }
+    subtitle={
+      <Actions
+        reblogCount={ item.reblogCount }
+        favouriteCount={ item.favouriteCount }/>
+    }
+    bottomDivider>
+  </ListItem>
+);
+
 const TooterAvatar = memo(
-  ({ tooter }) => (<Avatar rounded source={{ uri: tooter.avatar }}/>),
+  ({ tooter }) => (
+    <FastImage
+      style={{ width: 36, height: 36, borderRadius: 50 }}
+      source={{ uri: tooter.avatar }}
+    />
+  ),
   (prev, next) => prev.tooter.id === next.tooter.id,
 );
 

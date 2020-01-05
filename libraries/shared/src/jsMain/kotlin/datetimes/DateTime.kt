@@ -12,7 +12,7 @@ fun toDiffTime(
 
     val option = js("{}")
     return when {
-        diff.seconds < 5.0 -> i18next("commons.time.now", "0")
+        diff.seconds < 10.0 -> i18next("commons.time.now", "0")
         diff.seconds < 60.0 -> {
             option.time = diff.seconds.toInt().toString()
             i18next("commons.time.seconds", option)
