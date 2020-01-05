@@ -27,9 +27,8 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView {
 
     internal lateinit var timelineActivityComponent: TimelineActivityComponent
 
-    private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter? by lazy {
-        reactInstanceManager.currentReactContext?.getJSModule(
+    private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter?
+        get() = reactInstanceManager.currentReactContext?.getJSModule(
             DeviceEventManagerModule.RCTDeviceEventEmitter::class.java
         )
-    }
 }
