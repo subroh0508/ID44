@@ -15,5 +15,6 @@ internal const val GET_ACCOUNTS_VERIFY_CREDENTIALS = "/api/v1/accounts/verify_cr
 internal const val GET_ACCOUNTS = "/api/v1/accounts"
 
 internal const val GET_TIMELINES_PUBLIC = "/api/v1/timelines/public"
+internal const val GET_TIMELINES_HOME = "/api/v1/timelines/home"
 
 internal const val POST_STATUSES = "/api/v1/statuses"

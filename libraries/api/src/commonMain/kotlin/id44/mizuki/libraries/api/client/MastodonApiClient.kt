@@ -38,6 +38,11 @@ internal class MastodonApiClient(
             GET_TIMELINES_PUBLIC.append("max_id" to maxId, "limit" to limit, "local" to true)
         )
     ).raw.map(::StatusJson)
+    override suspend fun getTimelinesHome(maxId: String?, limit: Int) = GetTimelines.Response(
+        raw = httpClient.get(
+            GET_TIMELINES_HOME.append("max_id" to maxId, "limit" to limit)
+        )
+    ).raw.map(::StatusJson)
 
     override suspend fun postStatus(
         status: String?, mediaIds: List<String>,

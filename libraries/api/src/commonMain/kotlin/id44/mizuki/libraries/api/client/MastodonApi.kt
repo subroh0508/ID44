@@ -14,6 +14,7 @@ interface MastodonApi {
 
     suspend fun getTimelinesGlobal(maxId: String? = null, limit: Int = 20): List<StatusJson>
     suspend fun getTimelinesLocal(maxId: String? = null, limit: Int = 20): List<StatusJson>
+    suspend fun getTimelinesHome(maxId: String? = null, limit: Int = 20): List<StatusJson>
 
     suspend fun postStatus(
         status: String?, mediaIds: List<String> = emptyList(),
