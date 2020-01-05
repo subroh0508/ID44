@@ -16,7 +16,7 @@ export const HomeScreen = ({ account, onClickHeaderAvatar }) => {
         account={ account }
         onClickHeaderAvatar={ onClickHeaderAvatar }/>
       { account ? (<Timelines account={ account }/>) : null }
-      <BottomBar account={ account }/>
+      <BottomBar/>
     </View>
   );
 };

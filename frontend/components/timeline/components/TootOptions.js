@@ -112,7 +112,7 @@ const withStyles = ({ colors }, contentWarning) => (
       paddingEnd: 16,
     },
     optionsIcon: {
-      width: 20,
+      width: 24,
       marginEnd: 16,
     },
     optionsText: {
