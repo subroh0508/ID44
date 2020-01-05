@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { useSelector, shallowEqual } from "react-redux";
 import { createSelector } from "reselect";
 import {
@@ -12,35 +12,37 @@ import {
   Icon,
   ThemeContext,
 } from 'react-native-elements';
-import HTMLView from "react-native-htmlview";
+import HTMLView from 'react-native-htmlview';
+import { DiffTime } from './DiffTime';
+import { TooterName } from './TooterName';
 import { datetimes } from 'ID44-shared';
 import i18next from "i18next";
 
-const Status = ({ theme, styles, status }) => (
-  <View style={ styles.status }>
-    <View style={ styles.tooter }>
-      <Text
-        style={ styles.displayName }
-        numberOfLines={ 1 }
-        ellipsizeMode='tail'>
-        { status.tooter.displayName || status.tooter.username }
-        <Text
-          style={ styles.username }
-          numberOfLines={ 1 }
-          ellipsizeMode='tail'>
-          { `  @${status.tooter.username}` }
-        </Text>
-      </Text>
-      <Text
-        style={ styles.diffTime }
-        numberOfLines={ 1 }>
-        { datetimes.toDiffTime(status.createdAt, (key, option) => i18next.t(key, option)) }
-      </Text>
-    </View>
-    <HTMLView value={ status.content }
+const Content = memo(({ status }) => {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <HTMLView
+      value={ status.content }
       stylesheet={{ p: { color: theme.colors.text } }}/>
-  </View>
-);
+  );
+}, (prev, next) => prev.status.id === next.status.id);
+
+const Status = ({ status }) => {
+  const { theme } = useContext(ThemeContext);
+
+  const styles = withStyles(theme);
+
+  return (
+    <View style={ styles.status }>
+      <View style={ styles.tooter }>
+        <TooterName tooter={ status.tooter }/>
+        <DiffTime time={ status.createdAt }/>
+      </View>
+      <Content status={ status }/>
+    </View>
+  )
+};
 
 const Actions = ({ theme, styles, status }) => (
   <View style={ styles.actions }>
@@ -85,7 +87,8 @@ const getStreams  = (streamKey) => createSelector(
 export const StreamPane = ({ streamKey }) => {
   const { streams } = useSelector(
     getStreams(streamKey),
-    ({ focusTab }, _) => focusTab !== streamKey,
+    (next, prev) =>
+      next.focusTab !== streamKey || next.streams.length === prev.streams.length,
   );
 
   const { theme } = useContext(ThemeContext);
@@ -95,12 +98,10 @@ export const StreamPane = ({ streamKey }) => {
   return (
     <ScrollView style={ styles.root }>
       {
-        streams.map((status, i) => (
-          <ListItem key={ i }
+        streams.map(status => (
+          <ListItem key={ status.id }
             leftAvatar={{ source: { uri: status.tooter.avatar } }}
-            title={
-              <Status {...{ theme, styles, status }}/>
-            }
+            title={ <Status status={ status }/> }
             subtitle={
               <Actions {...{ theme, styles, status }}/>
             }
@@ -134,9 +135,6 @@ const withStyles = ({ colors }) => (
     },
     username: {
       fontWeight: 'normal',
-      color: colors.secondary,
-    },
-    diffTime: {
       color: colors.secondary,
     },
     actions: {
