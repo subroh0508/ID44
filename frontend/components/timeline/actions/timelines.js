@@ -56,10 +56,6 @@ export const requestSubscribe = (account, stream, active) => async (dispatch, _g
   try {
     await nativeSubscribe(account.hostName, account.id, stream);
     dispatch(addActiveStream(key));
-
-    if (active.length === 0) {
-      dispatch(setFocusTab(key));
-    }
   } catch (e) {
 
   }
@@ -74,16 +70,20 @@ export const requestUnsubscribe = (account, stream, active) => async (dispatch, 
   try {
     await nativeUnsubscribe(account.hostName, account.id, stream);
     dispatch(removeActiveStream(key));
-    if (active.length === 1) {
-      dispatch(setFocusTab(null));
-    }
   } catch (e) {
 
   }
 };
 
-export const requestUnsubscribeAll = (account, active) => async (dispatch, _getState) =>
+export const requestSubscribeAll = (account, streams) => async (dispatch, _getState) => {
+  streams.forEach(stream => dispatch(requestSubscribe(account, stream, [])));
+  dispatch(setFocusStream(account, streams[0]));
+};
+
+export const requestUnsubscribeAll = (account, active) => async (dispatch, _getState) => {
   active.forEach(key => dispatch(requestUnsubscribe(account, streamFromKey(key), active)));
+  dispatch(setFocusTab(null));
+};
 
 export const ADD_ACTIVE_STREAM = `${prefix}/ADD_ACTIVE_STREAM`;
 export const addActiveStream = (streamKey) => ({
@@ -113,6 +113,8 @@ export const setFocusTab = (tab) => ({
   type: SET_FOCUS_TAB,
   value: tab,
 });
+
+export const setFocusStream = (account, stream) => setFocusTab(streamKey(account, stream));
 
 export const APPEND_STATUS = `${prefix}/APPEND_STATUS`;
 export const appendStatus = (streamKey, status) => ({

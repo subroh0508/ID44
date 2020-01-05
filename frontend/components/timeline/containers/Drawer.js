@@ -16,7 +16,7 @@ const selectOwnAccounts = createSelector(
 );
 
 export const Drawer = ({ navigation }) => {
-  const timelines = useSelector(state => state.timelines);
+  //const timelines = useSelector(state => state.timelines);
   const accounts = useSelector(selectOwnAccounts);
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ export const Drawer = ({ navigation }) => {
         navigation.closeDrawer();
       }}
       onClickedAddAccount={ () => {
-        dispatch(unsubscribeAll(timelines));
+        //dispatch(unsubscribeAll(timelines));
         dispatch(openAuthentication());
         navigation.closeDrawer();
       }}

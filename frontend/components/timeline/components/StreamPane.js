@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useSelector, shallowEqual } from "react-redux";
+import { createSelector } from "reselect";
 import {
   ScrollView,
   View,
@@ -73,12 +74,21 @@ const Actions = ({ theme, styles, status }) => (
   </View>
 );
 
-const Scroll = ({ streamKey, focusTab }) => {
-  const { theme } = useContext(ThemeContext);
-  const streams = useSelector(
+const getStreams  = (streamKey) => createSelector(
+  [
+    state => state.timelines.focusTab,
     state => state.timelines.streams[streamKey] || [],
-    () => streamKey !== focusTab,
+  ],
+  (focusTab, streams) => ({ focusTab, streams }),
+);
+
+export const StreamPane = ({ streamKey }) => {
+  const { streams } = useSelector(
+    getStreams(streamKey),
+    ({ focusTab }, _) => focusTab !== streamKey,
   );
+
+  const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
 
@@ -100,12 +110,6 @@ const Scroll = ({ streamKey, focusTab }) => {
       }
     </ScrollView>
   );
-};
-
-export const StreamPane = ({ streamKey }) => {
-  const focusTab = useSelector(state => state.timelines.focusTab);
-
-  return (<Scroll streamKey={ streamKey } focusTab={ focusTab }/>)
 };
 
 const withStyles = ({ colors }) => (

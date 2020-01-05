@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
   subscribe, unsubscribe,
-  requestSubscribe, requestUnsubscribe,
+  requestSubscribeAll, requestUnsubscribeAll,
   fetchStatuses,
-  setFocusTab,
+  setFocusTab, setFocusStream,
 } from "../actions/timelines";
 import { HomeTab } from "../components/HomeTab";
 import { STREAM } from '../native/TimelineNativeActions';
@@ -16,13 +16,12 @@ export const Timelines = ({ account }) => {
 
   useEffect(() => {
     const subscription = subscribe(dispatch);
-    streams.forEach(stream => {
-      dispatch(fetchStatuses(account, stream));
-      dispatch(requestSubscribe(account, stream, []));
-    });
+    dispatch(setFocusStream(account, streams[0]));
+    streams.forEach(stream => dispatch(fetchStatuses(account, stream)));
+    dispatch(requestSubscribeAll(account, streams));
 
     return () => {
-      streams.forEach(stream => dispatch(requestUnsubscribe(account, stream, streams)));
+      dispatch(requestUnsubscribeAll(account, streams));
       dispatch(unsubscribe(subscription));
     }
   }, [account]);
