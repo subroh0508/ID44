@@ -36,6 +36,11 @@ const locales = {
       long: 'メンションしたユーザーだけに公開',
     },
   },
+  tabsBar: {
+    localTimeline: 'ローカル',
+    home: 'ホーム',
+    federatedTimeline: '連合',
+  },
 };
 
 export default locales;
