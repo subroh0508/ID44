@@ -1,6 +1,6 @@
 import React, { memo, useContext } from 'react';
-import { useSelector, shallowEqual } from "react-redux";
-import { createSelector } from "reselect";
+import { useSelector, shallowEqual } from 'react-redux';
+import { createSelector } from 'reselect';
 import {
   ScrollView,
   View,
@@ -15,8 +15,9 @@ import {
 import HTMLView from 'react-native-htmlview';
 import { DiffTime } from './DiffTime';
 import { TooterName } from './TooterName';
+import { Actions } from './Actions';
 import { datetimes } from 'ID44-shared';
-import i18next from "i18next";
+import i18next from 'i18next';
 
 const Content = memo(({ status }) => {
   const { theme } = useContext(ThemeContext);
@@ -43,38 +44,6 @@ const Status = ({ status }) => {
     </View>
   )
 };
-
-const Actions = ({ theme, styles, status }) => (
-  <View style={ styles.actions }>
-    <Icon
-      type='font-awesome'
-      name='reply'
-      size={ 20 }/>
-    {
-      <Text style={ styles.counter }>
-        0
-      </Text>
-    }
-    <Icon
-      type='font-awesome'
-      name='retweet'
-      size={ 20 }/>
-    {
-      <Text style={ styles.counter }>
-        { status.reblogCount === 0 ? '' : status.reblogCount }
-      </Text>
-    }
-    <Icon
-      type='font-awesome'
-      name='star'
-      size={ 20 }/>
-    {
-      <Text style={ styles.counter }>
-        { status.favouriteCount === 0 ? '' : status.favouriteCount }
-      </Text>
-    }
-  </View>
-);
 
 const getStreams  = (streamKey) => createSelector(
   [
@@ -103,7 +72,9 @@ export const StreamPane = ({ streamKey }) => {
             leftAvatar={{ source: { uri: status.tooter.avatar } }}
             title={ <Status status={ status }/> }
             subtitle={
-              <Actions {...{ theme, styles, status }}/>
+              <Actions
+                reblogCount={ status.reblogCount }
+                favouriteCount={ status.favouriteCount }/>
             }
             bottomDivider>
           </ListItem>
