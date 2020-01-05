@@ -52,8 +52,7 @@ const TooterAvatar = memo(
   ({ tooter }) => (
     <FastImage
       style={{ width: 36, height: 36, borderRadius: 50 }}
-      source={{ uri: tooter.avatar }}
-    />
+      source={{ uri: tooter.avatar }}/>
   ),
   (prev, next) => prev.tooter.id === next.tooter.id,
 );

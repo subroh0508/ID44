@@ -23,15 +23,6 @@ export const unsubscribe = (subscription) => async (dispatch, _getState) => {
   dispatch(clearSubscription());
 };
 
-export const unsubscribeAll = ({ active, inactive }) => async (dispatch, _getState) => {
-  const subscriptions = Object.assign(inactive, active);
-  Object.keys(subscriptions).forEach(key => {
-    subscriptions[key].remove();
-  });
-
-  dispatch(clearAllSubscription());
-};
-
 const addEventListener = (dispatch) => new NativeEventEmitter(TimelineModule)
   .addListener(EVENT_APPEND_STATUS, data => {
     console.log(data.status.content);
