@@ -31,6 +31,7 @@ dependencies {
     implementation(project(":react-native-vector-icons"))
     implementation(project(":react-native-gesture-handler"))
     implementation(project(":react-native-reanimated"))
+    implementation(project(":react-native-fast-image"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)

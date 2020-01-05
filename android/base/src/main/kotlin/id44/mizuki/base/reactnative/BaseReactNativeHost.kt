@@ -2,6 +2,7 @@ package id44.mizuki.base.reactnative
 
 import android.app.Application
 import androidx.annotation.CallSuper
+import com.dylanvann.fastimage.FastImageViewPackage
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
@@ -12,7 +13,7 @@ import id44.mizuki.base.BuildConfig
 abstract class BaseReactNativeHost(app: Application) : ReactNativeHost(app) {
     @CallSuper
     override fun getPackages(): MutableList<ReactPackage> = mutableListOf(
-        MainReactPackage(), VectorIconsPackage()
+        MainReactPackage(), VectorIconsPackage(), FastImageViewPackage()
     )
     override fun getUseDeveloperSupport() = BuildConfig.DEBUG
     override fun createReactInstanceManager(): ReactInstanceManager =

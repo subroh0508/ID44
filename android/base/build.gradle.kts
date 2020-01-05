@@ -11,6 +11,7 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":react-native-vector-icons"))
+    implementation(project(":react-native-fast-image"))
 
     implementation(Libraries.Kotlin.stdlibJvm)
     implementation(Libraries.Kotlin.reflect)

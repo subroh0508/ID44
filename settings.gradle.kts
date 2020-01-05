@@ -30,7 +30,8 @@ include(
     ":libraries:timeline:domain:usecase:submitstatus",
     ":react-native-vector-icons",
     ":react-native-gesture-handler",
-    ":react-native-reanimated"
+    ":react-native-reanimated",
+    ":react-native-fast-image"
 )
 
 project(":libraries:auth:domain:valueobject").name = "auth-valueobject"
@@ -41,3 +42,4 @@ project(":libraries:timeline:domain:valueobject").name = "timeline-valueobject"
 project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/android")
 project(":react-native-gesture-handler").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-gesture-handler/android")
 project(":react-native-reanimated").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-reanimated/android")
+project(":react-native-fast-image").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-fast-image/android")
