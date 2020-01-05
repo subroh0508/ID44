@@ -10,6 +10,7 @@ export const HomeHeader = ({ account, onClickHeaderAvatar }) => {
   return (
     <Header
       placement='left'
+      containerStyle={ styles.root }
       leftComponent={
         <Avatar rounded
           containerStyle={ styles.avatar }
@@ -26,6 +27,9 @@ export const HomeHeader = ({ account, onClickHeaderAvatar }) => {
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
+    root: {
+      borderBottomWidth: 0,
+    },
     avatar: {
       marginStart: 8,
       marginEnd: 8,

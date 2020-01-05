@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Avatar, ThemeContext } from 'react-native-elements';
+import { StyleSheet } from 'react-native';
+import { ThemeContext } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { StreamPane } from "./StreamPane";
@@ -21,7 +21,7 @@ const title = (stream) => {
   }
 };
 
-const createTabNavigator = (account, streams) => createAppContainer(
+const createTabNavigator = (styles, account, streams) => createAppContainer(
   createMaterialTopTabNavigator(
     streams.reduce((acc, stream) => {
       acc[streamKey(account, stream)] = {
@@ -30,6 +30,11 @@ const createTabNavigator = (account, streams) => createAppContainer(
         ),
         navigationOptions: {
           title: title(stream),
+          tabBarOptions: {
+            style: styles.root,
+            labelStyle: styles.label,
+            indicatorStyle: styles.indicator,
+          },
         },
       };
 
@@ -39,7 +44,27 @@ const createTabNavigator = (account, streams) => createAppContainer(
 );
 
 export const HomeTab = ({ account, streams, onNavigationStateChange }) => {
-  const TabNavigator = createTabNavigator(account, streams);
+  const { theme } = useContext(ThemeContext);
+
+  const styles = withStyles(theme);
+
+  const TabNavigator = createTabNavigator(styles, account, streams);
 
   return (<TabNavigator onNavigationStateChange={ onNavigationStateChange }/>)
 };
+
+const withStyles = ({ colors }) => (
+  StyleSheet.create({
+    root: {
+      backgroundColor: colors.background,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderColor: colors.secondary,
+    },
+    label: {
+      color: colors.text,
+    },
+    indicator: {
+      backgroundColor: colors.primary,
+    },
+  })
+);

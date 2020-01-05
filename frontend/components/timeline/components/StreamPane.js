@@ -1,5 +1,5 @@
 import React, { memo, useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { StyleSheet, FlatList } from 'react-native';
 import { ListItem, ThemeContext } from 'react-native-elements';
@@ -12,14 +12,16 @@ const getStreams  = (streamKey) => createSelector(
     state => state.timelines.focusTab,
     state => state.timelines.streams[streamKey] || [],
   ],
-  (focusTab, streams) => ({ focusTab, streams }),
+  (focusTab, streams) => ({
+    focusTab,
+    streams: focusTab === streamKey ? streams : [],
+  }),
 );
 
 export const StreamPane = ({ streamKey }) => {
   const { streams } = useSelector(
     getStreams(streamKey),
-    (next, prev) =>
-      next.focusTab !== streamKey || next.streams.length === prev.streams.length,
+    (next, prev) => next.focusTab !== streamKey || shallowEqual(next, prev),
   );
 
   const { theme } = useContext(ThemeContext);
