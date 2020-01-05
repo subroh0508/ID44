@@ -12,6 +12,7 @@ internal class FetchStatusesUseCaseImpl(
         when (stream) {
             Stream.GLOBAL -> repository.getGlobalStatuses(maxId, limit)
             Stream.LOCAL -> repository.getLocalStatuses(maxId, limit)
+            Stream.HOME -> repository.getHomeStatuses(maxId, limit)
             else -> listOf()
         }
     }
