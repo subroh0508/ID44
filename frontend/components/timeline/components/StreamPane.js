@@ -3,9 +3,9 @@ import { shallowEqual, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { StyleSheet, FlatList } from 'react-native';
 import { ListItem, ThemeContext } from 'react-native-elements';
-import FastImage from 'react-native-fast-image';
 import { Status } from './Status';
 import { Actions } from './Actions';
+import { TooterAvatar } from './TooterAvatar';
 
 const getStreams  = (streamKey) => createSelector(
   [
@@ -48,15 +48,6 @@ const renderItem = ({ item }) => (
     }
     bottomDivider>
   </ListItem>
-);
-
-const TooterAvatar = memo(
-  ({ tooter }) => (
-    <FastImage
-      style={{ width: 36, height: 36, borderRadius: 50 }}
-      source={{ uri: tooter.avatar }}/>
-  ),
-  (prev, next) => prev.tooter.id === next.tooter.id,
 );
 
 const withStyles = ({ colors }) => (

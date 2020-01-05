@@ -63,6 +63,7 @@ const createTheme = colors => ({
   ListItem: {
     containerStyle: {
       backgroundColor: colors.background,
+      borderColor: colors.secondary,
     },
     titleStyle: {
       color: colors.text,
