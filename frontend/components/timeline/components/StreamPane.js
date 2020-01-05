@@ -1,11 +1,9 @@
 import React, { memo, useContext } from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
-import { StyleSheet, FlatList } from 'react-native';
-import { ListItem, ThemeContext } from 'react-native-elements';
-import { Status } from './Status';
-import { Actions } from './Actions';
-import { TooterAvatar } from './TooterAvatar';
+import { FlatList, StyleSheet } from 'react-native';
+import { ThemeContext } from 'react-native-elements';
+import { Status } from '../containers/Status';
 
 const getStreams  = (streamKey) => createSelector(
   [
@@ -37,18 +35,7 @@ export const StreamPane = ({ streamKey }) => {
   );
 };
 
-const renderItem = ({ item }) => (
-  <ListItem
-    leftAvatar={ <TooterAvatar tooter={ item.tooter }/>}
-    title={ <Status status={ item }/> }
-    subtitle={
-      <Actions
-        reblogCount={ item.reblogCount }
-        favouriteCount={ item.favouriteCount }/>
-    }
-    bottomDivider>
-  </ListItem>
-);
+const renderItem = ({ item }) => (<Status status={ item }/>);
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({

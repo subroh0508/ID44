@@ -5,7 +5,7 @@ import HTMLView from 'react-native-htmlview';
 import { DiffTime } from './DiffTime';
 import { TooterName } from './TooterName';
 
-export const Status = ({ status }) => {
+export const StatusContent = ({ status }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
