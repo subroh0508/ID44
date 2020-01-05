@@ -18,6 +18,9 @@ class StatusRepositoryImpl(
     override suspend fun getLocalStatuses(maxId: String?, limit: Int) =
         api.getTimelinesLocal(maxId, limit).map { it.toStatus() }
 
+    override suspend fun getHomeStatuses(maxId: String?, limit: Int) =
+        api.getTimelinesHome(maxId, limit).map { it.toStatus() }
+
     override suspend fun postStatus(status: String, visibility: StatusVisibility, warningText: String?) =
         api.postStatus(
             status,
