@@ -2,14 +2,14 @@ import React, { memo, useContext } from 'react';
 import {Icon, Text, ThemeContext} from "react-native-elements";
 import {View, StyleSheet, Dimensions} from "react-native";
 
-export const Actions = memo(({ reblogCount, favouriteCount }) => {
+export const Actions = memo(({ repliesCount, reblogCount, favouriteCount }) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
 
   return (
     <View style={ styles.root }>
-      <Reply count={ 0 }/>
+      <Reply count={ repliesCount || '' }/>
       <Reblog count={ reblogCount }/>
       <Favourite count={ favouriteCount }/>
     </View>

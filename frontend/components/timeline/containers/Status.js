@@ -13,6 +13,7 @@ export const Status = ({ status }) => {
       title={ <StatusContent status={ status }/> }
       subtitle={
         <Actions
+          repliesCount={ status.repliesCount }
           reblogCount={ status.reblogCount }
           favouriteCount={ status.favouriteCount }/>
       }

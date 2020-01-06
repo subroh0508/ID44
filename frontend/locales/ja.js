@@ -41,6 +41,15 @@ const locales = {
     home: 'ホーム',
     federatedTimeline: '連合',
   },
+  status: {
+    sensitiveWarning: '閲覧注意',
+    share: '共有',
+    showLess: '隠す',
+    showLessAll: '全て隠す',
+    showMore: 'もっと見る',
+    showMoreAll: '全て見る',
+    showThread: 'スレッドを表示する',
+  },
 };
 
 export default locales;
