@@ -24,7 +24,7 @@ data class StatusJson(
     val content: String by raw
     val createdAt: String by raw
     val emojis: List<EmojiJson> by RawJson.ListDelegate(::EmojiJson)
-    val repliesCount: Int? by raw
+    val repliesCount: Long? by raw
     val reblogsCount: Int by raw
     val favouritesCount: Int by raw
     val reblogged: Boolean? by raw
