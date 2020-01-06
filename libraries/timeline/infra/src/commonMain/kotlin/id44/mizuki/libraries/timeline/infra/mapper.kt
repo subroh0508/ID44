@@ -29,16 +29,21 @@ internal fun StreamingEventJson.toStatus(): Status? {
         return null
     }
 
-    val payload = payload?.let(::StatusJson) ?: return null
-
-    return Status(
-        id = payload.id,
-        content = payload.content,
-        createdAt = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(payload.createdAt),
-        favouriteCount = payload.favouritesCount,
-        reblogCount = payload.reblogsCount,
-        tooter = with (payload.account) {
-            Tooter(id, username, displayName, url, avatar, avatarStatic)
-        }
-    )
+    return payload?.let(::StatusJson)?.toStatus()
 }
+
+internal fun StatusJson.toStatus() = Status(
+    id = id,
+    content = content,
+    warningText = spoilerText,
+    createdAt = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(createdAt),
+    visibility = StatusVisibility.valueOf(visibility.toUpperCase()),
+    repliesCount = repliesCount,
+    favouriteCount = favouritesCount,
+    reblogCount = reblogsCount,
+    favourited = favourited ?: false,
+    reblogged = reblogged ?: false,
+    tooter = with (account) {
+        Tooter(id, username, displayName, url, avatar, avatarStatic)
+    }
+)

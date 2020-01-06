@@ -26,7 +26,7 @@ class StatusActions(
         runCatching { fetchStatusesUseCase.execute(stream, maxId) }
             .onSuccess { statuses ->
                 resolve.invoke(reactArray(
-                    statuses.map { Mapper.map(Status.serializer(), it) }
+                    statuses.map { Mapper.mapNullable(Status.serializer(), it) }
                 ))
             }
             .onHttpFailure(reject)
@@ -37,7 +37,7 @@ class StatusActions(
         resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
     ) = view.launch {
         runCatching { submitStatusUseCase.execute(status, visibility, warningText) }
-            .onSuccess { resolve(reactMap(Mapper.map(Status.serializer(), it))) }
+            .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
             .onHttpFailure(reject)
     }
 }

@@ -29,7 +29,7 @@ internal class SubscribeActions(
                     view.emitStatus(
                         EVENT_APPEND_STATUS,
                         "${host.value}/${accountId.value}/${stream.name}",
-                        Mapper.map(Status.serializer(), it)
+                        Mapper.mapNullable(Status.serializer(), it)
                     )
                 }
             }

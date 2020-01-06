@@ -17,7 +17,7 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView {
         super.onCreate(savedInstanceState)
     }
 
-    override fun emitStatus(key: String, streamKey: String, status: Map<String, Any>) =
+    override fun emitStatus(key: String, streamKey: String, status: Map<String, Any?>) =
             emitter?.emit(
                 key,
                 Arguments.makeNativeMap(

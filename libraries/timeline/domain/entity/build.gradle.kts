@@ -14,6 +14,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:shared"))
+                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
                 implementation(Libraries.Kotlin.serializationCommon)
