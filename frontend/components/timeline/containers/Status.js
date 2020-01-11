@@ -9,7 +9,11 @@ export const Status = ({ status }) => {
   
   return (
     <ListItem
-      leftAvatar={ <TooterAvatar tooter={ status.tooter }/>}
+      leftAvatar={
+        <TooterAvatar
+          tooter={ status.tooter }
+          visibility={ status.visibility }/>
+      }
       title={ <StatusContent status={ status }/> }
       subtitle={
         <Actions

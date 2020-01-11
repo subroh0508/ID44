@@ -1,10 +1,10 @@
 import React, { memo, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { ThemeContext } from 'react-native-elements';
+import { Icon, ThemeContext } from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 
 export const TooterAvatar = memo(
-  ({ tooter }) => {
+  ({ tooter, visibility }) => {
     const { theme } = useContext(ThemeContext);
 
     const styles = withStyle(theme);
@@ -14,6 +14,14 @@ export const TooterAvatar = memo(
         <FastImage
           style={ styles.avatar }
           source={{ uri: tooter.avatar }}/>
+        {
+          visibility.toString() === 'PRIVATE' ? (
+            <Icon
+              type='font-awesome'
+              name='lock'
+              containerStyle={ styles.overlay }/>
+          ) : null
+        }
       </View>
     );
   },
@@ -23,12 +31,20 @@ export const TooterAvatar = memo(
 const withStyle = ({ colors }) => (
   StyleSheet.create({
     root: {
-      height: '100%'
+      height: '100%',
     },
     avatar: {
       width: 40,
       height: 40,
       borderRadius: 50,
+    },
+    overlay: {
+      position: 'absolute',
+      width: 16,
+      height: 16,
+      top: 28,
+      left: 28,
+      right: 0,
     },
   })
 );
