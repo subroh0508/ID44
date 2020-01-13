@@ -7,7 +7,7 @@ const prefix = 'toots';
 export const submitToot = (text, { visibility, contentWarning, warningText }) => async (dispatch, _getState) => {
   try {
     dispatch(startProgress());
-    await nativeSubmitStatus(text, contentWarning ? warningText : null, visibility);
+    await nativeSubmitStatus(text, contentWarning ? warningText : null, visibility.toString());
   } catch (e) {
     dispatch(stopProgress());
   }
