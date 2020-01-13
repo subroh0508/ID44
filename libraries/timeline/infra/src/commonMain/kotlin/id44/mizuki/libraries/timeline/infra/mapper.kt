@@ -34,7 +34,7 @@ internal fun StreamingEventJson.toStatus(): Status? {
 
 internal fun StatusJson.toStatus() = Status(
     id = id,
-    content = content,
+    content = reblog?.content ?: content,
     warningText = spoilerText,
     createdAt = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(createdAt),
     visibility = StatusVisibility.valueOf(visibility.toUpperCase()),
@@ -43,7 +43,10 @@ internal fun StatusJson.toStatus() = Status(
     reblogCount = reblogsCount,
     favourited = favourited ?: false,
     reblogged = reblogged ?: false,
-    tooter = with (account) {
-        Tooter(id, username, displayName, url, avatar, avatarStatic)
-    }
+    tooter = with (reblog?.account ?: account) { Tooter(id, username, displayName, url, avatar, avatarStatic) },
+    rebloggedBy =
+        if (reblog != null)
+            with (account) { Tooter(id, username, displayName, url, avatar, avatarStatic) }
+        else
+            null
 )

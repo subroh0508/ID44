@@ -18,7 +18,8 @@ class Status(
     val reblogCount: Int,
     val favourited: Boolean,
     val reblogged: Boolean,
-    val tooter: Tooter
+    val tooter: Tooter,
+    val rebloggedBy: Tooter?
 ) {
     val isWarningContent get() = warningText.isNotBlank()
 }
