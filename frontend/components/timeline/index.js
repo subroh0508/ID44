@@ -10,7 +10,7 @@ import logger from 'redux-logger';
 import { Provider } from "react-redux";
 import initI18n from "../../initI18n";
 
-const store = createStore(reducers, applyMiddleware(thunk/*, logger*/));
+const store = createStore(reducers, applyMiddleware(thunk, logger));
 
 AppRegistry.registerComponent('Timeline', () => () => {
   useEffect(() => {
