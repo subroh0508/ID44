@@ -1,7 +1,7 @@
 import React, { memo, useContext } from 'react';
 import { Icon, Text, ThemeContext } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
-import { Reply, ReblogAction, Favourite } from './Icons';
+import { Reply, Reblog, Favourite } from './Icons';
 
 export const Actions = memo(({ visibility, repliesCount, reblogCount, favouriteCount }) => {
   const { theme } = useContext(ThemeContext);
@@ -10,8 +10,8 @@ export const Actions = memo(({ visibility, repliesCount, reblogCount, favouriteC
 
   return (
     <View style={ styles.root }>
-      <Reply count={ repliesCount || '' }/>
-      <ReblogAction
+      <Reply count={ repliesCount }/>
+      <Reblog
         count={ reblogCount }
         visibility={ visibility }/>
       <Favourite count={ favouriteCount }/>

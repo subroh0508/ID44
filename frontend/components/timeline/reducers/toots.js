@@ -1,10 +1,12 @@
-import { STATUS_VISIBILITY } from '../native/TimelineNativeActions';
+import * as valueobjects from 'ID44-timeline-valueobject';
 import * as Actions from "../actions/toots";
+
+const PUBLIC = valueobjects.id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility.PUBLIC;
 
 const initialState = {
   text: '',
   options: {
-    visibility: STATUS_VISIBILITY.PUBLIC,
+    visibility: PUBLIC,
     contentWarning: false,
     warningText: '',
   },

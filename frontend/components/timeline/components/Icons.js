@@ -2,14 +2,32 @@ import React, { memo, useContext } from 'react';
 import { Icon, Text, ThemeContext } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
 
-export const Reply = ({ count }) => (<ActionIcon name='reply' count={ count }/>);
-export const Reblog = ({ count }) => (<ActionIcon name='retweet' count={ count }/>);
-export const Favourite = ({ count }) => (<ActionIcon name='star' count={ count }/>);
-export const VisibilityIcon = ({ visibility }) => (<ActionIcon name={ getVisibilityIconName(visibility) }/>);
-export const ReblogAction = ({ visibility, count }) =>
-  (visibility.toString() === 'PUBLIC' || visibility.toString() === 'UNLISTED') ? (
-    <Reblog count={ count }/>
-  ) : (<VisibilityIcon visibility={ visibility }/>);
+export const Reply = ({ count }) => (<ActionIconWithCount name='reply' count={ count }/>);
+export const Reblog = memo(({ visibility, count }) =>
+  (visibility.toString() === 'PUBLIC' || visibility.toString() === 'UNLISTED') ?
+    (<ActionIconWithCount name='retweet' count={ count }/>) :
+    (<ActionIconWithCount name={ getVisibilityIconName(visibility) }/>));
+export const Favourite = ({ count }) => (<ActionIconWithCount name='star' count={ count }/>);
+
+export const VisibilityIcon = ({
+  visibility,
+  onPress = () => {},
+  iconStyle = {}, containerStyle = {},
+}) =>
+  (<ActionIcon
+    name={ getVisibilityIconName(visibility) }
+    onPress={ onPress }
+    iconStyle={ iconStyle }
+    containerStyle={ containerStyle }/>);
+export const Camera = ({
+  onPress = () => {},
+  iconStyle = {}, containerStyle = {},
+}) =>
+  (<ActionIcon
+    name='camera'
+    onPress={ onPress }
+    iconStyle={ iconStyle }
+    containerStyle={ containerStyle }/>);
 
 const getVisibilityIconName = visibility => {
   switch (visibility.toString()) {
@@ -24,7 +42,11 @@ const getVisibilityIconName = visibility => {
   }
 };
 
-const ActionIcon = memo(({ name, count = null }) => {
+const ActionIcon = memo(({
+  name,
+  onPress = () => {},
+  iconStyle = {}, containerStyle = {},
+}) => {
   const { theme } = useContext(ThemeContext);
 
   const styles = withStyles(theme);
@@ -34,7 +56,34 @@ const ActionIcon = memo(({ name, count = null }) => {
       <Icon
         type='font-awesome'
         name={ name }
-        size={ 20 }/>
+        iconStyle={ iconStyle }
+        containerStyle={ containerStyle }
+        size={ 20 }
+        underlayColor='transparent'
+        onPress={ onPress }/>
+    </View>
+  );
+}, (prev, next) => prev.name === next.name);
+
+const ActionIconWithCount = memo(({
+  name, count = null,
+  onPress = () => {},
+  iconStyle = {}, containerStyle = {},
+}) => {
+  const { theme } = useContext(ThemeContext);
+
+  const styles = withStyles(theme);
+
+  return (
+    <View style={ styles.root }>
+      <Icon
+        type='font-awesome'
+        name={ name }
+        iconStyle={ iconStyle }
+        containerStyle={ containerStyle }
+        size={ 20 }
+        underlayColor='transparent'
+        onPress={ onPress }/>
       <CountText count={ count }/>
     </View>
   );

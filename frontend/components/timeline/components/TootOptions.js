@@ -1,23 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Icon, Text, Overlay, ListItem, ThemeContext } from "react-native-elements";
-import { STATUS_VISIBILITY } from '../native/TimelineNativeActions';
+import { VisibilityIcon, Camera } from './Icons';
+import * as valueobjects from 'ID44-timeline-valueobject';
 import i18next from 'i18next';
 
-const getVisibilityIconName = visibility => {
-  switch (visibility) {
-    case STATUS_VISIBILITY.PUBLIC:
-      return 'globe';
-    case STATUS_VISIBILITY.UNLISTED:
-      return 'unlock';
-    case STATUS_VISIBILITY.PRIVATE:
-      return 'lock';
-    default:
-      return 'envelope';
-  }
-};
-
-const visibilities = [STATUS_VISIBILITY.PUBLIC, STATUS_VISIBILITY.UNLISTED, STATUS_VISIBILITY.PRIVATE, STATUS_VISIBILITY.DIRECT];
+const visibilities = valueobjects.id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility.values();
 
 const VisibilitySelector = ({
   isVisibleSelector, visibility,
@@ -33,19 +21,23 @@ const VisibilitySelector = ({
         {
           visibilities.map((v, i) => (
             <ListItem key={ i }
-              leftIcon={{
-                type: 'font-awesome',
-                name: getVisibilityIconName(v),
-                iconStyle: { color: v === visibility ? theme.colors.disabled : theme.colors.primary },
-                containerStyle: styles.icon,
-              }}
+              leftIcon={
+                <VisibilityIcon
+                  visibility={ v }
+                  iconStyle={{
+                    color: v === visibility ?
+                      theme.colors.disabled :
+                      theme.colors.primary
+                  }}
+                  containerStyle={ styles.icon }/>
+              }
               title={
                 <View>
                   <Text style={ v === visibility ? styles.selectedText : styles.text }>
-                    { i18next.t(`privacy.${v.toLowerCase()}.short`) }
+                    { i18next.t(`privacy.${v.toString().toLowerCase()}.short`) }
                   </Text>
                   <Text style={ v === visibility ? styles.selectedText : styles.text }>
-                    { i18next.t(`privacy.${v.toLowerCase()}.long`) }
+                    { i18next.t(`privacy.${v.toString().toLowerCase()}.long`) }
                   </Text>
                 </View>
               }
@@ -73,17 +65,12 @@ export const TootOptions = ({
 
   return (
     <View style={ styles.root }>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Icon type='font-awesome'
-          name='camera'
-          underlayColor='transparent'
-          size={ 20 }
+      <View style={ styles.options }>
+        <Camera
           containerStyle={ styles.optionsIcon }
           onPress={ onClickOpenCamera }/>
-        <Icon type='font-awesome'
-          name={ getVisibilityIconName(visibility) }
-          underlayColor='transparent'
-          size={ 20 }
+        <VisibilityIcon
+          visibility={ visibility }
           containerStyle={ styles.optionsIcon }
           onPress={ () => toggleSelector( true) }/>
         <Text
@@ -110,6 +97,10 @@ const withStyles = ({ colors }, contentWarning) => (
       paddingTop: 8,
       paddingStart: 16,
       paddingEnd: 16,
+    },
+    options: {
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     optionsIcon: {
       width: 24,
