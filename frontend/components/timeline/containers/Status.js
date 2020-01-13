@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { View } from 'react-native';
 import { ListItem } from 'react-native-elements';
@@ -7,7 +7,7 @@ import { TooterAvatar } from '../components/TooterAvatar';
 import { StatusContent } from '../components/StatusContent';
 import { Actions } from '../components/Actions';
 
-export const Status = ({ status }) => {
+export const Status = memo(({ status }) => {
   return (
     <View>
       <RebloggedBy account={ status.rebloggedBy }/>
@@ -30,4 +30,4 @@ export const Status = ({ status }) => {
       </ListItem>
     </View>
   );
-};
+});
