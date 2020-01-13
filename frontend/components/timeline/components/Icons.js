@@ -46,24 +46,16 @@ const ActionIcon = memo(({
   name,
   onPress = () => {},
   iconStyle = {}, containerStyle = {},
-}) => {
-  const { theme } = useContext(ThemeContext);
-
-  const styles = withStyles(theme);
-
-  return (
-    <View style={ styles.root }>
-      <Icon
-        type='font-awesome'
-        name={ name }
-        iconStyle={ iconStyle }
-        containerStyle={ containerStyle }
-        size={ 20 }
-        underlayColor='transparent'
-        onPress={ onPress }/>
-    </View>
-  );
-}, (prev, next) => prev.name === next.name);
+}) => (
+  <Icon
+    type='font-awesome'
+    name={ name }
+    iconStyle={ iconStyle }
+    containerStyle={ containerStyle }
+    size={ 20 }
+    underlayColor='transparent'
+    onPress={ onPress }/>
+), (prev, next) => prev.name === next.name);
 
 const ActionIconWithCount = memo(({
   name, count = null,

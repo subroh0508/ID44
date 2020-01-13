@@ -49,6 +49,7 @@ const locales = {
     showMore: 'もっと見る',
     showMoreAll: '全て見る',
     showThread: 'スレッドを表示する',
+    rebloggedBy: '{{name}}さんがブースト',
   },
 };
 
