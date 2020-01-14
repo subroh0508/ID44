@@ -21,4 +21,7 @@ interface MastodonApi {
         inReplyToId: String? = null,
         sensitive: Boolean = false, spoilerText: String? = null, visibility: StatusVisibilityType = StatusVisibilityType.public
     ) : StatusJson
+
+    suspend fun reblog(id: String): StatusJson
+    suspend fun favourite(id: String): StatusJson
 }

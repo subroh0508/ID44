@@ -1,5 +1,7 @@
 package id44.mizuki.libraries.api
 
+internal fun String.id(id: String) = replace(":id", id)
+
 internal fun String.append(vararg params: Pair<String, Any?>): String {
     if (params.isEmpty()) {
         return this
@@ -18,3 +20,6 @@ internal const val GET_TIMELINES_PUBLIC = "/api/v1/timelines/public"
 internal const val GET_TIMELINES_HOME = "/api/v1/timelines/home"
 
 internal const val POST_STATUSES = "/api/v1/statuses"
+
+internal const val POST_STATUSES_REBLOG = "/api/v1/statuses/:id/reblog"
+internal const val POST_STATUSES_FAVOURITE = "/api/v1/statuses/:id/favourite"
