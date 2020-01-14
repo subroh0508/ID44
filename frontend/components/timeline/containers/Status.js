@@ -23,7 +23,9 @@ export const Status = memo(({ status }) => {
           <Actions
             visibility={ status.visibility }
             repliesCount={ status.repliesCount }
+            reblogged={ status.reblogged }
             reblogCount={ status.reblogCount }
+            favourited={ status.favourited }
             favouriteCount={ status.favouriteCount }/>
         }
         bottomDivider>

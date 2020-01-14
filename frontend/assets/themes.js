@@ -1,5 +1,10 @@
 import { Platform } from 'react-native';
 
+const commonColors = {
+  reblogged: '#2b90d9',
+  favourited: '#ca8f40',
+};
+
 const colors = {
   mizuki: {
     primary: '#00ffff',
@@ -7,7 +12,8 @@ const colors = {
     text: '#afeeee',
     disabled: '#7ea8a8',
     placeholder: '#7ea8a8',
-    background: '#000'
+    background: '#000',
+    ...commonColors,
   },
   tsumugi: {
     primary: '#ff00ff',
@@ -15,7 +21,8 @@ const colors = {
     text: '#eeafee',
     disabled: '#a87ea8',
     placeholder: '#a87ea8',
-    background: '#000'
+    background: '#000',
+    ...commonColors,
   },
   shiho: {
     primary: '#ffff00',
@@ -24,6 +31,7 @@ const colors = {
     disabled: '#a8a87e',
     placeholder: '#a8a87e',
     background: '#000',
+    ...commonColors,
   },
 };
 

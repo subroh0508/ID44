@@ -18,7 +18,8 @@ export const RebloggedBy = memo(({ account }) => {
         type='font-awesome'
         name='retweet'
         size={ 20 }
-        containerStyle={ styles.iconContainer }/>
+        containerStyle={ styles.iconContainer }
+        iconStyle={ styles.icon }/>
       <Text style={ styles.text }>
         { i18next.t('status.rebloggedBy', { name: account.displayName || account.username }) }
       </Text>
@@ -34,6 +35,9 @@ const withStyles = ({ colors }) => (
       paddingStart: 44,
       paddingTop: 8,
       paddingEnd: 8,
+    },
+    icon: {
+      color: colors.reblogged,
     },
     iconContainer: {
       paddingEnd: 8,

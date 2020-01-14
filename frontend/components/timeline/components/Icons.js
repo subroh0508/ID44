@@ -3,11 +3,27 @@ import { Icon, Text, ThemeContext } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
 
 export const Reply = ({ count }) => (<ActionIconWithCount name='reply' count={ count }/>);
-export const Reblog = memo(({ visibility, count }) =>
-  (visibility.toString() === 'PUBLIC' || visibility.toString() === 'UNLISTED') ?
-    (<ActionIconWithCount name='retweet' count={ count }/>) :
-    (<ActionIconWithCount name={ getVisibilityIconName(visibility) }/>));
-export const Favourite = ({ count }) => (<ActionIconWithCount name='star' count={ count }/>);
+export const Reblog = memo(({ visibility, count, reblogged }) => {
+  const { theme: { colors } } = useContext(ThemeContext);
+
+  return visibility.toString() === 'PUBLIC' ?
+    (<ActionIconWithCount
+      name='retweet'
+      count={ count }
+      iconStyle={{ color: reblogged ? colors.reblogged : colors.secondary }}/>) :
+    (<ActionIconWithCount
+      name={ getVisibilityIconName(visibility) }/>)
+});
+export const Favourite = memo(({ count, favourited }) => {
+  const { theme: { colors } } = useContext(ThemeContext);
+
+  return (
+    <ActionIconWithCount
+      name='star'
+      count={ count }
+      iconStyle={{ color: favourited ? colors.favourited : colors.secondary }}/>
+  );
+});
 
 export const VisibilityIcon = ({
   visibility,
