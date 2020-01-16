@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "start:mobile": "yarn react-native start",
-    "start:desktop": "electron desktop"
+    "start:web": "yarn react-scripts start"
   },
   "workspaces": [
     "build/js/packages/*",
     "build/js/packages_imported/**",
     "frontend",
-    "desktop"
+    "web"
   ]
 }
