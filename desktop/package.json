@@ -1,4 +1,3 @@
-
 {
   "name": "ID44-electron",
   "version": "0.0.1",
@@ -9,5 +8,10 @@
   },
   "devDependencies": {
     "electron": "^7.1.9"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-native-web": "^0.12.0-rc.1"
   }
 }
