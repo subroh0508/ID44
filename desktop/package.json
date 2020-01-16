@@ -1,0 +1,13 @@
+
+{
+  "name": "ID44-electron",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^7.1.9"
+  }
+}

@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "yarn react-native start"
+    "start:mobile": "yarn react-native start",
+    "start:desktop": "electron desktop"
   },
   "workspaces": [
     "build/js/packages/*",
     "build/js/packages_imported/**",
-    "frontend"
+    "frontend",
+    "desktop"
   ]
 }
