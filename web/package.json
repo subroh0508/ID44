@@ -4,9 +4,6 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
@@ -17,6 +14,7 @@
     "@babel/preset-react": "^7.8.3",
     "@babel/runtime": "^7.8.3",
     "babel-loader": "^8.0.6",
-    "core-js": "^3.6.4"
+    "core-js": "^3.6.4",
+    "webpack": "^4.41.5"
   }
 }
