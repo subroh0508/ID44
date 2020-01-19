@@ -12,7 +12,7 @@ import {
   ThemeContext,
 } from 'react-native-elements';
 
-import wallpaper from '../../../assets/mizuki.png';
+import { BackgroundImage } from "../components/BackgroundImage";
 import { onChangedHostName, onClickedAuthorize } from '../actions';
 
 export const SignIn = () => {
@@ -24,10 +24,7 @@ export const SignIn = () => {
 
   return (
     <View style={ styles.root }>
-      <Image
-        style={ styles.backgroundImage }
-        source={ wallpaper }
-      />
+      <BackgroundImage/>
       <View style={ styles.container }>
         <Text style={ styles.title }>
           Device ID: 44
@@ -50,12 +47,6 @@ export const SignIn = () => {
 
 const withStyles = ({ colors }) => (
   StyleSheet.create({
-    backgroundImage: {
-      height: '100%',
-      width: '100%',
-      position: 'absolute',
-      resizeMode: 'cover',
-    },
     root: {
       flex: 1,
       height: '100%',
