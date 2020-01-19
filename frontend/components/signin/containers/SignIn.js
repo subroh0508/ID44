@@ -57,6 +57,7 @@ const withStyles = ({ colors }) => (
       resizeMode: 'cover',
     },
     root: {
+      flex: 1,
       height: '100%',
       flexDirection: 'column',
       justifyContent: 'center',

@@ -12,16 +12,19 @@ import initI18n from "../../initI18n";
 
 const store = createStore(signIn, applyMiddleware(thunk, logger));
 
-AppRegistry.registerComponent('SignIn', () => () => {
-  useEffect(() => {
-    initI18n(() => { console.log('loaded'); });
-  }, []);
+export const registerComponent = () =>
+  AppRegistry.registerComponent('SignIn', () => () => {
+    useEffect(() => {
+      initI18n(() => { console.log('loaded'); });
+    }, []);
 
-  return (
-    <Provider store={ store }>
-      <ThemeProvider theme={ createTheme(colors.mizuki) }>
-        <SignIn/>
-      </ThemeProvider>
-    </Provider>
-  );
-});
+    return (
+      <Provider store={ store }>
+        <ThemeProvider theme={ createTheme(colors.mizuki) }>
+          <SignIn/>
+        </ThemeProvider>
+      </Provider>
+    );
+  });
+
+registerComponent();

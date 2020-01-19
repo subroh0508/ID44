@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { startOauth2Flow, showToast, openTimeline } from '../native/SignInNativeActions';
+import { startOauth2Flow, showToast, openTimeline } from '../native/SignInActions';
 import { exceptions } from 'ID44-signin';
 
 const prefix = 'sign_in';
