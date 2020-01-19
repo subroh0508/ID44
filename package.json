@@ -1,10 +1,10 @@
 {
-  "name": "ID44-frontend",
+  "name": "ID44-RN",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start:mobile": "yarn react-native start",
-    "start:web": "yarn react-scripts start"
+    "start:web": "yarn webpack-dev-server"
   },
   "workspaces": [
     "build/js/packages/*",
