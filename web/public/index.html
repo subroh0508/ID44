@@ -3,8 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>React Test</title>
+
+    <style>
+      /* These styles make the body full-height */
+      html, body { height: 100%; }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body { overflow: hidden; }
+      /* These styles make the root element full-height */
+      #app { display:flex; height:100%; }
+    </style>
   </head>
   <body>
-    <div id="app" />
+    <div id="app"/>
   </body>
 </html>

@@ -1,20 +1,28 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { AppRegistry } from 'react-native';
+import { registerComponent } from 'ID44-frontend/components/signin';
 
-class App extends React.Component {
-  render() {
-    return (
-      <View style={ styles.box }>
-        <Text style={ styles.text }>Hello, world!</Text>
-      </View>
-    );
-  }
+// Use prebuilt version of RNVI in dist folder
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
+// Generate required css
+import iconFont from 'react-native-vector-icons/Fonts/FontAwesome.ttf';
+const iconFontStyles = `@font-face {
+  src: url(${iconFont});
+  font-family: FontAwesome;
+}`;
+
+// Create stylesheet
+const style = document.createElement('style');
+style.type = 'text/css';
+if (style.styleSheet) {
+  style.styleSheet.cssText = iconFontStyles;
+} else {
+  style.appendChild(document.createTextNode(iconFontStyles));
 }
 
-const styles = StyleSheet.create({
-  box: { padding: 10 },
-  text: { fontWeight: 'bold' },
-});
+// Inject stylesheet
+document.head.appendChild(style);
 
-AppRegistry.registerComponent('App', () => App);
-AppRegistry.runApplication('App', { rootTag: document.getElementById('app') });
+registerComponent();
+AppRegistry.runApplication('SignIn', { rootTag: document.getElementById('app') });
