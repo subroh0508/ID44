@@ -8,7 +8,7 @@ const dist = path.resolve(__dirname, 'build');
 
 module.exports = {
   mode: 'development',
-  entry: `${src}/index.js`,
+  entry: `${__dirname}/index.js`,
   output: {
     path: dist,
     filename: 'bundle.js'
@@ -23,7 +23,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      'react-native$': 'react-native-web'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

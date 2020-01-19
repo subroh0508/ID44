@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('App', () => App);
-AppRegistry.runApplication('App', { rootTag: document.getElementById('react-root') });
+AppRegistry.runApplication('App', { rootTag: document.getElementById('app') });
