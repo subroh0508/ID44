@@ -13,6 +13,7 @@ const colors = {
     disabled: '#7ea8a8',
     placeholder: '#7ea8a8',
     background: '#000',
+    specified: '#79DBED',
     ...commonColors,
   },
   tsumugi: {
@@ -22,6 +23,7 @@ const colors = {
     disabled: '#a87ea8',
     placeholder: '#a87ea8',
     background: '#000',
+    specified: '#854EC3',
     ...commonColors,
   },
   shiho: {
@@ -31,6 +33,7 @@ const colors = {
     disabled: '#a8a87e',
     placeholder: '#a8a87e',
     background: '#000',
+    specified: '#F7ED52',
     ...commonColors,
   },
 };
