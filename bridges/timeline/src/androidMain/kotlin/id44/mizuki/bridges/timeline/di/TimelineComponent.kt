@@ -11,6 +11,8 @@ import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.SubmitStatusUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.TimelineSubscribeUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.togglefavourite.ToggleFavouriteUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.togglereblog.ToggleReblogUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase
 
 @ModuleScope
@@ -35,4 +37,6 @@ interface TimelineComponent {
     fun provideTimelineSubscribeUseCase(): TimelineSubscribeUseCase
     fun provideTimelineUnsubscribeUseCase(): TimelineUnsubscribeUseCase
     fun provideSubmitStatusUseCase(): SubmitStatusUseCase
+    fun provideToggleFavouriteUseCase(): ToggleFavouriteUseCase
+    fun provideToggleReblogUseCase(): ToggleReblogUseCase
 }

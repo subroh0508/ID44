@@ -26,6 +26,8 @@ dependencies {
     implementation(project(":libraries:timeline:domain:usecase:subscribe"))
     implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
     implementation(project(":libraries:timeline:domain:usecase:submitstatus"))
+    implementation(project(":libraries:timeline:domain:usecase:togglefavourite"))
+    implementation(project(":libraries:timeline:domain:usecase:togglereblog"))
     implementation(project(":libraries:timeline:domain:timeline-entity"))
     implementation(project(":libraries:timeline:domain:timeline-valueobject"))
     implementation(project(":react-native-vector-icons"))

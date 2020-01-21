@@ -9,6 +9,8 @@ import id44.mizuki.libraries.reactnativesupport.reactMap
 import id44.mizuki.libraries.timeline.domain.entity.Status
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.SubmitStatusUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.togglefavourite.ToggleFavouriteUseCase
+import id44.mizuki.libraries.timeline.domain.usecase.togglereblog.ToggleReblogUseCase
 import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import kotlinx.coroutines.launch
@@ -17,7 +19,9 @@ import kotlinx.serialization.Mapper
 class StatusActions(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
     private val fetchStatusesUseCase: FetchStatusesUseCase,
-    private val submitStatusUseCase: SubmitStatusUseCase
+    private val submitStatusUseCase: SubmitStatusUseCase,
+    private val toggleFavouriteUseCase: ToggleFavouriteUseCase,
+    private val toggleReblogUseCase: ToggleReblogUseCase
 ) : RequireAuthActions(view, accessTokenRepository) {
     fun fetchStatuses(
         stream: Stream, maxId: String? = null,
@@ -37,6 +41,24 @@ class StatusActions(
         resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
     ) = view.launch {
         runCatching { submitStatusUseCase.execute(status, visibility, warningText) }
+            .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
+            .onHttpFailure(reject)
+    }
+
+    fun toggleFavourite(
+        status: Status,
+        resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
+    ) = view.launch {
+        runCatching { toggleFavouriteUseCase.execute(status) }
+            .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
+            .onHttpFailure(reject)
+    }
+
+    fun toggleReblog(
+        status: Status,
+        resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
+    ) = view.launch {
+        runCatching { toggleReblogUseCase.execute(status) }
             .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
             .onHttpFailure(reject)
     }

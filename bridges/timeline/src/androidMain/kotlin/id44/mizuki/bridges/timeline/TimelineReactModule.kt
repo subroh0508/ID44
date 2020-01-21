@@ -4,10 +4,14 @@ import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
+import id44.mizuki.libraries.reactnativesupport.ReactMap
 import id44.mizuki.libraries.shared.valueobject.AccountId
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.libraries.timeline.domain.entity.Status
+import kotlinx.serialization.Mapper
+import kotlinx.serialization.json.Json
 
 internal actual class TimelineReactModule(
     reactContext: ReactApplicationContext,
@@ -42,6 +46,12 @@ internal actual class TimelineReactModule(
     @ReactMethod
     fun submitStatus(status: String, warningText: String?, visibility: String, promise: Promise) =
         statusActions.submitStatus(status, StatusVisibility.valueOf(visibility), warningText, promise::resolve, promise::reject)
+    @ReactMethod
+    fun toggleFavourite(status: String, promise: Promise) =
+        statusActions.toggleFavourite(Json.nonstrict.parse(Status.serializer(), status), promise::resolve, promise::reject)
+    @ReactMethod
+    fun toggleReblog(status: String, promise: Promise) =
+        statusActions.toggleReblog(Json.nonstrict.parse(Status.serializer(), status), promise::resolve, promise::reject)
 
     @ReactMethod
     fun subscribe(host: String, id: String, stream: String, promise: Promise) =
