@@ -33,7 +33,7 @@ internal fun StreamingEventJson.toStatus(): Status? {
 }
 
 internal fun StatusJson.toStatus() = Status(
-    id = id,
+    id = reblog?.id ?: id,
     content = reblog?.content ?: content,
     warningText = spoilerText,
     createdAt = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").parse(createdAt),
