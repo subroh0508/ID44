@@ -23,3 +23,5 @@ internal const val POST_STATUSES = "/api/v1/statuses"
 
 internal const val POST_STATUSES_REBLOG = "/api/v1/statuses/:id/reblog"
 internal const val POST_STATUSES_FAVOURITE = "/api/v1/statuses/:id/favourite"
+internal const val POST_STATUSES_UNREBLOG = "/api/v1/statuses/:id/unreblog"
+internal const val POST_STATUSES_UNFAVOURITE = "/api/v1/statuses/:id/unfavourite"

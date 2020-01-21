@@ -24,4 +24,6 @@ interface MastodonApi {
 
     suspend fun reblog(id: String): StatusJson
     suspend fun favourite(id: String): StatusJson
+    suspend fun unreblog(id: String): StatusJson
+    suspend fun unfavourite(id: String): StatusJson
 }

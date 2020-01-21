@@ -63,6 +63,12 @@ internal class MastodonApiClient(
     override suspend fun favourite(id: String) = StatusJson(
         raw = httpClient.post(POST_STATUSES_FAVOURITE.id(id))
     )
+    override suspend fun unreblog(id: String) = StatusJson(
+        raw = httpClient.post(POST_STATUSES_UNREBLOG.id(id))
+    )
+    override suspend fun unfavourite(id: String) = StatusJson(
+        raw = httpClient.post(POST_STATUSES_UNFAVOURITE.id(id))
+    )
 
     private suspend inline fun <reified T: Any> HttpClient.get(urlString: String) =
         get<T>(urlString, block = {
