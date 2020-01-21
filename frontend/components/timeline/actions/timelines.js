@@ -4,6 +4,8 @@ import TimelineModule, {
   fetchStatuses as nativeFetchStatuses,
   subscribe as nativeSubscribe,
   unsubscribe as nativeUnsubscribe,
+  toggleFavourite as nativeToggleFavourite,
+  toggleReblog as nativeToggleReblog,
 } from '../native/TimelineNativeActions';
 import { serializer } from 'ID44-timeline-entity';
 import { mapper } from 'ID44-shared';
@@ -128,3 +130,35 @@ export const clearStreams = () => ({
 
 export const streamKey = (account, stream) => `${account.hostName}/${account.id}/${stream}`;
 const streamFromKey = (streamKey) => streamKey.split('/')[2];
+
+export const toggleFavourite = (status) => async (dispatch, _getStatus) => {
+  try {
+    const favourited = mapper.unmap(
+      serializer(),
+      await nativeToggleFavourite(mapper.stringify(serializer(), status)),
+    );
+
+    dispatch(updateStatus(favourited));
+  } catch (e) {
+
+  }
+};
+
+export const toggleReblog = (status) => async (dispatch, _getStatus) => {
+  try {
+    const reblogged = mapper.unmap(
+      serializer(),
+      await nativeToggleReblog(mapper.stringify(serializer(), status)),
+    );
+
+    dispatch(updateStatus(reblogged));
+  } catch (e) {
+
+  }
+};
+
+export const UPDATE_STATUS = `${prefix}/UPDATE_STATUS`;
+const updateStatus = (status) => ({
+  type: UPDATE_STATUS,
+  value: status,
+});

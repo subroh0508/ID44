@@ -3,10 +3,14 @@ import { ThemeContext } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
 import { Reply, Reblog, Favourite } from './Icons';
 
-export const Actions = memo(({ visibility, repliesCount, reblogged, reblogCount,  favourited, favouriteCount }) => {
+export const Actions = memo(({
+  visibility, repliesCount,
+  reblogged, reblogCount, toggleReblog,
+  favourited, favouriteCount, toggleFavourite,
+}) => {
   const { theme } = useContext(ThemeContext);
 
-  const styles = withStyles(theme, reblogged, favourited);
+  const styles = withStyles(theme);
 
   return (
     <View style={ styles.root }>
@@ -14,10 +18,12 @@ export const Actions = memo(({ visibility, repliesCount, reblogged, reblogCount,
       <Reblog
         reblogged={ reblogged }
         count={ reblogCount }
-        visibility={ visibility }/>
+        visibility={ visibility }
+        onPress={ toggleReblog }/>
       <Favourite
         favourited={ favourited }
-        count={ favouriteCount }/>
+        count={ favouriteCount }
+        onPress={ toggleFavourite }/>
     </View>
   )
 });

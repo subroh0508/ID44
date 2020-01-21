@@ -43,6 +43,21 @@ const timelines = (state = initialState, action) => {
           [action.value]: [action.status, ...(state.streams[action.value] || [])],
         },
       };
+    case Actions.UPDATE_STATUS:
+      return {
+        ...state,
+        streams: Object.keys(state.streams).reduce((acc, key) => {
+          const statuses = state.streams[key] || [];
+          const ids = statuses.map(s => s.id);
+          const index = ids.indexOf(action.value.id);
+
+          if (index !== -1) {
+            statuses.splice(index, 1, action.value);
+          }
+
+          return { ...acc, [key]: [...statuses] }
+        }, {}),
+      };
     case Actions.APPEND_STATUSES:
       return {
         ...state,

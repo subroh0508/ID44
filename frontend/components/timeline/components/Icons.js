@@ -3,25 +3,27 @@ import { Icon, Text, ThemeContext } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
 
 export const Reply = ({ count }) => (<ActionIconWithCount name='reply' count={ count }/>);
-export const Reblog = memo(({ visibility, count, reblogged }) => {
+export const Reblog = memo(({ visibility, count, reblogged, onPress }) => {
   const { theme: { colors } } = useContext(ThemeContext);
 
   return visibility.toString() === 'PUBLIC' ?
     (<ActionIconWithCount
       name='retweet'
       count={ count }
-      iconStyle={{ color: reblogged ? colors.reblogged : colors.secondary }}/>) :
+      iconStyle={{ color: reblogged ? colors.reblogged : colors.secondary }}
+      onPress={ onPress }/>) :
     (<ActionIconWithCount
       name={ getVisibilityIconName(visibility) }/>)
 });
-export const Favourite = memo(({ count, favourited }) => {
+export const Favourite = memo(({ count, favourited, onPress }) => {
   const { theme: { colors } } = useContext(ThemeContext);
 
   return (
     <ActionIconWithCount
       name='star'
       count={ count }
-      iconStyle={{ color: favourited ? colors.favourited : colors.secondary }}/>
+      iconStyle={{ color: favourited ? colors.favourited : colors.secondary }}
+      onPress={ onPress }/>
   );
 });
 
@@ -95,7 +97,7 @@ const ActionIconWithCount = memo(({
       <CountText count={ count }/>
     </View>
   );
-}, (prev, next) => prev.count === next.count);
+});
 
 const CountText = ({ count }) => {
   const { theme } = useContext(ThemeContext);
