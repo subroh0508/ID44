@@ -41,4 +41,6 @@ class StatusRepositoryImpl(
 
     override suspend fun reblog(id: String) = api.reblog(id).toStatus()
     override suspend fun favourite(id: String) = api.favourite(id).toStatus()
+    override suspend fun unreblog(id: String) = api.unreblog(id).toStatus()
+    override suspend fun unfavourite(id: String) = api.unfavourite(id).toStatus()
 }

@@ -16,4 +16,6 @@ interface StatusRepository {
 
     suspend fun reblog(id: String): Status
     suspend fun favourite(id: String): Status
+    suspend fun unreblog(id: String): Status
+    suspend fun unfavourite(id: String): Status
 }
