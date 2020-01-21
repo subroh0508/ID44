@@ -1,11 +1,6 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
-import com.soywiz.klock.DateFormat
-import com.soywiz.klock.parse
 import id44.mizuki.libraries.api.client.MastodonApi
-import id44.mizuki.libraries.api.json.StatusJson
-import id44.mizuki.libraries.timeline.domain.entity.Status
-import id44.mizuki.libraries.timeline.domain.entity.Tooter
 import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.infra.toStatus
 import id44.mizuki.libraries.timeline.infra.toStatusVisibilityType
@@ -43,4 +38,7 @@ class StatusRepositoryImpl(
         mediaIds = mediaIds, sensitive = sensitive,
         visibility = visibility.toStatusVisibilityType(), spoilerText = warningText
     ).toStatus()
+
+    override suspend fun reblog(id: String) = api.reblog(id).toStatus()
+    override suspend fun favourite(id: String) = api.favourite(id).toStatus()
 }

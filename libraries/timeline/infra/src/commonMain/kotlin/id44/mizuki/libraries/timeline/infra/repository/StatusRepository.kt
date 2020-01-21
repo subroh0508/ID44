@@ -13,4 +13,7 @@ interface StatusRepository {
     suspend fun postStatus(status: String, visibility: StatusVisibility = StatusVisibility.PUBLIC, warningText: String? = null): Status
     suspend fun postStatusForReply(replyToId: String, status: String, visibility: StatusVisibility = StatusVisibility.PUBLIC, warningText: String? = null): Status
     suspend fun postMedia(mediaIds: List<String>, sensitive: Boolean = false, status: String? = null, visibility: StatusVisibility = StatusVisibility.PUBLIC, warningText: String? = null): Status
+
+    suspend fun reblog(id: String): Status
+    suspend fun favourite(id: String): Status
 }
