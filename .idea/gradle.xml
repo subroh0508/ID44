@@ -52,6 +52,8 @@
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/fetchstatuses" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/submitstatus" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/subscribe" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/togglefavourite" />
+            <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/togglereblog" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/unsubscribe" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/timeline/infra" />

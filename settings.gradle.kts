@@ -28,6 +28,8 @@ include(
     ":libraries:timeline:domain:usecase:unsubscribe",
     ":libraries:timeline:domain:usecase:fetchstatuses",
     ":libraries:timeline:domain:usecase:submitstatus",
+    ":libraries:timeline:domain:usecase:togglereblog",
+    ":libraries:timeline:domain:usecase:togglefavourite",
     ":react-native-vector-icons",
     ":react-native-gesture-handler",
     ":react-native-reanimated",
