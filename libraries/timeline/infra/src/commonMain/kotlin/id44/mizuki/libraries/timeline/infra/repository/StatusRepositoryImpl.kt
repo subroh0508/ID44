@@ -1,12 +1,14 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
+import id44.mizuki.libraries.api.client.LocalCacheStore
 import id44.mizuki.libraries.api.client.MastodonApi
 import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.infra.toStatus
 import id44.mizuki.libraries.timeline.infra.toStatusVisibilityType
 
 class StatusRepositoryImpl(
-    private val api: MastodonApi
+    private val api: MastodonApi,
+    private val cache: LocalCacheStore
 ) : StatusRepository {
     override suspend fun getGlobalStatuses(maxId: String?, limit: Int) =
         api.getTimelinesGlobal(maxId, limit).map { it.toStatus() }
@@ -39,8 +41,8 @@ class StatusRepositoryImpl(
         visibility = visibility.toStatusVisibilityType(), spoilerText = warningText
     ).toStatus()
 
-    override suspend fun reblog(id: String) = api.reblog(id).toStatus()
+    override suspend fun reblog(id: String) = api.reblog(id).toStatus(cache.getNowVerifyAccountsCredential()?.response?.id)
     override suspend fun favourite(id: String) = api.favourite(id).toStatus()
-    override suspend fun unreblog(id: String) = api.unreblog(id).toStatus()
+    override suspend fun unreblog(id: String) = api.unreblog(id).toStatus(cache.getNowVerifyAccountsCredential()?.response?.id)
     override suspend fun unfavourite(id: String) = api.unfavourite(id).toStatus()
 }
