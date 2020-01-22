@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform } from 'react-native';
 import { ThemeContext } from 'react-native-elements';
 
 export const BackgroundImage = () => {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const styles = withStyles(theme);
 
   const TopLeftHexagonal = () => (
