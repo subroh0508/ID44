@@ -95,6 +95,13 @@ object Libraries {
         const val androidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     }
 
+    object Kodein {
+        const val erasedCommon = "org.kodein.di:kodein-di-erased:${Versions.kodein}"
+        const val genericJvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
+        const val androidX = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}"
+        const val erasedJs = "org.kodein.di:kodein-di-generic-js:${Versions.kodein}"
+    }
+
     object JUnit {
         const val core = "junit:junit:${Versions.JUnit.core}"
         const val platformRunner = "org.junit.platform:junit-platform-runner:${Versions.JUnit.platformRunner}"
