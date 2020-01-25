@@ -99,7 +99,7 @@ object Libraries {
         const val erasedCommon = "org.kodein.di:kodein-di-erased:${Versions.kodein}"
         const val genericJvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
         const val androidX = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}"
-        const val erasedJs = "org.kodein.di:kodein-di-generic-js:${Versions.kodein}"
+        const val erasedJs = "org.kodein.di:kodein-di-erased-js:${Versions.kodein}"
     }
 
     object JUnit {
