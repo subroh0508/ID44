@@ -26,6 +26,8 @@ kotlin {
                 implementation(Libraries.Ktor.serializationCommon)
 
                 implementation(Libraries.Klock.common)
+
+                implementation(Libraries.Kodein.erasedCommon)
             }
         }
 
@@ -48,7 +50,8 @@ kotlin {
                 implementation(Libraries.Okhttp3.client)
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
 
-                implementation(Libraries.Dagger.core)
+                implementation(Libraries.Kodein.genericJvm)
+                implementation(Libraries.Kodein.androidX)
             }
         }
 
@@ -65,6 +68,8 @@ kotlin {
                 implementation(Libraries.Ktor.serializationJs)
 
                 implementation(Libraries.Klock.js)
+
+                implementation(Libraries.Kodein.erasedJs)
             }
         }
     }
