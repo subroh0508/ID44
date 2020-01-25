@@ -51,7 +51,6 @@ kotlin {
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
 
                 implementation(Libraries.Kodein.genericJvm)
-                implementation(Libraries.Kodein.androidX)
             }
         }
 
