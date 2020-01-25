@@ -1,6 +1,6 @@
+
 import com.android.build.VariantOutput
 import com.android.build.gradle.api.ApkVariantOutput
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import java.net.InetAddress
 
 plugins {
@@ -85,10 +85,11 @@ android {
         pickFirst("**/libc++_shared.so")
     }
 
-    (kotlinOptions as KotlinJvmOptions).apply {
+    kotlinOptions.apply {
         freeCompilerArgs = listOf(
                 "-Xuse-experimental=kotlin.Experimental"
         )
+        jvmTarget = "1.8"
     }
 }
 
