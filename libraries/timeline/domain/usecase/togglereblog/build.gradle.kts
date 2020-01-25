@@ -8,7 +8,7 @@ plugins {
 androidMPP()
 
 kotlin {
-    android()
+    kotlinMPPShared()
 
     sourceSets {
         val commonMain by getting {
@@ -35,6 +35,15 @@ kotlin {
                 implementation(Libraries.Coroutines.android)
 
                 implementation(Libraries.Dagger.core)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+
+                implementation(Libraries.Coroutines.js)
             }
         }
     }
