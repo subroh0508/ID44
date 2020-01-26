@@ -15,11 +15,10 @@ import id44.mizuki.libraries.shared.valueobject.Uri
 import id44.mizuki.signin.di.inject
 import id44.mizuki.signin.presentation.model.SignInViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import org.kodein.di.generic.instance
 
 class SignInActivity : InjectableReactActivity(), SignInView {
-    @Inject
-    internal lateinit var viewModel: SignInViewModel
+    private val viewModel: SignInViewModel by instance()
 
     override fun getMainComponentName(): String = "SignIn"
 

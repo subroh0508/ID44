@@ -12,7 +12,6 @@ import id44.mizuki.libraries.shared.exceptions.SerializableException
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.shared.valueobject.Uri
 import kotlinx.coroutines.CompletableDeferred
-import javax.inject.Inject
 
 internal class SignInViewModel(
         private val clientName: String,
@@ -53,7 +52,7 @@ internal class SignInViewModel(
         )
     }
 
-    class Factory @Inject constructor(
+    class Factory(
             private val clientName: String,
             private val redirectUri: Uri,
             private val requestAppCredentialUseCase: RequestAppCredentialUseCase,

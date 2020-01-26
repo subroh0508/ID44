@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -6,6 +8,10 @@ plugins {
 }
 
 androidCommons()
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = "1.8"
+}
 
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
@@ -55,6 +61,6 @@ dependencies {
 
     implementation(Libraries.reactNative)
 
-    implementation(Libraries.Dagger.core)
-    kapt(Libraries.Dagger.compiler)
+    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.androidX)
 }
