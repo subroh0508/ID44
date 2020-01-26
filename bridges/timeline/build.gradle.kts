@@ -2,7 +2,6 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
-    kotlin("kapt")
 }
 
 androidMPP()
@@ -84,11 +83,5 @@ kotlin {
                 implementation(Libraries.Kodein.genericJvm)
             }
         }
-    }
-}
-
-withGroovyBuilder {
-    "dependencies" {
-        "kapt"(Libraries.Dagger.compiler)
     }
 }
