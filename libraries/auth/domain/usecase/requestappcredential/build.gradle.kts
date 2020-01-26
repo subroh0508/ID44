@@ -19,6 +19,8 @@ kotlin {
                 implementation(Libraries.Kotlin.stdlibCommon)
 
                 implementation(Libraries.Coroutines.common)
+
+                implementation(Libraries.Kodein.erasedCommon)
             }
         }
 
@@ -31,7 +33,7 @@ kotlin {
 
                 implementation(Libraries.Coroutines.android)
 
-                implementation(Libraries.Dagger.core)
+                implementation(Libraries.Kodein.genericJvm)
             }
         }
 
@@ -41,6 +43,8 @@ kotlin {
                 implementation(Libraries.Kotlin.stdlibJs)
 
                 implementation(Libraries.Coroutines.js)
+
+                implementation(Libraries.Kodein.erasedJs)
             }
         }
     }
