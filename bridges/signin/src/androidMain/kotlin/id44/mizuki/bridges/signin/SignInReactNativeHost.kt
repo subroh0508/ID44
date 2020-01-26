@@ -5,9 +5,8 @@ import com.facebook.react.ReactPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.swmansion.reanimated.ReanimatedPackage
 import id44.mizuki.base.reactnative.BaseReactNativeHost
-import javax.inject.Inject
 
-internal class SignInReactNativeHost @Inject constructor(
+internal class SignInReactNativeHost(
     app: Application,
     private val `package`: ReactPackage
 ) : BaseReactNativeHost(app) {

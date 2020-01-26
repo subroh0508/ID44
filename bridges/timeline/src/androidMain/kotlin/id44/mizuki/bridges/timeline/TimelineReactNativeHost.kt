@@ -7,7 +7,7 @@ import com.swmansion.reanimated.ReanimatedPackage
 import id44.mizuki.base.reactnative.BaseReactNativeHost
 import javax.inject.Inject
 
-internal class TimelineReactNativeHost @Inject constructor(
+internal class TimelineReactNativeHost(
     app: Application,
     private val `package`: ReactPackage
 ) : BaseReactNativeHost(app) {
