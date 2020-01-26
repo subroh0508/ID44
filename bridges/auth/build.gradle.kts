@@ -51,7 +51,6 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(project(":android:base"))
-                implementation(project(":android:components:core"))
                 implementation(project(":react-native-vector-icons"))
                 implementation(project(":react-native-gesture-handler"))
                 implementation(project(":react-native-reanimated"))

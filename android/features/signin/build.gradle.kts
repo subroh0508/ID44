@@ -16,7 +16,6 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":android:base"))
-    implementation(project(":android:components:core"))
     implementation(project(":bridges:shared"))
     implementation(project(":bridges:signin"))
     implementation(project(":libraries:shared"))

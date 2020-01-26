@@ -17,7 +17,6 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":android:auth"))
-    implementation(project(":android:components:core"))
     implementation(project(":bridges:shared"))
     implementation(project(":bridges:auth"))
     implementation(project(":bridges:timeline"))
