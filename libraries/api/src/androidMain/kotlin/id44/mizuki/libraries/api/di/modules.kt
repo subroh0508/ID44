@@ -6,6 +6,7 @@ import id44.mizuki.libraries.api.HttpsClientProvider
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_APP_CREDENTIAL_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
+import id44.mizuki.libraries.api.WebSocketClientProvider
 import id44.mizuki.libraries.api.auth.AuthHttpsClientProvider
 import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.AppCredentialStoreClient
@@ -33,7 +34,7 @@ actual val mastodonApiModule = Kodein.Module(name = "MastodonApiModule") {
 
 actual val mastodonStreamingApiModule = Kodein.Module(name = "MastodonStreamingApiModule") {
     bind<MastodonStreamingApi>() with singleton {
-        MastodonStreamingApiClient(instance(), instance())
+        MastodonStreamingApiClient(WebSocketClientProvider.provide(instance()), instance())
     }
 }
 

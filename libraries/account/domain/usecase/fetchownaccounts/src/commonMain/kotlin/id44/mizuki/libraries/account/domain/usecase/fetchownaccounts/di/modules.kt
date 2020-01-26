@@ -7,6 +7,6 @@ import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
 
-val fetchOwnAccountsUseCaseModule = Kodein.Module(name = "FetchOwnAccountUseCaseModule") {
+val fetchOwnAccountsUseCaseModule = Kodein.Module(name = "FetchOwnAccountsUseCaseModule") {
     bind<FetchOwnAccountsUseCase>() with singleton { FetchOwnAccountsUseCaseImpl(instance()) }
 }
