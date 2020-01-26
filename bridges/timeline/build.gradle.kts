@@ -7,13 +7,7 @@ plugins {
 androidMPP()
 
 kotlin {
-    android {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
+    android()
 
     sourceSets {
         val commonMain by getting {

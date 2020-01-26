@@ -88,7 +88,6 @@ android {
         freeCompilerArgs = listOf(
                 "-Xuse-experimental=kotlin.Experimental"
         )
-        jvmTarget = "1.8"
     }
 }
 

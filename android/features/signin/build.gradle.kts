@@ -8,10 +8,6 @@ plugins {
 
 androidCommons()
 
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "1.8"
-}
-
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
