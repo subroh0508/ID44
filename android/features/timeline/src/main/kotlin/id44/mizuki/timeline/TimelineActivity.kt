@@ -5,10 +5,10 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import id44.mizuki.auth.RequireAuthReactActivity
 import id44.mizuki.bridges.timeline.TimelineView
-import id44.mizuki.timeline.di.TimelineActivityComponent
 import id44.mizuki.timeline.di.inject
+import org.kodein.di.KodeinAware
 
-class TimelineActivity : RequireAuthReactActivity(), TimelineView {
+class TimelineActivity : RequireAuthReactActivity(), TimelineView, KodeinAware {
     override fun getMainComponentName(): String = "Timeline"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +24,6 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView {
                     mapOf("streamKey" to streamKey, "status" to Arguments.makeNativeMap(status))
                 )
             ) ?: Unit
-
-    internal lateinit var timelineActivityComponent: TimelineActivityComponent
 
     private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter?
         get() = reactInstanceManager.currentReactContext?.getJSModule(

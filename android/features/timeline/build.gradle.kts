@@ -1,8 +1,9 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
-    kotlin("kapt")
 }
 
 androidCommons()
@@ -12,7 +13,6 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":android:auth"))
-    implementation(project(":android:components:core"))
     implementation(project(":bridges:shared"))
     implementation(project(":bridges:auth"))
     implementation(project(":bridges:timeline"))
@@ -55,6 +55,6 @@ dependencies {
 
     implementation(Libraries.reactNative)
 
-    implementation(Libraries.Dagger.core)
-    kapt(Libraries.Dagger.compiler)
+    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.androidX)
 }

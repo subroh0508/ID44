@@ -7,8 +7,7 @@ plugins {
 androidMPP()
 
 kotlin {
-    android()
-    js { nodejs() }
+    kotlinMPPShared()
 
     sourceSets {
         val commonMain by getting {

@@ -1,11 +1,10 @@
 import com.android.build.gradle.BaseExtension
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.api.plugins.ExtensionAware
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun DependencyHandler.implementation(dependency: Any) {
     add("implementation", dependency)
@@ -26,24 +25,30 @@ internal fun DependencyHandler.kapt(dependency: Any) {
 fun Project.androidExt(configure: BaseExtension.() -> Unit) =
     (this as ExtensionAware).extensions.configure("android", configure)
 
-internal fun Project.androidShared() = androidExt {
-    compileSdkVersion(Package.Versions.compileSdk)
+internal fun Project.androidShared() {
+    androidExt {
+        compileSdkVersion(Package.Versions.compileSdk)
 
-    defaultConfig {
-        minSdkVersion(Package.Versions.minSdk)
-        targetSdkVersion(Package.Versions.targetSdk)
+        defaultConfig {
+            minSdkVersion(Package.Versions.minSdk)
+            targetSdkVersion(Package.Versions.targetSdk)
 
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_1_8
+                targetCompatibility = JavaVersion.VERSION_1_8
+            }
+        }
+
+        buildTypes {
+            getByName("release") {
+                isMinifyEnabled = false
+                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            }
         }
     }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions.jvmTarget = "1.8"
     }
 }
 

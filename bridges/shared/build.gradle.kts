@@ -2,14 +2,12 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
-    kotlin("kapt")
 }
 
 androidMPP()
 
 kotlin {
-    android()
-    js { nodejs() }
+    kotlinMPPShared()
 
     sourceSets {
         val commonMain by getting {
@@ -26,6 +24,8 @@ kotlin {
                 implementation(Libraries.Ktor.serializationCommon)
 
                 implementation(Libraries.Klock.common)
+
+                implementation(Libraries.Kodein.erasedCommon)
             }
         }
 
@@ -34,7 +34,6 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:reactnativesupport"))
                 implementation(project(":android:base"))
-                implementation(project(":android:components:core"))
                 implementation(project(":react-native-vector-icons"))
                 implementation(project(":react-native-gesture-handler"))
                 implementation(project(":react-native-reanimated"))
@@ -54,7 +53,7 @@ kotlin {
 
                 implementation(Libraries.reactNative)
 
-                implementation(Libraries.Dagger.core)
+                implementation(Libraries.Kodein.genericJvm)
             }
         }
 
@@ -71,11 +70,5 @@ kotlin {
                 implementation(Libraries.Ktor.serializationJs)
             }
         }
-    }
-}
-
-withGroovyBuilder {
-    "dependencies" {
-        "kapt"(Libraries.Dagger.compiler)
     }
 }

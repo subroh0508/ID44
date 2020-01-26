@@ -28,7 +28,7 @@ object Versions {
 
     const val klock = "1.8.0"
 
-    const val dagger = "2.23.1"
+    const val kodein = "6.5.0"
 
     object JUnit {
         const val core = "4.12"

@@ -2,14 +2,12 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
-    kotlin("kapt")
 }
 
 androidMPP()
 
 kotlin {
-    android()
-    js { nodejs() }
+    kotlinMPPShared()
 
     sourceSets {
         val commonMain by getting {
@@ -27,6 +25,8 @@ kotlin {
                 implementation(Libraries.Ktor.serializationCommon)
 
                 implementation(Libraries.Klock.common)
+
+                implementation(Libraries.Kodein.erasedCommon)
             }
         }
 
@@ -49,7 +49,7 @@ kotlin {
                 implementation(Libraries.Okhttp3.client)
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
 
-                implementation(Libraries.Dagger.core)
+                implementation(Libraries.Kodein.genericJvm)
             }
         }
 
@@ -66,13 +66,9 @@ kotlin {
                 implementation(Libraries.Ktor.serializationJs)
 
                 implementation(Libraries.Klock.js)
+
+                implementation(Libraries.Kodein.erasedJs)
             }
         }
-    }
-}
-
-withGroovyBuilder {
-    "dependencies" {
-        "kapt"(Libraries.Dagger.compiler)
     }
 }

@@ -1,8 +1,9 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
-    kotlin("kapt")
 }
 
 androidCommons()
@@ -27,6 +28,8 @@ dependencies {
 
     implementation(Libraries.reactNative)
 
-    implementation(Libraries.Dagger.core)
-    kapt(Libraries.Dagger.compiler)
+    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.androidX)
 }
+
+

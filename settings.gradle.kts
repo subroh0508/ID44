@@ -2,7 +2,6 @@ include(
     ":android:app",
     ":android:base",
     ":android:auth",
-    ":android:components:core",
     ":android:features:signin",
     ":android:features:timeline",
     ":bridges:shared",

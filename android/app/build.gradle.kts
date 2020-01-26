@@ -1,12 +1,11 @@
+
 import com.android.build.VariantOutput
 import com.android.build.gradle.api.ApkVariantOutput
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import java.net.InetAddress
 
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("kapt")
     kotlin("android.extensions")
 }
 
@@ -85,7 +84,7 @@ android {
         pickFirst("**/libc++_shared.so")
     }
 
-    (kotlinOptions as KotlinJvmOptions).apply {
+    kotlinOptions.apply {
         freeCompilerArgs = listOf(
                 "-Xuse-experimental=kotlin.Experimental"
         )
@@ -95,7 +94,6 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
-    implementation(project(":android:components:core"))
     implementation(project(":bridges:signin"))
     implementation(project(":bridges:timeline"))
     implementation(project(":android:features:signin"))
@@ -109,6 +107,9 @@ dependencies {
     implementation(Libraries.Jetpack.constraintLayout)
 
     implementation(Libraries.Ktor.serializationJvm)
+
+    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.androidX)
 
     implementation(Libraries.reactNative)
 

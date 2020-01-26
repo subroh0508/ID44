@@ -87,12 +87,11 @@ object Libraries {
         const val js = "com.soywiz.korlibs.klock:klock-js:${Versions.klock}"
     }
 
-    object Dagger {
-        const val core = "com.google.dagger:dagger:${Versions.dagger}"
-        const val android = "com.google.dagger:dagger-android:${Versions.dagger}"
-        const val androidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
-        const val compiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-        const val androidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    object Kodein {
+        const val erasedCommon = "org.kodein.di:kodein-di-erased:${Versions.kodein}"
+        const val genericJvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
+        const val androidX = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}"
+        const val erasedJs = "org.kodein.di:kodein-di-erased-js:${Versions.kodein}"
     }
 
     object JUnit {
