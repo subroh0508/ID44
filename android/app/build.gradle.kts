@@ -6,7 +6,6 @@ import java.net.InetAddress
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("kapt")
     kotlin("android.extensions")
 }
 
