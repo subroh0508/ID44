@@ -35,6 +35,6 @@ dependencies {
 
     implementation(Libraries.reactNative)
 
-    implementation(Libraries.Dagger.core)
-    kapt(Libraries.Dagger.compiler)
+    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.androidX)
 }
