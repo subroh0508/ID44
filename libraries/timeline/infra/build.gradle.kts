@@ -24,6 +24,8 @@ kotlin {
                 implementation(Libraries.Coroutines.common)
 
                 implementation(Libraries.Klock.common)
+
+                implementation(Libraries.Kodein.erasedCommon)
             }
         }
 
@@ -39,7 +41,7 @@ kotlin {
 
                 implementation(Libraries.Jetpack.ktx)
 
-                implementation(Libraries.Dagger.core)
+                implementation(Libraries.Kodein.genericJvm)
             }
         }
 
@@ -50,6 +52,8 @@ kotlin {
                 implementation(Libraries.Kotlin.serializationJs)
 
                 implementation(Libraries.Coroutines.js)
+
+                implementation(Libraries.Kodein.erasedJs)
             }
         }
     }
