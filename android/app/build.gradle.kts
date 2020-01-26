@@ -111,6 +111,9 @@ dependencies {
 
     implementation(Libraries.Ktor.serializationJvm)
 
+    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.androidX)
+
     implementation(Libraries.reactNative)
 
     testImplementation(Libraries.JUnit.core)
