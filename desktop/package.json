@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "build": "webpack"
+    "start:main:dev": "cross-env START_HOT=1 NODE_ENV=development electron -r @babel/register ./main.js",
+    "build:renderer:dev": "cross-env NODE_ENV=development webpack --config configs/webpack.renderer.dev.babel.js"
   },
   "dependencies": {
     "react": "^16.12.0",

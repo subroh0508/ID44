@@ -1,22 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
 
-const appDir = path.resolve(__dirname, '../');
-const dist = path.resolve(__dirname, 'build');
+const appDir = path.resolve(__dirname, '../../');
 
-module.exports = {
-  mode: 'development',
-  entry: path.resolve(appDir, 'web/index.js'),
-  devtool: 'inline-source-map',
-  output: {
-    path: dist,
-    filename: 'bundle.js'
-  },
+export default {
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         include: [
           path.resolve(appDir, 'desktop/index.js'),
           path.resolve(appDir, 'frontend'),
@@ -27,12 +17,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              'module:metro-react-native-babel-preset',
-            ],
-            plugins: ['react-native-web'],
           },
         }
       },
@@ -55,13 +39,7 @@ module.exports = {
   resolve: {
     extensions: ['.web.js', '.js', '.jsx'],
     alias: {
-      'react-native$': 'react-native-web'
-    }
+      'react-native$': 'react-native-web',
+    },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      filename: `${dist}/index.html`,
-    }),
-  ],
 };
