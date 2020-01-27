@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start:mobile": "yarn react-native start",
-    "start:web": "yarn webpack-dev-server"
+    "start:desktop": "cd desktop && yarn start:main:dev"
   },
   "workspaces": [
     "build/js/packages/*",
