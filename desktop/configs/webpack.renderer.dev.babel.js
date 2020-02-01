@@ -5,14 +5,13 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import baseConfig from './webpack.renderer.base.babel';
 
-const appDir = path.resolve(__dirname, '../../');
 const dist = path.resolve(__dirname, '../build');
 
 export default merge.smart(baseConfig, {
   devtool: 'inline-source-map',
   mode: 'development',
   target: 'electron-renderer',
-  entry: path.resolve(appDir, 'desktop/index.js'),
+  entry: path.resolve(__dirname, '../render/index.js'),
   output: {
     path: dist,
     filename: 'renderer.dev.js'

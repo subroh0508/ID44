@@ -1,7 +1,7 @@
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
 
-const dist = path.resolve(__dirname, 'build');
+const dist = path.resolve(__dirname, '../build');
 
 // ウインドウオブジェクトのグローバル参照を保持してください。さもないと、そのウインドウは
 // JavaScript オブジェクトがガベージコレクションを行った時に自動的に閉じられます。
