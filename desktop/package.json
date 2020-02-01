@@ -8,6 +8,7 @@
     "build:renderer:dev": "cross-env NODE_ENV=development webpack --config configs/webpack.renderer.dev.babel.js"
   },
   "dependencies": {
+    "electron-debug": "^3.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-native-web": "^0.11.7"
@@ -24,6 +25,7 @@
     "core-js": "^3.6.4",
     "cross-env": "^7.0.0",
     "electron": "^7.1.9",
+    "electron-devtools-installer": "^2.2.4",
     "html-webpack-plugin": "^3.2.0",
     "metro-react-native-babel-preset": "^0.56.4",
     "url-loader": "^3.0.0",
