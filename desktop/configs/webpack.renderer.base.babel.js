@@ -1,6 +1,8 @@
 import path from 'path';
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const appDir = path.resolve(__dirname, '../../');
+const dist = path.resolve(__dirname, '../build');
 
 export default {
   module: {
@@ -36,10 +38,19 @@ export default {
       },
     ]
   },
+  output: {
+    path: dist,
+  },
   resolve: {
     extensions: ['.web.js', '.js', '.jsx'],
     alias: {
       'react-native$': 'react-native-web',
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      filename: `${dist}/index.html`,
+    }),
+  ],
 };

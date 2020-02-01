@@ -1,5 +1,7 @@
 import path from 'path';
 import { app, BrowserWindow } from 'electron';
+import electronDebug from 'electron-debug';
+import devtoolsInstaller, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 
 const dist = path.resolve(__dirname, '../build');
 
@@ -7,7 +9,24 @@ const dist = path.resolve(__dirname, '../build');
 // JavaScript オブジェクトがガベージコレクションを行った時に自動的に閉じられます。
 let win;
 
-function createWindow () {
+if (process.env.NODE_ENV === 'development') {
+  electronDebug();
+}
+
+const installExtensions = async () => {
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  const extensions = [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS];
+
+  return Promise.all(
+    extensions.map(name => devtoolsInstaller(name, forceDownload))
+  ).catch(console.log);
+};
+
+const createWindow = async () => {
+  if (process.env.NODE_ENV === 'development') {
+    await installExtensions();
+  }
+
   // browser window を生成する
   win = new BrowserWindow({
     width: 800,
@@ -17,9 +36,11 @@ function createWindow () {
     },
   });
 
-  console.log(dist);
   // そしてこのアプリの index.html をロード
-  win.loadFile(`${dist}/index.html`);
+  const port = process.env.PORT || 1212;
+  const winUrl = process.env.NODE_ENV = 'development' ? `http://localhost:${port}` : `file://${dist}/index.html`;
+
+  win.loadURL(winUrl);
 
   // 開発者ツールを開く
   win.webContents.openDevTools();
