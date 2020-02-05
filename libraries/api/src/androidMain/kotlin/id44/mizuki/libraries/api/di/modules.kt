@@ -3,6 +3,7 @@ package id44.mizuki.libraries.api.di
 import android.app.Application
 import android.content.Context
 import id44.mizuki.libraries.api.HttpsClientProvider
+import id44.mizuki.libraries.api.LocalPreferences
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_APP_CREDENTIAL_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
@@ -22,10 +23,20 @@ import org.kodein.di.generic.singleton
 
 actual val mastodonApiModule = Kodein.Module(name = "MastodonApiModule") {
     bind<AccessTokenStore>() with singleton {
-        AccessTokenStoreClient(instance<Application>().getSharedPreferences(NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE))
+        AccessTokenStoreClient(
+            LocalPreferences(
+                instance<Application>().getSharedPreferences(NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE),
+                instance()
+            )
+        )
     }
     bind<LocalCacheStore>() with singleton {
-        LocalCacheStoreClient(instance<Application>().getSharedPreferences(NAME_CACHE_PREFERENCES, Context.MODE_PRIVATE), instance())
+        LocalCacheStoreClient(
+            LocalPreferences(
+                instance<Application>().getSharedPreferences(NAME_CACHE_PREFERENCES, Context.MODE_PRIVATE),
+                instance()
+            )
+        )
     }
     bind<MastodonApi>() with singleton {
         MastodonApiClient(instance<HttpsClientProvider>().provide(instance(), instance()), instance())
@@ -40,15 +51,30 @@ actual val mastodonStreamingApiModule = Kodein.Module(name = "MastodonStreamingA
 
 actual val mastodonAuthApiModule = Kodein.Module(name = "MastodonAuthApiModule") {
     bind<AppCredentialStore>() with singleton {
-        AppCredentialStoreClient(instance<Application>().getSharedPreferences(NAME_APP_CREDENTIAL_PREFERENCES, Context.MODE_PRIVATE))
+        AppCredentialStoreClient(
+            LocalPreferences(
+                instance<Application>().getSharedPreferences(NAME_APP_CREDENTIAL_PREFERENCES, Context.MODE_PRIVATE),
+                instance()
+            )
+        )
     }
     bind<AccessTokenStore>() with singleton {
-        AccessTokenStoreClient(instance<Application>().getSharedPreferences(NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE))
+        AccessTokenStoreClient(
+            LocalPreferences(
+                instance<Application>().getSharedPreferences(NAME_ACCESS_TOKEN_PREFERENCES, Context.MODE_PRIVATE),
+                instance()
+            )
+        )
     }
     bind<MastodonAuthApi>() with singleton {
         MastodonAuthApiClient(AuthHttpsClientProvider.provide(instance(), instance()))
     }
     bind<LocalCacheStore>() with singleton {
-        LocalCacheStoreClient(instance<Application>().getSharedPreferences(NAME_CACHE_PREFERENCES, Context.MODE_PRIVATE), instance())
+        LocalCacheStoreClient(
+            LocalPreferences(
+                instance<Application>().getSharedPreferences(NAME_CACHE_PREFERENCES, Context.MODE_PRIVATE),
+                instance()
+            )
+        )
     }
 }

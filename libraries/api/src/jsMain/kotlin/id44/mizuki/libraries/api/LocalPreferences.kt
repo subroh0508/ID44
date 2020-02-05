@@ -13,11 +13,12 @@ private external object fs {
 private external fun delete(obj: dynamic): Boolean = definedExternally
 
 actual class LocalPreferences(
-    private val app: dynamic,
-    private val json: Json
+    private val path: String,
+    private val json: Json,
+    private val filename: String
 ) {
     private val data: dynamic
-    private val userDataPath get() = "${app.getPath("userData")}/id44_pref.json"
+    private val userDataPath get() = "$path/$filename.json"
 
     init {
         data = try {
