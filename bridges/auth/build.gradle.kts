@@ -15,7 +15,7 @@ kotlin {
         }
     }
 
-    android()
+    kotlinMPPShared()
 
     sourceSets {
         val commonMain by getting {
@@ -65,6 +65,21 @@ kotlin {
                 implementation(Libraries.reactNative)
 
                 implementation(Libraries.Kodein.genericJvm)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.serializationJs)
+                implementation(Libraries.Klock.js)
+
+                implementation(Libraries.Ktor.clientJs)
+                implementation(Libraries.Ktor.jsonJs)
+                implementation(Libraries.Ktor.serializationJs)
+
+                implementation(Libraries.Kodein.erasedJs)
             }
         }
     }
