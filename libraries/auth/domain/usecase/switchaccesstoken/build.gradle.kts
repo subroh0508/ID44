@@ -14,7 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:auth:domain:auth-valueobject"))
-                implementation(project(":libraries:auth:infra"))
+                implementation(project(":libraries:auth:auth-infra"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
 

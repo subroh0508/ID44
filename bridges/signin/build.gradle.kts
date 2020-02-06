@@ -12,10 +12,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":bridges:shared"))
+                implementation(project(":bridges:bridges-shared"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:api"))
-                implementation(project(":libraries:auth:infra"))
+                implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":libraries:auth:domain:auth-valueobject"))
                 implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
                 implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))

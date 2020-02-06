@@ -10,10 +10,10 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":android:base"))
-    implementation(project(":bridges:auth"))
+    implementation(project(":bridges:bridges-auth"))
     implementation(project(":libraries:api"))
     implementation(project(":libraries:shared"))
-    implementation(project(":libraries:auth:infra"))
+    implementation(project(":libraries:auth:auth-infra"))
     implementation(project(":libraries:auth:domain:auth-valueobject"))
 
     implementation(Libraries.Kotlin.stdlibJvm)

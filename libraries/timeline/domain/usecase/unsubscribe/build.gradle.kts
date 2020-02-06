@@ -13,10 +13,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:shared"))
-                implementation(project(":libraries:auth:infra"))
+                implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
                 implementation(project(":libraries:timeline:domain:timeline-valueobject"))
-                implementation(project(":libraries:timeline:infra"))
+                implementation(project(":libraries:timeline:timeline-infra"))
 
                 implementation(Libraries.Kotlin.stdlibCommon)
 

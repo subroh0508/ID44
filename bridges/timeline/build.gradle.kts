@@ -12,18 +12,18 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":bridges:shared"))
-                implementation(project(":bridges:auth"))
+                implementation(project(":bridges:bridges-shared"))
+                implementation(project(":bridges:bridges-auth"))
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:reactnativesupport"))
                 implementation(project(":libraries:api"))
-                implementation(project(":libraries:auth:infra"))
+                implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
-                implementation(project(":libraries:account:infra"))
+                implementation(project(":libraries:account:account-infra"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccount"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccounts"))
                 implementation(project(":libraries:account:domain:account-entity"))
-                implementation(project(":libraries:timeline:infra"))
+                implementation(project(":libraries:timeline:timeline-infra"))
                 implementation(project(":libraries:timeline:domain:usecase:fetchstatuses"))
                 implementation(project(":libraries:timeline:domain:usecase:subscribe"))
                 implementation(project(":libraries:timeline:domain:usecase:unsubscribe"))
