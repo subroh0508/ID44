@@ -40,6 +40,15 @@ project(":libraries:account:domain:entity").name = "account-entity"
 project(":libraries:timeline:domain:entity").name = "timeline-entity"
 project(":libraries:timeline:domain:valueobject").name = "timeline-valueobject"
 
+project(":libraries:auth:infra").name = "auth-infra"
+project(":libraries:account:infra").name = "account-infra"
+project(":libraries:timeline:infra").name = "timeline-infra"
+
+project(":bridges:shared").name = "bridges-shared"
+project(":bridges:auth").name = "bridges-auth"
+project(":bridges:signin").name = "bridges-signin"
+project(":bridges:timeline").name = "bridges-timeline"
+
 project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/android")
 project(":react-native-gesture-handler").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-gesture-handler/android")
 project(":react-native-reanimated").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-reanimated/android")
