@@ -5,6 +5,7 @@ import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 
 @JsModule("fs")
+@JsNonModule
 private external object fs {
     fun readFileSync(path: String): String
     fun writeFileSync(path: String, text: String)

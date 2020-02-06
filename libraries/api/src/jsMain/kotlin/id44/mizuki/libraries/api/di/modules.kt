@@ -2,15 +2,31 @@ package id44.mizuki.libraries.api.di
 
 import id44.mizuki.libraries.api.LocalPreferences
 import id44.mizuki.libraries.api.PrefKeys.NAME_ACCESS_TOKEN_PREFERENCES
-import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
 import id44.mizuki.libraries.api.PrefKeys.NAME_APP_CREDENTIAL_PREFERENCES
+import id44.mizuki.libraries.api.PrefKeys.NAME_CACHE_PREFERENCES
+import id44.mizuki.libraries.api.RawJson
 import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.AppCredentialStoreClient
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApiClient
+import id44.mizuki.libraries.api.auth.model.AccessToken
+import id44.mizuki.libraries.api.auth.model.AppCredential
+import id44.mizuki.libraries.api.auth.params.PostApps
+import id44.mizuki.libraries.api.auth.params.PostOauthToken
 import id44.mizuki.libraries.api.client.*
+import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
+import id44.mizuki.libraries.api.params.GetTimelines
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApiClient
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.js.Js
+import io.ktor.client.features.DefaultRequest
+import io.ktor.client.features.UserAgent
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.websocket.WebSockets
+import io.ktor.http.URLProtocol
+import io.ktor.http.userAgent
 import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
@@ -27,21 +43,38 @@ actual val mastodonApiModule = Kodein.Module(name = "MastodonApiModule") {
             LocalPreferences(instance(), instance(), NAME_CACHE_PREFERENCES)
         )
     }
-    /*
     bind<MastodonApi>() with singleton {
-        MastodonApiClient(instance<HttpsClientProvider>().provide(instance(), instance()), instance())
+        MastodonApiClient(
+            HttpClient(Js) {
+                install(DefaultRequest) {
+                    url { protocol = URLProtocol.HTTPS }
+                    userAgent(instance<UserAgent>().agent)
+                }
+                install(JsonFeature) {
+                    serializer = KotlinxSerializer(instance()).apply {
+                        setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
+                        setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
+                    }
+                }
+            },
+            instance()
+        )
     }
-
-     */
 }
 
 actual val mastodonStreamingApiModule = Kodein.Module(name = "MastodonStreamingApiModule") {
-    /*
     bind<MastodonStreamingApi>() with singleton {
-        MastodonStreamingApiClient(WebSocketClientProvider.provide(instance()), instance())
+        MastodonStreamingApiClient(
+            HttpClient(Js) {
+                install(WebSockets)
+                install(DefaultRequest) {
+                    url { protocol = URLProtocol.WSS }
+                    userAgent(instance<UserAgent>().agent)
+                }
+            },
+            instance()
+        )
     }
-
-     */
 }
 
 actual val mastodonAuthApiModule = Kodein.Module(name = "MastodonAuthApiModule") {
@@ -55,12 +88,25 @@ actual val mastodonAuthApiModule = Kodein.Module(name = "MastodonAuthApiModule")
             LocalPreferences(instance(), instance(), NAME_ACCESS_TOKEN_PREFERENCES)
         )
     }
-    /*
     bind<MastodonAuthApi>() with singleton {
-        MastodonAuthApiClient(AuthHttpsClientProvider.provide(instance(), instance()))
+        MastodonAuthApiClient(
+            HttpClient(Js) {
+                install(DefaultRequest) {
+                    url { protocol = URLProtocol.HTTPS }
+                    userAgent(instance<UserAgent>().agent)
+                }
+                install(JsonFeature) {
+                    serializer = KotlinxSerializer(instance()).apply {
+                        setMapper(PostApps.Request::class, PostApps.Request.serializer())
+                        setMapper(PostOauthToken.Request::class, PostOauthToken.Request.serializer())
+                        setMapper(AccessToken::class, AccessToken.serializer())
+                        setMapper(AppCredential::class, AppCredential.serializer())
+                        setMapper(RawJson::class, RawJson.serializer())
+                    }
+                }
+            }
+        )
     }
-
-    */
     bind<LocalCacheStore>() with singleton {
         LocalCacheStoreClient(
             LocalPreferences(instance(), instance(), NAME_CACHE_PREFERENCES)
