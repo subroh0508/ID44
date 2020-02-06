@@ -1,30 +1,7 @@
-import React, { useEffect } from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from "redux-thunk";
-import logger from 'redux-logger';
-import { AppRegistry } from 'react-native';
-import { ThemeProvider } from 'react-native-elements';
-import { createTheme, colors } from "../../assets/themes";
+import { NativeModules } from 'react-native';
+
+import registerComponent from '../../utilities/registerComponent';
 import { SignIn } from './containers/SignIn';
-import signIn from './reducers';
-import initI18n from "../../initI18n";
+import reducer from './reducers';
 
-const store = createStore(signIn, applyMiddleware(thunk, logger));
-
-export const registerComponent = () =>
-  AppRegistry.registerComponent('SignIn', () => () => {
-    useEffect(() => {
-      initI18n(() => { console.log('loaded'); });
-    }, []);
-
-    return (
-      <Provider store={ store }>
-        <ThemeProvider theme={ createTheme(colors.mizuki) }>
-          <SignIn/>
-        </ThemeProvider>
-      </Provider>
-    );
-  });
-
-registerComponent();
+registerComponent('SignIn', SignIn, reducer, NativeModules.SignInNativeActions);

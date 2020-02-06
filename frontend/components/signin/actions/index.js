@@ -1,5 +1,4 @@
 import i18next from "i18next";
-import { startOauth2Flow, showErrorMessage, openTimeline } from '../native/SignInActions';
 import { exceptions } from 'ID44-signin';
 
 const prefix = 'sign_in';
@@ -14,13 +13,16 @@ export const onChangedHostName = host => ({
   value: host,
 });
 
-export const onClickedAuthorize = host => async (dispatch, _getState) => {
+export const onClickedAuthorize = host => async (
+  dispatch,
+  _getState,
+  { startOauth2Flow, showErrorMessage, openTimeline },
+) => {
   dispatch(onChangeAuthorizationStatus(STATUS_START));
 
   try {
     await startOauth2Flow(host);
 
-    openTimeline();
     dispatch(onChangeAuthorizationStatus(STATUS_FINISH));
   } catch (e) {
     const message = i18next.t(exceptions.parseKey(e, "unknown"));
