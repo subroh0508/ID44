@@ -6,7 +6,7 @@ plugins {
 androidMPP()
 
 kotlin {
-    android()
+    kotlinMPPShared()
 
     sourceSets {
         val commonMain by getting {
@@ -25,6 +25,14 @@ kotlin {
                 implementation(Libraries.Kotlin.serializationJvm)
 
                 implementation(Libraries.reactNative)
+            }
+        }
+
+        val jsMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.serializationJs)
             }
         }
 
