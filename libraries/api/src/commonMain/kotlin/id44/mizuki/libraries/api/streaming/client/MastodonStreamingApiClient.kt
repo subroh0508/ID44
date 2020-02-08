@@ -9,12 +9,9 @@ import io.ktor.client.features.websocket.webSocketSession
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.WebSocketSession
 import io.ktor.http.cio.websocket.readText
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 internal class MastodonStreamingApiClient(
@@ -39,7 +36,7 @@ internal class MastodonStreamingApiClient(
     }
 
     override suspend fun closeEventChannel(host: HostName, token: AccessToken, stream: StreamType) {
-        sessions.remove(streamKey(host, token, stream))?.close()
+        sessions.remove(streamKey(host, token, stream))?.cancel()
     }
 
     private suspend fun startWebsocketSession(host: HostName, token: AccessToken, stream: StreamType): WebSocketSession =
