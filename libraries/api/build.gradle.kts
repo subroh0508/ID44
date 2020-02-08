@@ -68,8 +68,6 @@ kotlin {
                 implementation(Libraries.Klock.js)
 
                 implementation(Libraries.Kodein.erasedJs)
-
-                implementation(npm("electron"))
             }
         }
     }
