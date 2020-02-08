@@ -12,6 +12,7 @@ import id44.mizuki.base.ui.InjectableReactActivity
 import id44.mizuki.bridges.signin.SignInView
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.shared.valueobject.Uri
+import id44.mizuki.libraries.shared.valueobject.parse
 import id44.mizuki.signin.di.inject
 import id44.mizuki.signin.presentation.model.SignInViewModel
 import kotlinx.coroutines.launch
@@ -54,7 +55,7 @@ class SignInActivity : InjectableReactActivity(), SignInView {
     }
 
     private fun openAuthorizePage(url: Uri) {
-        Intent(Intent.ACTION_VIEW, url).takeIf {
+        Intent(Intent.ACTION_VIEW, url.parse()).takeIf {
             it.resolveActivity(packageManager) != null
         }?.let(this::startActivity) ?: viewModel.onNotFoundBrowser()
     }

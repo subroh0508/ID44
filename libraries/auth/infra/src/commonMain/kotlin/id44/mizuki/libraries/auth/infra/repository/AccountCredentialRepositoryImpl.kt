@@ -8,7 +8,6 @@ import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
 import id44.mizuki.libraries.shared.valueobject.AccessToken
 import id44.mizuki.libraries.shared.valueobject.HostName
 import id44.mizuki.libraries.shared.valueobject.Uri
-import id44.mizuki.libraries.shared.valueobject.parseToUri
 
 internal class AccountCredentialRepositoryImpl(
     private val authApi: MastodonAuthApi,
@@ -20,12 +19,12 @@ internal class AccountCredentialRepositoryImpl(
         clientId: ClientId,
         clientSecret: ClientSecret,
         redirectUri: Uri
-    ): Uri = authApi.buildAuthorizeUrl(
+    ): Uri = Uri(authApi.buildAuthorizeUrl(
         hostName.value,
         clientId.value,
         clientSecret.value,
         redirectUri.toString()
-    ).parseToUri()
+    ))
 
     override suspend fun fetchAccessToken(
         hostName: HostName,

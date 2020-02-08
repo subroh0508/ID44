@@ -3,7 +3,6 @@ package id44.mizuki.libraries.shared.valueobject
 import org.w3c.dom.url.URL
 
 @JsName("Uri")
-actual abstract class Uri(url: String) : URL(url)
-actual fun String.parseToUri(): Uri = UriImpl(this)
+actual inline class Uri(val value: String)
 
-private class UriImpl(urlString: String) : Uri(urlString)
+fun Uri.parse(): URL = URL(value)

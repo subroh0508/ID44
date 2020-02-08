@@ -16,7 +16,7 @@ internal class AppCredentialRepositoryImpl(
         clientName: String,
         redirectUri: Uri
     ): Pair<ClientId, ClientSecret> {
-        val (clientId, clientSecret) = apiClient.requestAppCredential(hostName.value, clientName, redirectUri.toString())
+        val (clientId, clientSecret) = apiClient.requestAppCredential(hostName.value, clientName, redirectUri.value)
 
         return ClientId(clientId) to ClientSecret(clientSecret)
     }
