@@ -1,10 +1,10 @@
 package id44.mizuki.bridges.timeline
 
 import id44.mizuki.bridges.auth.RequireAuthActions
+import id44.mizuki.domain.timeline.usecase.FetchOwnAccountUseCase
+import id44.mizuki.domain.timeline.usecase.FetchOwnAccountsUseCase
+import id44.mizuki.domain.timeline.usecase.SwitchAccessTokenUseCase
 import id44.mizuki.shared.model.account.Account
-import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAccountUseCase
-import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
-import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase
 import id44.mizuki.infra.auth.repository.AccessTokenRepository
 import id44.mizuki.libraries.reactnativesupport.ReactArray
 import id44.mizuki.libraries.reactnativesupport.ReactMap

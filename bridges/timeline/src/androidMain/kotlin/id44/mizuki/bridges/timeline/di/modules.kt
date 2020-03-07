@@ -2,25 +2,17 @@ package id44.mizuki.bridges.timeline.di
 
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.react.ReactNativeHost
-import id44.mizuki.bridges.auth.di.requireAuthViewModule
-import id44.mizuki.bridges.shared.ReactContextModuleProvider
-import id44.mizuki.bridges.timeline.*
-import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.di.fetchOwnAccountUseCaseModule
-import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.di.fetchOwnAccountsUseCaseModule
-import id44.mizuki.infra.account.repository.di.accountRepositoryModule
 import id44.mizuki.api.HttpsClientProvider
 import id44.mizuki.api.di.mastodonApiModule
 import id44.mizuki.api.di.mastodonStreamingApiModule
 import id44.mizuki.api.params.GetAccountsVerifyCredential
 import id44.mizuki.api.params.GetTimelines
-import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.switchAccessTokenUseCaseModule
+import id44.mizuki.bridges.auth.di.requireAuthViewModule
+import id44.mizuki.bridges.shared.ReactContextModuleProvider
+import id44.mizuki.bridges.timeline.*
+import id44.mizuki.domain.timeline.usecase.di.timelineUseCaseModule
+import id44.mizuki.infra.account.repository.di.accountRepositoryModule
 import id44.mizuki.infra.auth.repository.di.accessTokenRepositoryModule
-import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.fetchStatusesUseCaseModule
-import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.di.submitStatusUseCaseModule
-import id44.mizuki.libraries.timeline.domain.usecase.subscribe.di.timelineSubscribeUseCaseModule
-import id44.mizuki.libraries.timeline.domain.usecase.togglefavourite.di.toggleFavouriteUseCaseModule
-import id44.mizuki.libraries.timeline.domain.usecase.togglereblog.di.toggleReblogUseCaseModule
-import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.di.timelineUnsubscribeUseCaseModule
 import id44.mizuki.infra.status.repository.di.statusRepositoryModule
 import id44.mizuki.infra.status.repository.di.streamingRepositoryModule
 import org.kodein.di.Kodein
@@ -36,20 +28,10 @@ val timelineModule = Kodein.Module(name = "TimelineModule") {
     import(mastodonStreamingApiModule)
 
     import(accessTokenRepositoryModule)
-    import(switchAccessTokenUseCaseModule)
-
     import(accountRepositoryModule)
-    import(fetchOwnAccountUseCaseModule)
-    import(fetchOwnAccountsUseCaseModule)
-
     import(streamingRepositoryModule)
     import(statusRepositoryModule)
-    import(fetchStatusesUseCaseModule)
-    import(timelineSubscribeUseCaseModule)
-    import(timelineUnsubscribeUseCaseModule)
-    import(submitStatusUseCaseModule)
-    import(toggleFavouriteUseCaseModule)
-    import(toggleReblogUseCaseModule)
+    import(timelineUseCaseModule)
 
     bind<HttpsClientProvider>() with singleton {
         HttpsClientProvider {
