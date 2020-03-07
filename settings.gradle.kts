@@ -9,6 +9,7 @@ include(
     ":bridges:signin",
     ":bridges:timeline",
     ":shared:util",
+    ":shared:model:model-auth",
     ":libraries:reactnativesupport",
     ":libraries:api",
     ":libraries:account:infra",
@@ -16,7 +17,6 @@ include(
     ":libraries:account:domain:usecase:fetchownaccount",
     ":libraries:account:domain:usecase:fetchownaccounts",
     ":libraries:auth:infra",
-    ":libraries:auth:domain:valueobject",
     ":libraries:auth:domain:usecase:requestappcredential",
     ":libraries:auth:domain:usecase:requestaccesstoken",
     ":libraries:auth:domain:usecase:switchaccesstoken",
@@ -35,7 +35,6 @@ include(
     ":react-native-fast-image"
 )
 
-project(":libraries:auth:domain:valueobject").name = "auth-valueobject"
 project(":libraries:account:domain:entity").name = "account-entity"
 project(":libraries:timeline:domain:entity").name = "timeline-entity"
 project(":libraries:timeline:domain:valueobject").name = "timeline-valueobject"

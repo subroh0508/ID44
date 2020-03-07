@@ -39,7 +39,6 @@
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/switchaccesstoken" />
-            <option value="$PROJECT_DIR$/libraries/auth/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/auth/infra" />
             <option value="$PROJECT_DIR$/libraries/reactnativesupport" />
             <option value="$PROJECT_DIR$/libraries/timeline" />
@@ -59,6 +58,8 @@
             <option value="$PROJECT_DIR$/node_modules/react-native-reanimated/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-vector-icons/android" />
             <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/shared/model" />
+            <option value="$PROJECT_DIR$/shared/model/model-auth" />
             <option value="$PROJECT_DIR$/shared/util" />
           </set>
         </option>

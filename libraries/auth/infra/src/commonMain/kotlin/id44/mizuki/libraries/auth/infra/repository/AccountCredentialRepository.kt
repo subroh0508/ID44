@@ -1,7 +1,7 @@
 package id44.mizuki.libraries.auth.infra.repository
 
-import id44.mizuki.libraries.auth.domain.valueobject.ClientId
-import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
+import id44.mizuki.shared.model.auth.ClientId
+import id44.mizuki.shared.model.auth.ClientSecret
 import id44.mizuki.shared.util.valueobject.AccessToken
 import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.util.valueobject.Uri

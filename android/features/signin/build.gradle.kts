@@ -15,7 +15,7 @@ dependencies {
     implementation(project(":bridges:bridges-shared"))
     implementation(project(":bridges:bridges-signin"))
     implementation(project(":shared:util"))
-    implementation(project(":libraries:auth:domain:auth-valueobject"))
+    implementation(project(":shared:model:model-auth"))
     implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
     implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
 
