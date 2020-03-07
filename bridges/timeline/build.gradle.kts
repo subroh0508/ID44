@@ -22,7 +22,7 @@ kotlin {
                 implementation(project(":libraries:account:account-infra"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccount"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccounts"))
-                implementation(project(":libraries:account:domain:account-entity"))
+                implementation(project(":shared:model:model-account"))
                 implementation(project(":libraries:timeline:timeline-infra"))
                 implementation(project(":libraries:timeline:domain:usecase:fetchstatuses"))
                 implementation(project(":libraries:timeline:domain:usecase:subscribe"))

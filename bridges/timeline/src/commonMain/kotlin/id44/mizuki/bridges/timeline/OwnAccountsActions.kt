@@ -1,7 +1,7 @@
 package id44.mizuki.bridges.timeline
 
 import id44.mizuki.bridges.auth.RequireAuthActions
-import id44.mizuki.libraries.account.domain.entity.Account
+import id44.mizuki.shared.model.account.Account
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.FetchOwnAccountUseCase
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.FetchOwnAccountsUseCase
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.SwitchAccessTokenUseCase

@@ -14,7 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:api"))
                 implementation(project(":shared:util"))
-                implementation(project(":libraries:account:domain:account-entity"))
+                implementation(project(":shared:model:model-account"))
 
                 implementation(Libraries.Kotlin.common)
 

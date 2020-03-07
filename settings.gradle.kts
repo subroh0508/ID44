@@ -10,10 +10,10 @@ include(
     ":bridges:timeline",
     ":shared:util",
     ":shared:model:model-auth",
+    ":shared:model:model-account",
     ":libraries:reactnativesupport",
     ":libraries:api",
     ":libraries:account:infra",
-    ":libraries:account:domain:entity",
     ":libraries:account:domain:usecase:fetchownaccount",
     ":libraries:account:domain:usecase:fetchownaccounts",
     ":libraries:auth:infra",
@@ -35,7 +35,6 @@ include(
     ":react-native-fast-image"
 )
 
-project(":libraries:account:domain:entity").name = "account-entity"
 project(":libraries:timeline:domain:entity").name = "timeline-entity"
 project(":libraries:timeline:domain:valueobject").name = "timeline-valueobject"
 

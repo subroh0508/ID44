@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.account.domain.entity
+package id44.mizuki.shared.model.account
 
 import kotlinx.serialization.Serializable
 

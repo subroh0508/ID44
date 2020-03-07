@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="id44.mizuki.libraries.account.domain.entity"/>
+          package="id44.mizuki.shared.model.account"/>
