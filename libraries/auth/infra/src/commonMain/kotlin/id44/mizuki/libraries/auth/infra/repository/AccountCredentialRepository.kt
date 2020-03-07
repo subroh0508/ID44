@@ -2,9 +2,9 @@ package id44.mizuki.libraries.auth.infra.repository
 
 import id44.mizuki.libraries.auth.domain.valueobject.ClientId
 import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
-import id44.mizuki.libraries.shared.valueobject.AccessToken
-import id44.mizuki.libraries.shared.valueobject.HostName
-import id44.mizuki.libraries.shared.valueobject.Uri
+import id44.mizuki.shared.valueobject.AccessToken
+import id44.mizuki.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.Uri
 
 interface AccountCredentialRepository {
     fun buildAuthorizeUrl(

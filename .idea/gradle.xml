@@ -42,7 +42,6 @@
             <option value="$PROJECT_DIR$/libraries/auth/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/auth/infra" />
             <option value="$PROJECT_DIR$/libraries/reactnativesupport" />
-            <option value="$PROJECT_DIR$/libraries/shared" />
             <option value="$PROJECT_DIR$/libraries/timeline" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/entity" />
@@ -59,6 +58,7 @@
             <option value="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-reanimated/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-vector-icons/android" />
+            <option value="$PROJECT_DIR$/shared" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -10,9 +10,9 @@ import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.InjectableReactActivity
 import id44.mizuki.bridges.signin.SignInView
-import id44.mizuki.libraries.shared.valueobject.HostName
-import id44.mizuki.libraries.shared.valueobject.Uri
-import id44.mizuki.libraries.shared.valueobject.parse
+import id44.mizuki.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.Uri
+import id44.mizuki.shared.valueobject.parse
 import id44.mizuki.signin.di.inject
 import id44.mizuki.signin.presentation.model.SignInViewModel
 import kotlinx.coroutines.launch

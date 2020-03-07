@@ -1,7 +1,7 @@
 package exceptions
 
 import id44.mizuki.bridges.signin.exceptions.SignInError
-import id44.mizuki.libraries.shared.exceptions.SerializableException
+import id44.mizuki.shared.exceptions.SerializableException
 
 
 @JsName("parse")

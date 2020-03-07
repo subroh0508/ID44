@@ -13,7 +13,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:api"))
-                implementation(project(":libraries:shared"))
+                implementation(project(":shared"))
                 implementation(project(":libraries:auth:domain:auth-valueobject"))
                 implementation(Libraries.Kotlin.common)
 

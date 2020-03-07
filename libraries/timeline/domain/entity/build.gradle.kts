@@ -12,7 +12,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":libraries:shared"))
+                implementation(project(":shared"))
                 implementation(project(":libraries:timeline:domain:timeline-valueobject"))
 
                 implementation(Libraries.Kotlin.common)

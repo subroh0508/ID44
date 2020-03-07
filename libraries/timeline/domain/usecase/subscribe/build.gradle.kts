@@ -12,7 +12,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":libraries:shared"))
+                implementation(project(":shared"))
                 implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
                 implementation(project(":libraries:timeline:domain:timeline-valueobject"))

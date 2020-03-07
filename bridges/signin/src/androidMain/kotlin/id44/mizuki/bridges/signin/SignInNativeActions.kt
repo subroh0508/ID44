@@ -6,7 +6,7 @@ import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAcces
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
 import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 import id44.mizuki.libraries.reactnativesupport.ReactPromise
-import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.HostName
 import kotlinx.coroutines.launch
 
 internal actual class SignInNativeActions(

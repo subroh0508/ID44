@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import id44.mizuki.bridges.signin.exceptions.SignInError
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
-import id44.mizuki.libraries.shared.exceptions.SerializableException
-import id44.mizuki.libraries.shared.valueobject.HostName
-import id44.mizuki.libraries.shared.valueobject.Uri
+import id44.mizuki.shared.exceptions.SerializableException
+import id44.mizuki.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.Uri
 import kotlinx.coroutines.CompletableDeferred
 
 internal class SignInViewModel(

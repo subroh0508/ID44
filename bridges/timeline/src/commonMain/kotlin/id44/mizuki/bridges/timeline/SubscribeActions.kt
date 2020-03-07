@@ -2,8 +2,8 @@ package id44.mizuki.bridges.timeline
 
 import id44.mizuki.bridges.auth.RequireAuthActions
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
-import id44.mizuki.libraries.shared.valueobject.AccountId
-import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.AccountId
+import id44.mizuki.shared.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.entity.Status
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase

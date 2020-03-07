@@ -2,8 +2,8 @@ package id44.mizuki.libraries.api.streaming.client
 
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
-import id44.mizuki.libraries.shared.valueobject.AccessToken
-import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.AccessToken
+import id44.mizuki.shared.valueobject.HostName
 import io.ktor.client.HttpClient
 import io.ktor.client.features.websocket.webSocketSession
 import io.ktor.http.cio.websocket.Frame

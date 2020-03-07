@@ -4,9 +4,9 @@ import id44.mizuki.libraries.api.CredentialProvider
 import id44.mizuki.libraries.api.TokenExpiredException
 import id44.mizuki.libraries.api.client.AccessTokenStore
 import id44.mizuki.libraries.api.client.LocalCacheStore
-import id44.mizuki.libraries.shared.valueobject.AccessToken
-import id44.mizuki.libraries.shared.valueobject.AccountId
-import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.AccessToken
+import id44.mizuki.shared.valueobject.AccountId
+import id44.mizuki.shared.valueobject.HostName
 
 internal class AccessTokenRepositoryImpl(
     private val authLocalStore: AccessTokenStore,

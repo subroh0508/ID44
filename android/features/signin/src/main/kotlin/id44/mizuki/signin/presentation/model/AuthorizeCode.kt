@@ -1,7 +1,7 @@
 package id44.mizuki.signin.presentation.model
 
 import android.content.Intent
-import id44.mizuki.libraries.shared.valueobject.Uri
+import id44.mizuki.shared.valueobject.Uri
 
 inline class AuthorizeCode(private val pair: Pair<String, String?>) {
     val code get() = pair.first

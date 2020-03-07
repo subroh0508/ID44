@@ -1,6 +1,6 @@
 package id44.mizuki.libraries.api
 
-import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.HostName
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest

@@ -6,7 +6,7 @@ import id44.mizuki.libraries.api.json.account.AccountJson
 import id44.mizuki.libraries.api.json.enums.StatusVisibilityType
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
 import id44.mizuki.libraries.api.params.GetTimelines
-import id44.mizuki.libraries.shared.valueobject.HostName
+import id44.mizuki.shared.valueobject.HostName
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.header

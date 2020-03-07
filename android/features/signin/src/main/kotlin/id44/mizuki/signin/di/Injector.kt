@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.facebook.react.ReactRootView
 import id44.mizuki.bridges.signin.di.signInViewModule
-import id44.mizuki.libraries.shared.valueobject.Uri
+import id44.mizuki.shared.valueobject.Uri
 import id44.mizuki.signin.R
 import id44.mizuki.signin.presentation.model.SignInViewModel
 import id44.mizuki.signin.presentation.ui.SignInActivity

@@ -22,7 +22,7 @@ kotlin {
             dependencies {
                 implementation(project(":bridges:bridges-shared"))
                 implementation(project(":libraries:api"))
-                implementation(project(":libraries:shared"))
+                implementation(project(":shared"))
                 implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":libraries:auth:domain:auth-valueobject"))
 

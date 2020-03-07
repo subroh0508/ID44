@@ -14,7 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":bridges:bridges-shared"))
                 implementation(project(":bridges:bridges-auth"))
-                implementation(project(":libraries:shared"))
+                implementation(project(":shared"))
                 implementation(project(":libraries:reactnativesupport"))
                 implementation(project(":libraries:api"))
                 implementation(project(":libraries:auth:auth-infra"))

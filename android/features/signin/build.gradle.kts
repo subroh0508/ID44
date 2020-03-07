@@ -14,7 +14,7 @@ dependencies {
     implementation(project(":android:base"))
     implementation(project(":bridges:bridges-shared"))
     implementation(project(":bridges:bridges-signin"))
-    implementation(project(":libraries:shared"))
+    implementation(project(":shared"))
     implementation(project(":libraries:auth:domain:auth-valueobject"))
     implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
     implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
