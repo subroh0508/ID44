@@ -1,8 +1,8 @@
 package id44.mizuki.libraries.timeline.domain.usecase.submitstatus
 
-import id44.mizuki.libraries.timeline.domain.entity.Status
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.shared.model.status.Status
+import id44.mizuki.shared.model.status.StatusVisibility
+import id44.mizuki.shared.model.status.Stream
 import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

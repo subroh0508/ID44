@@ -7,9 +7,9 @@ import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 import id44.mizuki.libraries.reactnativesupport.ReactMap
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
-import id44.mizuki.libraries.timeline.domain.entity.Status
+import id44.mizuki.shared.model.status.StatusVisibility
+import id44.mizuki.shared.model.status.Stream
+import id44.mizuki.shared.model.status.Status
 import kotlinx.serialization.Mapper
 import kotlinx.serialization.json.Json
 

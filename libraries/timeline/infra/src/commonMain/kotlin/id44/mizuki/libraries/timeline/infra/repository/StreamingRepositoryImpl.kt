@@ -3,8 +3,8 @@ package id44.mizuki.libraries.timeline.infra.repository
 import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.shared.util.valueobject.AccessToken
 import id44.mizuki.shared.util.valueobject.HostName
-import id44.mizuki.libraries.timeline.domain.entity.Status
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.shared.model.status.Status
+import id44.mizuki.shared.model.status.Stream
 import id44.mizuki.libraries.timeline.infra.toStatus
 import id44.mizuki.libraries.timeline.infra.toStreamType
 import kotlinx.coroutines.flow.Flow

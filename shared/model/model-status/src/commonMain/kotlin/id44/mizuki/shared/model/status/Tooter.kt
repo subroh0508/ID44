@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.timeline.domain.entity
+package id44.mizuki.shared.model.status
 
 import kotlinx.serialization.Serializable
 

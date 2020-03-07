@@ -1,6 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="model-account-js">
     <output-path>$PROJECT_DIR$/shared/model/model-account/build/libs</output-path>
-    <root id="archive" name="model-account-js.jar" />
+    <root id="archive" name="model-account-js.jar">
+      <element id="module-output" name="ID44.shared.model.model-account.jsMain" />
+    </root>
   </artifact>
 </component>

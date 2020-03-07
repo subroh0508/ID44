@@ -6,13 +6,13 @@ import id44.mizuki.libraries.reactnativesupport.ReactArray
 import id44.mizuki.libraries.reactnativesupport.ReactMap
 import id44.mizuki.libraries.reactnativesupport.reactArray
 import id44.mizuki.libraries.reactnativesupport.reactMap
-import id44.mizuki.libraries.timeline.domain.entity.Status
+import id44.mizuki.shared.model.status.Status
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.FetchStatusesUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.SubmitStatusUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.togglefavourite.ToggleFavouriteUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.togglereblog.ToggleReblogUseCase
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.shared.model.status.StatusVisibility
+import id44.mizuki.shared.model.status.Stream
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Mapper
 

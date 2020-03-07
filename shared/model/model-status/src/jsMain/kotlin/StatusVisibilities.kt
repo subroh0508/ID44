@@ -1,4 +1,4 @@
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
+import id44.mizuki.shared.model.status.StatusVisibility
 
 @JsName("visibilities")
 val visibilities = StatusVisibility.values()

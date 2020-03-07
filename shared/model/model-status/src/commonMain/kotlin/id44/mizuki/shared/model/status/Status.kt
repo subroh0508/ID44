@@ -1,8 +1,8 @@
-package id44.mizuki.libraries.timeline.domain.entity
+package id44.mizuki.shared.model.status
 
 import com.soywiz.klock.DateTimeTz
 import id44.mizuki.shared.util.serializers.DateTimeTzSerializer
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
+import id44.mizuki.shared.model.status.StatusVisibility
 import kotlinx.serialization.Serializable
 
 @Serializable

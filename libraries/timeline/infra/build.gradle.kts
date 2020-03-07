@@ -14,8 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:api"))
                 implementation(project(":shared:util"))
-                implementation(project(":libraries:timeline:domain:timeline-entity"))
-                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
+                implementation(project(":shared:model:model-status"))
 
                 implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Serialization.common)

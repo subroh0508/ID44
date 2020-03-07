@@ -4,10 +4,10 @@ import id44.mizuki.bridges.auth.RequireAuthActions
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
-import id44.mizuki.libraries.timeline.domain.entity.Status
+import id44.mizuki.shared.model.status.Status
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.TimelineSubscribeUseCase
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.TimelineUnsubscribeUseCase
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.shared.model.status.Stream
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Mapper

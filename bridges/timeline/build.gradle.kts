@@ -30,8 +30,7 @@ kotlin {
                 implementation(project(":libraries:timeline:domain:usecase:submitstatus"))
                 implementation(project(":libraries:timeline:domain:usecase:togglefavourite"))
                 implementation(project(":libraries:timeline:domain:usecase:togglereblog"))
-                implementation(project(":libraries:timeline:domain:timeline-entity"))
-                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
+                implementation(project(":shared:model:model-status"))
 
                 implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Serialization.common)

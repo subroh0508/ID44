@@ -11,6 +11,7 @@ include(
     ":shared:util",
     ":shared:model:model-auth",
     ":shared:model:model-account",
+    ":shared:model:model-status",
     ":libraries:reactnativesupport",
     ":libraries:api",
     ":libraries:account:infra",
@@ -21,8 +22,6 @@ include(
     ":libraries:auth:domain:usecase:requestaccesstoken",
     ":libraries:auth:domain:usecase:switchaccesstoken",
     ":libraries:timeline:infra",
-    ":libraries:timeline:domain:entity",
-    ":libraries:timeline:domain:valueobject",
     ":libraries:timeline:domain:usecase:subscribe",
     ":libraries:timeline:domain:usecase:unsubscribe",
     ":libraries:timeline:domain:usecase:fetchstatuses",
@@ -34,9 +33,6 @@ include(
     ":react-native-reanimated",
     ":react-native-fast-image"
 )
-
-project(":libraries:timeline:domain:entity").name = "timeline-entity"
-project(":libraries:timeline:domain:valueobject").name = "timeline-valueobject"
 
 project(":libraries:auth:infra").name = "auth-infra"
 project(":libraries:account:infra").name = "account-infra"

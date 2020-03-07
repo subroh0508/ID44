@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Icon, Text, Overlay, ListItem, ThemeContext } from "react-native-elements";
 import { VisibilityIcon, Camera } from './Icons';
-import { visibilities } from 'ID44-timeline-valueobject';
+import { visibilities } from 'ID44-model-status';
 import i18next from 'i18next';
 
 const VisibilitySelector = ({

@@ -42,7 +42,6 @@
             <option value="$PROJECT_DIR$/libraries/reactnativesupport" />
             <option value="$PROJECT_DIR$/libraries/timeline" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain" />
-            <option value="$PROJECT_DIR$/libraries/timeline/domain/entity" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/fetchstatuses" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/submitstatus" />
@@ -50,7 +49,6 @@
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/togglefavourite" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/togglereblog" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/unsubscribe" />
-            <option value="$PROJECT_DIR$/libraries/timeline/domain/valueobject" />
             <option value="$PROJECT_DIR$/libraries/timeline/infra" />
             <option value="$PROJECT_DIR$/node_modules/react-native-fast-image/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android" />
@@ -60,6 +58,7 @@
             <option value="$PROJECT_DIR$/shared/model" />
             <option value="$PROJECT_DIR$/shared/model/model-account" />
             <option value="$PROJECT_DIR$/shared/model/model-auth" />
+            <option value="$PROJECT_DIR$/shared/model/model-status" />
             <option value="$PROJECT_DIR$/shared/util" />
           </set>
         </option>

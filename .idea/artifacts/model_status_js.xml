@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="model-status-js">
+    <output-path>$PROJECT_DIR$/shared/model/model-status/build/libs</output-path>
+    <root id="archive" name="model-status-js.jar" />
+  </artifact>
+</component>

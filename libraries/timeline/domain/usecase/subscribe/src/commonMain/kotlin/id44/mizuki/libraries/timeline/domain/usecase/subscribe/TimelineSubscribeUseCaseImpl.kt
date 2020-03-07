@@ -3,7 +3,7 @@ package id44.mizuki.libraries.timeline.domain.usecase.subscribe
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.shared.model.status.Stream
 import id44.mizuki.libraries.timeline.infra.repository.StreamingRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

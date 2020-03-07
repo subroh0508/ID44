@@ -7,7 +7,7 @@ import TimelineModule, {
   toggleFavourite as nativeToggleFavourite,
   toggleReblog as nativeToggleReblog,
 } from '../native/TimelineNativeActions';
-import { serializer } from 'ID44-timeline-entity';
+import { serializer } from 'ID44-model-status';
 import { mapper } from 'ID44-util';
 
 const prefix = 'timeline';

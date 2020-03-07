@@ -14,8 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":shared:util"))
                 implementation(project(":libraries:auth:auth-infra"))
-                implementation(project(":libraries:timeline:domain:timeline-entity"))
-                implementation(project(":libraries:timeline:domain:timeline-valueobject"))
+                implementation(project(":shared:model:model-status"))
                 implementation(project(":libraries:timeline:timeline-infra"))
 
                 implementation(Libraries.Kotlin.common)

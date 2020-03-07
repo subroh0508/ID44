@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.timeline.domain.valueobject
+package id44.mizuki.shared.model.status
 
 enum class Stream {
     DIRECT, HOME, LOCAL, GLOBAL,

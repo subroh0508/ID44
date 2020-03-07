@@ -7,10 +7,10 @@ import id44.mizuki.libraries.api.json.enums.StatusVisibilityType
 import id44.mizuki.libraries.api.streaming.StreamType
 import id44.mizuki.libraries.api.streaming.json.EventType
 import id44.mizuki.libraries.api.streaming.json.StreamingEventJson
-import id44.mizuki.libraries.timeline.domain.entity.Status
-import id44.mizuki.libraries.timeline.domain.entity.Tooter
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
-import id44.mizuki.libraries.timeline.domain.valueobject.Stream
+import id44.mizuki.shared.model.status.Status
+import id44.mizuki.shared.model.status.Tooter
+import id44.mizuki.shared.model.status.StatusVisibility
+import id44.mizuki.shared.model.status.Stream
 
 internal fun Stream.toStreamType(): StreamType = when (this) {
     Stream.DIRECT -> StreamType.DIRECT

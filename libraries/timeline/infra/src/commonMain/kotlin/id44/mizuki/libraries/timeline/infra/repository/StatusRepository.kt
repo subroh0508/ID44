@@ -1,7 +1,7 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
-import id44.mizuki.libraries.timeline.domain.entity.Status
-import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
+import id44.mizuki.shared.model.status.Status
+import id44.mizuki.shared.model.status.StatusVisibility
 
 interface StatusRepository {
     suspend fun getGlobalStatuses(maxId: String? = null, limit: Int = 20): List<Status>

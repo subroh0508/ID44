@@ -1,4 +1,4 @@
-import { PUBLIC } from 'ID44-timeline-valueobject';
+import { PUBLIC } from 'ID44-model-status';
 import * as Actions from "../actions/toots";
 
 const initialState = {
