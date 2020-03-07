@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="infra-status-js">
+    <output-path>$PROJECT_DIR$/data/infra/infra-status/build/libs</output-path>
+    <root id="archive" name="infra-status-js.jar" />
+  </artifact>
+</component>

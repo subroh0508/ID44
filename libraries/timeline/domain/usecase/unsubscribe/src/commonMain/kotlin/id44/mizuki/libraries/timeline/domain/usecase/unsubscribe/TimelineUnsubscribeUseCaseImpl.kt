@@ -4,7 +4,7 @@ import id44.mizuki.infra.auth.repository.AccessTokenRepository
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.model.status.Stream
-import id44.mizuki.libraries.timeline.infra.repository.StreamingRepository
+import id44.mizuki.infra.status.repository.StreamingRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

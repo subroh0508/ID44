@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.timeline.infra.repository
+package id44.mizuki.infra.status.repository
 
 import id44.mizuki.shared.model.status.Status
 import id44.mizuki.shared.model.status.StatusVisibility

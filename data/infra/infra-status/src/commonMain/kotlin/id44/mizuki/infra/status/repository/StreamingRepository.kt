@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.timeline.infra.repository
+package id44.mizuki.infra.status.repository
 
 import id44.mizuki.shared.util.valueobject.AccessToken
 import id44.mizuki.shared.util.valueobject.HostName

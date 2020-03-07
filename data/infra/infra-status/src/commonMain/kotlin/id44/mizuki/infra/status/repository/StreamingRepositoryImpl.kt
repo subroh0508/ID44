@@ -1,12 +1,12 @@
-package id44.mizuki.libraries.timeline.infra.repository
+package id44.mizuki.infra.status.repository
 
 import id44.mizuki.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.shared.util.valueobject.AccessToken
 import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.model.status.Status
 import id44.mizuki.shared.model.status.Stream
-import id44.mizuki.libraries.timeline.infra.toStatus
-import id44.mizuki.libraries.timeline.infra.toStreamType
+import id44.mizuki.infra.status.toStatus
+import id44.mizuki.infra.status.toStreamType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.mapNotNull

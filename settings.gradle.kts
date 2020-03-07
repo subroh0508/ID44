@@ -15,13 +15,13 @@ include(
     ":data:api",
     ":data:infra:infra-auth",
     ":data:infra:infra-account",
+    ":data:infra:infra-status",
     ":libraries:reactnativesupport",
     ":libraries:account:domain:usecase:fetchownaccount",
     ":libraries:account:domain:usecase:fetchownaccounts",
     ":libraries:auth:domain:usecase:requestappcredential",
     ":libraries:auth:domain:usecase:requestaccesstoken",
     ":libraries:auth:domain:usecase:switchaccesstoken",
-    ":libraries:timeline:infra",
     ":libraries:timeline:domain:usecase:subscribe",
     ":libraries:timeline:domain:usecase:unsubscribe",
     ":libraries:timeline:domain:usecase:fetchstatuses",
@@ -33,8 +33,6 @@ include(
     ":react-native-reanimated",
     ":react-native-fast-image"
 )
-
-project(":libraries:timeline:infra").name = "timeline-infra"
 
 project(":bridges:shared").name = "bridges-shared"
 project(":bridges:auth").name = "bridges-auth"

@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.timeline.infra
+package id44.mizuki.infra.status
 
 import com.soywiz.klock.DateFormat
 import com.soywiz.klock.parse

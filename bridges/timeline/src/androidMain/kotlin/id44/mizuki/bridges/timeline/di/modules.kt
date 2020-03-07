@@ -21,8 +21,8 @@ import id44.mizuki.libraries.timeline.domain.usecase.subscribe.di.timelineSubscr
 import id44.mizuki.libraries.timeline.domain.usecase.togglefavourite.di.toggleFavouriteUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.togglereblog.di.toggleReblogUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.unsubscribe.di.timelineUnsubscribeUseCaseModule
-import id44.mizuki.libraries.timeline.infra.di.statusRepositoryModule
-import id44.mizuki.libraries.timeline.infra.di.streamingRepositoryModule
+import id44.mizuki.infra.status.repository.di.statusRepositoryModule
+import id44.mizuki.infra.status.repository.di.streamingRepositoryModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.bindings.WeakContextScope

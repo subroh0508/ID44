@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/data/infra" />
             <option value="$PROJECT_DIR$/data/infra/infra-account" />
             <option value="$PROJECT_DIR$/data/infra/infra-auth" />
+            <option value="$PROJECT_DIR$/data/infra/infra-status" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/account" />
             <option value="$PROJECT_DIR$/libraries/account/domain" />
@@ -51,7 +52,6 @@
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/togglefavourite" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/togglereblog" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain/usecase/unsubscribe" />
-            <option value="$PROJECT_DIR$/libraries/timeline/infra" />
             <option value="$PROJECT_DIR$/node_modules/react-native-fast-image/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-reanimated/android" />

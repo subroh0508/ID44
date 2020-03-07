@@ -1,9 +1,9 @@
-package id44.mizuki.libraries.timeline.infra.di
+package id44.mizuki.infra.status.repository.di
 
-import id44.mizuki.libraries.timeline.infra.repository.StatusRepository
-import id44.mizuki.libraries.timeline.infra.repository.StatusRepositoryImpl
-import id44.mizuki.libraries.timeline.infra.repository.StreamingRepository
-import id44.mizuki.libraries.timeline.infra.repository.StreamingRepositoryImpl
+import id44.mizuki.infra.status.repository.StatusRepository
+import id44.mizuki.infra.status.repository.StatusRepositoryImpl
+import id44.mizuki.infra.status.repository.StreamingRepository
+import id44.mizuki.infra.status.repository.StreamingRepositoryImpl
 import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance

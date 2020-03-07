@@ -1,10 +1,10 @@
-package id44.mizuki.libraries.timeline.infra.repository
+package id44.mizuki.infra.status.repository
 
 import id44.mizuki.api.client.LocalCacheStore
 import id44.mizuki.api.client.MastodonApi
 import id44.mizuki.shared.model.status.StatusVisibility
-import id44.mizuki.libraries.timeline.infra.toStatus
-import id44.mizuki.libraries.timeline.infra.toStatusVisibilityType
+import id44.mizuki.infra.status.toStatus
+import id44.mizuki.infra.status.toStatusVisibilityType
 
 class StatusRepositoryImpl(
     private val api: MastodonApi,
