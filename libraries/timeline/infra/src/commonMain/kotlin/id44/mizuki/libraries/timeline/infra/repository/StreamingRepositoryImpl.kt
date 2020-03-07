@@ -1,6 +1,6 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
-import id44.mizuki.libraries.api.streaming.client.MastodonStreamingApi
+import id44.mizuki.api.streaming.client.MastodonStreamingApi
 import id44.mizuki.shared.util.valueobject.AccessToken
 import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.model.status.Status

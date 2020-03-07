@@ -12,7 +12,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":libraries:api"))
+                implementation(project(":data:api"))
                 implementation(project(":shared:util"))
                 implementation(project(":shared:model:model-account"))
 

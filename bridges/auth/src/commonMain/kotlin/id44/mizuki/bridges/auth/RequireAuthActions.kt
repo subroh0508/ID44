@@ -1,6 +1,6 @@
 package id44.mizuki.bridges.auth
 
-import id44.mizuki.libraries.api.TokenExpiredException
+import id44.mizuki.api.TokenExpiredException
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
 import id44.mizuki.shared.util.Https
 

@@ -21,7 +21,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":bridges:bridges-shared"))
-                implementation(project(":libraries:api"))
+                implementation(project(":data:api"))
                 implementation(project(":shared:util"))
                 implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":shared:model:model-auth"))

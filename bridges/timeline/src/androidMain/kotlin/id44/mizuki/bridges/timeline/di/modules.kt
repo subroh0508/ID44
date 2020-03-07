@@ -8,11 +8,11 @@ import id44.mizuki.bridges.timeline.*
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.di.fetchOwnAccountUseCaseModule
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.di.fetchOwnAccountsUseCaseModule
 import id44.mizuki.libraries.account.infra.repository.di.accountRepositoryModule
-import id44.mizuki.libraries.api.HttpsClientProvider
-import id44.mizuki.libraries.api.di.mastodonApiModule
-import id44.mizuki.libraries.api.di.mastodonStreamingApiModule
-import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
-import id44.mizuki.libraries.api.params.GetTimelines
+import id44.mizuki.api.HttpsClientProvider
+import id44.mizuki.api.di.mastodonApiModule
+import id44.mizuki.api.di.mastodonStreamingApiModule
+import id44.mizuki.api.params.GetAccountsVerifyCredential
+import id44.mizuki.api.params.GetTimelines
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.switchAccessTokenUseCaseModule
 import id44.mizuki.libraries.auth.infra.repository.di.accessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.fetchStatusesUseCaseModule

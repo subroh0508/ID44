@@ -11,7 +11,7 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":bridges:bridges-auth"))
-    implementation(project(":libraries:api"))
+    implementation(project(":data:api"))
     implementation(project(":shared:util"))
     implementation(project(":libraries:auth:auth-infra"))
     implementation(project(":shared:model:model-auth"))

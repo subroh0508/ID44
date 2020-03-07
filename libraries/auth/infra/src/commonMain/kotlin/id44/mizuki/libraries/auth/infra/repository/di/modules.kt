@@ -1,6 +1,6 @@
 package id44.mizuki.libraries.auth.infra.repository.di
 
-import id44.mizuki.libraries.api.CredentialProvider
+import id44.mizuki.api.CredentialProvider
 import id44.mizuki.libraries.auth.infra.repository.*
 import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepositoryImpl
 import id44.mizuki.libraries.auth.infra.repository.AccountCredentialRepositoryImpl

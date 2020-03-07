@@ -1,9 +1,9 @@
 package id44.mizuki.libraries.account.infra.repository
 
 import id44.mizuki.shared.model.account.Account
-import id44.mizuki.libraries.api.client.LocalCacheStore
-import id44.mizuki.libraries.api.client.MastodonApi
-import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
+import id44.mizuki.api.client.LocalCacheStore
+import id44.mizuki.api.client.MastodonApi
+import id44.mizuki.api.params.GetAccountsVerifyCredential
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
 

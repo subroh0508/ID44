@@ -1,9 +1,9 @@
 package id44.mizuki.libraries.auth.infra.repository
 
-import id44.mizuki.libraries.api.CredentialProvider
-import id44.mizuki.libraries.api.TokenExpiredException
-import id44.mizuki.libraries.api.client.AccessTokenStore
-import id44.mizuki.libraries.api.client.LocalCacheStore
+import id44.mizuki.api.CredentialProvider
+import id44.mizuki.api.TokenExpiredException
+import id44.mizuki.api.client.AccessTokenStore
+import id44.mizuki.api.client.LocalCacheStore
 import id44.mizuki.shared.util.valueobject.AccessToken
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName

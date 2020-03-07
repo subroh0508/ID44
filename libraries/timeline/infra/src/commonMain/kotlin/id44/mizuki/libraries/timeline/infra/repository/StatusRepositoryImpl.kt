@@ -1,7 +1,7 @@
 package id44.mizuki.libraries.timeline.infra.repository
 
-import id44.mizuki.libraries.api.client.LocalCacheStore
-import id44.mizuki.libraries.api.client.MastodonApi
+import id44.mizuki.api.client.LocalCacheStore
+import id44.mizuki.api.client.MastodonApi
 import id44.mizuki.shared.model.status.StatusVisibility
 import id44.mizuki.libraries.timeline.infra.toStatus
 import id44.mizuki.libraries.timeline.infra.toStatusVisibilityType

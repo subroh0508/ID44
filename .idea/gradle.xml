@@ -24,6 +24,8 @@
             <option value="$PROJECT_DIR$/bridges/signin" />
             <option value="$PROJECT_DIR$/bridges/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/api" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/account" />
             <option value="$PROJECT_DIR$/libraries/account/domain" />
@@ -31,7 +33,6 @@
             <option value="$PROJECT_DIR$/libraries/account/domain/usecase/fetchownaccount" />
             <option value="$PROJECT_DIR$/libraries/account/domain/usecase/fetchownaccounts" />
             <option value="$PROJECT_DIR$/libraries/account/infra" />
-            <option value="$PROJECT_DIR$/libraries/api" />
             <option value="$PROJECT_DIR$/libraries/auth" />
             <option value="$PROJECT_DIR$/libraries/auth/domain" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase" />

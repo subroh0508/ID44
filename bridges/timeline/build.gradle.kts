@@ -16,7 +16,7 @@ kotlin {
                 implementation(project(":bridges:bridges-auth"))
                 implementation(project(":shared:util"))
                 implementation(project(":libraries:reactnativesupport"))
-                implementation(project(":libraries:api"))
+                implementation(project(":data:api"))
                 implementation(project(":libraries:auth:auth-infra"))
                 implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
                 implementation(project(":libraries:account:account-infra"))

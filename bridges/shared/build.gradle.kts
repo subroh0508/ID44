@@ -12,7 +12,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":libraries:api"))
+                implementation(project(":data:api"))
 
                 implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Serialization.common)
