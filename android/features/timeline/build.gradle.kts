@@ -35,9 +35,9 @@ dependencies {
     implementation(project(":react-native-reanimated"))
     implementation(project(":react-native-fast-image"))
 
-    implementation(Libraries.Kotlin.stdlibJvm)
+    implementation(Libraries.Kotlin.jvm)
     implementation(Libraries.Kotlin.reflect)
-    implementation(Libraries.Kotlin.serializationCommon)
+    implementation(Libraries.Serialization.common)
 
     implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)
@@ -55,6 +55,6 @@ dependencies {
 
     implementation(Libraries.reactNative)
 
-    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.jvm)
     implementation(Libraries.Kodein.androidX)
 }

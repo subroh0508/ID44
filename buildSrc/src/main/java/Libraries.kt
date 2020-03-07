@@ -11,15 +11,10 @@ object Libraries {
     object Kotlin {
         const val version = "1.3.70"
 
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:$version"
-        const val stdlibJvm = "org.jetbrains.kotlin:kotlin-stdlib:$version"
-        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
+        const val common = "org.jetbrains.kotlin:kotlin-stdlib-common:$version"
+        const val jvm = "org.jetbrains.kotlin:kotlin-stdlib:$version"
+        const val js = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
-        const val serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Serialization.version}"
-        const val serializationJvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Serialization.version}"
-        const val serializationJs = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Serialization.version}"
-        const val serializationIos = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Serialization.version}"
-        const val androidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions-runtime:$version"
         const val test = "org.jetbrains.kotlin:kotlin-test:$version"
     }
 
@@ -31,12 +26,14 @@ object Libraries {
         const val js = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$version"
         const val native = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$version"
 
+        /* Since v0.20.0
         object Properties {
             const val common = "org.jetbrains.kotlinx:kotlinx-serialization-properties-common:$version"
             const val jvm = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
             const val js = "org.jetbrains.kotlinx:kotlinx-serialization-properties-js:$version"
             const val native = "org.jetbrains.kotlinx:kotlinx-serialization-properties-native:$version"
         }
+        */
     }
 
     const val reactNative = "com.facebook.react:react-native:+"
@@ -136,10 +133,10 @@ object Libraries {
     object Kodein {
         const val version = "6.5.3"
 
-        const val erasedCommon = "org.kodein.di:kodein-di-erased:$version"
-        const val genericJvm = "org.kodein.di:kodein-di-generic-jvm:$version"
+        const val common = "org.kodein.di:kodein-di-erased:$version"
+        const val jvm = "org.kodein.di:kodein-di-generic-jvm:$version"
         const val androidX = "org.kodein.di:kodein-di-framework-android-x:$version"
-        const val erasedJs = "org.kodein.di:kodein-di-erased-js:$version"
+        const val js = "org.kodein.di:kodein-di-erased-js:$version"
     }
 
     object JUnit {
@@ -148,15 +145,6 @@ object Libraries {
         const val vintageVersion = "5.2.0"
 
         const val core = "junit:junit:$coreVersion"
-        const val platformRunner = "org.junit.platform:junit-platform-runner:$platformRunnerVersion"
-        const val junitVintage = "org.junit.vintage:junit-vintage-engine:$vintageVersion"
-    }
-
-    object Robolectric {
-        const val version = "4.3.1"
-
-        const val core = "org.robolectric:robolectric:$version"
-        const val shadows = "org.robolectric:shadows-supportv4:$version"
     }
 
     object MockK {

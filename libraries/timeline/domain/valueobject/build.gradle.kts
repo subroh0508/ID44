@@ -11,21 +11,21 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Libraries.Kotlin.stdlibCommon)
+                implementation(Libraries.Kotlin.common)
             }
         }
 
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJvm)
+                implementation(Libraries.Kotlin.jvm)
             }
         }
 
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.js)
             }
         }
     }

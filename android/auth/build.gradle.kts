@@ -16,7 +16,7 @@ dependencies {
     implementation(project(":libraries:auth:auth-infra"))
     implementation(project(":libraries:auth:domain:auth-valueobject"))
 
-    implementation(Libraries.Kotlin.stdlibJvm)
+    implementation(Libraries.Kotlin.jvm)
     implementation(Libraries.Kotlin.reflect)
 
     implementation(Libraries.Coroutines.common)
@@ -33,6 +33,6 @@ dependencies {
 
     implementation(Libraries.reactNative)
 
-    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.jvm)
     implementation(Libraries.Kodein.androidX)
 }

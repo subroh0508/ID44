@@ -13,8 +13,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":libraries:shared"))
-                implementation(Libraries.Kotlin.stdlibCommon)
-                implementation(Libraries.Kotlin.serializationCommon)
+                implementation(Libraries.Kotlin.common)
+                implementation(Libraries.Serialization.common)
 
                 implementation(Libraries.Klock.common)
             }
@@ -23,16 +23,16 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJvm)
-                implementation(Libraries.Kotlin.serializationJvm)
+                implementation(Libraries.Kotlin.jvm)
+                implementation(Libraries.Serialization.jvm)
             }
         }
 
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJs)
-                implementation(Libraries.Kotlin.serializationJs)
+                implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Serialization.js)
             }
         }
     }

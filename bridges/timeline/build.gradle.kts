@@ -33,8 +33,8 @@ kotlin {
                 implementation(project(":libraries:timeline:domain:timeline-entity"))
                 implementation(project(":libraries:timeline:domain:timeline-valueobject"))
 
-                implementation(Libraries.Kotlin.stdlibCommon)
-                implementation(Libraries.Kotlin.serializationCommon)
+                implementation(Libraries.Kotlin.common)
+                implementation(Libraries.Serialization.common)
 
                 implementation(Libraries.Coroutines.common)
 
@@ -44,7 +44,7 @@ kotlin {
 
                 implementation(Libraries.Klock.common)
 
-                implementation(Libraries.Kodein.erasedCommon)
+                implementation(Libraries.Kodein.common)
             }
         }
 
@@ -57,8 +57,8 @@ kotlin {
                 implementation(project(":react-native-reanimated"))
                 implementation(project(":react-native-fast-image"))
 
-                implementation(Libraries.Kotlin.stdlibJvm)
-                implementation(Libraries.Kotlin.serializationJvm)
+                implementation(Libraries.Kotlin.jvm)
+                implementation(Libraries.Serialization.jvm)
                 implementation(Libraries.Kotlin.reflect)
 
                 implementation(Libraries.Klock.android)
@@ -73,7 +73,7 @@ kotlin {
 
                 implementation(Libraries.reactNative)
 
-                implementation(Libraries.Kodein.genericJvm)
+                implementation(Libraries.Kodein.jvm)
             }
         }
     }

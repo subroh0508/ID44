@@ -16,11 +16,11 @@ kotlin {
                 implementation(project(":libraries:shared"))
                 implementation(project(":libraries:account:domain:account-entity"))
 
-                implementation(Libraries.Kotlin.stdlibCommon)
+                implementation(Libraries.Kotlin.common)
 
                 implementation(Libraries.Coroutines.common)
 
-                implementation(Libraries.Kodein.erasedCommon)
+                implementation(Libraries.Kodein.common)
             }
         }
 
@@ -29,24 +29,24 @@ kotlin {
             dependencies {
                 implementation(project(":android:base"))
 
-                implementation(Libraries.Kotlin.stdlibJvm)
+                implementation(Libraries.Kotlin.jvm)
 
                 implementation(Libraries.Coroutines.android)
 
                 implementation(Libraries.Jetpack.ktx)
 
-                implementation(Libraries.Kodein.genericJvm)
+                implementation(Libraries.Kodein.jvm)
             }
         }
 
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJs)
+                implementation(Libraries.Kotlin.js)
 
                 implementation(Libraries.Coroutines.js)
 
-                implementation(Libraries.Kodein.erasedJs)
+                implementation(Libraries.Kodein.js)
             }
         }
     }

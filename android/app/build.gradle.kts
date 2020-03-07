@@ -100,7 +100,7 @@ dependencies {
     implementation(project(":android:features:timeline"))
     implementation(project(":react-native-vector-icons"))
 
-    implementation(Libraries.Kotlin.stdlibJvm)
+    implementation(Libraries.Kotlin.jvm)
 
     implementation(Libraries.Jetpack.ktx)
     implementation(Libraries.Jetpack.appCompat)
@@ -108,7 +108,7 @@ dependencies {
 
     implementation(Libraries.Ktor.serializationJvm)
 
-    implementation(Libraries.Kodein.genericJvm)
+    implementation(Libraries.Kodein.jvm)
     implementation(Libraries.Kodein.androidX)
 
     implementation(Libraries.reactNative)

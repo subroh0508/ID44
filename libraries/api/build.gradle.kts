@@ -14,9 +14,9 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:shared"))
 
-                implementation(Libraries.Kotlin.stdlibCommon)
+                implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Kotlin.reflect)
-                implementation(Libraries.Kotlin.serializationCommon)
+                implementation(Libraries.Serialization.common)
 
                 implementation(Libraries.Coroutines.common)
 
@@ -26,7 +26,7 @@ kotlin {
 
                 implementation(Libraries.Klock.common)
 
-                implementation(Libraries.Kodein.erasedCommon)
+                implementation(Libraries.Kodein.common)
             }
         }
 
@@ -35,8 +35,8 @@ kotlin {
             dependencies {
                 implementation(project(":android:base"))
 
-                implementation(Libraries.Kotlin.stdlibJvm)
-                implementation(Libraries.Kotlin.serializationJvm)
+                implementation(Libraries.Kotlin.jvm)
+                implementation(Libraries.Serialization.jvm)
 
                 implementation(Libraries.Coroutines.android)
 
@@ -49,15 +49,15 @@ kotlin {
                 implementation(Libraries.Okhttp3.client)
                 implementation(Libraries.Okhttp3.loggingIntercerptor)
 
-                implementation(Libraries.Kodein.genericJvm)
+                implementation(Libraries.Kodein.jvm)
             }
         }
 
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJs)
-                implementation(Libraries.Kotlin.serializationJs)
+                implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Serialization.js)
 
                 implementation(Libraries.Coroutines.js)
 
@@ -67,7 +67,7 @@ kotlin {
 
                 implementation(Libraries.Klock.js)
 
-                implementation(Libraries.Kodein.erasedJs)
+                implementation(Libraries.Kodein.js)
 
                 implementation(npm("text-encoding", "0.7.0"))
             }

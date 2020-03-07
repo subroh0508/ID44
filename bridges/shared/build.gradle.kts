@@ -14,8 +14,8 @@ kotlin {
             dependencies {
                 implementation(project(":libraries:api"))
 
-                implementation(Libraries.Kotlin.stdlibCommon)
-                implementation(Libraries.Kotlin.serializationCommon)
+                implementation(Libraries.Kotlin.common)
+                implementation(Libraries.Serialization.common)
 
                 implementation(Libraries.Coroutines.common)
 
@@ -25,7 +25,7 @@ kotlin {
 
                 implementation(Libraries.Klock.common)
 
-                implementation(Libraries.Kodein.erasedCommon)
+                implementation(Libraries.Kodein.common)
             }
         }
 
@@ -38,7 +38,7 @@ kotlin {
                 implementation(project(":react-native-gesture-handler"))
                 implementation(project(":react-native-reanimated"))
 
-                implementation(Libraries.Kotlin.stdlibJvm)
+                implementation(Libraries.Kotlin.jvm)
                 implementation(Libraries.Kotlin.reflect)
 
                 implementation(Libraries.Klock.android)
@@ -53,15 +53,15 @@ kotlin {
 
                 implementation(Libraries.reactNative)
 
-                implementation(Libraries.Kodein.genericJvm)
+                implementation(Libraries.Kodein.jvm)
             }
         }
 
         val jsMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Libraries.Kotlin.stdlibJs)
-                implementation(Libraries.Kotlin.serializationJs)
+                implementation(Libraries.Kotlin.js)
+                implementation(Libraries.Serialization.js)
 
                 implementation(Libraries.Klock.js)
 
