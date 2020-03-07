@@ -14,7 +14,7 @@ import id44.mizuki.api.di.mastodonStreamingApiModule
 import id44.mizuki.api.params.GetAccountsVerifyCredential
 import id44.mizuki.api.params.GetTimelines
 import id44.mizuki.libraries.auth.domain.usecase.switchaccesstoken.di.switchAccessTokenUseCaseModule
-import id44.mizuki.libraries.auth.infra.repository.di.accessTokenRepositoryModule
+import id44.mizuki.infra.auth.repository.di.accessTokenRepositoryModule
 import id44.mizuki.libraries.timeline.domain.usecase.fetchstatuses.di.fetchStatusesUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.submitstatus.di.submitStatusUseCaseModule
 import id44.mizuki.libraries.timeline.domain.usecase.subscribe.di.timelineSubscribeUseCaseModule

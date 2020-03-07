@@ -13,11 +13,11 @@ include(
     ":shared:model:model-account",
     ":shared:model:model-status",
     ":data:api",
+    ":data:infra:infra-auth",
     ":libraries:reactnativesupport",
     ":libraries:account:infra",
     ":libraries:account:domain:usecase:fetchownaccount",
     ":libraries:account:domain:usecase:fetchownaccounts",
-    ":libraries:auth:infra",
     ":libraries:auth:domain:usecase:requestappcredential",
     ":libraries:auth:domain:usecase:requestaccesstoken",
     ":libraries:auth:domain:usecase:switchaccesstoken",
@@ -34,7 +34,6 @@ include(
     ":react-native-fast-image"
 )
 
-project(":libraries:auth:infra").name = "auth-infra"
 project(":libraries:account:infra").name = "account-infra"
 project(":libraries:timeline:infra").name = "timeline-infra"
 

@@ -1,7 +1,7 @@
 package id44.mizuki.bridges.timeline
 
 import id44.mizuki.bridges.auth.RequireAuthActions
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.infra.auth.repository.AccessTokenRepository
 import id44.mizuki.libraries.reactnativesupport.ReactArray
 import id44.mizuki.libraries.reactnativesupport.ReactMap
 import id44.mizuki.libraries.reactnativesupport.reactArray

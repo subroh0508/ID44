@@ -13,7 +13,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared:util"))
-                implementation(project(":libraries:auth:auth-infra"))
+                implementation(project(":data:infra:infra-auth"))
                 implementation(project(":shared:model:model-status"))
                 implementation(project(":libraries:timeline:timeline-infra"))
 

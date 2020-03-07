@@ -1,10 +1,10 @@
-package id44.mizuki.libraries.auth.infra.repository.di
+package id44.mizuki.infra.auth.repository.di
 
 import id44.mizuki.api.CredentialProvider
-import id44.mizuki.libraries.auth.infra.repository.*
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepositoryImpl
-import id44.mizuki.libraries.auth.infra.repository.AccountCredentialRepositoryImpl
-import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepositoryImpl
+import id44.mizuki.infra.auth.repository.*
+import id44.mizuki.infra.auth.repository.AccessTokenRepositoryImpl
+import id44.mizuki.infra.auth.repository.AccountCredentialRepositoryImpl
+import id44.mizuki.infra.auth.repository.AppCredentialRepositoryImpl
 import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance

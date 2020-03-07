@@ -17,7 +17,7 @@ kotlin {
                 implementation(project(":shared:util"))
                 implementation(project(":libraries:reactnativesupport"))
                 implementation(project(":data:api"))
-                implementation(project(":libraries:auth:auth-infra"))
+                implementation(project(":data:infra:infra-auth"))
                 implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
                 implementation(project(":libraries:account:account-infra"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccount"))

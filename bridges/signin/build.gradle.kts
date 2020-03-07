@@ -15,7 +15,7 @@ kotlin {
                 implementation(project(":bridges:bridges-shared"))
                 implementation(project(":shared:util"))
                 implementation(project(":data:api"))
-                implementation(project(":libraries:auth:auth-infra"))
+                implementation(project(":data:infra:infra-auth"))
                 implementation(project(":shared:model:model-auth"))
                 implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
                 implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))

@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.auth.infra.repository
+package id44.mizuki.infra.auth.repository
 
 import id44.mizuki.shared.model.auth.ClientId
 import id44.mizuki.shared.model.auth.ClientSecret

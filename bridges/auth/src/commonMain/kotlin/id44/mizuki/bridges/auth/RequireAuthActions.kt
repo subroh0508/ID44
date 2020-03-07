@@ -1,7 +1,7 @@
 package id44.mizuki.bridges.auth
 
 import id44.mizuki.api.TokenExpiredException
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.infra.auth.repository.AccessTokenRepository
 import id44.mizuki.shared.util.Https
 
 abstract class RequireAuthActions(

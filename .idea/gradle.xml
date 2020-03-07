@@ -26,6 +26,8 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/api" />
+            <option value="$PROJECT_DIR$/data/infra" />
+            <option value="$PROJECT_DIR$/data/infra/infra-auth" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/account" />
             <option value="$PROJECT_DIR$/libraries/account/domain" />
@@ -39,7 +41,6 @@
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
             <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/switchaccesstoken" />
-            <option value="$PROJECT_DIR$/libraries/auth/infra" />
             <option value="$PROJECT_DIR$/libraries/reactnativesupport" />
             <option value="$PROJECT_DIR$/libraries/timeline" />
             <option value="$PROJECT_DIR$/libraries/timeline/domain" />

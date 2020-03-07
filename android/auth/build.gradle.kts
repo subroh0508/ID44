@@ -13,7 +13,7 @@ dependencies {
     implementation(project(":bridges:bridges-auth"))
     implementation(project(":data:api"))
     implementation(project(":shared:util"))
-    implementation(project(":libraries:auth:auth-infra"))
+    implementation(project(":data:infra:infra-auth"))
     implementation(project(":shared:model:model-auth"))
 
     implementation(Libraries.Kotlin.jvm)

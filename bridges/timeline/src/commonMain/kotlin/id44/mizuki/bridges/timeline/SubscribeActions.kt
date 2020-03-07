@@ -1,7 +1,7 @@
 package id44.mizuki.bridges.timeline
 
 import id44.mizuki.bridges.auth.RequireAuthActions
-import id44.mizuki.libraries.auth.infra.repository.AccessTokenRepository
+import id44.mizuki.infra.auth.repository.AccessTokenRepository
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.model.status.Status
