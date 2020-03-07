@@ -16,8 +16,7 @@ dependencies {
     implementation(project(":bridges:bridges-signin"))
     implementation(project(":shared:util"))
     implementation(project(":shared:model:model-auth"))
-    implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
-    implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
+    implementation(project(":domain:signin:usecase-signin"))
 
     implementation(Libraries.Kotlin.jvm)
     implementation(Libraries.Kotlin.reflect)

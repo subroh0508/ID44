@@ -31,14 +31,11 @@
             <option value="$PROJECT_DIR$/data/infra/infra-auth" />
             <option value="$PROJECT_DIR$/data/infra/infra-status" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/signin" />
+            <option value="$PROJECT_DIR$/domain/signin/usecase-signin" />
             <option value="$PROJECT_DIR$/domain/timeline" />
             <option value="$PROJECT_DIR$/domain/timeline/usecase-timeline" />
             <option value="$PROJECT_DIR$/libraries" />
-            <option value="$PROJECT_DIR$/libraries/auth" />
-            <option value="$PROJECT_DIR$/libraries/auth/domain" />
-            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase" />
-            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken" />
-            <option value="$PROJECT_DIR$/libraries/auth/domain/usecase/requestappcredential" />
             <option value="$PROJECT_DIR$/libraries/reactnativesupport" />
             <option value="$PROJECT_DIR$/node_modules/react-native-fast-image/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android" />

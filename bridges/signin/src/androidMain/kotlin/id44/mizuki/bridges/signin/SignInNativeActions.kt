@@ -2,8 +2,8 @@ package id44.mizuki.bridges.signin
 
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
-import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
-import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
+import id44.mizuki.domain.signin.usecase.RequestAccessTokenUseCase
+import id44.mizuki.domain.signin.usecase.RequestAppCredentialUseCase
 import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 import id44.mizuki.libraries.reactnativesupport.ReactPromise
 import id44.mizuki.shared.util.valueobject.HostName

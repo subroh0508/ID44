@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.auth.domain.usecase.requestappcredential
+package id44.mizuki.domain.signin.usecase
 
 import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.util.valueobject.Uri

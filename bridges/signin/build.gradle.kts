@@ -17,8 +17,7 @@ kotlin {
                 implementation(project(":data:api"))
                 implementation(project(":data:infra:infra-auth"))
                 implementation(project(":shared:model:model-auth"))
-                implementation(project(":libraries:auth:domain:usecase:requestappcredential"))
-                implementation(project(":libraries:auth:domain:usecase:requestaccesstoken"))
+                implementation(project(":domain:signin:usecase-signin"))
 
                 implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Serialization.common)

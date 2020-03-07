@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken
+package id44.mizuki.domain.signin.usecase
 
 import id44.mizuki.infra.auth.repository.AccountCredentialRepository
 import id44.mizuki.infra.auth.repository.AppCredentialRepository
