@@ -16,7 +16,7 @@ dependencies {
     implementation(project(":bridges:bridges-shared"))
     implementation(project(":bridges:bridges-auth"))
     implementation(project(":bridges:bridges-timeline"))
-    implementation(project(":shared"))
+    implementation(project(":shared:util"))
     implementation(project(":libraries:auth:auth-infra"))
     implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
     implementation(project(":libraries:account:domain:usecase:fetchownaccount"))

@@ -12,7 +12,7 @@ dependencies {
     implementation(project(":android:base"))
     implementation(project(":bridges:bridges-auth"))
     implementation(project(":libraries:api"))
-    implementation(project(":shared"))
+    implementation(project(":shared:util"))
     implementation(project(":libraries:auth:auth-infra"))
     implementation(project(":libraries:auth:domain:auth-valueobject"))
 

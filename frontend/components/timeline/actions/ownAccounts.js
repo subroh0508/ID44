@@ -5,7 +5,7 @@ import {
   openAuthentication as nativeOpenAuthentication,
 } from "../native/TimelineNativeActions";
 import { serializer } from 'ID44-account-entity';
-import { mapper } from 'ID44-shared';
+import { mapper } from 'ID44-util';
 
 const prefix = 'own_accounts';
 

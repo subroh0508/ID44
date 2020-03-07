@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="util-js">
+    <output-path>$PROJECT_DIR$/shared/util/build/libs</output-path>
+    <root id="archive" name="util-js.jar" />
+  </artifact>
+</component>

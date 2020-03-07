@@ -5,8 +5,8 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
 import id44.mizuki.libraries.reactnativesupport.ReactContextBaseModule
 import id44.mizuki.libraries.reactnativesupport.ReactMap
-import id44.mizuki.shared.valueobject.AccountId
-import id44.mizuki.shared.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.AccountId
+import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.libraries.timeline.domain.valueobject.StatusVisibility
 import id44.mizuki.libraries.timeline.domain.valueobject.Stream
 import id44.mizuki.libraries.timeline.domain.entity.Status

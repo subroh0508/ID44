@@ -2,8 +2,8 @@ package id44.mizuki.libraries.auth.domain.usecase.requestappcredential
 
 import id44.mizuki.libraries.auth.infra.repository.AccountCredentialRepository
 import id44.mizuki.libraries.auth.infra.repository.AppCredentialRepository
-import id44.mizuki.shared.valueobject.HostName
-import id44.mizuki.shared.valueobject.Uri
+import id44.mizuki.shared.util.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

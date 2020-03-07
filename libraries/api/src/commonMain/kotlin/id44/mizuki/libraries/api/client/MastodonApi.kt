@@ -4,7 +4,7 @@ import id44.mizuki.libraries.api.json.StatusJson
 import id44.mizuki.libraries.api.json.account.AccountJson
 import id44.mizuki.libraries.api.json.enums.StatusVisibilityType
 import id44.mizuki.libraries.api.params.GetAccountsVerifyCredential
-import id44.mizuki.shared.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.HostName
 
 interface MastodonApi {
     val host: HostName

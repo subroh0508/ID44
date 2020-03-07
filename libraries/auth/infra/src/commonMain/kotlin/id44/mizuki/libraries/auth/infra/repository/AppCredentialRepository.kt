@@ -2,8 +2,8 @@ package id44.mizuki.libraries.auth.infra.repository
 
 import id44.mizuki.libraries.auth.domain.valueobject.ClientId
 import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
-import id44.mizuki.shared.valueobject.HostName
-import id44.mizuki.shared.valueobject.Uri
+import id44.mizuki.shared.util.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.Uri
 
 interface AppCredentialRepository {
     suspend fun fetchAppCredential(

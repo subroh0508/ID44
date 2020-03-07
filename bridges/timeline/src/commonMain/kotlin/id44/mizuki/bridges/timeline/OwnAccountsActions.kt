@@ -10,8 +10,8 @@ import id44.mizuki.libraries.reactnativesupport.ReactArray
 import id44.mizuki.libraries.reactnativesupport.ReactMap
 import id44.mizuki.libraries.reactnativesupport.reactArray
 import id44.mizuki.libraries.reactnativesupport.reactMap
-import id44.mizuki.shared.valueobject.AccountId
-import id44.mizuki.shared.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.AccountId
+import id44.mizuki.shared.util.valueobject.HostName
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Mapper
 

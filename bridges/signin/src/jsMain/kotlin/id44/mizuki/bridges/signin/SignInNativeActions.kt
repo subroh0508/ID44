@@ -6,9 +6,9 @@ import exceptions.parse
 import id44.mizuki.bridges.signin.di.signInNativeActionsComponent
 import id44.mizuki.libraries.auth.domain.usecase.requestaccesstoken.RequestAccessTokenUseCase
 import id44.mizuki.libraries.auth.domain.usecase.requestappcredential.RequestAppCredentialUseCase
-import id44.mizuki.shared.valueobject.HostName
-import id44.mizuki.shared.valueobject.Uri
-import id44.mizuki.shared.valueobject.parse
+import id44.mizuki.shared.util.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.Uri
+import id44.mizuki.shared.util.valueobject.parse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.awaitAll

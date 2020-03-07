@@ -2,7 +2,7 @@ import React, { memo, useContext } from 'react';
 import { Text, ThemeContext } from "react-native-elements";
 import { View, StyleSheet } from "react-native";
 import i18next from "i18next";
-import { datetimes } from 'ID44-shared';
+import { datetimes } from 'ID44-util';
 
 const Component = ({ diffTime }) => {
   const { theme } = useContext(ThemeContext);

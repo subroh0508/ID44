@@ -4,8 +4,8 @@ import id44.mizuki.libraries.api.auth.client.AppCredentialStore
 import id44.mizuki.libraries.api.auth.client.MastodonAuthApi
 import id44.mizuki.libraries.auth.domain.valueobject.ClientId
 import id44.mizuki.libraries.auth.domain.valueobject.ClientSecret
-import id44.mizuki.shared.valueobject.HostName
-import id44.mizuki.shared.valueobject.Uri
+import id44.mizuki.shared.util.valueobject.HostName
+import id44.mizuki.shared.util.valueobject.Uri
 
 internal class AppCredentialRepositoryImpl(
     private val apiClient: MastodonAuthApi,
