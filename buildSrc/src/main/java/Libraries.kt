@@ -1,22 +1,42 @@
 @Suppress("unused")
 object Libraries {
     object GradlePlugin {
-        const val android = "com.android.tools.build:gradle:${Versions.buildTools}"
-        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+        const val androidGradlePluginVersion = "3.6.1"
+
+        const val android = "com.android.tools.build:gradle:$androidGradlePluginVersion"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
+        const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:${Kotlin.version}"
     }
 
     object Kotlin {
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
-        const val stdlibJvm = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
-        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
-        const val serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
-        const val serializationJvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
-        const val serializationJs = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.kotlinxSerialization}"
-        const val serializationIos = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
-        const val androidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions-runtime:${Versions.kotlin}"
-        const val test = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
+        const val version = "1.3.70"
+
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:$version"
+        const val stdlibJvm = "org.jetbrains.kotlin:kotlin-stdlib:$version"
+        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:$version"
+        const val reflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
+        const val serializationCommon = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Serialization.version}"
+        const val serializationJvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Serialization.version}"
+        const val serializationJs = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Serialization.version}"
+        const val serializationIos = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Serialization.version}"
+        const val androidExtensions = "org.jetbrains.kotlin:kotlin-android-extensions-runtime:$version"
+        const val test = "org.jetbrains.kotlin:kotlin-test:$version"
+    }
+
+    object Serialization {
+        const val version = "0.14.0"
+
+        const val common = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$version"
+        const val jvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$version"
+        const val js = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$version"
+        const val native = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$version"
+
+        object Properties {
+            const val common = "org.jetbrains.kotlinx:kotlinx-serialization-properties-common:$version"
+            const val jvm = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
+            const val js = "org.jetbrains.kotlinx:kotlinx-serialization-properties-js:$version"
+            const val native = "org.jetbrains.kotlinx:kotlinx-serialization-properties-native:$version"
+        }
     }
 
     const val reactNative = "com.facebook.react:react-native:+"
@@ -27,88 +47,121 @@ object Libraries {
     }
 
     object Coroutines {
-        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.coroutines}"
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
-        const val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}"
+        const val version = "1.3.4"
+
+        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$version"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+        const val js = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$version"
     }
 
     object Jetpack {
-        const val core = "androidx.core:core:${Versions.Jetpack.core}"
-        const val ktx = "androidx.core:core-ktx:${Versions.Jetpack.core}"
-        const val appCompat = "androidx.appcompat:appcompat:${Versions.Jetpack.appCompat}"
-        const val fragment = "androidx.fragment:fragment:${Versions.Jetpack.fragment}"
-        const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.Jetpack.fragment}"
-        const val media = "androidx.media:media:${Versions.Jetpack.media}"
-        const val preference = "androidx.preference:preference:${Versions.Jetpack.preference}"
-        const val cardView = "androidx.cardview:cardview:${Versions.Jetpack.cardView}"
-        const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.Jetpack.recyclerView}"
-        const val material = "com.google.android.material:material:${Versions.Jetpack.material}"
-        const val vectorDrawable = "androidx.vectordrawable:vectordrawable-animated:${Versions.Jetpack.vectorDrawable}"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.Jetpack.constraintLayout}"
+        const val coreVersion = "1.2.0"
+        const val appCompatVersion = "1.1.0"
+        const val fragmentVersion = "1.1.0"
+        const val mediaVersion = "1.0.0"
+        const val preferenceVersion = "1.0.0"
+        const val cardViewVersion = "1.0.0"
+        const val recyclerViewVersion = "1.1.0"
+        const val materialVersion = "1.0.0"
+        const val vectorDrawableVersion = "1.0.0"
+        const val constraintLayoutVersion = "2.0.0-beta4"
+        const val lifecycleVersion = "2.2.0"
+
+        const val testRunnerVersion = "1.1.0"
+        const val espressoVersion = "3.0.2"
+
+        const val core = "androidx.core:core:$coreVersion"
+        const val ktx = "androidx.core:core-ktx:$coreVersion"
+        const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
+        const val fragment = "androidx.fragment:fragment:$fragmentVersion"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragmentVersion"
+        const val media = "androidx.media:media:$mediaVersion"
+        const val preference = "androidx.preference:preference:$preferenceVersion"
+        const val cardView = "androidx.cardview:cardview:$cardViewVersion"
+        const val recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+        const val material = "com.google.android.material:material:$materialVersion"
+        const val vectorDrawable = "androidx.vectordrawable:vectordrawable-animated:$vectorDrawableVersion"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+        const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 
         object Lifecycle {
-            const val extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.Jetpack.lifecycle}"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.Jetpack.lifecycle}"
-            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Jetpack.lifecycle}"
-            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Jetpack.lifecycle}"
+            const val extensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
         }
 
         object Test {
-            const val runner = "androidx.test:runner:${Versions.Jetpack.testRunner}"
-            const val espresso = "com.android.support.test.espresso:espresso-core:${Versions.Jetpack.espresso}"
+            const val runner = "androidx.test:runner:$testRunnerVersion"
+            const val espresso = "com.android.support.test.espresso:espresso-core:$espressoVersion"
         }
     }
 
     object Ktor {
-        const val clientCommon = "io.ktor:ktor-client-core:${Versions.ktor}"
-        const val clientAndroid = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
-        const val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
-        const val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
-        const val loggingJvm = "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
-        const val jsonCommon = "io.ktor:ktor-client-json:${Versions.ktor}"
-        const val jsonJvm = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
-        const val jsonNative = "io.ktor:ktor-client-json-native:${Versions.ktor}"
-        const val jsonJs = "io.ktor:ktor-client-json-js:${Versions.ktor}"
-        const val serializationCommon = "io.ktor:ktor-client-serialization:${Versions.ktor}"
-        const val serializationJvm = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
-        const val serializationIosArm64 = "io.ktor:ktor-client-serialization-iosarm64:${Versions.ktor}"
-        const val serializationIosX64 = "io.ktor:ktor-client-serialization-iosx64:${Versions.ktor}"
-        const val serializationJs = "io.ktor:ktor-client-serialization-js:${Versions.ktor}"
+        const val version = "1.3.1"
+
+        const val clientCommon = "io.ktor:ktor-client-core:$version"
+        const val clientAndroid = "io.ktor:ktor-client-okhttp:$version"
+        const val clientIos = "io.ktor:ktor-client-ios:$version"
+        const val clientJs = "io.ktor:ktor-client-js:$version"
+        const val loggingJvm = "io.ktor:ktor-client-logging-jvm:$version"
+        const val jsonCommon = "io.ktor:ktor-client-json:$version"
+        const val jsonJvm = "io.ktor:ktor-client-json-jvm:$version"
+        const val jsonNative = "io.ktor:ktor-client-json-native:$version"
+        const val jsonJs = "io.ktor:ktor-client-json-js:$version"
+        const val serializationCommon = "io.ktor:ktor-client-serialization:$version"
+        const val serializationJvm = "io.ktor:ktor-client-serialization-jvm:$version"
+        const val serializationIosArm64 = "io.ktor:ktor-client-serialization-iosarm64:$version"
+        const val serializationIosX64 = "io.ktor:ktor-client-serialization-iosx64:$version"
+        const val serializationJs = "io.ktor:ktor-client-serialization-js:$version"
     }
 
     object Okhttp3 {
-        const val client = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
-        const val loggingIntercerptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+        const val version = "3.14.2"
+
+        const val client = "com.squareup.okhttp3:okhttp:$version"
+        const val loggingIntercerptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
 
     object Klock {
-        const val common = "com.soywiz.korlibs.klock:klock:${Versions.klock}"
-        const val android = "com.soywiz.korlibs.klock:klock-android:${Versions.klock}"
-        const val js = "com.soywiz.korlibs.klock:klock-js:${Versions.klock}"
+        const val version = "1.9.1"
+
+        const val common = "com.soywiz.korlibs.klock:klock:$version"
+        const val android = "com.soywiz.korlibs.klock:klock-android:$version"
+        const val js = "com.soywiz.korlibs.klock:klock-js:$version"
     }
 
     object Kodein {
-        const val erasedCommon = "org.kodein.di:kodein-di-erased:${Versions.kodein}"
-        const val genericJvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
-        const val androidX = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}"
-        const val erasedJs = "org.kodein.di:kodein-di-erased-js:${Versions.kodein}"
+        const val version = "6.5.3"
+
+        const val erasedCommon = "org.kodein.di:kodein-di-erased:$version"
+        const val genericJvm = "org.kodein.di:kodein-di-generic-jvm:$version"
+        const val androidX = "org.kodein.di:kodein-di-framework-android-x:$version"
+        const val erasedJs = "org.kodein.di:kodein-di-erased-js:$version"
     }
 
     object JUnit {
-        const val core = "junit:junit:${Versions.JUnit.core}"
-        const val platformRunner = "org.junit.platform:junit-platform-runner:${Versions.JUnit.platformRunner}"
-        const val junitVintage = "org.junit.vintage:junit-vintage-engine:${Versions.JUnit.vintage}"
+        const val coreVersion = "4.12"
+        const val platformRunnerVersion = "1.3.0"
+        const val vintageVersion = "5.2.0"
+
+        const val core = "junit:junit:$coreVersion"
+        const val platformRunner = "org.junit.platform:junit-platform-runner:$platformRunnerVersion"
+        const val junitVintage = "org.junit.vintage:junit-vintage-engine:$vintageVersion"
     }
 
     object Robolectric {
-        const val core = "org.robolectric:robolectric:${Versions.robolectric}"
-        const val shadows = "org.robolectric:shadows-supportv4:${Versions.robolectric}"
+        const val version = "4.3.1"
+
+        const val core = "org.robolectric:robolectric:$version"
+        const val shadows = "org.robolectric:shadows-supportv4:$version"
     }
 
-    const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    object MockK {
+        const val version = "1.9.3"
 
-    object Spek {
-        const val dslJvm = "org.spekframework.spek2:spek-dsl-jvm:${Versions.spek}"
-        const val junit = "org.spekframework.spek2:spek-runner-junit5:${Versions.spek}"
+        const val core = "io.mockk:mockk:$version"
     }
 }

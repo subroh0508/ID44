@@ -17,7 +17,7 @@ import org.kodein.di.generic.singleton
 
 fun SignInActivity.inject() {
     val clientName: String by lazy { getString(R.string.auth_client_name) }
-    val redirectUri: Uri by lazy { Uri.parse("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
+    val redirectUri: Uri by lazy { Uri("${getString(R.string.auth_oauth_scheme)}://$clientName/") }
 
     kodein = Kodein {
         extend(signInViewModule(this@inject))
