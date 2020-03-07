@@ -7,7 +7,7 @@ import id44.mizuki.bridges.shared.ReactContextModuleProvider
 import id44.mizuki.bridges.timeline.*
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccount.di.fetchOwnAccountUseCaseModule
 import id44.mizuki.libraries.account.domain.usecase.fetchownaccounts.di.fetchOwnAccountsUseCaseModule
-import id44.mizuki.libraries.account.infra.repository.di.accountRepositoryModule
+import id44.mizuki.infra.account.repository.di.accountRepositoryModule
 import id44.mizuki.api.HttpsClientProvider
 import id44.mizuki.api.di.mastodonApiModule
 import id44.mizuki.api.di.mastodonStreamingApiModule

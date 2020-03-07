@@ -19,7 +19,7 @@ kotlin {
                 implementation(project(":data:api"))
                 implementation(project(":data:infra:infra-auth"))
                 implementation(project(":libraries:auth:domain:usecase:switchaccesstoken"))
-                implementation(project(":libraries:account:account-infra"))
+                implementation(project(":data:infra:infra-account"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccount"))
                 implementation(project(":libraries:account:domain:usecase:fetchownaccounts"))
                 implementation(project(":shared:model:model-account"))

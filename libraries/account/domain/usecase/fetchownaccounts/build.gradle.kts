@@ -13,7 +13,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared:util"))
-                implementation(project(":libraries:account:account-infra"))
+                implementation(project(":data:infra:infra-account"))
                 implementation(project(":shared:model:model-account"))
                 implementation(Libraries.Kotlin.common)
 

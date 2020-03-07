@@ -1,7 +1,7 @@
-package id44.mizuki.libraries.account.infra.repository.di
+package id44.mizuki.infra.account.repository.di
 
-import id44.mizuki.libraries.account.infra.repository.AccountRepository
-import id44.mizuki.libraries.account.infra.repository.AccountRepositoryImpl
+import id44.mizuki.infra.account.repository.AccountRepository
+import id44.mizuki.infra.account.repository.AccountRepositoryImpl
 import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance

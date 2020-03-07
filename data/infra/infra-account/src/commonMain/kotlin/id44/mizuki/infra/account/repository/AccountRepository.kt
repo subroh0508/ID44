@@ -1,4 +1,4 @@
-package id44.mizuki.libraries.account.infra.repository
+package id44.mizuki.infra.account.repository
 
 import id44.mizuki.shared.model.account.Account
 import id44.mizuki.shared.util.valueobject.AccountId

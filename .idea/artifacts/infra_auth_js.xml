@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="infra-auth-js">
+    <output-path>$PROJECT_DIR$/data/infra/infra-auth/build/libs</output-path>
+    <root id="archive" name="infra-auth-js.jar">
+      <element id="module-output" name="ID44.data.infra.infra-auth.jsMain" />
+    </root>
+  </artifact>
+</component>

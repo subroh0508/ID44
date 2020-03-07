@@ -14,8 +14,8 @@ include(
     ":shared:model:model-status",
     ":data:api",
     ":data:infra:infra-auth",
+    ":data:infra:infra-account",
     ":libraries:reactnativesupport",
-    ":libraries:account:infra",
     ":libraries:account:domain:usecase:fetchownaccount",
     ":libraries:account:domain:usecase:fetchownaccounts",
     ":libraries:auth:domain:usecase:requestappcredential",
@@ -34,7 +34,6 @@ include(
     ":react-native-fast-image"
 )
 
-project(":libraries:account:infra").name = "account-infra"
 project(":libraries:timeline:infra").name = "timeline-infra"
 
 project(":bridges:shared").name = "bridges-shared"

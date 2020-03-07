@@ -1,6 +1,6 @@
 package id44.mizuki.libraries.account.domain.usecase.fetchownaccount
 
-import id44.mizuki.libraries.account.infra.repository.AccountRepository
+import id44.mizuki.infra.account.repository.AccountRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
