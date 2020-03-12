@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 
-class ReactNativeViewModel(
+abstract class ReactNativeViewModel(
     reactContextBaseJavaModule: ReactContextBaseJavaModule
-) : ViewModel(), NativeModule by reactContextBaseJavaModule {
-}
+) : ViewModel(), NativeModule by reactContextBaseJavaModule

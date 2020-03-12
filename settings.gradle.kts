@@ -14,6 +14,7 @@ include(
     ":shared:model:model-status",
     ":domain:signin:usecase-signin",
     ":domain:timeline:usecase-timeline",
+    ":actions:actions-signin",
     ":data:api",
     ":data:infra:infra-auth",
     ":data:infra:infra-account",
