@@ -11,8 +11,6 @@ import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
 
 val signInUseCaseModule = Kodein.Module(name = "SignInUseCaseModule") {
-    import(authRepositoryModule)
-
     bind<RequestAccessTokenUseCase>() with singleton { RequestAccessTokenUseCaseImpl(instance(), instance()) }
     bind<RequestAppCredentialUseCase>() with singleton { RequestAppCredentialUseCaseImpl(instance(), instance()) }
 }

@@ -35,8 +35,8 @@ val timelineModule = Kodein.Module(name = "TimelineModule") {
 
     bind<HttpsClientProvider>() with singleton {
         HttpsClientProvider {
-            setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
-            setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
+            // setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
+            // setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
         }
     }
 }

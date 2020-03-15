@@ -3,15 +3,11 @@ package id44.mizuki.shared.util.serializers
 import com.soywiz.klock.DateTimeTz
 import id44.mizuki.shared.util.extensions.toDateTimeTz
 import id44.mizuki.shared.util.extensions.toDateTimeTzFormat
-import kotlinx.serialization.Decoder
-import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Serializer
-import kotlinx.serialization.internal.SerialClassDescImpl
+import kotlinx.serialization.*
 
 @Serializer(forClass = DateTimeTz::class)
 class DateTimeTzSerializer : KSerializer<DateTimeTz> {
-    override val descriptor = SerialClassDescImpl("DateTimeTz")
+    override val descriptor = SerialDescriptor("DateTimeTz")
 
     override fun deserialize(decoder: Decoder): DateTimeTz =
         decoder.decodeString().toDateTimeTz()

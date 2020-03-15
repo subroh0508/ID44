@@ -14,7 +14,7 @@ import id44.mizuki.domain.timeline.usecase.ToggleReblogUseCase
 import id44.mizuki.shared.model.status.StatusVisibility
 import id44.mizuki.shared.model.status.Stream
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Mapper
+import kotlinx.serialization.Properties
 
 class StatusActions(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
@@ -30,7 +30,7 @@ class StatusActions(
         runCatching { fetchStatusesUseCase.execute(stream, maxId) }
             .onSuccess { statuses ->
                 resolve.invoke(reactArray(
-                    statuses.map { Mapper.mapNullable(Status.serializer(), it) }
+                    statuses.map { Properties.storeNullable(Status.serializer(), it) }
                 ))
             }
             .onHttpFailure(reject)
@@ -41,7 +41,7 @@ class StatusActions(
         resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
     ) = view.launch {
         runCatching { submitStatusUseCase.execute(status, visibility, warningText) }
-            .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
+            .onSuccess { resolve(reactMap(Properties.storeNullable(Status.serializer(), it))) }
             .onHttpFailure(reject)
     }
 
@@ -50,7 +50,7 @@ class StatusActions(
         resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
     ) = view.launch {
         runCatching { toggleFavouriteUseCase.execute(status) }
-            .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
+            .onSuccess { resolve(reactMap(Properties.storeNullable(Status.serializer(), it))) }
             .onHttpFailure(reject)
     }
 
@@ -59,7 +59,7 @@ class StatusActions(
         resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit
     ) = view.launch {
         runCatching { toggleReblogUseCase.execute(status) }
-            .onSuccess { resolve(reactMap(Mapper.mapNullable(Status.serializer(), it))) }
+            .onSuccess { resolve(reactMap(Properties.storeNullable(Status.serializer(), it))) }
             .onHttpFailure(reject)
     }
 }

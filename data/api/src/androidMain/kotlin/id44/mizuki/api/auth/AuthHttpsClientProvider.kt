@@ -32,11 +32,11 @@ internal object AuthHttpsClientProvider {
         }
         install(JsonFeature) {
             serializer = KotlinxSerializer(json).apply {
-                setMapper(PostApps.Request::class, PostApps.Request.serializer())
-                setMapper(PostOauthToken.Request::class, PostOauthToken.Request.serializer())
-                setMapper(AccessToken::class, AccessToken.serializer())
-                setMapper(AppCredential::class, AppCredential.serializer())
-                setMapper(RawJson::class, RawJson.serializer())
+                // setMapper(PostApps.Request::class, PostApps.Request.serializer())
+                // setMapper(PostOauthToken.Request::class, PostOauthToken.Request.serializer())
+                // setMapper(AccessToken::class, AccessToken.serializer())
+                // setMapper(AppCredential::class, AppCredential.serializer())
+                // setMapper(RawJson::class, RawJson.serializer())
             }
         }
     }

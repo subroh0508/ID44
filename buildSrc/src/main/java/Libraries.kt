@@ -19,21 +19,19 @@ object Libraries {
     }
 
     object Serialization {
-        const val version = "0.14.0"
+        const val version = "0.20.0"
 
         const val common = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$version"
         const val jvm = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$version"
         const val js = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$version"
         const val native = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$version"
 
-        /* Since v0.20.0
         object Properties {
             const val common = "org.jetbrains.kotlinx:kotlinx-serialization-properties-common:$version"
             const val jvm = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
             const val js = "org.jetbrains.kotlinx:kotlinx-serialization-properties-js:$version"
             const val native = "org.jetbrains.kotlinx:kotlinx-serialization-properties-native:$version"
         }
-        */
     }
 
     const val reactNative = "com.facebook.react:react-native:+"
@@ -97,7 +95,7 @@ object Libraries {
     }
 
     object Ktor {
-        const val version = "1.3.1"
+        const val version = "1.3.2"
 
         const val clientCommon = "io.ktor:ktor-client-core:$version"
         const val clientAndroid = "io.ktor:ktor-client-okhttp:$version"

@@ -52,8 +52,8 @@ actual val mastodonApiModule = Kodein.Module(name = "MastodonApiModule") {
                 }
                 install(JsonFeature) {
                     serializer = KotlinxSerializer(instance()).apply {
-                        setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
-                        setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
+                        // setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
+                        // setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
                     }
                 }
             },
@@ -97,11 +97,11 @@ actual val mastodonAuthApiModule = Kodein.Module(name = "MastodonAuthApiModule")
                 }
                 install(JsonFeature) {
                     serializer = KotlinxSerializer(instance()).apply {
-                        setMapper(PostApps.Request::class, PostApps.Request.serializer())
-                        setMapper(PostOauthToken.Request::class, PostOauthToken.Request.serializer())
-                        setMapper(AccessToken::class, AccessToken.serializer())
-                        setMapper(AppCredential::class, AppCredential.serializer())
-                        setMapper(RawJson::class, RawJson.serializer())
+                        // setMapper(PostApps.Request::class, PostApps.Request.serializer())
+                        // setMapper(PostOauthToken.Request::class, PostOauthToken.Request.serializer())
+                        // setMapper(AccessToken::class, AccessToken.serializer())
+                        // setMapper(AppCredential::class, AppCredential.serializer())
+                        // setMapper(RawJson::class, RawJson.serializer())
                     }
                 }
             }

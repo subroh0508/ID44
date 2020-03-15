@@ -2,12 +2,8 @@ package id44.mizuki.api.serializers
 
 import id44.mizuki.api.RawJson
 import id44.mizuki.api.RawJsonArray
-import kotlinx.serialization.Decoder
-import kotlinx.serialization.Encoder
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Serializer
-import kotlinx.serialization.internal.ArrayListSerializer
-import kotlinx.serialization.internal.SerialClassDescImpl
+import kotlinx.serialization.*
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonLiteral
 import kotlinx.serialization.json.JsonNull
@@ -15,11 +11,11 @@ import kotlinx.serialization.json.JsonObject
 
 @Serializer(forClass = RawJsonArray::class)
 class RawJsonArraySerializer : KSerializer<RawJsonArray> {
-    override val descriptor = SerialClassDescImpl("RawJsonArray")
+    override val descriptor = SerialDescriptor("RawJsonArray")
 
     override fun deserialize(decoder: Decoder): RawJsonArray {
         val raw: List<RawJson> = decoder.decodeSerializableValue(
-            ArrayListSerializer(RawJsonSerializer())
+            ListSerializer(RawJsonSerializer())
         )
 
         return RawJsonArray(raw)
@@ -27,7 +23,7 @@ class RawJsonArraySerializer : KSerializer<RawJsonArray> {
 
     override fun serialize(encoder: Encoder, obj: RawJsonArray) {
         encoder.encodeSerializableValue(
-            ArrayListSerializer(RawJsonSerializer()),
+            ListSerializer(RawJsonSerializer()),
             obj.raw
         )
     }

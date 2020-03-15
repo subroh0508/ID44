@@ -26,6 +26,7 @@ kotlin {
 
                 implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Serialization.common)
+                implementation(Libraries.Serialization.Properties.common)
 
                 implementation(Libraries.Coroutines.common)
 
@@ -50,6 +51,7 @@ kotlin {
 
                 implementation(Libraries.Kotlin.jvm)
                 implementation(Libraries.Serialization.jvm)
+                implementation(Libraries.Serialization.Properties.jvm)
                 implementation(Libraries.Kotlin.reflect)
 
                 implementation(Libraries.Klock.android)

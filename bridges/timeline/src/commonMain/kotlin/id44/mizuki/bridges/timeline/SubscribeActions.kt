@@ -10,7 +10,7 @@ import id44.mizuki.domain.timeline.usecase.TimelineUnsubscribeUseCase
 import id44.mizuki.shared.model.status.Stream
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Mapper
+import kotlinx.serialization.Properties
 
 internal class SubscribeActions(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
@@ -29,7 +29,7 @@ internal class SubscribeActions(
                     view.emitStatus(
                         EVENT_APPEND_STATUS,
                         "${host.value}/${accountId.value}/${stream.name}",
-                        Mapper.mapNullable(Status.serializer(), it)
+                        Properties.storeNullable(Status.serializer(), it)
                     )
                 }
             }

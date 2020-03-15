@@ -1,11 +1,11 @@
 package mapper
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Mapper
+import kotlinx.serialization.Properties
 import kotlinx.serialization.json.Json
 
 @JsName("map")
-fun <T: Any> map(serializer: KSerializer<T>, obj: T): dynamic = Mapper.mapNullable(
+fun <T: Any> map(serializer: KSerializer<T>, obj: T): dynamic = Properties.storeNullable(
     serializer, obj
 ).toList().fold(js("{}")) { acc, (k, v) ->
     acc[k] = v
@@ -13,7 +13,7 @@ fun <T: Any> map(serializer: KSerializer<T>, obj: T): dynamic = Mapper.mapNullab
 }
 
 @JsName("unmap")
-fun <T: Any> unmap(serializer: KSerializer<T>, dynamicObj: dynamic) = Mapper.unmapNullable(
+fun <T: Any> unmap(serializer: KSerializer<T>, dynamicObj: dynamic) = Properties.loadNullable(
     serializer,
     js("Object").keys(dynamicObj)
         .unsafeCast<Array<String>>()

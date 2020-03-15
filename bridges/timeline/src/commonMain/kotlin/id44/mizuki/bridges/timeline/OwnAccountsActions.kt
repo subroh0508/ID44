@@ -13,7 +13,7 @@ import id44.mizuki.libraries.reactnativesupport.reactMap
 import id44.mizuki.shared.util.valueobject.AccountId
 import id44.mizuki.shared.util.valueobject.HostName
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Mapper
+import kotlinx.serialization.Properties
 
 internal class OwnAccountsActions(
     private val view: TimelineView, accessTokenRepository: AccessTokenRepository,
@@ -24,12 +24,12 @@ internal class OwnAccountsActions(
     fun openAuthentication() = view.openAuthentication()
 
     fun fetchOwnAccounts(resolve: (ReactArray) -> Unit) = resolve(reactArray(
-        fetchOwnAccountsUseCase.execute().map { Mapper.map(Account.serializer(), it) }
+        fetchOwnAccountsUseCase.execute().map { Properties.store(Account.serializer(), it) }
     ))
 
     fun fetchOwnAccount(resolve: (ReactMap) -> Unit, reject: (Throwable) -> Unit) = view.launch {
         runCatching { fetchOwnAccountUseCase.execute() }
-            .onSuccess { resolve(reactMap(Mapper.map(Account.serializer(), it))) }
+            .onSuccess { resolve(reactMap(Properties.store(Account.serializer(), it))) }
             .onHttpFailure(reject)
     }
 

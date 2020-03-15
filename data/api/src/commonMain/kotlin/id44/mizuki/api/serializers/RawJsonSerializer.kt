@@ -2,12 +2,11 @@ package id44.mizuki.api.serializers
 
 import id44.mizuki.api.RawJson
 import kotlinx.serialization.*
-import kotlinx.serialization.internal.SerialClassDescImpl
 import kotlinx.serialization.json.*
 
 @Serializer(forClass = RawJson::class)
 class RawJsonSerializer : KSerializer<RawJson> {
-    override val descriptor = SerialClassDescImpl("RawJson")
+    override val descriptor = SerialDescriptor("RawJson")
 
     override fun deserialize(decoder: Decoder): RawJson {
         val input = decoder as? JsonInput ?: throw SerializationException("This class can be loaded only by Json")

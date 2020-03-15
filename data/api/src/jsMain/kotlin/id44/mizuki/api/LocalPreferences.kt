@@ -4,19 +4,22 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 
+/*
 @JsModule("fs")
 @JsNonModule
 private external object fs {
     fun readFileSync(path: String): String
     fun writeFileSync(path: String, text: String)
 }
+*/
 
 private external fun delete(obj: dynamic): Boolean = definedExternally
 
 actual class LocalPreferences(
     private val path: String,
     private val json: Json,
-    private val filename: String
+    private val filename: String,
+    private val fs: dynamic = js("{}")
 ) {
     private val data: dynamic
     private val userDataPath get() = "$path/$filename.json"
