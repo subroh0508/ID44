@@ -30,7 +30,7 @@ class HttpsClientProvider(
             userAgent(userAgent.agent)
         }
         install(JsonFeature) {
-            serializer = KotlinxSerializer(json).apply(mapper)
+            serializer = KotlinxSerializer(json)
         }
     }
 }

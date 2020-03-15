@@ -12,6 +12,7 @@ include(
     ":shared:model:model-auth",
     ":shared:model:model-account",
     ":shared:model:model-status",
+    ":shared:presentation:presentation-signin",
     ":domain:signin:usecase-signin",
     ":domain:timeline:usecase-timeline",
     ":actions:actions-signin",
@@ -31,9 +32,9 @@ project(":bridges:auth").name = "bridges-auth"
 project(":bridges:signin").name = "bridges-signin"
 project(":bridges:timeline").name = "bridges-timeline"
 
-project(":react-native-vector-icons").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-vector-icons/android")
-project(":react-native-gesture-handler").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-gesture-handler/android")
-project(":react-native-reanimated").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-reanimated/android")
-project(":react-native-fast-image").projectDir = file("$REACT_NATIVE_NODE_MODULE_PATH/react-native-fast-image/android")
+project(":react-native-vector-icons").projectDir = file("$rootDir/node_modules/react-native-vector-icons/android")
+project(":react-native-gesture-handler").projectDir = file("$rootDir/node_modules/react-native-gesture-handler/android")
+project(":react-native-reanimated").projectDir = file("$rootDir/node_modules/react-native-reanimated/android")
+project(":react-native-fast-image").projectDir = file("$rootDir/node_modules/react-native-fast-image/android")
 
 enableFeaturePreview("GRADLE_METADATA")

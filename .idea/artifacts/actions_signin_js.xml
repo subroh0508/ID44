@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="actions-signin-js">
+    <output-path>$PROJECT_DIR$/actions/actions-signin/build/libs</output-path>
+    <root id="archive" name="actions-signin-js.jar">
+      <element id="module-output" name="ID44.actions.actions-signin.jsMain" />
+    </root>
+  </artifact>
+</component>

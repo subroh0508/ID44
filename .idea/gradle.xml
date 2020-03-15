@@ -48,6 +48,8 @@
             <option value="$PROJECT_DIR$/shared/model/model-account" />
             <option value="$PROJECT_DIR$/shared/model/model-auth" />
             <option value="$PROJECT_DIR$/shared/model/model-status" />
+            <option value="$PROJECT_DIR$/shared/presentation" />
+            <option value="$PROJECT_DIR$/shared/presentation/presentation-signin" />
             <option value="$PROJECT_DIR$/shared/util" />
           </set>
         </option>

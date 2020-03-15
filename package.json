@@ -10,7 +10,6 @@
     "build/js/packages/*",
     "build/js/packages_imported/**",
     "frontend",
-    "web",
     "desktop"
   ]
 }

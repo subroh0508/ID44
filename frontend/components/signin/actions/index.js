@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { exceptions } from 'ID44-bridges-signin';
+import { exceptions } from 'ID44-presentation-signin';
 
 const prefix = 'sign_in';
 
