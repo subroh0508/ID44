@@ -5,6 +5,7 @@ include(
     ":android:features:signin",
     ":android:features:timeline",
     ":android:reactnativesupport",
+    ":desktop:actions:actions-signin",
     ":bridges:shared",
     ":bridges:auth",
     ":bridges:timeline",
