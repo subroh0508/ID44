@@ -1,5 +1,6 @@
 package id44.mizuki.domain.signin.usecase.di
 
+import id44.mizuki.api.di.mastodonAuthApiModule
 import id44.mizuki.domain.signin.usecase.RequestAccessTokenUseCase
 import id44.mizuki.domain.signin.usecase.RequestAccessTokenUseCaseImpl
 import id44.mizuki.domain.signin.usecase.RequestAppCredentialUseCase
@@ -11,6 +12,9 @@ import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
 
 val signInUseCaseModule = Kodein.Module(name = "SignInUseCaseModule") {
+    import(mastodonAuthApiModule)
+    import(authRepositoryModule)
+
     bind<RequestAccessTokenUseCase>() with singleton { RequestAccessTokenUseCaseImpl(instance(), instance()) }
     bind<RequestAppCredentialUseCase>() with singleton { RequestAppCredentialUseCaseImpl(instance(), instance()) }
 }

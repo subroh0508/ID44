@@ -1,4 +1,4 @@
-package id44.mizuki.signin.presentation.model
+package id44.mizuki.signin.model
 
 import android.content.Intent
 import id44.mizuki.shared.util.valueobject.Uri

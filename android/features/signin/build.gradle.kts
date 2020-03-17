@@ -12,10 +12,10 @@ dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
     implementation(project(":android:base"))
-    implementation(project(":bridges:bridges-shared"))
-    implementation(project(":bridges:bridges-signin"))
+    implementation(project(":android:reactnativesupport"))
     implementation(project(":shared:util"))
     implementation(project(":shared:model:model-auth"))
+    implementation(project(":shared:presentation:presentation-signin"))
     implementation(project(":domain:signin:usecase-signin"))
 
     implementation(Libraries.Kotlin.jvm)
@@ -34,6 +34,10 @@ dependencies {
     implementation(Libraries.Jetpack.Lifecycle.viewModelKtx)
 
     implementation(Libraries.reactNative)
+    implementation(project(":react-native-vector-icons"))
+    implementation(project(":react-native-fast-image"))
+    implementation(project(":react-native-gesture-handler"))
+    implementation(project(":react-native-reanimated"))
 
     implementation(Libraries.Kodein.jvm)
     implementation(Libraries.Kodein.androidX)

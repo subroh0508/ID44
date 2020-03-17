@@ -15,6 +15,7 @@ kotlin {
                 implementation(project(":shared:util"))
                 implementation(project(":shared:model:model-auth"))
                 implementation(project(":data:infra:infra-auth"))
+                implementation(project(":data:api"))
 
                 implementation(Libraries.Kotlin.common)
 

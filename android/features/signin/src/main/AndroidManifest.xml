@@ -2,7 +2,7 @@
           package="id44.mizuki.signin">
     <application>
         <activity
-            android:name=".presentation.ui.SignInActivity"
+            android:name=".SignInActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

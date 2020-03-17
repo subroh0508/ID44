@@ -1,48 +1,33 @@
 package id44.mizuki.signin.viewmodel
 
+import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.*
 import com.facebook.react.bridge.Promise
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import id44.mizuki.base.reactnative.ReactNativeViewModel
 import id44.mizuki.domain.signin.usecase.RequestAccessTokenUseCase
 import id44.mizuki.domain.signin.usecase.RequestAppCredentialUseCase
+import id44.mizuki.shared.presentation.signin.exceptions.SignInError
+import id44.mizuki.shared.util.exceptions.SerializableException
 import id44.mizuki.shared.util.valueobject.Uri
 import id44.mizuki.shared.util.valueobject.HostName
+import id44.mizuki.signin.model.AuthorizeCode
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class SignInViewModel(
-    private val reactModule: SignInReactModule
-) : ReactNativeViewModel(reactModule) {
-    init { reactModule.scope = viewModelScope }
-
-    val authorizeUri: LiveData<Uri> get() = reactModule.authorizeUri
-}
-
-class SignInReactModule(
-    app: ReactApplicationContext,
     private val clientName: String,
     private val redirectUri: Uri,
     private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
     private val requestAccessTokenUseCase: RequestAccessTokenUseCase
-) : ReactContextBaseJavaModule(app) {
-    companion object {
-        private const val NAME = "SignInNativeActions"
-    }
-
-    override fun getName() = NAME
+) : ViewModel() {
+    val authorizeUri: LiveData<Uri> get() = _authorizeUri
 
     private lateinit var deferredCode: CompletableDeferred<String>
 
-    lateinit var scope: CoroutineScope
-    val authorizeUri: MutableLiveData<Uri> = MutableLiveData()
+    private val _authorizeUri: MutableLiveData<Uri> = MutableLiveData()
 
-    @ReactMethod
     fun startOauth2Flow(host: String, promise: Promise) {
-        scope.launch {
+        viewModelScope.launch {
             val hostName = HostName(host)
 
             runCatching {
@@ -55,36 +40,55 @@ class SignInReactModule(
                 }
         }
     }
-    @ReactMethod
     fun showErrorMessage(message: String) {
-
+        Log.d("showErrorMessage", message)
     }
-    @ReactMethod
-    fun openTimeline() {
+    fun openTimeline() = Unit
 
+    fun onNotFoundBrowser() = deferredCode.completeExceptionally(browserAppNotFoundError())
+    fun onNewIntent(intent: Intent?) {
+        val authorizeCode = AuthorizeCode.fromIntent(intent, redirectUri)
+
+        if (authorizeCode?.isSuccess == true) {
+            deferredCode.complete(authorizeCode.code)
+            return
+        }
+
+        val error = authorizeCode?.error
+        deferredCode.completeExceptionally(
+            when (error) {
+                "access_denied" -> accessDeniedError()
+                null -> unknownError(error)
+                else -> authorizeFailedError(error)
+            }
+        )
     }
 
     private suspend fun fetchAuthorizeCode(host: HostName): String {
-        authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
+        _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
 
         deferredCode = CompletableDeferred()
         return deferredCode.await()
     }
-}
 
-class SignInViewModelFactory(
-    app: ReactApplicationContext,
-    clientName: String,
-    redirectUri: Uri,
-    requestAppCredentialUseCase: RequestAppCredentialUseCase,
-    requestAccessTokenUseCase: RequestAccessTokenUseCase
-) : ViewModelProvider.NewInstanceFactory() {
-    private val reactModule = SignInReactModule(
-        app, clientName, redirectUri, requestAppCredentialUseCase, requestAccessTokenUseCase
-    )
+    private fun accessDeniedError() = SerializableException(SignInError.ACCESS_DENIED)
+    private fun authorizeFailedError(message: String?) = SerializableException(SignInError.AUTHORIZE_FAILED, message)
+    private fun browserAppNotFoundError() = SerializableException(SignInError.BROWSER_APP_NOT_FOUND)
+    private fun unknownError(message: String?) = SerializableException(SignInError.UNKNOWN, message)
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(
-        modelClass: Class<T>
-    ): T = SignInViewModel(reactModule) as T
+    class Factory(
+        private val clientName: String,
+        private val redirectUri: Uri,
+        private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
+        private val requestAccessTokenUseCase: RequestAccessTokenUseCase
+    ) : ViewModelProvider.NewInstanceFactory() {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+            SignInViewModel(
+                clientName,
+                redirectUri,
+                requestAppCredentialUseCase,
+                requestAccessTokenUseCase
+            ) as T
+    }
 }

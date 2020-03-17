@@ -13,7 +13,7 @@ interface AddressableActivity {
 
 object Activities {
     object Authentication : AddressableActivity {
-        override val className = "$PACKAGE_NAME.signin.presentation.ui.SignInActivity"
+        override val className = "$PACKAGE_NAME.signin.SignInActivity"
     }
 
     object Timeline : AddressableActivity {

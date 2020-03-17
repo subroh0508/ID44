@@ -1,27 +1,24 @@
-package id44.mizuki.signin.presentation.ui
+package id44.mizuki.signin
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
 import id44.mizuki.base.Activities
 import id44.mizuki.base.intentTo
 import id44.mizuki.base.ui.InjectableReactActivity
-import id44.mizuki.bridges.signin.SignInView
-import id44.mizuki.shared.util.valueobject.HostName
 import id44.mizuki.shared.util.valueobject.Uri
 import id44.mizuki.shared.util.valueobject.parse
+import id44.mizuki.signin.di.MAIN_COMPONENT_NAME
 import id44.mizuki.signin.di.inject
-import id44.mizuki.signin.presentation.model.SignInViewModel
-import kotlinx.coroutines.launch
+import id44.mizuki.signin.viewmodel.SignInViewModel
 import org.kodein.di.generic.instance
 
-class SignInActivity : InjectableReactActivity(), SignInView {
+class SignInActivity : InjectableReactActivity() {
     private val viewModel: SignInViewModel by instance()
 
-    override fun getMainComponentName(): String = "SignIn"
+    override fun getMainComponentName() = MAIN_COMPONENT_NAME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()
@@ -36,20 +33,9 @@ class SignInActivity : InjectableReactActivity(), SignInView {
         viewModel.onNewIntent(intent)
     }
 
-    override fun startOauth2Flow(host: String, resolve: (Any?) -> Unit, reject: (Throwable) -> Unit) {
-        viewModel.viewModelScope.launch {
-            runCatching { viewModel.startOauth2Flow(HostName(host)) }
-                .onSuccess { resolve.invoke(null) }
-                .onFailure {
-                    it.printStackTrace()
-                    reject.invoke(it)
-                }
-        }
-    }
+    fun showErrorMessage(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
 
-    override fun showErrorMessage(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
-
-    override fun openTimeline() {
+    fun openTimeline() {
         finish()
         startActivity(intentTo(Activities.Timeline))
     }
