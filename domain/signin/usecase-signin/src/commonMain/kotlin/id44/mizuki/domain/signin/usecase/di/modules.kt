@@ -11,10 +11,14 @@ import org.kodein.di.erased.bind
 import org.kodein.di.erased.instance
 import org.kodein.di.erased.singleton
 
-val signInUseCaseModule = Kodein.Module(name = "SignInUseCaseModule") {
+val signInModule = Kodein.Module(name = "SignInModule") {
     import(mastodonAuthApiModule)
     import(authRepositoryModule)
+    import(signInUseCaseModule)
+}
 
+// publicじゃないとKotlin/JS環境で動作しない
+val signInUseCaseModule = Kodein.Module(name = "SignInUseCaseModule") {
     bind<RequestAccessTokenUseCase>() with singleton { RequestAccessTokenUseCaseImpl(instance(), instance()) }
     bind<RequestAppCredentialUseCase>() with singleton { RequestAppCredentialUseCaseImpl(instance(), instance()) }
 }

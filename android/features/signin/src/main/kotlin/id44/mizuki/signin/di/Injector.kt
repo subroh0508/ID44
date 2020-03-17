@@ -8,7 +8,7 @@ import com.facebook.react.ReactRootView
 import com.oblador.vectoricons.VectorIconsPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.swmansion.reanimated.ReanimatedPackage
-import id44.mizuki.domain.signin.usecase.di.signInUseCaseModule
+import id44.mizuki.domain.signin.usecase.di.signInModule
 import id44.mizuki.reactnativesupport.SimpleReactNativeHost
 import id44.mizuki.shared.util.valueobject.Uri
 import id44.mizuki.signin.R
@@ -33,7 +33,7 @@ fun SignInActivity.inject() {
     kodein = Kodein {
         extend((application as KodeinAware).kodein)
 
-        import(signInUseCaseModule)
+        import(signInModule)
 
         bind<ReactNativeHost>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
             SimpleReactNativeHost(
