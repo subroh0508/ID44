@@ -1,11 +1,6 @@
 package id44.mizuki.api.auth
 
 import id44.mizuki.api.BuildConfig
-import id44.mizuki.api.RawJson
-import id44.mizuki.api.auth.model.AccessToken
-import id44.mizuki.api.auth.model.AppCredential
-import id44.mizuki.api.auth.params.PostApps
-import id44.mizuki.api.auth.params.PostOauthToken
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.DefaultRequest
