@@ -94,7 +94,6 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
-    implementation(project(":bridges:bridges-signin"))
     implementation(project(":bridges:bridges-timeline"))
     implementation(project(":android:features:signin"))
     implementation(project(":android:features:timeline"))

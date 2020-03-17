@@ -7,7 +7,6 @@ include(
     ":android:reactnativesupport",
     ":bridges:shared",
     ":bridges:auth",
-    ":bridges:signin",
     ":bridges:timeline",
     ":shared:util",
     ":shared:model:model-auth",
@@ -29,7 +28,6 @@ include(
 
 project(":bridges:shared").name = "bridges-shared"
 project(":bridges:auth").name = "bridges-auth"
-project(":bridges:signin").name = "bridges-signin"
 project(":bridges:timeline").name = "bridges-timeline"
 
 project(":react-native-vector-icons").projectDir = file("$rootDir/node_modules/react-native-vector-icons/android")
