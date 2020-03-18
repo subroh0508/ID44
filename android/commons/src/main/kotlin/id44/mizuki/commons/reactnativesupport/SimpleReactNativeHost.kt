@@ -1,4 +1,4 @@
-package id44.mizuki.reactnativesupport
+package id44.mizuki.commons.reactnativesupport
 
 import android.app.Application
 import android.view.View
@@ -12,6 +12,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.react.uimanager.ReactShadowNode
 import com.facebook.react.uimanager.ViewManager
+import id44.mizuki.commons.BuildConfig
 
 class SimpleReactNativeHost(
     app: Application,

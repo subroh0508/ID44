@@ -60,7 +60,6 @@ object Libraries {
         const val materialVersion = "1.0.0"
         const val vectorDrawableVersion = "1.0.0"
         const val constraintLayoutVersion = "2.0.0-beta4"
-        const val lifecycleVersion = "2.2.0"
 
         const val testRunnerVersion = "1.1.0"
         const val espressoVersion = "3.0.2"
@@ -78,14 +77,13 @@ object Libraries {
         const val vectorDrawable = "androidx.vectordrawable:vectordrawable-animated:$vectorDrawableVersion"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
-        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-        const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-
         object Lifecycle {
-            const val extensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-            const val compiler = "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
-            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+            const val version = "2.2.0"
+
+            const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
+            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
         }
 
         object Test {

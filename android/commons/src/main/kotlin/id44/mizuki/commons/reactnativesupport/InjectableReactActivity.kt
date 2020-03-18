@@ -1,4 +1,4 @@
-package id44.mizuki.reactnativesupport
+package id44.mizuki.commons.reactnativesupport
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

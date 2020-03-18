@@ -14,6 +14,7 @@ dependencies {
     implementation(Libraries.Kotlin.reflect)
 
     implementation(Libraries.Jetpack.appCompat)
+    implementation(Libraries.Jetpack.Lifecycle.viewModelKtx)
 
     implementation(Libraries.reactNative)
     implementation(project(":react-native-vector-icons"))

@@ -15,10 +15,10 @@
             <option value="$PROJECT_DIR$/android/app" />
             <option value="$PROJECT_DIR$/android/auth" />
             <option value="$PROJECT_DIR$/android/base" />
+            <option value="$PROJECT_DIR$/android/commons" />
             <option value="$PROJECT_DIR$/android/features" />
             <option value="$PROJECT_DIR$/android/features/signin" />
             <option value="$PROJECT_DIR$/android/features/timeline" />
-            <option value="$PROJECT_DIR$/android/reactnativesupport" />
             <option value="$PROJECT_DIR$/bridges" />
             <option value="$PROJECT_DIR$/bridges/auth" />
             <option value="$PROJECT_DIR$/bridges/shared" />

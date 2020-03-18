@@ -9,7 +9,7 @@ import com.oblador.vectoricons.VectorIconsPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.swmansion.reanimated.ReanimatedPackage
 import id44.mizuki.domain.signin.usecase.di.signInModule
-import id44.mizuki.reactnativesupport.SimpleReactNativeHost
+import id44.mizuki.commons.reactnativesupport.SimpleReactNativeHost
 import id44.mizuki.shared.util.valueobject.Uri
 import id44.mizuki.signin.R
 import id44.mizuki.signin.SignInActivity
