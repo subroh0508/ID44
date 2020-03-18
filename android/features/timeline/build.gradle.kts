@@ -13,6 +13,7 @@ dependencies {
 
     implementation(project(":android:base"))
     implementation(project(":android:auth"))
+    implementation(project(":android:commons"))
     implementation(project(":bridges:bridges-shared"))
     implementation(project(":bridges:bridges-auth"))
     implementation(project(":bridges:bridges-timeline"))
@@ -28,7 +29,8 @@ dependencies {
 
     implementation(Libraries.Kotlin.jvm)
     implementation(Libraries.Kotlin.reflect)
-    implementation(Libraries.Serialization.common)
+    implementation(Libraries.Serialization.jvm)
+    implementation(Libraries.Serialization.Properties.jvm)
 
     implementation(Libraries.Coroutines.common)
     implementation(Libraries.Coroutines.android)

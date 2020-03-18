@@ -3,12 +3,17 @@ package id44.mizuki.timeline
 import android.os.Bundle
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import id44.mizuki.auth.RequireAuthReactActivity
-import id44.mizuki.bridges.timeline.TimelineView
+import id44.mizuki.commons.RequireAuthReactActivity
 import id44.mizuki.timeline.di.inject
-import org.kodein.di.KodeinAware
+import id44.mizuki.timeline.viewmodel.StreamingViewModel
+import org.kodein.di.Kodein
+import org.kodein.di.generic.instance
 
-class TimelineActivity : RequireAuthReactActivity(), TimelineView, KodeinAware {
+class TimelineActivity : RequireAuthReactActivity() {
+    override lateinit var kodein: Kodein
+
+    val streamingViewModel: StreamingViewModel by instance()
+
     override fun getMainComponentName(): String = "Timeline"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,14 +21,6 @@ class TimelineActivity : RequireAuthReactActivity(), TimelineView, KodeinAware {
 
         super.onCreate(savedInstanceState)
     }
-
-    override fun emitStatus(key: String, streamKey: String, status: Map<String, Any?>) =
-            emitter?.emit(
-                key,
-                Arguments.makeNativeMap(
-                    mapOf("streamKey" to streamKey, "status" to Arguments.makeNativeMap(status))
-                )
-            ) ?: Unit
 
     private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter?
         get() = reactInstanceManager.currentReactContext?.getJSModule(

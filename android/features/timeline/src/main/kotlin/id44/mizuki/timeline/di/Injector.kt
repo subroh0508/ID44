@@ -10,6 +10,8 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.scoped
 import org.kodein.di.generic.singleton
 
+internal const val EVENT_APPEND_STATUS = "EVENT_APPEND_STATUS"
+
 fun TimelineActivity.inject() {
     kodein = Kodein {
         extend(timelineViewModule(this@inject))
