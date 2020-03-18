@@ -35,6 +35,7 @@ kotlin {
                 implementation(Libraries.Kotlin.jvm)
                 implementation(Libraries.Serialization.jvm)
 
+                implementation(Libraries.Coroutines.jvm)
                 implementation(Libraries.Coroutines.android)
 
                 implementation(Libraries.Jetpack.ktx)

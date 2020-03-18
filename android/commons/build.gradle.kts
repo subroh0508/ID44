@@ -16,6 +16,8 @@ android {
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
+    implementation(project(":shared:util"))
+    implementation(project(":data:api"))
     implementation(project(":data:infra:infra-auth"))
 
     implementation(Libraries.Kotlin.jvm)

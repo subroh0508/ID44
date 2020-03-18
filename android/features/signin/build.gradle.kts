@@ -20,9 +20,9 @@ dependencies {
 
     implementation(Libraries.Kotlin.jvm)
     implementation(Libraries.Kotlin.reflect)
-    implementation(Libraries.Serialization.common)
+    implementation(Libraries.Serialization.jvm)
 
-    implementation(Libraries.Coroutines.common)
+    implementation(Libraries.Coroutines.jvm)
     implementation(Libraries.Coroutines.android)
 
     implementation(Libraries.Jetpack.ktx)

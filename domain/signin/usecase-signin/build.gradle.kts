@@ -32,6 +32,7 @@ kotlin {
 
                 implementation(Libraries.Kotlin.jvm)
 
+                implementation(Libraries.Coroutines.jvm)
                 implementation(Libraries.Coroutines.android)
 
                 implementation(Libraries.Kodein.jvm)

@@ -2,10 +2,8 @@ package id44.mizuki.commons
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import id44.mizuki.api.TokenExpiredException
 import id44.mizuki.commons.reactnativesupport.InjectableReactActivity
 import id44.mizuki.commons.viewmodel.RequireAuthViewModel
-import id44.mizuki.shared.util.Https
 import org.kodein.di.generic.instance
 
 abstract class RequireAuthReactActivity : InjectableReactActivity()  {
