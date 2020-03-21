@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.lifecycle.Observer
-import id44.mizuki.base.Activities
-import id44.mizuki.base.intentTo
-import id44.mizuki.base.ui.InjectableReactActivity
+import id44.mizuki.commons.intentTo
+import id44.mizuki.commons.reactnativesupport.InjectableReactActivity
+import id44.mizuki.commons.Activities
 import id44.mizuki.shared.util.valueobject.Uri
 import id44.mizuki.shared.util.valueobject.parse
 import id44.mizuki.signin.di.MAIN_COMPONENT_NAME

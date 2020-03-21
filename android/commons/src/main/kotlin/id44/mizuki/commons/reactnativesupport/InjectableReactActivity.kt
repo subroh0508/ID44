@@ -4,10 +4,13 @@ import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 
 abstract class InjectableReactActivity : ReactActivity(), KodeinAware {
+    override lateinit var kodein: Kodein
+
     val host: ReactNativeHost by instance()
     val reactRootView: ReactRootView by instance()
 
