@@ -25,7 +25,13 @@ class SignInActivity : InjectableReactActivity() {
 
         super.onCreate(savedInstanceState)
 
-        viewModel.authorizeUri.observe(this, Observer(this::openAuthorizePage))
+        viewModel.uiModel.observe(this, Observer { (authorizeUri, errorMessage, launchTimeline) ->
+            when {
+                authorizeUri != null -> openAuthorizePage(authorizeUri)
+                errorMessage != null -> showErrorMessage(errorMessage)
+                launchTimeline -> launchTimeline()
+            }
+        })
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -33,9 +39,9 @@ class SignInActivity : InjectableReactActivity() {
         viewModel.onNewIntent(intent)
     }
 
-    fun showErrorMessage(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
+    private fun showErrorMessage(message: String) = Toast.makeText(this, message, LENGTH_LONG).show()
 
-    fun openTimeline() {
+    private fun launchTimeline() {
         finish()
         startActivity(intentTo(Activities.Timeline))
     }

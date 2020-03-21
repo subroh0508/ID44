@@ -20,11 +20,11 @@ class SignInViewModel(
     private val requestAppCredentialUseCase: RequestAppCredentialUseCase,
     private val requestAccessTokenUseCase: RequestAccessTokenUseCase
 ) : ViewModel() {
-    val authorizeUri: LiveData<Uri> get() = _authorizeUri
+    val uiModel: LiveData<UiModel> get() = _uiModel
 
     private lateinit var deferredCode: CompletableDeferred<String>
 
-    private val _authorizeUri: MutableLiveData<Uri> = MutableLiveData()
+    private val _uiModel: MutableLiveData<UiModel> = MutableLiveData(UiModel())
 
     fun startOauth2Flow(host: String, promise: Promise) {
         viewModelScope.launch {
@@ -40,10 +40,9 @@ class SignInViewModel(
                 }
         }
     }
-    fun showErrorMessage(message: String) {
-        Log.d("showErrorMessage", message)
-    }
-    fun openTimeline() = Unit
+
+    fun showErrorMessage(message: String) = _uiModel.postValue(UiModel(errorMessage = message))
+    fun openTimeline() = _uiModel.postValue(UiModel(launchTimeline = true))
 
     fun onNotFoundBrowser() = deferredCode.completeExceptionally(browserAppNotFoundError())
     fun onNewIntent(intent: Intent?) {
@@ -65,7 +64,9 @@ class SignInViewModel(
     }
 
     private suspend fun fetchAuthorizeCode(host: HostName): String {
-        _authorizeUri.postValue(requestAppCredentialUseCase.execute(host, clientName, redirectUri))
+        _uiModel.postValue(
+            UiModel(authorizeUri = requestAppCredentialUseCase.execute(host, clientName, redirectUri))
+        )
 
         deferredCode = CompletableDeferred()
         return deferredCode.await()
@@ -75,6 +76,12 @@ class SignInViewModel(
     private fun authorizeFailedError(message: String?) = SerializableException(SignInError.AUTHORIZE_FAILED, message)
     private fun browserAppNotFoundError() = SerializableException(SignInError.BROWSER_APP_NOT_FOUND)
     private fun unknownError(message: String?) = SerializableException(SignInError.UNKNOWN, message)
+
+    data class UiModel(
+        val authorizeUri: Uri? = null,
+        val errorMessage: String? = null,
+        val launchTimeline: Boolean = false
+    )
 
     class Factory(
         private val clientName: String,
