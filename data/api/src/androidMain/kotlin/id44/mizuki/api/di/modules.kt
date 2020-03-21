@@ -41,6 +41,13 @@ actual val mastodonApiModule = Kodein.Module(name = "MastodonApiModule") {
     bind<MastodonApi>() with singleton {
         MastodonApiClient(instance<HttpsClientProvider>().provide(instance(), instance()), instance())
     }
+
+    bind<HttpsClientProvider>() with singleton {
+        HttpsClientProvider {
+            // setMapper(GetAccountsVerifyCredential.Response::class, GetAccountsVerifyCredential.Response.serializer())
+            // setMapper(GetTimelines.Response::class, GetTimelines.Response.serializer())
+        }
+    }
 }
 
 actual val mastodonStreamingApiModule = Kodein.Module(name = "MastodonStreamingApiModule") {

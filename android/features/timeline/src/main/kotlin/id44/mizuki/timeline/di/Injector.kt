@@ -8,10 +8,10 @@ import com.facebook.react.ReactRootView
 import com.oblador.vectoricons.VectorIconsPackage
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 import com.swmansion.reanimated.ReanimatedPackage
-import id44.mizuki.bridges.timeline.di.timelineModule
 import id44.mizuki.commons.di.instanceAuthViewModule
 import id44.mizuki.commons.di.requireAuthViewModule
 import id44.mizuki.commons.reactnativesupport.SimpleReactNativeHost
+import id44.mizuki.domain.timeline.usecase.di.timelineModule
 import id44.mizuki.timeline.TimelineActivity
 import id44.mizuki.timeline.viewmodel.OwnAccountsViewModel
 import id44.mizuki.timeline.viewmodel.StatusViewModel

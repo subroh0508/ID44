@@ -19,8 +19,8 @@ kotlin {
                 implementation(project(":data:api"))
                 implementation(project(":data:infra:infra-auth"))
                 implementation(project(":data:infra:infra-account"))
-                implementation(project(":shared:model:model-account"))
                 implementation(project(":data:infra:infra-status"))
+                implementation(project(":shared:model:model-account"))
                 implementation(project(":domain:timeline:usecase-timeline"))
                 implementation(project(":shared:model:model-status"))
 

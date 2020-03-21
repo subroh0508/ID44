@@ -15,6 +15,7 @@ kotlin {
                 implementation(project(":shared:util"))
                 implementation(project(":shared:model:model-account"))
                 implementation(project(":shared:model:model-status"))
+                implementation(project(":data:api"))
                 implementation(project(":data:infra:infra-auth"))
                 implementation(project(":data:infra:infra-account"))
                 implementation(project(":data:infra:infra-status"))
