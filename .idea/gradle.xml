@@ -13,15 +13,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/android" />
             <option value="$PROJECT_DIR$/android/app" />
-            <option value="$PROJECT_DIR$/android/base" />
             <option value="$PROJECT_DIR$/android/commons" />
             <option value="$PROJECT_DIR$/android/features" />
             <option value="$PROJECT_DIR$/android/features/signin" />
             <option value="$PROJECT_DIR$/android/features/timeline" />
-            <option value="$PROJECT_DIR$/bridges" />
-            <option value="$PROJECT_DIR$/bridges/auth" />
-            <option value="$PROJECT_DIR$/bridges/shared" />
-            <option value="$PROJECT_DIR$/bridges/timeline" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/api" />
@@ -37,8 +32,6 @@
             <option value="$PROJECT_DIR$/domain/signin/usecase-signin" />
             <option value="$PROJECT_DIR$/domain/timeline" />
             <option value="$PROJECT_DIR$/domain/timeline/usecase-timeline" />
-            <option value="$PROJECT_DIR$/libraries" />
-            <option value="$PROJECT_DIR$/libraries/reactnativesupport" />
             <option value="$PROJECT_DIR$/node_modules/react-native-fast-image/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-gesture-handler/android" />
             <option value="$PROJECT_DIR$/node_modules/react-native-reanimated/android" />

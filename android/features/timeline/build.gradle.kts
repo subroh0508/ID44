@@ -11,11 +11,7 @@ androidCommons()
 dependencies {
     implementation(fileTree("dir" to "libs", "include" to listOf("*.jar")))
 
-    implementation(project(":android:base"))
     implementation(project(":android:commons"))
-    implementation(project(":bridges:bridges-shared"))
-    implementation(project(":bridges:bridges-auth"))
-    implementation(project(":bridges:bridges-timeline"))
     implementation(project(":shared:util"))
     implementation(project(":shared:model:model-account"))
     implementation(project(":shared:model:model-status"))

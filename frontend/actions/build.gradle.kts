@@ -12,12 +12,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":bridges:bridges-shared"))
                 implementation(project(":shared:util"))
                 implementation(project(":shared:model:model-auth"))
-                implementation(project(":domain:signin:usecase-signin"))
                 implementation(project(":data:api"))
                 implementation(project(":data:infra:infra-auth"))
+                implementation(project(":domain:signin:usecase-signin"))
 
                 implementation(Libraries.Kotlin.common)
                 implementation(Libraries.Serialization.common)
@@ -38,8 +37,6 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(project(":libraries:reactnativesupport"))
-                implementation(project(":android:base"))
                 implementation(project(":react-native-vector-icons"))
                 implementation(project(":react-native-gesture-handler"))
                 implementation(project(":react-native-reanimated"))

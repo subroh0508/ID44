@@ -1,13 +1,9 @@
 include(
     ":android:app",
-    ":android:base",
     ":android:commons",
     ":android:features:signin",
     ":android:features:timeline",
     ":desktop:actions:actions-signin",
-    ":bridges:shared",
-    ":bridges:auth",
-    ":bridges:timeline",
     ":shared:util",
     ":shared:model:model-auth",
     ":shared:model:model-account",
@@ -19,16 +15,11 @@ include(
     ":data:infra:infra-auth",
     ":data:infra:infra-account",
     ":data:infra:infra-status",
-    ":libraries:reactnativesupport",
     ":react-native-vector-icons",
     ":react-native-gesture-handler",
     ":react-native-reanimated",
     ":react-native-fast-image"
 )
-
-project(":bridges:shared").name = "bridges-shared"
-project(":bridges:auth").name = "bridges-auth"
-project(":bridges:timeline").name = "bridges-timeline"
 
 project(":react-native-vector-icons").projectDir = file("$rootDir/node_modules/react-native-vector-icons/android")
 project(":react-native-gesture-handler").projectDir = file("$rootDir/node_modules/react-native-gesture-handler/android")

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="requestaccesstoken-js">
-    <output-path>$PROJECT_DIR$/libraries/auth/domain/usecase/requestaccesstoken/build/libs</output-path>
-    <root id="archive" name="requestaccesstoken-js.jar">
-      <element id="module-output" name="ID44.libraries.auth.domain.usecase.requestaccesstoken.jsMain" />
-    </root>
-  </artifact>
-</component>
