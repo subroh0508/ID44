@@ -3,13 +3,17 @@ package id44.mizuki.timeline.di
 import com.facebook.react.bridge.BaseJavaModule
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactMethod
+import id44.mizuki.shared.model.status.Status
 import id44.mizuki.shared.model.status.StatusVisibility
 import id44.mizuki.shared.model.status.Stream
 import id44.mizuki.timeline.viewmodel.OwnAccountsViewModel
+import id44.mizuki.timeline.viewmodel.StatusViewModel
 import id44.mizuki.timeline.viewmodel.StreamingViewModel
+import kotlinx.serialization.json.Json
 
 class TimelineReactModule(
     private val streamingViewModel: StreamingViewModel,
+    private val statusViewModel: StatusViewModel,
     private val ownAccountsViewModel: OwnAccountsViewModel
 ) : BaseJavaModule() {
     companion object {
@@ -39,6 +43,26 @@ class TimelineReactModule(
     }
 
     @ReactMethod
+    fun fetchStatuses(stream: String, maxId: String? = null, promise: Promise) {
+        statusViewModel.fetchStatuses(Stream.valueOf(stream), maxId, promise)
+    }
+
+    @ReactMethod
+    fun submitStatus(status: String, warningText: String?, visibility: String, promise: Promise) {
+        statusViewModel.submitStatus(status, StatusVisibility.valueOf(visibility), warningText, promise)
+    }
+
+    @ReactMethod
+    fun toggleFavourite(status: String, promise: Promise) {
+        statusViewModel.toggleFavourite(Json.nonstrict.parse(Status.serializer(), status), promise)
+    }
+
+    @ReactMethod
+    fun toggleReblog(status: String, promise: Promise) {
+        statusViewModel.toggleReblog(Json.nonstrict.parse(Status.serializer(), status), promise)
+    }
+
+    @ReactMethod
     fun openAuthentication() {
         ownAccountsViewModel.openAuthentication()
     }
@@ -52,7 +76,6 @@ class TimelineReactModule(
     fun fetchOwnAccounts(promise: Promise) {
         ownAccountsViewModel.fetchOwnAccounts(promise)
     }
-
     @ReactMethod
     fun switchAccount(host: String, id: String) {
         ownAccountsViewModel.switchAccount(host, id)

@@ -14,6 +14,7 @@ import id44.mizuki.commons.di.requireAuthViewModule
 import id44.mizuki.commons.reactnativesupport.SimpleReactNativeHost
 import id44.mizuki.timeline.TimelineActivity
 import id44.mizuki.timeline.viewmodel.OwnAccountsViewModel
+import id44.mizuki.timeline.viewmodel.StatusViewModel
 import id44.mizuki.timeline.viewmodel.StreamingViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -27,9 +28,9 @@ internal const val EVENT_APPEND_STATUS = "EVENT_APPEND_STATUS"
 internal const val STREAM = "STREAM"
 internal const val STATUS_VISIBILITY = "STATUS_VISIBILITY"
 
-const val MAIN_COMPONENT_NAME = "Timeline"
-const val BUNDLE_NAME = "index.android.bundle"
-const val JS_MODULE_NAME = "frontend/components/timeline/index"
+internal const val MAIN_COMPONENT_NAME = "Timeline"
+internal const val BUNDLE_NAME = "index.android.bundle"
+internal const val JS_MODULE_NAME = "frontend/components/timeline/index"
 
 fun TimelineActivity.inject() {
     kodein = Kodein {
@@ -42,7 +43,7 @@ fun TimelineActivity.inject() {
         bind<ReactNativeHost>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
             SimpleReactNativeHost(
                 instance(), BUNDLE_NAME, JS_MODULE_NAME,
-                nativeModules = listOf(TimelineReactModule(instance(), instance())),
+                nativeModules = listOf(TimelineReactModule(instance(), instance(), instance())),
                 packages = listOf(
                     VectorIconsPackage(),
                     FastImageViewPackage(),
@@ -57,6 +58,14 @@ fun TimelineActivity.inject() {
         bind<StreamingViewModel>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
             ViewModelProvider(this@inject, instance<StreamingViewModel.Factory>())[StreamingViewModel::class.java]
         }
+
+        bind<StatusViewModel.Factory>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
+            StatusViewModel.Factory(instanceAuthViewModule(), instance(), instance(), instance(), instance())
+        }
+        bind<StatusViewModel>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
+            ViewModelProvider(this@inject, instance<StatusViewModel.Factory>())[StatusViewModel::class.java]
+        }
+
         bind<OwnAccountsViewModel.Factory>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
             OwnAccountsViewModel.Factory(instanceAuthViewModule(), instance(), instance(), instance())
         }

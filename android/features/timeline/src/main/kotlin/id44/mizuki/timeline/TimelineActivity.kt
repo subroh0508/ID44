@@ -6,11 +6,13 @@ import id44.mizuki.commons.RequireAuthReactActivity
 import id44.mizuki.timeline.di.MAIN_COMPONENT_NAME
 import id44.mizuki.timeline.di.inject
 import id44.mizuki.timeline.viewmodel.OwnAccountsViewModel
+import id44.mizuki.timeline.viewmodel.StatusViewModel
 import id44.mizuki.timeline.viewmodel.StreamingViewModel
 import org.kodein.di.generic.instance
 
 class TimelineActivity : RequireAuthReactActivity() {
     val streamingViewModel: StreamingViewModel by instance()
+    val statusViewModel: StatusViewModel by instance()
     val ownAccountsViewModel: OwnAccountsViewModel by instance()
 
     override fun getMainComponentName(): String = MAIN_COMPONENT_NAME
