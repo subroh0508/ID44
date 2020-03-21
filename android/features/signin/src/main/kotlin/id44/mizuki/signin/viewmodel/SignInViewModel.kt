@@ -1,7 +1,6 @@
 package id44.mizuki.signin.viewmodel
 
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.*
 import com.facebook.react.bridge.Promise
 import id44.mizuki.domain.signin.usecase.RequestAccessTokenUseCase

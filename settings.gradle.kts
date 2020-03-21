@@ -1,7 +1,6 @@
 include(
     ":android:app",
     ":android:base",
-    ":android:auth",
     ":android:commons",
     ":android:features:signin",
     ":android:features:timeline",
