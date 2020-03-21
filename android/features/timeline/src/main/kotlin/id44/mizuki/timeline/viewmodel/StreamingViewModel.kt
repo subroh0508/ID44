@@ -7,6 +7,7 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import id44.mizuki.commons.viewmodel.RequireAuthViewModel
+import id44.mizuki.commons.viewmodel.runAuthCatching
 import id44.mizuki.domain.timeline.usecase.TimelineSubscribeUseCase
 import id44.mizuki.domain.timeline.usecase.TimelineUnsubscribeUseCase
 import id44.mizuki.infra.auth.repository.AccessTokenRepository
@@ -20,11 +21,11 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Properties
 
 class StreamingViewModel(
-    accessTokenRepository: AccessTokenRepository,
+    requireAuthViewModel: RequireAuthViewModel,
     private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter?,
     private val timelineSubscribeUseCase: TimelineSubscribeUseCase,
     private val timelineUnsubscribeUseCase: TimelineUnsubscribeUseCase
-) : RequireAuthViewModel(accessTokenRepository) {
+) : ViewModel(), RequireAuthViewModel by requireAuthViewModel {
     fun subscribe(host: String, id: String, stream: String, promise: Promise) = viewModelScope.launch {
         runAuthCatching { timelineSubscribeUseCase.execute(HostName(host), AccountId(id), Stream.valueOf(stream)) }
             .onSuccess { flow ->
@@ -51,7 +52,7 @@ class StreamingViewModel(
     private fun streamKey(host: String, id: String, stream: String) = "$host/$id/$stream"
 
     class Factory(
-        private val accessTokenRepository: AccessTokenRepository,
+        private val requireAuthViewModel: RequireAuthViewModel,
         private val emitter: DeviceEventManagerModule.RCTDeviceEventEmitter?,
         private val timelineSubscribeUseCase: TimelineSubscribeUseCase,
         private val timelineUnsubscribeUseCase: TimelineUnsubscribeUseCase
@@ -59,7 +60,7 @@ class StreamingViewModel(
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T =
             StreamingViewModel(
-                accessTokenRepository,
+                requireAuthViewModel,
                 emitter,
                 timelineSubscribeUseCase,
                 timelineUnsubscribeUseCase

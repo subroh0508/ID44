@@ -45,9 +45,9 @@ fun timelineViewModule(view: AppCompatActivity) = Kodein {
     import(timelineModule)
 
     extend((view.application as KodeinAware).kodein)
-    requireAuthViewModule(view)
+    //requireAuthViewModule(view)
 
-    bind<TimelineView>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton { view as TimelineView }
+    //bind<TimelineView>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton { view as TimelineView }
     bind<ReactNativeHost>() with scoped(WeakContextScope.of<AppCompatActivity>()).singleton {
         TimelineReactNativeHost(instance(), instance())
     }
