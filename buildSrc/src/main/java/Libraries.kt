@@ -9,7 +9,7 @@ object Libraries {
     }
 
     object Kotlin {
-        const val version = "1.3.70"
+        const val version = "1.3.71"
 
         const val common = "org.jetbrains.kotlin:kotlin-stdlib-common:$version"
         const val jvm = "org.jetbrains.kotlin:kotlin-stdlib:$version"

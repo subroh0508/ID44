@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="infra-status-js">
-    <output-path>$PROJECT_DIR$/data/infra/infra-status/build/libs</output-path>
-    <root id="archive" name="infra-status-js.jar">
-      <element id="module-output" name="ID44.data.infra.infra-status.jsMain" />
-    </root>
-  </artifact>
-</component>
