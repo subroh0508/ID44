@@ -23,7 +23,7 @@ internal class AccountCredentialRepositoryImpl(
         hostName.value,
         clientId.value,
         clientSecret.value,
-        redirectUri.toString()
+        redirectUri.value
     ))
 
     override suspend fun fetchAccessToken(
@@ -33,7 +33,13 @@ internal class AccountCredentialRepositoryImpl(
         redirectUri: Uri,
         code: String
     ): AccessToken = AccessToken(
-        authApi.requestAccessToken(hostName.value, clientId.value, clientSecret.value, redirectUri.toString(), code).accessToken
+        authApi.requestAccessToken(
+            hostName.value,
+            clientId.value,
+            clientSecret.value,
+            redirectUri.value,
+            code
+        ).accessToken
     )
 
     override suspend fun saveOwnAccount(hostName: HostName, accessToken: AccessToken) {

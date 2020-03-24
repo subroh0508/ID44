@@ -32,7 +32,7 @@ class SignInViewModel(
             runCatching {
                 requestAccessTokenUseCase.execute(hostName, redirectUri, fetchAuthorizeCode(hostName))
             }
-                .onSuccess { promise.resolve(Unit) }
+                .onSuccess { promise.resolve(null) }
                 .onFailure {
                     it.printStackTrace()
                     promise.reject(it)

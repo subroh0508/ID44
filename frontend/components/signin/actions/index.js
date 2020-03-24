@@ -23,6 +23,7 @@ export const onClickedAuthorize = host => async (
   try {
     await startOauth2Flow(host);
 
+    openTimeline();
     dispatch(onChangeAuthorizationStatus(STATUS_FINISH));
   } catch (e) {
     const message = i18next.t(exceptions.parseKey(e, "unknown"));

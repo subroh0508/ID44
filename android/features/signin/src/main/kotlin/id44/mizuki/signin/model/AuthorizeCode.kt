@@ -11,7 +11,7 @@ inline class AuthorizeCode(private val pair: Pair<String, String?>) {
 
     companion object {
         fun fromIntent(intent: Intent?, redirectUri: Uri): AuthorizeCode? = intent?.data?.let { uri ->
-            if (uri.toString().startsWith(redirectUri.toString())) {
+            if (uri.toString().startsWith(redirectUri.value)) {
                 val code = uri.getQueryParameter(QUERY_CODE) ?: ""
                 val error = uri.getQueryParameter(QUERY_ERROR)
 
