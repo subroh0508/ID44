@@ -42,7 +42,7 @@ object Libraries {
     }
 
     object Coroutines {
-        const val version = "1.3.4"
+        const val version = "1.3.5"
 
         const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$version"
         const val jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
@@ -128,7 +128,7 @@ object Libraries {
     }
 
     object Kodein {
-        const val version = "6.5.3"
+        const val version = "6.5.4"
 
         const val common = "org.kodein.di:kodein-di-erased:$version"
         const val jvm = "org.kodein.di:kodein-di-generic-jvm:$version"
